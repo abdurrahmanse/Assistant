@@ -6,6 +6,8 @@ async def test_rate_limit_exceeded(client):
     """Send 61 requests — the last ones should return 429."""
     last_status = None
     for _ in range(65):
+        import asyncio
+        await asyncio.sleep(0.01)
         response = await client.get("/health")
         last_status = response.status_code
         if last_status == 429:
