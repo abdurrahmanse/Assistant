@@ -19,7 +19,7 @@ export const inputsCustomizations: Components<Theme> = {
         boxSizing: 'border-box',
         transition: 'all 100ms ease-in',
         '&:focus-visible': {
-          outline: `3px solid ${alpha(theme.palette.primary.main, 0.5)}`,
+          outline: `3px solid ${'rgba(168, 85, 247, 0.5)'}`,
           outlineOffset: '2px',
         },
       }),

@@ -26,7 +26,7 @@ export const navigationCustomizations: Components<Theme> = {
           boxShadow: '2px 2px 0px #000',
           border: '1px solid #000',
           [`&.${menuItemClasses.focusVisible}`]: {
-            backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            backgroundColor: theme.palette.action.selected,
           },
         },
       }),
@@ -50,7 +50,7 @@ export const navigationCustomizations: Components<Theme> = {
           'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
         [`& .${buttonBaseClasses.root}`]: {
           '&.Mui-selected': {
-            backgroundColor: alpha(theme.palette.action.selected, 0.3),
+            backgroundColor: theme.palette.action.selected,
           },
         },
         ...theme.applyStyles('dark', {
@@ -158,7 +158,7 @@ export const navigationCustomizations: Components<Theme> = {
         backgroundColor: 'rgba(255, 255, 255, 0.6)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        borderRight: `1px solid ${alpha((theme.vars || theme).palette.divider, 0.3)}`,
+        borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
         ...theme.applyStyles('dark', {
           backgroundColor: 'rgba(9, 9, 11, 0.6)',
         }),

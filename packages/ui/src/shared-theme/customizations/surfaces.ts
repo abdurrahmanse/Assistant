@@ -58,10 +58,10 @@ export const surfacesCustomizations: Components<Theme> = {
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         backgroundColor: 'rgba(255, 255, 255, 0.6)',
-        border: `1px solid ${alpha(theme.palette.divider, 0.3)}`,
+        border: `1px solid ${(theme.vars || theme).palette.divider}`,
         ...theme.applyStyles('dark', {
           backgroundColor: 'rgba(9, 9, 11, 0.6)',
-          border: `1px solid ${alpha(theme.palette.divider, 0.3)}`,
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
         }),
       }),
     },
@@ -77,7 +77,7 @@ export const surfacesCustomizations: Components<Theme> = {
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
           borderRadius: (theme.vars || theme).shape.borderRadius,
-          border: `1px solid ${alpha((theme.vars || theme).palette.divider, 0.5)}`,
+          border: `1px solid ${(theme.vars || theme).palette.divider}`,
           boxShadow: 'none',
           ...theme.applyStyles('dark', {
             backgroundColor: 'rgba(9, 9, 11, 0.4)',
@@ -88,7 +88,7 @@ export const surfacesCustomizations: Components<Theme> = {
                 variant: 'outlined',
               },
               style: {
-                border: `1px solid ${alpha((theme.vars || theme).palette.divider, 0.5)}`,
+                border: `1px solid ${(theme.vars || theme).palette.divider}`,
                 boxShadow: 'none',
                 background: 'rgba(255, 255, 255, 0.4)',
                 ...theme.applyStyles('dark', {
