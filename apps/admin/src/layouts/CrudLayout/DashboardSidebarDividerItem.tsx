@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+ 
 import * as React from 'react';
 import Divider from '@mui/material/Divider';
 import type {} from '@mui/material/themeCssVarsAugmentation';

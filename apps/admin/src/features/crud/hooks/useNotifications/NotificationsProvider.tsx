@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+ 
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Badge from '@mui/material/Badge';

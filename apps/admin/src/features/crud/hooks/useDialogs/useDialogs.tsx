@@ -1,7 +1,7 @@
 import { ChevronRight, X } from "lucide-react";
-/* eslint-disable react-refresh/only-export-components */
-/* eslint-disable @typescript-eslint/no-empty-object-type */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
+ 
+ 
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';

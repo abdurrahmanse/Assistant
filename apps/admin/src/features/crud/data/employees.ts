@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import type { GridFilterModel, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
 
 type EmployeeRole = 'Market' | 'Finance' | 'Development';

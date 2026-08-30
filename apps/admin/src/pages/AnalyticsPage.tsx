@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+ 
 import type {} from '@mui/x-date-pickers/themeAugmentation';
 import type {} from '@mui/x-charts/themeAugmentation';
 import type {} from '@mui/x-data-grid-pro/themeAugmentation';

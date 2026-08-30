@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-empty-object-type */
+ 
 import * as React from 'react';
 import { useTheme, type Theme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';

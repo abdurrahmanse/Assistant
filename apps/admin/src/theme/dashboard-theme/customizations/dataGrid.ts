@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { checkboxClasses } from '@mui/material/Checkbox';
 import { iconButtonClasses } from '@mui/material/IconButton';
 import { listClasses } from '@mui/material/List';
