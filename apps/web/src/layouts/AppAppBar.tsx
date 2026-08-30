@@ -43,10 +43,13 @@ export default function AppAppBar() {
       position="fixed"
       enableColorOnDark
       sx={{
-        boxShadow: 0,
-        bgcolor: 'transparent',
-        backgroundImage: 'none',
-        border: 'none',
+        boxShadow: 'none !important',
+        bgcolor: 'transparent !important',
+        backgroundImage: 'none !important',
+        border: 'none !important',
+        outline: 'none !important',
+        backdropFilter: 'none !important',
+        WebkitBackdropFilter: 'none !important',
         mt: 'calc(var(--template-frame-height, 0px) + 28px)',
       }}
     >
