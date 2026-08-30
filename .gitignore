@@ -53,3 +53,28 @@ lerna-debug.log*
 # Misc
 .vercel/
 *.pem
+
+# Python & FastAPI
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+ENV/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+*.db
+*.sqlite3
+test.db
+site/
+docker-compose.override.yml
+logs/
