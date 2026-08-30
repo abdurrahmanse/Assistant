@@ -121,7 +121,7 @@ export function MobileLayout({
         <Box sx={{ px: 2, pb: 2 }}>
           <Typography
             gutterBottom
-            sx={{ color: 'text.primary', fontWeight: 'medium' }}
+            sx={{ color: 'text.primary', fontWeight: 600 }}
           >
             {selectedFeature.title}
           </Typography>

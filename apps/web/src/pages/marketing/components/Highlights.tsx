@@ -103,7 +103,7 @@ export default function Highlights() {
               >
                 <Box sx={{ opacity: '50%' }}>{item.icon}</Box>
                 <div>
-                  <Typography gutterBottom sx={{ fontWeight: 'medium' }}>
+                  <Typography gutterBottom sx={{ fontWeight: 600 }}>
                     {item.title}
                   </Typography>
                   <Typography variant="body2" sx={{ color: 'grey.400' }}>

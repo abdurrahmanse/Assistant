@@ -58,7 +58,7 @@ export const datePickersCustomizations: PickerComponents<Theme> = {
         },
         [`&.${yearCalendarClasses.selected}`]: {
           backgroundColor: gray[700],
-          fontWeight: theme.typography.fontWeightMedium,
+          fontWeight: 600,
         },
         '&:focus': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -73,7 +73,7 @@ export const datePickersCustomizations: PickerComponents<Theme> = {
           },
           [`&.${yearCalendarClasses.selected}`]: {
             color: (theme.vars || theme).palette.common.black,
-            fontWeight: theme.typography.fontWeightMedium,
+            fontWeight: 600,
             backgroundColor: gray[300],
           },
           '&:focus': {
@@ -99,7 +99,7 @@ export const datePickersCustomizations: PickerComponents<Theme> = {
         },
         [`&.${yearCalendarClasses.selected}`]: {
           backgroundColor: gray[700],
-          fontWeight: theme.typography.fontWeightMedium,
+          fontWeight: 600,
         },
         '&:focus': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -114,7 +114,7 @@ export const datePickersCustomizations: PickerComponents<Theme> = {
           },
           [`&.${yearCalendarClasses.selected}`]: {
             color: (theme.vars || theme).palette.common.black,
-            fontWeight: theme.typography.fontWeightMedium,
+            fontWeight: 600,
             backgroundColor: gray[300],
           },
           '&:focus': {
@@ -140,7 +140,7 @@ export const datePickersCustomizations: PickerComponents<Theme> = {
         },
         [`&.${pickersDayClasses.selected}`]: {
           backgroundColor: gray[700],
-          fontWeight: theme.typography.fontWeightMedium,
+          fontWeight: 600,
         },
         '&:focus': {
           outline: `3px solid ${alpha(brand[500], 0.5)}`,
@@ -155,7 +155,7 @@ export const datePickersCustomizations: PickerComponents<Theme> = {
           },
           [`&.${pickersDayClasses.selected}`]: {
             color: (theme.vars || theme).palette.common.black,
-            fontWeight: theme.typography.fontWeightMedium,
+            fontWeight: 600,
             backgroundColor: gray[300],
           },
           '&:focus': {

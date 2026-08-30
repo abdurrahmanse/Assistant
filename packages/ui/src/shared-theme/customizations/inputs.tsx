@@ -225,7 +225,7 @@ export const inputsCustomizations: Components<Theme> = {
         boxShadow: 'none',
         borderRadius: (theme.vars || theme).shape.borderRadius,
         textTransform: 'none',
-        fontWeight: theme.typography.fontWeightMedium,
+        fontWeight: 600,
         letterSpacing: 0,
         color: (theme.vars || theme).palette.text.primary,
         border: '1px solid ',
@@ -297,7 +297,7 @@ export const inputsCustomizations: Components<Theme> = {
         padding: '12px 16px',
         textTransform: 'none',
         borderRadius: '10px',
-        fontWeight: 500,
+        fontWeight: 600,
         ...theme.applyStyles('dark', {
           color: gray[400],
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',

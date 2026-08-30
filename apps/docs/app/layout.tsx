@@ -4,7 +4,7 @@ import "./globals.css";
 import LenisProvider from "./LenisProvider";
 
 
-const rajdhani = Rajdhani({ weight: ["300", "400", "500", "600", "700"], subsets: ["latin"], variable: "--font-rajdhani" });
+const rajdhani = Rajdhani({ weight: ["600", "700"], subsets: ["latin"], variable: "--font-rajdhani" });
 
 export const metadata: Metadata = {
   title: "Create Next App",

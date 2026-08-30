@@ -158,7 +158,7 @@ export default function PaymentForm() {
                     },
                   ]}
                 />
-                <Typography sx={{ fontWeight: 'medium' }}>Card</Typography>
+                <Typography sx={{ fontWeight: 600 }}>Card</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -189,7 +189,7 @@ export default function PaymentForm() {
                     },
                   ]}
                 />
-                <Typography sx={{ fontWeight: 'medium' }}>Bank account</Typography>
+                <Typography sx={{ fontWeight: 600 }}>Bank account</Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -286,7 +286,7 @@ export default function PaymentForm() {
           <Alert severity="warning" icon={<WarningRoundedIcon />}>
             Your order will be processed once we receive the funds.
           </Alert>
-          <Typography variant="subtitle1" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
             Bank account
           </Typography>
           <Typography variant="body1" gutterBottom>
@@ -296,7 +296,7 @@ export default function PaymentForm() {
             <Typography variant="body1" sx={{ color: 'text.secondary' }}>
               Bank:
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>
               Mastercredit
             </Typography>
           </Box>
@@ -304,7 +304,7 @@ export default function PaymentForm() {
             <Typography variant="body1" sx={{ color: 'text.secondary' }}>
               Account number:
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>
               123456789
             </Typography>
           </Box>
@@ -312,7 +312,7 @@ export default function PaymentForm() {
             <Typography variant="body1" sx={{ color: 'text.secondary' }}>
               Routing number:
             </Typography>
-            <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>
               987654321
             </Typography>
           </Box>

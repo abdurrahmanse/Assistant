@@ -26,7 +26,7 @@ export const dataDisplayCustomizations: Components<Theme> = {
           color: (theme.vars || theme).palette.text.secondary,
         },
         [`& .${typographyClasses.root}`]: {
-          fontWeight: 500,
+          fontWeight: 600,
         },
         [`& .${buttonBaseClasses.root}`]: {
           display: 'flex',
@@ -58,7 +58,7 @@ export const dataDisplayCustomizations: Components<Theme> = {
     styleOverrides: {
       primary: ({ theme }) => ({
         fontSize: theme.typography.body2.fontSize,
-        fontWeight: 500,
+        fontWeight: 600,
         lineHeight: theme.typography.body2.lineHeight,
       }),
       secondary: ({ theme }) => ({
@@ -73,7 +73,7 @@ export const dataDisplayCustomizations: Components<Theme> = {
         backgroundColor: 'transparent',
         padding: '4px 8px',
         fontSize: theme.typography.caption.fontSize,
-        fontWeight: 500,
+        fontWeight: 600,
         lineHeight: theme.typography.caption.lineHeight,
       }),
     },

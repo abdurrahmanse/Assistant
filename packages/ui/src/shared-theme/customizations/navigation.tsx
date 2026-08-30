@@ -120,7 +120,7 @@ export const navigationCustomizations: Components<Theme> = {
     styleOverrides: {
       root: ({ theme }) => ({
         color: (theme.vars || theme).palette.text.primary,
-        fontWeight: 500,
+        fontWeight: 600,
         position: 'relative',
         textDecoration: 'none',
         width: 'fit-content',

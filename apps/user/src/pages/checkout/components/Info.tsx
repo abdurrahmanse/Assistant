@@ -48,7 +48,7 @@ export default function Info({ totalPrice }: InfoProps) {
               primary={product.name}
               secondary={product.desc}
             />
-            <Typography variant="body1" sx={{ fontWeight: 'medium' }}>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>
               {product.price}
             </Typography>
           </ListItem>

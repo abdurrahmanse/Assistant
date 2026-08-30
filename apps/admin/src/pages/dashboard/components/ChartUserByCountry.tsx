@@ -172,7 +172,7 @@ export default function ChartUserByCountry() {
                   gap: 2,
                 }}
               >
-                <Typography variant="body2" sx={{ fontWeight: '500' }}>
+                <Typography variant="body2" sx={{ fontWeight: '600' }}>
                   {country.name}
                 </Typography>
                 <Typography variant="body2" sx={{ color: 'text.secondary' }}>

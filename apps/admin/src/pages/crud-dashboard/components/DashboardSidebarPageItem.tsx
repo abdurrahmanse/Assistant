@@ -189,7 +189,7 @@ export default function DashboardSidebarPageItem({
                     left: '50%',
                     transform: 'translateX(-50%)',
                     fontSize: 10,
-                    fontWeight: 500,
+                    fontWeight: 600,
                     textAlign: 'center',
                     whiteSpace: 'nowrap',
                     overflow: 'hidden',

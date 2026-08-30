@@ -101,7 +101,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="body2" sx={{ fontWeight: 600 }}>
             Product
           </Typography>
           <Link
@@ -157,7 +157,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="body2" sx={{ fontWeight: 600 }}>
             Company
           </Typography>
           <Link
@@ -195,7 +195,7 @@ export default function Footer() {
             gap: 1,
           }}
         >
-          <Typography variant="body2" sx={{ fontWeight: 'medium' }}>
+          <Typography variant="body2" sx={{ fontWeight: 600 }}>
             Legal
           </Typography>
           <Link

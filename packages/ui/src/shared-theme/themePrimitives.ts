@@ -218,18 +218,18 @@ export const getDesignTokens = (mode: PaletteMode) => {
       },
       subtitle2: {
         fontSize: defaultTheme.typography.pxToRem(14),
-        fontWeight: 500,
+        fontWeight: 600,
       },
       body1: {
         fontSize: defaultTheme.typography.pxToRem(14),
       },
       body2: {
         fontSize: defaultTheme.typography.pxToRem(14),
-        fontWeight: 400,
+        fontWeight: 600,
       },
       caption: {
         fontSize: defaultTheme.typography.pxToRem(12),
-        fontWeight: 400,
+        fontWeight: 600,
       },
     },
     shape: {
@@ -376,18 +376,18 @@ export const typography = {
   },
   subtitle2: {
     fontSize: defaultTheme.typography.pxToRem(14),
-    fontWeight: 500,
+    fontWeight: 600,
   },
   body1: {
     fontSize: defaultTheme.typography.pxToRem(14),
   },
   body2: {
     fontSize: defaultTheme.typography.pxToRem(14),
-    fontWeight: 400,
+    fontWeight: 600,
   },
   caption: {
     fontSize: defaultTheme.typography.pxToRem(12),
-    fontWeight: 400,
+    fontWeight: 600,
   },
 };
 

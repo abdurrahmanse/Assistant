@@ -13,7 +13,7 @@ export const chartsCustomizations: ChartsComponents<Theme> = {
         [`& .${axisClasses.tick}`]: { stroke: gray[300] },
         [`& .${axisClasses.tickLabel}`]: {
           fill: gray[500],
-          fontWeight: 500,
+          fontWeight: 600,
         },
         ...theme.applyStyles('dark', {
           [`& .${axisClasses.line}`]: {
@@ -22,7 +22,7 @@ export const chartsCustomizations: ChartsComponents<Theme> = {
           [`& .${axisClasses.tick}`]: { stroke: gray[700] },
           [`& .${axisClasses.tickLabel}`]: {
             fill: gray[300],
-            fontWeight: 500,
+            fontWeight: 600,
           },
         }),
       }),
