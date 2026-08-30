@@ -26,192 +26,115 @@ export const inputsCustomizations: Components<Theme> = {
     },
   },
   MuiButton: {
+    defaultProps: {
+      disableElevation: true,
+    },
     styleOverrides: {
       root: ({ theme }) => ({
         boxShadow: 'none',
         borderRadius: (theme.vars || theme).shape.borderRadius,
         textTransform: 'none',
+        fontWeight: 700,
+        transition: 'all 0.2s ease',
+        '&:hover': {
+          transform: 'translate(-2px, -2px)',
+        },
+        '&:active': {
+          transform: 'translate(2px, 2px)',
+        },
         variants: [
           {
-            props: {
-              size: 'small',
-            },
-            style: {
-              height: '2.25rem',
-              padding: '8px 12px',
-            },
+            props: { size: 'small' },
+            style: { height: '2.25rem', padding: '8px 12px' },
           },
           {
-            props: {
-              size: 'medium',
-            },
-            style: {
-              height: '2.5rem', // 40px
-            },
+            props: { size: 'medium' },
+            style: { height: '2.5rem' },
           },
           {
-            props: {
-              color: 'primary',
-              variant: 'contained',
-            },
+            props: { color: 'primary', variant: 'contained' },
             style: {
-              color: 'white',
-              backgroundColor: gray[900],
-              backgroundImage: `linear-gradient(to bottom, ${gray[700]}, ${gray[800]})`,
-              boxShadow: `inset 0 1px 0 ${gray[600]}, inset 0 -1px 0 1px hsl(220, 0%, 0%)`,
-              border: `1px solid ${gray[700]}`,
+              color: '#ffffff',
+              backgroundImage: 'linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)',
+              backgroundSize: '200% 200%',
+              animation: 'aurora 4s ease infinite',
+              border: '2px solid #000',
+              boxShadow: '4px 4px 0px #000',
               '&:hover': {
-                backgroundImage: 'none',
-                backgroundColor: gray[700],
-                boxShadow: 'none',
+                boxShadow: '6px 6px 0px #000',
+                backgroundImage: 'linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)',
               },
               '&:active': {
-                backgroundColor: gray[800],
+                boxShadow: '2px 2px 0px #000',
               },
               ...theme.applyStyles('dark', {
-                color: 'black',
-                backgroundColor: gray[50],
-                backgroundImage: `linear-gradient(to bottom, ${gray[100]}, ${gray[50]})`,
-                boxShadow: 'inset 0 -1px 0  hsl(220, 30%, 80%)',
-                border: `1px solid ${gray[50]}`,
-                '&:hover': {
-                  backgroundImage: 'none',
-                  backgroundColor: gray[300],
-                  boxShadow: 'none',
-                },
-                '&:active': {
-                  backgroundColor: gray[400],
-                },
+                border: '2px solid #fff',
+                boxShadow: '4px 4px 0px #fff',
+                '&:hover': { boxShadow: '6px 6px 0px #fff' },
+                '&:active': { boxShadow: '2px 2px 0px #fff' },
               }),
             },
           },
           {
-            props: {
-              color: 'secondary',
-              variant: 'contained',
-            },
+            props: { color: 'secondary', variant: 'contained' },
             style: {
               color: 'white',
               backgroundColor: brand[300],
-              backgroundImage: `linear-gradient(to bottom, ${alpha(brand[400], 0.8)}, ${brand[500]})`,
-              boxShadow: `inset 0 2px 0 ${alpha(brand[200], 0.2)}, inset 0 -2px 0 ${alpha(brand[700], 0.4)}`,
-              border: `1px solid ${brand[500]}`,
+              backgroundImage: 'none',
+              border: '2px solid #000',
+              boxShadow: '4px 4px 0px #000',
               '&:hover': {
-                backgroundColor: brand[700],
-                boxShadow: 'none',
+                backgroundColor: brand[400],
+                boxShadow: '6px 6px 0px #000',
               },
               '&:active': {
-                backgroundColor: brand[700],
-                backgroundImage: 'none',
+                boxShadow: '2px 2px 0px #000',
               },
+              ...theme.applyStyles('dark', {
+                border: '2px solid #fff',
+                boxShadow: '4px 4px 0px #fff',
+                '&:hover': { boxShadow: '6px 6px 0px #fff' },
+                '&:active': { boxShadow: '2px 2px 0px #fff' },
+              }),
             },
           },
           {
-            props: {
-              variant: 'outlined',
-            },
+            props: { variant: 'outlined' },
             style: {
               color: (theme.vars || theme).palette.text.primary,
-              border: '1px solid',
-              borderColor: gray[200],
-              backgroundColor: alpha(gray[50], 0.3),
+              border: '2px solid #000',
+              boxShadow: '4px 4px 0px #000',
+              backgroundColor: 'transparent',
               '&:hover': {
-                backgroundColor: gray[100],
-                borderColor: gray[300],
+                backgroundColor: alpha(gray[200], 0.3),
+                border: '2px solid #000',
+                boxShadow: '6px 6px 0px #000',
               },
               '&:active': {
-                backgroundColor: gray[200],
+                boxShadow: '2px 2px 0px #000',
               },
               ...theme.applyStyles('dark', {
-                backgroundColor: gray[800],
-                borderColor: gray[700],
-
-                '&:hover': {
-                  backgroundColor: gray[900],
-                  borderColor: gray[600],
-                },
-                '&:active': {
-                  backgroundColor: gray[900],
-                },
+                border: '2px solid #fff',
+                boxShadow: '4px 4px 0px #fff',
+                '&:hover': { border: '2px solid #fff', boxShadow: '6px 6px 0px #fff' },
+                '&:active': { boxShadow: '2px 2px 0px #fff' },
               }),
             },
           },
           {
-            props: {
-              color: 'secondary',
-              variant: 'outlined',
-            },
+            props: { color: 'primary', variant: 'text' },
             style: {
-              color: brand[700],
-              border: '1px solid',
-              borderColor: brand[200],
-              backgroundColor: brand[50],
-              '&:hover': {
-                backgroundColor: brand[100],
-                borderColor: brand[400],
-              },
-              '&:active': {
-                backgroundColor: alpha(brand[200], 0.7),
-              },
-              ...theme.applyStyles('dark', {
-                color: brand[50],
-                border: '1px solid',
-                borderColor: brand[900],
-                backgroundColor: alpha(brand[900], 0.3),
-                '&:hover': {
-                  borderColor: brand[700],
-                  backgroundColor: alpha(brand[900], 0.6),
-                },
-                '&:active': {
-                  backgroundColor: alpha(brand[900], 0.5),
-                },
-              }),
+              color: (theme.vars || theme).palette.text.primary,
+              '&:hover': { backgroundColor: alpha(gray[200], 0.3) },
             },
           },
           {
-            props: {
-              variant: 'text',
-            },
+            props: { variant: 'text' },
             style: {
               color: gray[600],
-              '&:hover': {
-                backgroundColor: gray[100],
-              },
-              '&:active': {
-                backgroundColor: gray[200],
-              },
+              '&:hover': { backgroundColor: alpha(gray[200], 0.3) },
               ...theme.applyStyles('dark', {
                 color: gray[50],
-                '&:hover': {
-                  backgroundColor: gray[700],
-                },
-                '&:active': {
-                  backgroundColor: alpha(gray[700], 0.7),
-                },
-              }),
-            },
-          },
-          {
-            props: {
-              color: 'secondary',
-              variant: 'text',
-            },
-            style: {
-              color: brand[700],
-              '&:hover': {
-                backgroundColor: alpha(brand[100], 0.5),
-              },
-              '&:active': {
-                backgroundColor: alpha(brand[200], 0.7),
-              },
-              ...theme.applyStyles('dark', {
-                color: brand[100],
-                '&:hover': {
-                  backgroundColor: alpha(brand[900], 0.5),
-                },
-                '&:active': {
-                  backgroundColor: alpha(brand[900], 0.3),
-                },
               }),
             },
           },
@@ -376,50 +299,41 @@ export const inputsCustomizations: Components<Theme> = {
   },
   MuiOutlinedInput: {
     styleOverrides: {
-      input: {
-        padding: 0,
-      },
+      input: { padding: 0 },
       root: ({ theme }) => ({
         padding: '8px 12px',
         color: (theme.vars || theme).palette.text.primary,
         borderRadius: (theme.vars || theme).shape.borderRadius,
-        border: `1px solid ${(theme.vars || theme).palette.divider}`,
+        border: '2px solid #000',
         backgroundColor: (theme.vars || theme).palette.background.default,
-        transition: 'border 120ms ease-in',
+        transition: 'all 0.2s ease',
+        boxShadow: '2px 2px 0px #000',
         '&:hover': {
-          borderColor: gray[400],
+          transform: 'translate(-1px, -1px)',
+          boxShadow: '4px 4px 0px #000',
         },
         [`&.${outlinedInputClasses.focused}`]: {
-          outline: `3px solid ${alpha(brand[500], 0.5)}`,
-          borderColor: brand[400],
+          outline: 'none',
+          borderColor: '#ec4899',
+          boxShadow: '4px 4px 0px #000',
         },
         ...theme.applyStyles('dark', {
+          border: '2px solid #fff',
+          boxShadow: '2px 2px 0px #fff',
           '&:hover': {
-            borderColor: gray[500],
+            boxShadow: '4px 4px 0px #fff',
+          },
+          [`&.${outlinedInputClasses.focused}`]: {
+            borderColor: '#ec4899',
+            boxShadow: '4px 4px 0px #fff',
           },
         }),
         variants: [
-          {
-            props: {
-              size: 'small',
-            },
-            style: {
-              height: '2.25rem',
-            },
-          },
-          {
-            props: {
-              size: 'medium',
-            },
-            style: {
-              height: '2.5rem',
-            },
-          },
+          { props: { size: 'small' }, style: { height: '2.25rem' } },
+          { props: { size: 'medium' }, style: { height: '2.5rem' } },
         ],
       }),
-      notchedOutline: {
-        border: 'none',
-      },
+      notchedOutline: { border: 'none' },
     },
   },
   MuiInputAdornment: {

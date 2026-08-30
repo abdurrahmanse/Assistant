@@ -164,9 +164,9 @@ export const getDesignTokens = (mode: PaletteMode) => {
       },
       divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
       background: {
-        default: 'hsl(0, 0%, 99%)',
-        paper: 'hsl(220, 35%, 97%)',
-        ...(mode === 'dark' && { default: gray[900], paper: 'hsl(220, 30%, 7%)' }),
+        default: '#ffffff',
+        paper: 'rgba(255, 255, 255, 0.6)',
+        ...(mode === 'dark' && { default: '#09090b', paper: 'rgba(9, 9, 11, 0.6)' }),
       },
       text: {
         primary: gray[800],
@@ -185,52 +185,17 @@ export const getDesignTokens = (mode: PaletteMode) => {
     },
     typography: {
       fontFamily: '"Rajdhani", sans-serif',
-      h1: {
-        fontSize: defaultTheme.typography.pxToRem(48),
-        fontWeight: 600,
-        lineHeight: 1.2,
-        letterSpacing: -0.5,
-      },
-      h2: {
-        fontSize: defaultTheme.typography.pxToRem(36),
-        fontWeight: 600,
-        lineHeight: 1.2,
-      },
-      h3: {
-        fontSize: defaultTheme.typography.pxToRem(30),
-        lineHeight: 1.2,
-      },
-      h4: {
-        fontSize: defaultTheme.typography.pxToRem(24),
-        fontWeight: 600,
-        lineHeight: 1.5,
-      },
-      h5: {
-        fontSize: defaultTheme.typography.pxToRem(20),
-        fontWeight: 600,
-      },
-      h6: {
-        fontSize: defaultTheme.typography.pxToRem(18),
-        fontWeight: 600,
-      },
-      subtitle1: {
-        fontSize: defaultTheme.typography.pxToRem(18),
-      },
-      subtitle2: {
-        fontSize: defaultTheme.typography.pxToRem(14),
-        fontWeight: 600,
-      },
-      body1: {
-        fontSize: defaultTheme.typography.pxToRem(14),
-      },
-      body2: {
-        fontSize: defaultTheme.typography.pxToRem(14),
-        fontWeight: 600,
-      },
-      caption: {
-        fontSize: defaultTheme.typography.pxToRem(12),
-        fontWeight: 600,
-      },
+      h1: { fontSize: defaultTheme.typography.pxToRem(48), fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.04em' },
+      h2: { fontSize: defaultTheme.typography.pxToRem(36), fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.03em' },
+      h3: { fontSize: defaultTheme.typography.pxToRem(30), fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.02em' },
+      h4: { fontSize: defaultTheme.typography.pxToRem(24), fontWeight: 600, lineHeight: 1.3, letterSpacing: '-0.02em' },
+      h5: { fontSize: defaultTheme.typography.pxToRem(20), fontWeight: 600, letterSpacing: '-0.01em' },
+      h6: { fontSize: defaultTheme.typography.pxToRem(18), fontWeight: 600, letterSpacing: '-0.01em' },
+      subtitle1: { fontSize: defaultTheme.typography.pxToRem(18), fontWeight: 600, letterSpacing: '-0.01em' },
+      subtitle2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600, letterSpacing: '-0.01em' },
+      body1: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600 },
+      body2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600 },
+      caption: { fontSize: defaultTheme.typography.pxToRem(12), fontWeight: 600 },
     },
     shape: {
       borderRadius: 8,
@@ -274,8 +239,8 @@ export const colorSchemes = {
       },
       divider: alpha(gray[300], 0.4),
       background: {
-        default: 'hsl(0, 0%, 99%)',
-        paper: 'hsl(220, 35%, 97%)',
+        default: '#ffffff',
+        paper: 'rgba(255, 255, 255, 0.6)',
       },
       text: {
         primary: gray[800],
@@ -324,8 +289,8 @@ export const colorSchemes = {
       },
       divider: alpha(gray[700], 0.6),
       background: {
-        default: gray[900],
-        paper: 'hsl(220, 30%, 7%)',
+        default: '#09090b',
+        paper: 'rgba(9, 9, 11, 0.6)',
       },
       text: {
         primary: 'hsl(0, 0%, 100%)',
@@ -343,52 +308,17 @@ export const colorSchemes = {
 
 export const typography = {
   fontFamily: '"Rajdhani", sans-serif',
-  h1: {
-    fontSize: defaultTheme.typography.pxToRem(48),
-    fontWeight: 600,
-    lineHeight: 1.2,
-    letterSpacing: -0.5,
-  },
-  h2: {
-    fontSize: defaultTheme.typography.pxToRem(36),
-    fontWeight: 600,
-    lineHeight: 1.2,
-  },
-  h3: {
-    fontSize: defaultTheme.typography.pxToRem(30),
-    lineHeight: 1.2,
-  },
-  h4: {
-    fontSize: defaultTheme.typography.pxToRem(24),
-    fontWeight: 600,
-    lineHeight: 1.5,
-  },
-  h5: {
-    fontSize: defaultTheme.typography.pxToRem(20),
-    fontWeight: 600,
-  },
-  h6: {
-    fontSize: defaultTheme.typography.pxToRem(18),
-    fontWeight: 600,
-  },
-  subtitle1: {
-    fontSize: defaultTheme.typography.pxToRem(18),
-  },
-  subtitle2: {
-    fontSize: defaultTheme.typography.pxToRem(14),
-    fontWeight: 600,
-  },
-  body1: {
-    fontSize: defaultTheme.typography.pxToRem(14),
-  },
-  body2: {
-    fontSize: defaultTheme.typography.pxToRem(14),
-    fontWeight: 600,
-  },
-  caption: {
-    fontSize: defaultTheme.typography.pxToRem(12),
-    fontWeight: 600,
-  },
+  h1: { fontSize: defaultTheme.typography.pxToRem(48), fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.04em' },
+  h2: { fontSize: defaultTheme.typography.pxToRem(36), fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.03em' },
+  h3: { fontSize: defaultTheme.typography.pxToRem(30), fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.02em' },
+  h4: { fontSize: defaultTheme.typography.pxToRem(24), fontWeight: 600, lineHeight: 1.3, letterSpacing: '-0.02em' },
+  h5: { fontSize: defaultTheme.typography.pxToRem(20), fontWeight: 600, letterSpacing: '-0.01em' },
+  h6: { fontSize: defaultTheme.typography.pxToRem(18), fontWeight: 600, letterSpacing: '-0.01em' },
+  subtitle1: { fontSize: defaultTheme.typography.pxToRem(18), fontWeight: 600, letterSpacing: '-0.01em' },
+  subtitle2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600, letterSpacing: '-0.01em' },
+  body1: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600 },
+  body2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600 },
+  caption: { fontSize: defaultTheme.typography.pxToRem(12), fontWeight: 600 },
 };
 
 export const shape = {

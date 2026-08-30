@@ -52,6 +52,15 @@ export default function AppTheme(props: AppThemeProps) {
           shadows,
           shape,
           components: {
+            MuiCssBaseline: {
+              styleOverrides: `
+                @keyframes aurora {
+                  0% { background-position: 0% 50%; }
+                  50% { background-position: 100% 50%; }
+                  100% { background-position: 0% 50%; }
+                }
+              `,
+            },
             ...inputsCustomizations,
             ...dataDisplayCustomizations,
             ...feedbackCustomizations,

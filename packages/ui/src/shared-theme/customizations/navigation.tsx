@@ -19,6 +19,12 @@ export const navigationCustomizations: Components<Theme> = {
           backgroundColor: 'transparent',
         },
         [`&.${menuItemClasses.selected}`]: {
+          color: '#ffffff',
+          backgroundImage: 'linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)',
+          backgroundSize: '200% 200%',
+          animation: 'aurora 4s ease infinite',
+          boxShadow: '2px 2px 0px #000',
+          border: '1px solid #000',
           [`&.${menuItemClasses.focusVisible}`]: {
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
           },
@@ -149,7 +155,13 @@ export const navigationCustomizations: Components<Theme> = {
   MuiDrawer: {
     styleOverrides: {
       paper: ({ theme }) => ({
-        backgroundColor: (theme.vars || theme).palette.background.default,
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        backdropFilter: 'blur(12px)',
+        WebkitBackdropFilter: 'blur(12px)',
+        borderRight: `1px solid ${alpha((theme.vars || theme).palette.divider, 0.3)}`,
+        ...theme.applyStyles('dark', {
+          backgroundColor: 'rgba(9, 9, 11, 0.6)',
+        }),
       }),
     },
   },
