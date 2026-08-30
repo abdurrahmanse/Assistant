@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./*": "./src/*"
+    "./*": [
+      "./src/*.tsx",
+      "./src/*.ts",
+      "./src/*"
+    ]
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

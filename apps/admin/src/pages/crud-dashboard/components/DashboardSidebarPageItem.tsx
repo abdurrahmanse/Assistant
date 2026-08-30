@@ -132,7 +132,7 @@ export default function DashboardSidebarPageItem({
             : {})}
           {...(!nestedNavigation
             ? {
-                LinkComponent,
+                component: LinkComponent,
                 ...(hasExternalHref
                   ? {
                       target: '_blank',

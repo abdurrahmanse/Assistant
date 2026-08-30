@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Checkbox from '@mui/material/Checkbox';
@@ -65,6 +66,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -81,10 +83,8 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
       return;
     }
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    console.log({ email: data.get('email'), password: data.get('password') });
+    navigate('/');
   };
 
   const validateInputs = () => {
@@ -217,7 +217,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
             <Typography sx={{ textAlign: 'center' }}>
               Don&apos;t have an account?{' '}
               <Link
-                href="/material-ui/getting-started/templates/sign-in/"
+                component={RouterLink} to="/"
                 variant="body2"
                 sx={{ alignSelf: 'center' }}
               >

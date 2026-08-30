@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
@@ -6,6 +7,7 @@ import SignInCard from './components/SignInCard';
 import Content from './components/Content';
 
 export default function SignInSide(props: { disableCustomTheme?: boolean }) {
+  const navigate = useNavigate();
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
