@@ -55,22 +55,22 @@ export default function AppAppBar() {
           </Box>
           
           <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Star size={18} />}>
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Star size={18} />}>
               Features
             </Button>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<MessageSquare size={18} />}>
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<MessageSquare size={18} />}>
               Testimonials
             </Button>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Sparkles size={18} />}>
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Sparkles size={18} />}>
               Highlights
             </Button>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<CreditCard size={18} />}>
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<CreditCard size={18} />}>
               Pricing
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<HelpCircle size={18} />}>
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600, minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<HelpCircle size={18} />}>
               FAQ
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} startIcon={<ChevronRight size={18} />}>
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600, minWidth: 0 }} startIcon={<ChevronRight size={18} />}>
               Blog
             </Button>
           </Box>
@@ -84,10 +84,10 @@ export default function AppAppBar() {
               justifyContent: 'flex-end',
             }}
           >
-            <Button color="primary" variant="text" size="small" href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
+            <Button color="primary" variant="text" size="small" sx={{ fontWeight: 600 }} href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small" href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
+            <Button color="primary" variant="contained" size="small" sx={{ fontWeight: 600 }} href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
               Sign up
             </Button>
             <ColorModeIconDropdown />
@@ -120,19 +120,19 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>Features</MenuItem>
-                <MenuItem onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>Testimonials</MenuItem>
-                <MenuItem onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>Highlights</MenuItem>
-                <MenuItem onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>Pricing</MenuItem>
-                <MenuItem onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>FAQ</MenuItem>
-                <MenuItem>Blog</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>Features</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>Testimonials</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>Highlights</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>Pricing</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>FAQ</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }}>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }}>
                   <Button color="primary" variant="contained" fullWidth href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
                     Sign up
                   </Button>
                 </MenuItem>
-                <MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }}>
                   <Button color="primary" variant="outlined" fullWidth href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
                     Sign in
                   </Button>

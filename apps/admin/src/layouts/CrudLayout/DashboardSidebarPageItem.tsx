@@ -203,7 +203,7 @@ export default function DashboardSidebarPageItem({
             </Box>
           ) : null}
           {!mini ? (
-            <ListItemText
+            <ListItemText primaryTypographyProps={{ fontWeight: 600 }}
               primary={title}
               sx={{
                 whiteSpace: 'nowrap',
