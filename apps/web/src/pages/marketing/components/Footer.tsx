@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
-import SitemarkIcon from './SitemarkIcon';
+import AssistantLogo from './AssistantLogo';
 
 function Copyright() {
   return (
@@ -22,7 +22,7 @@ function Copyright() {
           color: 'text.secondary',
         }}
       >
-        Sitemark
+        Assistant
       </Link>
       {new Date().getFullYear()}
     </Typography>
@@ -58,7 +58,7 @@ export default function Footer() {
           }}
         >
           <Box sx={{ width: { xs: '100%', sm: '60%' } }}>
-            <SitemarkIcon />
+            <AssistantLogo />
             <Typography variant="body2" gutterBottom sx={{ fontWeight: 600, mt: 2 }}>
               Join the newsletter
             </Typography>

@@ -1,6 +1,8 @@
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
+import SEO from './components/SEO';
+
 import AppAppBar from './components/AppAppBar';
 import Hero from './components/Hero';
 import LogoCollection from './components/LogoCollection';
@@ -15,6 +17,7 @@ export default function MarketingPage(props: { disableCustomTheme?: boolean }) {
   return (
     <AppTheme {...props}>
       <CssBaseline enableColorScheme />
+      <SEO />
 
       <AppAppBar />
       <Hero />
