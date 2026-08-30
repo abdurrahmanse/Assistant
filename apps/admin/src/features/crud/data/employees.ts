@@ -63,7 +63,7 @@ export async function getMany({
 
   // Apply filters (example only)
   if (filterModel?.items?.length) {
-    filterModel.items.forEach(({ field, value, operator }) => {
+    filterModel.items.forEach(({ field, value, operator }: any) => {
       if (!field || value == null) {
         return;
       }

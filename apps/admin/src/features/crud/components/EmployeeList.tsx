@@ -149,7 +149,7 @@ export default function EmployeeList() {
   }, [isLoading, loadData]);
 
   const handleRowClick = React.useCallback<GridEventListener<'rowClick'>>(
-    ({ row }) => {
+    ({ row }: any) => {
       navigate(`/employees/${row.id}`);
     },
     [navigate],

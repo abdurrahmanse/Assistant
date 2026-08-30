@@ -7,7 +7,7 @@ export default function CustomizedDataGrid() {
       checkboxSelection
       rows={rows}
       columns={columns}
-      getRowClassName={(params) =>
+      getRowClassName={(params: any) =>
         params.indexRelativeToCurrentPage % 2 === 0 ? 'even' : 'odd'
       }
       initialState={{

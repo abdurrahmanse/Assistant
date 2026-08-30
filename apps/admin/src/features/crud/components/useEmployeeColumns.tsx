@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { GridColDef, GridActionsCellItem } from '@mui/x-data-grid';
+import { GridActionsCellItem } from "@mui/x-data-grid";
+import type { GridColDef } from '@mui/x-data-grid';
 import { Edit, Trash2 } from "lucide-react";
-import { Employee } from '@/features/crud/data/employees';
+import type { Employee } from '@/features/crud/data/employees';
 
 interface UseEmployeeColumnsProps {
   onEdit: (employee: Employee) => void;
@@ -18,7 +19,7 @@ export function useEmployeeColumns({ onEdit, onDelete }: UseEmployeeColumnsProps
         field: 'joinDate',
         headerName: 'Join date',
         type: 'date',
-        valueGetter: (value) => value && new Date(value),
+        valueGetter: (value: any) => value && new Date(value),
         width: 140,
       },
       {
@@ -34,7 +35,7 @@ export function useEmployeeColumns({ onEdit, onDelete }: UseEmployeeColumnsProps
         type: 'actions',
         flex: 1,
         align: 'right',
-        getActions: ({ row }) => [
+        getActions: ({ row }: { row: Employee }) => [
           <GridActionsCellItem
             icon={<Edit size={20} />}
             key="edit-item"
