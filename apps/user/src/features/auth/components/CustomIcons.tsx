@@ -29,6 +29,7 @@ export function FacebookIcon() {
       </svg>
     </SvgIcon>
   );
+}
 
 export function GoogleIcon() {
   return (
@@ -53,3 +54,4 @@ export function GoogleIcon() {
       </svg>
     </SvgIcon>
   );
+}

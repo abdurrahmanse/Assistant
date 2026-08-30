@@ -1,3 +1,4 @@
+import { Landmark, CreditCard, Cpu, AlertTriangle } from 'lucide-react';
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -13,7 +14,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { Landmark, CreditCard, Cpu, AlertTriangle } from "lucide-react";
 
 const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
   border: '1px solid',
@@ -141,9 +141,10 @@ export default function PaymentForm() {
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <CreditCard size={20} 
                   fontSize="small"
                   sx={[
-                    (theme) => ({
+                    (theme: any) => ({
                       color: 'grey.400',
                       ...theme.applyStyles('dark', {
                         color: 'grey.600',
@@ -171,10 +172,10 @@ export default function PaymentForm() {
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Landmark
+                <Landmark size={20} 
                   fontSize="small"
                   sx={[
-                    (theme) => ({
+                    (theme: any) => ({
                       color: 'grey.400',
                       ...theme.applyStyles('dark', {
                         color: 'grey.600',
@@ -196,7 +197,9 @@ export default function PaymentForm() {
           <PaymentContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="subtitle2">Credit card</Typography>
+              <CreditCard size={20}  sx={{ color: 'text.secondary' }} />
             </Box>
+            <Cpu size={20} 
               sx={{
                 fontSize: { xs: 48, sm: 56 },
                 transform: 'rotate(90deg)',
@@ -277,6 +280,7 @@ export default function PaymentForm() {
       )}
       {paymentType === 'bankTransfer' && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Alert severity="warning" icon={<AlertTriangle size={20}  />}>
             Your order will be processed once we receive the funds.
           </Alert>
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>

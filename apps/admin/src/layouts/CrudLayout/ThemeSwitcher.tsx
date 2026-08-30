@@ -32,6 +32,7 @@ export default function ThemeSwitcher() {
         >
           {theme.getColorSchemeSelector ? (
             <React.Fragment>
+              <Sun size={20}
                 sx={{
                   display: 'inline',
                   [theme.getColorSchemeSelector('dark')]: {

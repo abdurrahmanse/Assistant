@@ -1,9 +1,9 @@
+import { X, ChevronDown } from 'lucide-react';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import { X, ChevronDown } from "lucide-react";
 import Info from '@/features/checkout/components/Info';
 
 interface InfoProps {
@@ -23,7 +23,7 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
         onClick={toggleDrawer(false)}
         sx={{ position: 'absolute', right: 8, top: 8 }}
       >
-        <X size={20} />
+        <X size={20}  />
       </IconButton>
       <Info totalPrice={totalPrice} />
     </Box>
@@ -33,6 +33,7 @@ export default function InfoMobile({ totalPrice }: InfoProps) {
     <div>
       <Button
         variant="text"
+        endIcon={<ChevronDown size={20}  />}
         onClick={toggleDrawer(true)}
       >
         View details

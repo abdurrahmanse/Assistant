@@ -39,12 +39,12 @@ const INITIAL_EMPLOYEES_STORE: Employee[] = [
   },
 ];
 
-export function getEmployeesStore(): Employee[] {
+function getEmployeesStore(): Employee[] {
   const stringifiedEmployees = localStorage.getItem('employees-store');
   return stringifiedEmployees ? JSON.parse(stringifiedEmployees) : INITIAL_EMPLOYEES_STORE;
 }
 
-export function setEmployeesStore(employees: Employee[]) {
+function setEmployeesStore(employees: Employee[]) {
   return localStorage.setItem('employees-store', JSON.stringify(employees));
 }
 

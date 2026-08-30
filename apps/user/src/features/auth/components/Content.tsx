@@ -1,27 +1,30 @@
+import { Wand2, Wrench, Settings, ThumbsUp } from 'lucide-react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { Wand2, Wrench, Settings, ThumbsUp } from "lucide-react";
 import AssistantLogo from "@/components/AssistantLogo";
 
 const items = [
   {
+    icon: <Settings size={20}  sx={{ color: 'text.secondary' }} />,
     title: 'Adaptable performance',
     description:
       'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
   },
   {
+    icon: <Wrench size={20}  sx={{ color: 'text.secondary' }} />,
     title: 'Built to last',
     description:
       'Experience unmatched durability that goes above and beyond with lasting investment.',
   },
   {
+    icon: <ThumbsUp size={20}  sx={{ color: 'text.secondary' }} />,
     title: 'Great user experience',
     description:
       'Integrate our product into your routine with an intuitive and easy-to-use interface.',
   },
   {
-    icon: <AutoFixHighRoundedIcon sx={{ color: 'text.secondary' }} />,
+    icon: <Wand2 size={20}  sx={{ color: 'text.secondary' }} />,
     title: 'Innovative functionality',
     description:
       'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',

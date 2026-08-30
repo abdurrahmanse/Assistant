@@ -78,7 +78,7 @@ export default function AppNavbar() {
   );
 }
 
-export function CustomIcon() {
+function CustomIcon() {
   return (
     <Box
       sx={{

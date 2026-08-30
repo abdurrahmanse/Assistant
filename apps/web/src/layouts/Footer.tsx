@@ -7,7 +7,9 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
-import { Github, Linkedin, Twitter } from "lucide-react";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/X";
 import AssistantLogo from '@/components/AssistantLogo';
 
 function Copyright() {
@@ -272,7 +274,7 @@ export default function Footer() {
             aria-label="GitHub"
             sx={{ alignSelf: 'center' }}
           >
-            <Github size={20} />
+            <GitHubIcon />
           </IconButton>
           <IconButton
             color="inherit"

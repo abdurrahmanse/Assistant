@@ -171,6 +171,7 @@ export default function EmployeeShow() {
         <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between' }}>
           <Button
             variant="contained"
+            startIcon={<ArrowLeft size={20} />}
             onClick={handleBack}
           >
             Back
@@ -186,7 +187,8 @@ export default function EmployeeShow() {
             <Button
               variant="contained"
               color="error"
-              onClick={handleEmployeeDelete}
+              startIcon={<Trash2 size={20} />}
+            onClick={handleEmployeeDelete}
             >
               Delete
             </Button>

@@ -57,7 +57,7 @@ function renderStatus(status: 'Online' | 'Offline') {
   return <Chip label={status} color={colors[status]} size="small" />;
 }
 
-export function renderAvatar(
+function renderAvatar(
   params: GridCellParams<{ name: string; color: string }, any, any>,
 ) {
   if (params.value == null) {

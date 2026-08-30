@@ -1,3 +1,4 @@
+import { Sparkles, CheckCircle2 } from 'lucide-react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -8,7 +9,6 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import { Sparkles, CheckCircle2 } from "lucide-react";
 
 const tiers = [
   {
@@ -141,7 +141,7 @@ export default function Pricing() {
                     {tier.title}
                   </Typography>
                   {tier.title === 'Professional' && (
-                    <Chip icon={<Sparkles />} label={tier.subheader} />
+                    <Chip icon={<Sparkles size={20}  />} label={tier.subheader} />
                   )}
                 </Box>
                 <Box
@@ -168,6 +168,7 @@ export default function Pricing() {
                     key={line}
                     sx={{ py: 1, display: 'flex', gap: 1.5, alignItems: 'center' }}
                   >
+                    <CheckCircle2 size={20} 
                       sx={[
                         {
                           width: 20,

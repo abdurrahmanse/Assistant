@@ -1,3 +1,4 @@
+import { LayoutDashboard, Smartphone, MonitorSmartphone } from 'lucide-react';
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import Box from '@mui/material/Box';
@@ -8,10 +9,10 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
-import { LayoutDashboard, Smartphone, MonitorSmartphone } from "lucide-react";
 
 const items = [
   {
+    icon: <LayoutDashboard size={20}  />,
     title: 'Dashboard',
     description:
       'This item could provide a snapshot of the most important metrics or data points related to the product.',
@@ -19,6 +20,7 @@ const items = [
     imageDark: `url("${import.meta.env.VITE_TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/dash-dark.png")`,
   },
   {
+    icon: <Smartphone size={20}  />,
     title: 'Mobile integration',
     description:
       'This item could provide information about the mobile app version of the product.',
@@ -26,7 +28,7 @@ const items = [
     imageDark: `url("${import.meta.env.VITE_TEMPLATE_IMAGE_URL || 'https://mui.com'}/static/images/templates/templates-images/mobile-dark.png")`,
   },
   {
-    icon: <MonitorSmartphone />,
+    icon: <MonitorSmartphone size={20}  />,
     title: 'Available on all platforms',
     description:
       'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',

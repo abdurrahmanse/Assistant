@@ -1,5 +1,4 @@
-import SvgIcon from '@mui/material/SvgIcon';
-
+import SvgIcon from "@mui/material/SvgIcon";
 
 export function IndiaFlag() {
   return (
@@ -60,6 +59,7 @@ export function IndiaFlag() {
       </svg>
     </SvgIcon>
   );
+}
 
 export function UsaFlag() {
   return (
@@ -130,6 +130,7 @@ export function UsaFlag() {
       </svg>
     </SvgIcon>
   );
+}
 export function BrazilFlag() {
   return (
     <SvgIcon>
@@ -231,6 +232,7 @@ export function BrazilFlag() {
       </svg>
     </SvgIcon>
   );
+}
 
 export function GlobeFlag() {
   return (
@@ -245,9 +247,15 @@ export function GlobeFlag() {
         </g>
         <defs>
           <clipPath id="clip0_986_1789">
-            <rect width="24" height="24" fill="white" transform="translate(0 0.5)" />
+            <rect
+              width="24"
+              height="24"
+              fill="white"
+              transform="translate(0 0.5)"
+            />
           </clipPath>
         </defs>
       </svg>
     </SvgIcon>
   );
+}

@@ -242,11 +242,13 @@ export default function EmployeeList() {
         align: 'right',
         getActions: ({ row }) => [
           <GridActionsCellItem
+            icon={<Edit size={20} />}
             key="edit-item"
             label="Edit"
             onClick={handleRowEdit(row)}
           />,
           <GridActionsCellItem
+            icon={<Trash2 size={20} />}
             key="delete-item"
             label="Delete"
             onClick={handleRowDelete(row)}
