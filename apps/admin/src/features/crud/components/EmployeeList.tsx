@@ -3,21 +3,14 @@
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
-import Tooltip from '@mui/material/Tooltip';
 import {
   DataGrid,
-  GridActionsCellItem,
-  type GridColDef,
   type GridFilterModel,
   type GridPaginationModel,
   type GridSortModel,
   type GridEventListener,
   gridClasses,
 } from '@mui/x-data-grid';
-import { Plus, RefreshCw, Edit, Trash2 } from "lucide-react";
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { useDialogs } from '@/features/crud/hooks/useDialogs/useDialogs';
 import useNotifications from '@/features/crud/hooks/useNotifications/useNotifications';
@@ -27,6 +20,8 @@ import {
   type Employee,
 } from '@/features/crud/data/employees';
 import PageContainer from '@/layouts/CrudLayout/PageContainer';
+import { useEmployeeColumns } from './useEmployeeColumns';
+import { EmployeeListToolbar } from './EmployeeListToolbar';
 
 const INITIAL_PAGE_SIZE = 10;
 
@@ -165,14 +160,14 @@ export default function EmployeeList() {
   }, [navigate]);
 
   const handleRowEdit = React.useCallback(
-    (employee: Employee) => () => {
+    (employee: Employee) => {
       navigate(`/employees/${employee.id}/edit`);
     },
     [navigate],
   );
 
   const handleRowDelete = React.useCallback(
-    (employee: Employee) => async () => {
+    async (employee: Employee) => {
       const confirmed = await dialogs.confirm(
         `Do you wish to delete ${employee.name}?`,
         {
@@ -215,49 +210,7 @@ export default function EmployeeList() {
     [],
   );
 
-  const columns = React.useMemo<GridColDef[]>(
-    () => [
-      { field: 'id', headerName: 'ID' },
-      { field: 'name', headerName: 'Name', width: 140 },
-      { field: 'age', headerName: 'Age', type: 'number' },
-      {
-        field: 'joinDate',
-        headerName: 'Join date',
-        type: 'date',
-        valueGetter: (value) => value && new Date(value),
-        width: 140,
-      },
-      {
-        field: 'role',
-        headerName: 'Department',
-        type: 'singleSelect',
-        valueOptions: ['Market', 'Finance', 'Development'],
-        width: 160,
-      },
-      { field: 'isFullTime', headerName: 'Full-time', type: 'boolean' },
-      {
-        field: 'actions',
-        type: 'actions',
-        flex: 1,
-        align: 'right',
-        getActions: ({ row }) => [
-          <GridActionsCellItem
-            icon={<Edit size={20} />}
-            key="edit-item"
-            label="Edit"
-            onClick={handleRowEdit(row)}
-          />,
-          <GridActionsCellItem
-            icon={<Trash2 size={20} />}
-            key="delete-item"
-            label="Delete"
-            onClick={handleRowDelete(row)}
-          />,
-        ],
-      },
-    ],
-    [handleRowEdit, handleRowDelete],
-  );
+  const columns = useEmployeeColumns({ onEdit: handleRowEdit, onDelete: handleRowDelete });
 
   const pageTitle = 'Employees';
 
@@ -266,21 +219,7 @@ export default function EmployeeList() {
       title={pageTitle}
       breadcrumbs={[{ title: pageTitle }]}
       actions={
-        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-          <Tooltip title="Reload data" placement="right" enterDelay={1000}>
-            <div>
-              <IconButton size="small" aria-label="refresh" onClick={handleRefresh}>
-              </IconButton>
-            </div>
-          </Tooltip>
-          <Button
-            variant="contained"
-            onClick={handleCreateClick}
-            startIcon={<Plus />}
-          >
-            Create
-          </Button>
-        </Stack>
+        <EmployeeListToolbar onRefresh={handleRefresh} onCreate={handleCreateClick} />
       }
     >
       <Box sx={{ flex: 1, width: '100%' }}>

@@ -5,12 +5,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CssBaseline from '@mui/material/CssBaseline';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import { ChevronLeft, ChevronRight, ArrowRight} from "lucide-react";
+import { ChevronLeft, ArrowRight } from "lucide-react";
 import AddressForm from '@/features/checkout/components/AddressForm';
 import Info from '@/features/checkout/components/Info';
 import InfoMobile from '@/features/checkout/components/InfoMobile';
@@ -20,7 +16,11 @@ import AssistantLogo from '@/components/AssistantLogo';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
 import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
 
+import { OrderSuccess } from '@/features/checkout/components/OrderSuccess';
+import { CheckoutStepper } from '@/features/checkout/components/CheckoutStepper';
+
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
+
 function getStepContent(step: number) {
   switch (step) {
     case 0:
@@ -33,6 +33,7 @@ function getStepContent(step: number) {
       throw new Error('Unknown step');
   }
 }
+
 export default function Checkout(props: { disableCustomTheme?: boolean }) {
   const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
@@ -120,20 +121,7 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                 flexGrow: 1,
               }}
             >
-              <Stepper
-                id="desktop-stepper"
-                activeStep={activeStep}
-                sx={{ width: '100%', height: 40 }}
-              >
-                {steps.map((label) => (
-                  <Step
-                    sx={{ ':first-child': { pl: 0 }, ':last-child': { pr: 0 } }}
-                    key={label}
-                  >
-                    <StepLabel>{label}</StepLabel>
-                  </Step>
-                ))}
-              </Stepper>
+              <CheckoutStepper activeStep={activeStep} steps={steps} isMobile={false} />
             </Box>
           </Box>
           <Card sx={{ display: { xs: 'flex', md: 'none' }, width: '100%' }}>
@@ -167,45 +155,10 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
               gap: { xs: 5, md: 'none' },
             }}
           >
-            <Stepper
-              id="mobile-stepper"
-              activeStep={activeStep}
-              alternativeLabel
-              sx={{ display: { sm: 'flex', md: 'none' } }}
-            >
-              {steps.map((label) => (
-                <Step
-                  sx={{
-                    ':first-child': { pl: 0 },
-                    ':last-child': { pr: 0 },
-                    '& .MuiStepConnector-root': { top: { xs: 6, sm: 12 } },
-                  }}
-                  key={label}
-                >
-                  <StepLabel
-                    sx={{ '.MuiStepLabel-labelContainer': { maxWidth: '70px' } }}
-                  >
-                    {label}
-                  </StepLabel>
-                </Step>
-              ))}
-            </Stepper>
+            <CheckoutStepper activeStep={activeStep} steps={steps} isMobile={true} />
+            
             {activeStep === steps.length ? (
-              <Stack spacing={2} useFlexGap>
-                <Typography variant="h1">📦</Typography>
-                <Typography variant="h5">Thank you for your order!</Typography>
-                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                  Your order number is
-                  <strong>&nbsp;#140396</strong>. We have emailed your order
-                  confirmation and will update you once its shipped.
-                </Typography>
-                <Button
-                  variant="contained"
-                  sx={{ alignSelf: 'start', width: { xs: '100%', sm: 'auto' } }}
-                 startIcon={<ChevronRight size={18} />}>
-                  Go to my orders
-                </Button>
-              </Stack>
+              <OrderSuccess />
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
@@ -251,7 +204,8 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                     variant="contained"
                     onClick={handleNext}
                     sx={{ width: { xs: '100%', sm: 'fit-content' } }}
-                   startIcon={<ArrowRight size={18} />}>
+                    startIcon={<ArrowRight size={18} />}
+                  >
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>
