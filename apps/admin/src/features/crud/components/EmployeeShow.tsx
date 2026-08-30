@@ -9,9 +9,7 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Edit, Trash2, ArrowLeft } from "lucide-react";
 import { useNavigate, useParams } from 'react-router';
 import dayjs from 'dayjs';
 import { useDialogs } from '@/features/crud/hooks/useDialogs/useDialogs';
@@ -173,7 +171,6 @@ export default function EmployeeShow() {
         <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between' }}>
           <Button
             variant="contained"
-            startIcon={<ArrowBackIcon />}
             onClick={handleBack}
           >
             Back
@@ -181,7 +178,7 @@ export default function EmployeeShow() {
           <Stack direction="row" spacing={2}>
             <Button
               variant="contained"
-              startIcon={<EditIcon />}
+              startIcon={<Edit />}
               onClick={handleEmployeeEdit}
             >
               Edit
@@ -189,7 +186,6 @@ export default function EmployeeShow() {
             <Button
               variant="contained"
               color="error"
-              startIcon={<DeleteIcon />}
               onClick={handleEmployeeDelete}
             >
               Delete

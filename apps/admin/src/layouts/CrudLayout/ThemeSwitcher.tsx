@@ -3,8 +3,7 @@ import { useTheme, useColorScheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
-import LightModeIcon from '@mui/icons-material/LightMode';
+import { Moon, Sun } from "lucide-react";
 
 export default function ThemeSwitcher() {
   const theme = useTheme();
@@ -33,7 +32,6 @@ export default function ThemeSwitcher() {
         >
           {theme.getColorSchemeSelector ? (
             <React.Fragment>
-              <LightModeIcon
                 sx={{
                   display: 'inline',
                   [theme.getColorSchemeSelector('dark')]: {
@@ -41,7 +39,7 @@ export default function ThemeSwitcher() {
                   },
                 }}
               />
-              <DarkModeIcon
+              <Moon size={20}
                 sx={{
                   display: 'none',
                   [theme.getColorSchemeSelector('dark')]: {

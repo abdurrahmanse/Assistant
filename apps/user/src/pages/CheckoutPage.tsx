@@ -10,8 +10,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import AddressForm from '@/features/checkout/components/AddressForm';
 import Info from '@/features/checkout/components/Info';
 import InfoMobile from '@/features/checkout/components/InfoMobile';
@@ -229,7 +228,7 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                 >
                   {activeStep !== 0 && (
                     <Button
-                      startIcon={<ChevronLeftRoundedIcon />}
+                      startIcon={<ChevronLeft />}
                       onClick={handleBack}
                       variant="text"
                       sx={{ display: { xs: 'none', sm: 'flex' } }}
@@ -239,7 +238,7 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                   )}
                   {activeStep !== 0 && (
                     <Button
-                      startIcon={<ChevronLeftRoundedIcon />}
+                      startIcon={<ChevronLeft />}
                       onClick={handleBack}
                       variant="outlined"
                       fullWidth
@@ -250,7 +249,6 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                   )}
                   <Button
                     variant="contained"
-                    endIcon={<ChevronRightRoundedIcon />}
                     onClick={handleNext}
                     sx={{ width: { xs: '100%', sm: 'fit-content' } }}
                   >

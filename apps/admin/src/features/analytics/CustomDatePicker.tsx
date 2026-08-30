@@ -3,7 +3,7 @@ import * as React from 'react';
 import dayjs, { Dayjs } from 'dayjs';
 import { useForkRef } from '@mui/material/utils';
 import Button from '@mui/material/Button';
-import CalendarTodayRoundedIcon from '@mui/icons-material/CalendarTodayRounded';
+import { Calendar } from "lucide-react";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker, type DatePickerFieldProps } from '@mui/x-date-pickers/DatePicker';
@@ -31,7 +31,7 @@ function ButtonField(props: ButtonFieldProps) {
       variant="outlined"
       ref={handleRef}
       size="small"
-      startIcon={<CalendarTodayRoundedIcon fontSize="small" />}
+      startIcon={<Calendar size={20} fontSize="small" />}
       sx={{ minWidth: 'fit-content' }}
       onClick={() => pickerContext.setOpen((prev) => !prev)}
     >

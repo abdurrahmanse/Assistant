@@ -6,8 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+import { Menu, PanelLeftClose } from "lucide-react";
 import Stack from '@mui/material/Stack';
 import { Link } from 'react-router';
 import ThemeSwitcher from '@/layouts/CrudLayout/ThemeSwitcher';
@@ -66,7 +65,6 @@ export default function DashboardHeader({
               aria-label={`${isExpanded ? collapseMenuActionText : expandMenuActionText} navigation menu`}
               onClick={handleMenuOpen}
             >
-              {isExpanded ? <MenuOpenIcon /> : <MenuIcon />}
             </IconButton>
           </div>
         </Tooltip>

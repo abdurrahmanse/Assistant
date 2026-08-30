@@ -4,8 +4,7 @@ import Divider from '@mui/material/Divider';
 import Drawer, { drawerClasses } from '@mui/material/Drawer';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import { LogOut, Bell } from "lucide-react";
 import MenuButton from '@/layouts/DashboardLayout/MenuButton';
 import MenuContent from '@/layouts/DashboardLayout/MenuContent';
 import CardAlert from '@/features/analytics/CardAlert';
@@ -51,7 +50,6 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
             </Typography>
           </Stack>
           <MenuButton showBadge>
-            <NotificationsRoundedIcon />
           </MenuButton>
         </Stack>
         <Divider />
@@ -61,7 +59,7 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
         </Stack>
         <CardAlert />
         <Stack sx={{ p: 2 }}>
-          <Button variant="outlined" fullWidth startIcon={<LogoutRoundedIcon />}>
+          <Button variant="outlined" fullWidth startIcon={<LogOut size={20} />}>
             Logout
           </Button>
         </Stack>

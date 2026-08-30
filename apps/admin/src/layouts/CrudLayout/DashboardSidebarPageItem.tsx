@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import type {} from '@mui/material/themeCssVarsAugmentation';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ChevronDown } from "lucide-react";
 import { Link } from 'react-router';
 import DashboardSidebarContext from '@/layouts/CrudLayout/context/DashboardSidebarContext';
 import { MINI_DRAWER_WIDTH } from '@/features/crud/constants';
@@ -213,7 +213,7 @@ export default function DashboardSidebarPageItem({
           ) : null}
           {action && !mini && fullyExpanded ? action : null}
           {nestedNavigation ? (
-            <ExpandMoreIcon sx={nestedNavigationCollapseSx} />
+            <ChevronDown sx={nestedNavigationCollapseSx} />
           ) : null}
         </ListItemButton>
         {nestedNavigation && mini ? (

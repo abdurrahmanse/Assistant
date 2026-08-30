@@ -17,10 +17,7 @@ import {
   type GridEventListener,
   gridClasses,
 } from '@mui/x-data-grid';
-import AddIcon from '@mui/icons-material/Add';
-import RefreshIcon from '@mui/icons-material/Refresh';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Plus, RefreshCw, Edit, Trash2 } from "lucide-react";
 import { useLocation, useNavigate, useSearchParams } from 'react-router';
 import { useDialogs } from '@/features/crud/hooks/useDialogs/useDialogs';
 import useNotifications from '@/features/crud/hooks/useNotifications/useNotifications';
@@ -246,13 +243,11 @@ export default function EmployeeList() {
         getActions: ({ row }) => [
           <GridActionsCellItem
             key="edit-item"
-            icon={<EditIcon />}
             label="Edit"
             onClick={handleRowEdit(row)}
           />,
           <GridActionsCellItem
             key="delete-item"
-            icon={<DeleteIcon />}
             label="Delete"
             onClick={handleRowDelete(row)}
           />,
@@ -273,14 +268,13 @@ export default function EmployeeList() {
           <Tooltip title="Reload data" placement="right" enterDelay={1000}>
             <div>
               <IconButton size="small" aria-label="refresh" onClick={handleRefresh}>
-                <RefreshIcon />
               </IconButton>
             </div>
           </Tooltip>
           <Button
             variant="contained"
             onClick={handleCreateClick}
-            startIcon={<AddIcon />}
+            startIcon={<Plus />}
           >
             Create
           </Button>

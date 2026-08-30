@@ -17,7 +17,8 @@ import { styled } from '@mui/material/styles';
 import ForgotPassword from '@/features/auth/components/ForgotPassword';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
 import ColorModeSelect from '@repo/ui/shared-theme/ColorModeSelect';
-import { GoogleIcon, FacebookIcon, AssistantLogo } from '@/features/auth/components/CustomIcons';
+import { GoogleIcon, FacebookIcon } from "@/features/auth/components/CustomIcons";
+import AssistantLogo from "@/components/AssistantLogo";
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',

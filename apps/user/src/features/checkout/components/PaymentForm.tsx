@@ -13,10 +13,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import AccountBalanceRoundedIcon from '@mui/icons-material/AccountBalanceRounded';
-import CreditCardRoundedIcon from '@mui/icons-material/CreditCardRounded';
-import SimCardRoundedIcon from '@mui/icons-material/SimCardRounded';
-import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
+import { Landmark, CreditCard, Cpu, AlertTriangle } from "lucide-react";
 
 const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
   border: '1px solid',
@@ -144,7 +141,6 @@ export default function PaymentForm() {
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <CreditCardRoundedIcon
                   fontSize="small"
                   sx={[
                     (theme) => ({
@@ -175,7 +171,7 @@ export default function PaymentForm() {
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <AccountBalanceRoundedIcon
+                <Landmark
                   fontSize="small"
                   sx={[
                     (theme) => ({
@@ -200,9 +196,7 @@ export default function PaymentForm() {
           <PaymentContainer>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
               <Typography variant="subtitle2">Credit card</Typography>
-              <CreditCardRoundedIcon sx={{ color: 'text.secondary' }} />
             </Box>
-            <SimCardRoundedIcon
               sx={{
                 fontSize: { xs: 48, sm: 56 },
                 transform: 'rotate(90deg)',
@@ -283,7 +277,6 @@ export default function PaymentForm() {
       )}
       {paymentType === 'bankTransfer' && (
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Alert severity="warning" icon={<WarningRoundedIcon />}>
             Your order will be processed once we receive the funds.
           </Alert>
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>

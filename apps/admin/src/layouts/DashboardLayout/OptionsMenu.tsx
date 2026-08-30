@@ -7,8 +7,7 @@ import { paperClasses } from '@mui/material/Paper';
 import { listClasses } from '@mui/material/List';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
-import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
-import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
+import { LogOut, MoreVertical } from "lucide-react";
 import MenuButton from '@/layouts/DashboardLayout/MenuButton';
 import { useNavigate } from 'react-router';
 
@@ -33,7 +32,6 @@ export default function OptionsMenu() {
         onClick={handleClick}
         sx={{ borderColor: 'transparent' }}
       >
-        <MoreVertRoundedIcon />
       </MenuButton>
       <Menu
         anchorEl={anchorEl}
@@ -72,7 +70,7 @@ export default function OptionsMenu() {
         >
           <ListItemText>Logout</ListItemText>
           <ListItemIcon>
-            <LogoutRoundedIcon fontSize="small" />
+            <LogOut size={20} />
           </ListItemIcon>
         </MenuItem>
       </Menu>

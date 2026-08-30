@@ -7,7 +7,7 @@ import Container, { type ContainerProps } from '@mui/material/Container';
 import MuiLink from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import NavigateNextRoundedIcon from '@mui/icons-material/NavigateNextRounded';
+import { ChevronRight } from "lucide-react";
 import { Link } from 'react-router';
 
 const PageContentHeader = styled('div')(({ theme }) => ({
@@ -56,7 +56,7 @@ export default function PageContainer(props: PageContainerProps) {
         <Stack>
           <PageHeaderBreadcrumbs
             aria-label="breadcrumb"
-            separator={<NavigateNextRoundedIcon fontSize="small" />}
+            separator={<ChevronRight size={16} />}
           >
             {breadcrumbs
               ? breadcrumbs.map((breadcrumb, index) => {

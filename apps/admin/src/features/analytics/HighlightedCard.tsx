@@ -2,8 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import ChevronRightRoundedIcon from '@mui/icons-material/ChevronRightRounded';
-import InsightsRoundedIcon from '@mui/icons-material/InsightsRounded';
+import { ChevronRight, TrendingUp } from "lucide-react";
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 
@@ -14,7 +13,6 @@ export default function HighlightedCard() {
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
-        <InsightsRoundedIcon />
         <Typography
           component="h2"
           variant="subtitle2"
@@ -30,7 +28,7 @@ export default function HighlightedCard() {
           variant="contained"
           size="small"
           color="primary"
-          endIcon={<ChevronRightRoundedIcon />}
+          endIcon={<ChevronRight />}
           fullWidth={isSmallScreen}
         >
           Get insights

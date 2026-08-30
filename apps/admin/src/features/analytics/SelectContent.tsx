@@ -9,10 +9,7 @@ import ListSubheader from '@mui/material/ListSubheader';
 import Select, { type SelectChangeEvent, selectClasses } from '@mui/material/Select';
 import Divider from '@mui/material/Divider';
 import { styled } from '@mui/material/styles';
-import AddRoundedIcon from '@mui/icons-material/AddRounded';
-import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
-import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
-import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
+import { Plus, MonitorSmartphone, Smartphone, Wrench } from "lucide-react";
 
 const Avatar = styled(MuiAvatar)(({ theme }) => ({
   width: 28,
@@ -61,7 +58,6 @@ export default function SelectContent() {
       <MenuItem value="">
         <ListItemAvatar>
           <Avatar alt="Sitemark web">
-            <DevicesRoundedIcon sx={{ fontSize: '1rem' }} />
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary="Sitemark-web" secondary="Web app" />
@@ -69,7 +65,6 @@ export default function SelectContent() {
       <MenuItem value={10}>
         <ListItemAvatar>
           <Avatar alt="Sitemark App">
-            <SmartphoneRoundedIcon sx={{ fontSize: '1rem' }} />
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary="Sitemark-app" secondary="Mobile application" />
@@ -77,7 +72,6 @@ export default function SelectContent() {
       <MenuItem value={20}>
         <ListItemAvatar>
           <Avatar alt="Sitemark Store">
-            <DevicesRoundedIcon sx={{ fontSize: '1rem' }} />
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary="Sitemark-Store" secondary="Web app" />
@@ -86,7 +80,6 @@ export default function SelectContent() {
       <MenuItem value={30}>
         <ListItemAvatar>
           <Avatar alt="Sitemark Store">
-            <ConstructionRoundedIcon sx={{ fontSize: '1rem' }} />
           </Avatar>
         </ListItemAvatar>
         <ListItemText primary="Sitemark-Admin" secondary="Web app" />
@@ -94,7 +87,7 @@ export default function SelectContent() {
       <Divider sx={{ mx: -1 }} />
       <MenuItem value={40}>
         <ListItemIcon>
-          <AddRoundedIcon />
+          <Plus />
         </ListItemIcon>
         <ListItemText primary="Add product" secondary="Web app" />
       </MenuItem>

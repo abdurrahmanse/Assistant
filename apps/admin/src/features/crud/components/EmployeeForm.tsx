@@ -15,7 +15,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router';
 import dayjs, { Dayjs } from 'dayjs';
 import type { Employee } from '@/features/crud/data/employees';
@@ -221,7 +221,7 @@ export default function EmployeeForm(props: EmployeeFormProps) {
       <Stack direction="row" spacing={2} sx={{ justifyContent: 'space-between' }}>
         <Button
           variant="contained"
-          startIcon={<ArrowBackIcon />}
+          startIcon={<ArrowLeft />}
           onClick={handleBack}
         >
           Back

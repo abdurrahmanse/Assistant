@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import type { SnackbarCloseReason } from '@mui/material/Snackbar';
 import type { CloseReason } from '@mui/material/SpeedDial';
-import CloseIcon from '@mui/icons-material/Close';
+import { X } from "lucide-react";
 import NotificationsContext from '@/features/crud/hooks/useNotifications/NotificationsContext';
 import type {
   CloseNotification,
@@ -67,7 +67,7 @@ function Notification({
         color="inherit"
         onClick={handleClose}
       >
-        <CloseIcon fontSize="small" />
+        <X size={20} fontSize="small" />
       </IconButton>
     </React.Fragment>
   );

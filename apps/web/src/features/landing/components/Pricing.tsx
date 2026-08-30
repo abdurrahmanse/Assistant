@@ -8,8 +8,7 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
-import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
+import { Sparkles, CheckCircle2 } from "lucide-react";
 
 const tiers = [
   {
@@ -142,7 +141,7 @@ export default function Pricing() {
                     {tier.title}
                   </Typography>
                   {tier.title === 'Professional' && (
-                    <Chip icon={<AutoAwesomeIcon />} label={tier.subheader} />
+                    <Chip icon={<Sparkles />} label={tier.subheader} />
                   )}
                 </Box>
                 <Box
@@ -169,7 +168,6 @@ export default function Pricing() {
                     key={line}
                     sx={{ py: 1, display: 'flex', gap: 1.5, alignItems: 'center' }}
                   >
-                    <CheckCircleRoundedIcon
                       sx={[
                         {
                           width: 20,

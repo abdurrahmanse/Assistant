@@ -9,8 +9,7 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import { Menu, X as CloseIcon } from "lucide-react";
 import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
 import AssistantLogo from '@/components/AssistantLogo';
 
@@ -95,7 +94,7 @@ export default function AppAppBar() {
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
             <ColorModeIconDropdown size="medium" />
             <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
-              <MenuIcon />
+              <Menu size={20} />
             </IconButton>
             <Drawer
               anchor="top"
@@ -117,7 +116,6 @@ export default function AppAppBar() {
                   }}
                 >
                   <IconButton onClick={toggleDrawer(false)}>
-                    <CloseRoundedIcon />
                   </IconButton>
                 </Box>
 

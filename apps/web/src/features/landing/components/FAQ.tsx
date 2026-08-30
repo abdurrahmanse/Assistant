@@ -6,7 +6,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { ChevronDown } from "lucide-react";
 
 export default function FAQ() {
   const [expanded, setExpanded] = React.useState<string[]>([]);
@@ -50,7 +50,7 @@ export default function FAQ() {
           onChange={handleChange('panel1')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ChevronDown size={20} />}
             aria-controls="panel1d-content"
             id="panel1d-header"
           >
@@ -76,7 +76,7 @@ export default function FAQ() {
           onChange={handleChange('panel2')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ChevronDown size={20} />}
             aria-controls="panel2d-content"
             id="panel2d-header"
           >
@@ -101,7 +101,7 @@ export default function FAQ() {
           onChange={handleChange('panel3')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ChevronDown size={20} />}
             aria-controls="panel3d-content"
             id="panel3d-header"
           >
@@ -126,7 +126,7 @@ export default function FAQ() {
           onChange={handleChange('panel4')}
         >
           <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ChevronDown size={20} />}
             aria-controls="panel4d-content"
             id="panel4d-header"
           >

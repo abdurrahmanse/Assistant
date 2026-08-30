@@ -1,5 +1,5 @@
 import Stack from '@mui/material/Stack';
-import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
+import { Bell } from "lucide-react";
 import CustomDatePicker from '@/features/analytics/CustomDatePicker';
 import NavbarBreadcrumbs from '@/layouts/DashboardLayout/NavbarBreadcrumbs';
 import MenuButton from '@/layouts/DashboardLayout/MenuButton';
@@ -26,7 +26,7 @@ export default function Header() {
         <Search />
         <CustomDatePicker />
         <MenuButton showBadge aria-label="Open notifications">
-          <NotificationsRoundedIcon />
+          <Bell size={20} />
         </MenuButton>
         <ColorModeIconDropdown />
       </Stack>
