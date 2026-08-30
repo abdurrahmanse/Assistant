@@ -1,4 +1,7 @@
 import * as React from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
+
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import type { ThemeOptions } from '@mui/material/styles';
 import { inputsCustomizations } from './customizations/inputs';
@@ -17,8 +20,24 @@ interface AppThemeProps {
   themeComponents?: ThemeOptions['components'];
 }
 
+
+function useLenis() {
+  React.useEffect(() => {
+    const lenis = new Lenis();
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+}
+
 export default function AppTheme(props: AppThemeProps) {
   const { children, disableCustomTheme, themeComponents } = props;
+  useLenis();
   const theme = React.useMemo(() => {
     return disableCustomTheme
       ? {}

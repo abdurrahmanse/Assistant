@@ -48,3 +48,4 @@ a {
     display: unset;
   }
 }
+body { font-family: var(--font-rajdhani), sans-serif; }
