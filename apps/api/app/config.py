@@ -1,8 +1,8 @@
 from typing import List, Optional
 
+from pydantic import computed_field
 from pydantic_settings import BaseSettings
-from pydantic import computed_field, PostgresDsn
-from pydantic_core import MultiHostUrl
+
 
 class Settings(BaseSettings):
     # App
@@ -47,7 +47,12 @@ class Settings(BaseSettings):
     RATE_LIMIT_PER_MINUTE: int = 60
 
     # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:3000", "http://localhost:5173", "http://localhost:5174", "http://localhost:5175"]
+    CORS_ORIGINS: List[str] = [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:5174",
+        "http://localhost:5175",
+    ]
 
     model_config = {"env_file": [".env", "../../.env"], "extra": "ignore"}
 

@@ -1,15 +1,17 @@
 from datetime import datetime, timezone
 
-from fastapi import APIRouter, status
+from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 
 from app.config import settings
+from app.middleware.rate_limit import limiter
 
 router = APIRouter(prefix="/health", tags=["health"])
 
 
 @router.get("", status_code=status.HTTP_200_OK)
-async def health_check():
+@limiter.limit(f"{settings.RATE_LIMIT_PER_MINUTE}/minute")
+async def health_check(request: Request):
     return {
         "status": "ok",
         "version": settings.APP_VERSION,
@@ -18,7 +20,8 @@ async def health_check():
 
 
 @router.get("/ready")
-async def readiness_check():
+@limiter.limit(f"{settings.RATE_LIMIT_PER_MINUTE}/minute")
+async def readiness_check(request: Request):
     db_status = "ok"
     redis_status = "ok"
     errors = []

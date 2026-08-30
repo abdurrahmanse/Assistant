@@ -7,6 +7,7 @@ async def test_rate_limit_exceeded(client):
     last_status = None
     for _ in range(65):
         import asyncio
+
         await asyncio.sleep(0.01)
         response = await client.get("/health")
         last_status = response.status_code
