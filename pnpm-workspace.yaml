@@ -3,3 +3,4 @@ packages:
   - "packages/*"
 allowBuilds:
   '@mui/x-telemetry': false
+  esbuild: true
