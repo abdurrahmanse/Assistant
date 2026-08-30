@@ -4,7 +4,9 @@ import Container from '@mui/material/Container';
 import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Mail , Rocket} from "lucide-react";
 import Typography from '@mui/material/Typography';
 // Visually hidden utility (replaces @mui/utils/visuallyHidden)
 const visuallyHidden = {
@@ -114,6 +116,7 @@ export default function Hero() {
             </InputLabel>
             <TextField
               id="email-hero"
+              InputProps={{ startAdornment: <InputAdornment position="start"><Mail size={18} /></InputAdornment> }}
               hiddenLabel
               size="small"
               variant="outlined"
@@ -132,7 +135,7 @@ export default function Hero() {
               color="primary"
               size="small"
               sx={{ minWidth: 'fit-content' }}
-            >
+             startIcon={<Rocket size={18} />}>
               Start now
             </Button>
           </Stack>

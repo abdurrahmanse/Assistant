@@ -1,4 +1,4 @@
-import { Sparkles, CheckCircle2 } from 'lucide-react';
+import { Sparkles, CheckCircle2 , ChevronRight} from 'lucide-react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -197,7 +197,7 @@ export default function Pricing() {
                   fullWidth
                   variant={tier.buttonVariant as 'outlined' | 'contained'}
                   color={tier.buttonColor as 'primary' | 'secondary'}
-                >
+                 startIcon={<ChevronRight size={18} />}>
                   {tier.buttonText}
                 </Button>
               </CardActions>

@@ -8,7 +8,7 @@ import Snackbar from '@mui/material/Snackbar';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import type { SnackbarCloseReason } from '@mui/material/Snackbar';
 import type { CloseReason } from '@mui/material/SpeedDial';
-import { X } from "lucide-react";
+import { X , ChevronRight} from "lucide-react";
 import NotificationsContext from '@/features/crud/hooks/useNotifications/NotificationsContext';
 import type {
   CloseNotification,
@@ -56,7 +56,7 @@ function Notification({
   const action = (
     <React.Fragment>
       {onAction ? (
-        <Button color="inherit" size="small" onClick={onAction}>
+        <Button color="inherit" size="small" onClick={onAction} startIcon={<ChevronRight size={18} />}>
           {actionText ?? 'Action'}
         </Button>
       ) : null}

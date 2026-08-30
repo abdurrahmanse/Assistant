@@ -5,7 +5,9 @@ import IconButton from '@mui/material/IconButton';
 import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Mail , Send} from "lucide-react";
 import Typography from '@mui/material/Typography';
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -69,6 +71,7 @@ export default function Footer() {
             <Stack direction="row" spacing={1} useFlexGap>
               <TextField
                 id="email-newsletter"
+                InputProps={{ startAdornment: <InputAdornment position="start"><Mail size={18} /></InputAdornment> }}
                 hiddenLabel
                 size="small"
                 variant="outlined"
@@ -88,7 +91,7 @@ export default function Footer() {
                 color="primary"
                 size="small"
                 sx={{ flexShrink: 0 }}
-              >
+               startIcon={<Send size={18} />}>
                 Subscribe
               </Button>
             </Stack>

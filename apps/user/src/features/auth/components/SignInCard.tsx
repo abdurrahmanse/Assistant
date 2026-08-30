@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import MuiCard from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
@@ -10,7 +11,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import { useNavigate } from 'react-router';
 import { Link as RouterLink } from 'react-router';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Mail, Lock , Eye, EyeOff , LogIn} from "lucide-react";
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from '@/features/auth/components/ForgotPassword';
@@ -36,6 +39,7 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
+  const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
@@ -112,6 +116,7 @@ export default function SignInCard() {
             error={emailError}
             helperText={emailErrorMessage}
             id="email"
+              InputProps={{ startAdornment: <InputAdornment position="start"><Mail size={18} /></InputAdornment> }}
             type="email"
             name="email"
             placeholder="your@email.com"
@@ -141,8 +146,9 @@ export default function SignInCard() {
             helperText={passwordErrorMessage}
             name="password"
             placeholder="••••••"
-            type="password"
+            type={showPassword ? 'text' : 'password'}
             id="password"
+              InputProps={{ startAdornment: <InputAdornment position="start"><Lock size={18} /></InputAdornment>, endAdornment: <InputAdornment position="end"><IconButton onClick={() => setShowPassword(!showPassword)} edge="end">{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</IconButton></InputAdornment> }}
             autoComplete="current-password"
             autoFocus
             required
@@ -156,7 +162,7 @@ export default function SignInCard() {
           label="Remember me"
         />
         <ForgotPassword open={open} handleClose={handleClose} />
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs}>
+        <Button type="submit" fullWidth variant="contained" onClick={validateInputs} startIcon={<LogIn size={18} />}>
           Sign in
         </Button>
         <Typography sx={{ textAlign: 'center' }}>

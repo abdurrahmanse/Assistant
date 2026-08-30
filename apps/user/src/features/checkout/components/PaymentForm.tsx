@@ -1,4 +1,4 @@
-import { Landmark, CreditCard, Cpu, AlertTriangle } from 'lucide-react';
+import { Landmark, CreditCard, Cpu, AlertTriangle, User, Calendar, Lock } from "lucide-react";
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
@@ -9,7 +9,8 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
 import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -220,6 +221,7 @@ export default function PaymentForm() {
                 </FormLabel>
                 <OutlinedInput
                   id="card-number"
+                  startAdornment={<InputAdornment position="start"><CreditCard size={18} /></InputAdornment>}
                   autoComplete="card-number"
                   placeholder="0000 0000 0000 0000"
                   required
@@ -234,6 +236,7 @@ export default function PaymentForm() {
                 </FormLabel>
                 <OutlinedInput
                   id="cvv"
+                  startAdornment={<InputAdornment position="start"><Lock size={18} /></InputAdornment>}
                   autoComplete="CVV"
                   placeholder="123"
                   required
@@ -250,6 +253,7 @@ export default function PaymentForm() {
                 </FormLabel>
                 <OutlinedInput
                   id="card-name"
+                  startAdornment={<InputAdornment position="start"><User size={18} /></InputAdornment>}
                   autoComplete="card-name"
                   placeholder="John Smith"
                   required
@@ -262,6 +266,7 @@ export default function PaymentForm() {
                 </FormLabel>
                 <OutlinedInput
                   id="card-expiration"
+                  startAdornment={<InputAdornment position="start"><Calendar size={18} /></InputAdornment>}
                   autoComplete="card-expiration"
                   placeholder="MM/YY"
                   required

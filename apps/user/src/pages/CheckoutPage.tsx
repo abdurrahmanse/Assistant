@@ -10,7 +10,7 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowRight} from "lucide-react";
 import AddressForm from '@/features/checkout/components/AddressForm';
 import Info from '@/features/checkout/components/Info';
 import InfoMobile from '@/features/checkout/components/InfoMobile';
@@ -202,7 +202,7 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                 <Button
                   variant="contained"
                   sx={{ alignSelf: 'start', width: { xs: '100%', sm: 'auto' } }}
-                >
+                 startIcon={<ChevronRight size={18} />}>
                   Go to my orders
                 </Button>
               </Stack>
@@ -251,7 +251,7 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
                     variant="contained"
                     onClick={handleNext}
                     sx={{ width: { xs: '100%', sm: 'fit-content' } }}
-                  >
+                   startIcon={<ArrowRight size={18} />}>
                     {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
                   </Button>
                 </Box>

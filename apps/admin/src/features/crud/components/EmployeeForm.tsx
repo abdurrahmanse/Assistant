@@ -11,7 +11,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select, { type SelectChangeEvent, type SelectProps } from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { User, Mail , ChevronRight} from "lucide-react";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -231,7 +233,7 @@ export default function EmployeeForm(props: EmployeeFormProps) {
           variant="contained"
           size="large"
           loading={isSubmitting}
-        >
+         startIcon={<ChevronRight size={18} />}>
           {submitButtonLabel}
         </Button>
       </Stack>

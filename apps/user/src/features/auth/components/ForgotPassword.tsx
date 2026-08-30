@@ -5,7 +5,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import { Mail , X, ArrowRight} from "lucide-react";
 
 interface ForgotPasswordProps {
   open: boolean;
@@ -41,6 +43,7 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           required
           margin="dense"
           id="email"
+          startAdornment={<InputAdornment position="start"><Mail size={18} /></InputAdornment>}
           name="email"
           label="Email address"
           placeholder="Email address"
@@ -49,8 +52,8 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
         />
       </DialogContent>
       <DialogActions sx={{ pb: 3, px: 3 }}>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button variant="contained" type="submit">
+        <Button onClick={handleClose} startIcon={<X size={18} />}>Cancel</Button>
+        <Button variant="contained" type="submit" startIcon={<ArrowRight size={18} />}>
           Continue
         </Button>
       </DialogActions>

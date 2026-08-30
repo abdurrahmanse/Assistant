@@ -2,7 +2,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
-import OutlinedInput from '@mui/material/OutlinedInput';
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import { User, Home, Building, MapPin, Map, Hash, Globe } from "lucide-react";
 import { styled } from '@mui/material/styles';
 
 const FormGrid = styled(Grid)(() => ({
@@ -19,6 +21,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="first-name"
+          startAdornment={<InputAdornment position="start"><User size={18} /></InputAdornment>}
           name="first-name"
           type="text"
           placeholder="John"
@@ -33,6 +36,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="last-name"
+          startAdornment={<InputAdornment position="start"><User size={18} /></InputAdornment>}
           name="last-name"
           type="text"
           placeholder="Snow"
@@ -47,6 +51,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="address1"
+          startAdornment={<InputAdornment position="start"><Home size={18} /></InputAdornment>}
           name="address1"
           type="text"
           placeholder="Street name and number"
@@ -59,6 +64,7 @@ export default function AddressForm() {
         <FormLabel htmlFor="address2">Address line 2</FormLabel>
         <OutlinedInput
           id="address2"
+          startAdornment={<InputAdornment position="start"><Building size={18} /></InputAdornment>}
           name="address2"
           type="text"
           placeholder="Apartment, suite, unit, etc. (optional)"
@@ -73,6 +79,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="city"
+          startAdornment={<InputAdornment position="start"><MapPin size={18} /></InputAdornment>}
           name="city"
           type="text"
           placeholder="New York"
@@ -87,6 +94,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="state"
+          startAdornment={<InputAdornment position="start"><Map size={18} /></InputAdornment>}
           name="state"
           type="text"
           placeholder="NY"
@@ -101,6 +109,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="zip"
+          startAdornment={<InputAdornment position="start"><Hash size={18} /></InputAdornment>}
           name="zip"
           type="text"
           placeholder="12345"
@@ -115,6 +124,7 @@ export default function AddressForm() {
         </FormLabel>
         <OutlinedInput
           id="country"
+          startAdornment={<InputAdornment position="start"><Globe size={18} /></InputAdornment>}
           name="country"
           type="text"
           placeholder="United States"

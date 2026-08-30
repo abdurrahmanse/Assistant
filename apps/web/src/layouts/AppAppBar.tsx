@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { styled, alpha } from '@mui/material/styles';
+import { styled, alpha } from "@mui/material/styles";
+import { Star, MessageSquare, Sparkles, CreditCard, HelpCircle, ChevronRight, LogIn, UserPlus } from "lucide-react";
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -54,22 +55,22 @@ export default function AppAppBar() {
           </Box>
           
           <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Star size={18} />}>
               Features
             </Button>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<MessageSquare size={18} />}>
               Testimonials
             </Button>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Sparkles size={18} />}>
               Highlights
             </Button>
-            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<CreditCard size={18} />}>
               Pricing
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>
+            <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<HelpCircle size={18} />}>
               FAQ
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+            <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} startIcon={<ChevronRight size={18} />}>
               Blog
             </Button>
           </Box>
@@ -83,10 +84,10 @@ export default function AppAppBar() {
               justifyContent: 'flex-end',
             }}
           >
-            <Button color="primary" variant="text" size="small" href="http://localhost:5174/signin">
+            <Button color="primary" variant="text" size="small" href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
               Sign in
             </Button>
-            <Button color="primary" variant="contained" size="small" href="http://localhost:5174/signup">
+            <Button color="primary" variant="contained" size="small" href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
               Sign up
             </Button>
             <ColorModeIconDropdown />
@@ -127,12 +128,12 @@ export default function AppAppBar() {
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>
-                  <Button color="primary" variant="contained" fullWidth href="http://localhost:5174/signup">
+                  <Button color="primary" variant="contained" fullWidth href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
                     Sign up
                   </Button>
                 </MenuItem>
                 <MenuItem>
-                  <Button color="primary" variant="outlined" fullWidth href="http://localhost:5174/signin">
+                  <Button color="primary" variant="outlined" fullWidth href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
                     Sign in
                   </Button>
                 </MenuItem>

@@ -1,3 +1,4 @@
+import { ChevronRight, X } from "lucide-react";
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable @typescript-eslint/no-empty-object-type */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -209,7 +210,7 @@ export function AlertDialog({ open, payload, onClose }: AlertDialogProps) {
       <DialogTitle>{payload.title ?? 'Alert'}</DialogTitle>
       <DialogContent>{payload.msg}</DialogContent>
       <DialogActions>
-        <Button disabled={!open} {...okButtonProps}>
+        <Button disabled={!open} {...okButtonProps} startIcon={<ChevronRight size={18} />}>
           {payload.okText ?? 'Ok'}
         </Button>
       </DialogActions>
@@ -235,10 +236,10 @@ export function ConfirmDialog({ open, payload, onClose }: ConfirmDialogProps) {
       <DialogTitle>{payload.title ?? 'Confirm'}</DialogTitle>
       <DialogContent>{payload.msg}</DialogContent>
       <DialogActions>
-        <Button autoFocus disabled={!open} {...cancelButtonProps}>
+        <Button autoFocus disabled={!open} {...cancelButtonProps} startIcon={<X size={18} />}>
           {payload.cancelText ?? 'Cancel'}
         </Button>
-        <Button color={payload.severity} disabled={!open} {...okButtonProps}>
+        <Button color={payload.severity} disabled={!open} {...okButtonProps} startIcon={<ChevronRight size={18} />}>
           {payload.okText ?? 'Ok'}
         </Button>
       </DialogActions>
@@ -307,10 +308,10 @@ export function PromptDialog({ open, payload, onClose }: PromptDialogProps) {
         />
       </DialogContent>
       <DialogActions>
-        <Button disabled={!open} {...cancelButtonProps}>
+        <Button disabled={!open} {...cancelButtonProps} startIcon={<X size={18} />}>
           {payload.cancelText ?? 'Cancel'}
         </Button>
-        <Button disabled={!open} loading={loading} type="submit">
+        <Button disabled={!open} loading={loading} type="submit" startIcon={<ChevronRight size={18} />}>
           {payload.okText ?? 'Ok'}
         </Button>
       </DialogActions>

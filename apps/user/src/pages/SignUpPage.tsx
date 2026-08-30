@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
@@ -9,7 +10,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
-import TextField from '@mui/material/TextField';
+import TextField from "@mui/material/TextField";
+import InputAdornment from "@mui/material/InputAdornment";
+import { User, Mail, Lock , Eye, EyeOff , UserPlus} from "lucide-react";
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import MuiCard from '@mui/material/Card';
@@ -62,6 +65,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUp(props: { disableCustomTheme?: boolean }) {
+  const [showPassword, setShowPassword] = React.useState(false);
   const navigate = useNavigate();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
@@ -144,6 +148,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                 required
                 fullWidth
                 id="name"
+              InputProps={{ startAdornment: <InputAdornment position="start"><User size={18} /></InputAdornment> }}
                 placeholder="Jon Snow"
                 error={nameError}
                 helperText={nameErrorMessage}
@@ -156,6 +161,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                 required
                 fullWidth
                 id="email"
+              InputProps={{ startAdornment: <InputAdornment position="start"><Mail size={18} /></InputAdornment> }}
                 placeholder="your@email.com"
                 name="email"
                 autoComplete="email"
@@ -172,8 +178,9 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
                 fullWidth
                 name="password"
                 placeholder="••••••"
-                type="password"
+                type={showPassword ? 'text' : 'password'}
                 id="password"
+              InputProps={{ startAdornment: <InputAdornment position="start"><Lock size={18} /></InputAdornment>, endAdornment: <InputAdornment position="end"><IconButton onClick={() => setShowPassword(!showPassword)} edge="end">{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</IconButton></InputAdornment> }}
                 autoComplete="new-password"
                 variant="outlined"
                 error={passwordError}
@@ -190,7 +197,7 @@ export default function SignUp(props: { disableCustomTheme?: boolean }) {
               fullWidth
               variant="contained"
               onClick={validateInputs}
-            >
+             startIcon={<UserPlus size={18} />}>
               Sign up
             </Button>
           </Box>

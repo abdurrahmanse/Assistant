@@ -2,7 +2,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Sparkles } from "lucide-react";
+import { Sparkles , ChevronRight} from "lucide-react";
 
 export default function CardAlert() {
   return (
@@ -15,7 +15,7 @@ export default function CardAlert() {
         <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary' }}>
           Enjoy 10% off when renewing your plan today.
         </Typography>
-        <Button variant="contained" size="small" fullWidth>
+        <Button variant="contained" size="small" fullWidth startIcon={<ChevronRight size={18} />}>
           Get the discount
         </Button>
       </CardContent>
