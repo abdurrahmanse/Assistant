@@ -53,19 +53,19 @@ export default function AppAppBar() {
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
             <Sitemark />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>
                 Features
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>
                 Testimonials
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>
                 Highlights
               </Button>
-              <Button variant="text" color="info" size="small">
+              <Button variant="text" color="info" size="small" onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>
                 Pricing
               </Button>
-              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
+              <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>
                 FAQ
               </Button>
               <Button variant="text" color="info" size="small" sx={{ minWidth: 0 }}>
@@ -117,11 +117,11 @@ export default function AppAppBar() {
                   </IconButton>
                 </Box>
 
-                <MenuItem>Features</MenuItem>
-                <MenuItem>Testimonials</MenuItem>
-                <MenuItem>Highlights</MenuItem>
-                <MenuItem>Pricing</MenuItem>
-                <MenuItem>FAQ</MenuItem>
+                <MenuItem onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>Features</MenuItem>
+                <MenuItem onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>Testimonials</MenuItem>
+                <MenuItem onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>Highlights</MenuItem>
+                <MenuItem onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>Pricing</MenuItem>
+                <MenuItem onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>FAQ</MenuItem>
                 <MenuItem>Blog</MenuItem>
                 <Divider sx={{ my: 3 }} />
                 <MenuItem>

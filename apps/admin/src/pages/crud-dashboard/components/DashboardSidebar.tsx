@@ -153,6 +153,13 @@ export default function DashboardSidebar({
           >
             <DashboardSidebarHeaderItem>Main items</DashboardSidebarHeaderItem>
             <DashboardSidebarPageItem
+              id="home"
+              title="Home"
+              icon={<PersonIcon />}
+              href="/"
+              selected={pathname === '/'}
+            />
+            <DashboardSidebarPageItem
               id="employees"
               title="Employees"
               icon={<PersonIcon />}

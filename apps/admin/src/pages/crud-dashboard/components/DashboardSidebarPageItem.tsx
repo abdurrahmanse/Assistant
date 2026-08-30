@@ -135,11 +135,11 @@ export default function DashboardSidebarPageItem({
                 component: LinkComponent,
                 ...(hasExternalHref
                   ? {
+                      href: href,
                       target: '_blank',
                       rel: 'noopener noreferrer',
                     }
-                  : {}),
-                to: href,
+                  : { to: href }),
                 onClick: handleClick,
               }
             : {})}
