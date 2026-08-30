@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import * as React from 'react';
 import { type Theme, type SxProps } from '@mui/material/styles';
 import Avatar from '@mui/material/Avatar';

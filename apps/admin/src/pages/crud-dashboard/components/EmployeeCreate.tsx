@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-object-type */
 import * as React from 'react';
 import { useNavigate } from 'react-router';
 import useNotifications from '../hooks/useNotifications/useNotifications';

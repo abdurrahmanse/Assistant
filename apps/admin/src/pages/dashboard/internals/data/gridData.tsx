@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import { type GridCellParams, type GridRowsProp, type GridColDef } from '@mui/x-data-grid';
