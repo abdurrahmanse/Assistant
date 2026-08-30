@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider, Navigate } from 'react-router';
-import SignInSide from './pages/sign-in/SignInSide';
-import SignUp from './pages/sign-up/SignUp';
-import Checkout from './pages/checkout/Checkout';
+import SignInSide from '@/pages/SignInPage';
+import SignUp from '@/pages/SignUpPage';
+import Checkout from '@/pages/CheckoutPage';
 
 const router = createBrowserRouter([
   {

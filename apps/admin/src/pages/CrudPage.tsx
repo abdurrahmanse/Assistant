@@ -1,8 +1,5 @@
-import { createBrowserRouter, RouterProvider, Navigate } from 'react-router';
-import AppTheme from '@repo/ui/shared-theme/AppTheme';
 import CssBaseline from '@mui/material/CssBaseline';
-import Dashboard from '@/pages/AnalyticsPage';
-import SignIn from '@/pages/SignInPage';
+import { createHashRouter, RouterProvider } from 'react-router';
 import DashboardLayout from '@/layouts/CrudLayout/DashboardLayout';
 import EmployeeList from '@/features/crud/components/EmployeeList';
 import EmployeeShow from '@/features/crud/components/EmployeeShow';
@@ -10,35 +7,15 @@ import EmployeeCreate from '@/features/crud/components/EmployeeCreate';
 import EmployeeEdit from '@/features/crud/components/EmployeeEdit';
 import NotificationsProvider from '@/features/crud/hooks/useNotifications/NotificationsProvider';
 import DialogsProvider from '@/features/crud/hooks/useDialogs/DialogsProvider';
+import AppTheme from '@repo/ui/shared-theme/AppTheme';
 import {
   dataGridCustomizations,
   datePickersCustomizations,
   sidebarCustomizations,
   formInputCustomizations,
 } from '@/theme/crud-theme/customizations';
-import {
-  chartsCustomizations,
-  treeViewCustomizations,
-} from '@/theme/dashboard-theme/customizations';
 
-const themeComponents = {
-  ...chartsCustomizations,
-  ...dataGridCustomizations,
-  ...datePickersCustomizations,
-  ...sidebarCustomizations,
-  ...formInputCustomizations,
-  ...treeViewCustomizations,
-};
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Dashboard />,
-  },
-  {
-    path: '/signin',
-    element: <SignIn />,
-  },
+const router = createHashRouter([
   {
     Component: DashboardLayout,
     children: [
@@ -47,28 +24,36 @@ const router = createBrowserRouter([
         Component: EmployeeList,
       },
       {
-        path: '/employees/new',
-        Component: EmployeeCreate,
-      },
-      {
         path: '/employees/:employeeId',
         Component: EmployeeShow,
+      },
+      {
+        path: '/employees/new',
+        Component: EmployeeCreate,
       },
       {
         path: '/employees/:employeeId/edit',
         Component: EmployeeEdit,
       },
+      // Fallback route for the example routes in dashboard sidebar items
       {
         path: '*',
-        element: <Navigate to="/employees" replace />,
+        Component: EmployeeList,
       },
     ],
   },
 ]);
 
-export default function App() {
+const themeComponents = {
+  ...dataGridCustomizations,
+  ...datePickersCustomizations,
+  ...sidebarCustomizations,
+  ...formInputCustomizations,
+};
+
+export default function CrudDashboard(props: { disableCustomTheme?: boolean }) {
   return (
-    <AppTheme themeComponents={themeComponents}>
+    <AppTheme {...props} themeComponents={themeComponents}>
       <CssBaseline enableColorScheme />
       <NotificationsProvider>
         <DialogsProvider>
