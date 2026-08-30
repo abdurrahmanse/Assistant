@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Outlet } from 'react-router';
 import DashboardHeader from '@/layouts/CrudLayout/DashboardHeader';
 import DashboardSidebar from '@/layouts/CrudLayout/DashboardSidebar';
-import SitemarkIcon from '@/components/SitemarkIcon';
+import AssistantLogo from '@/components/AssistantLogo';
 
 export default function DashboardLayout() {
   const theme = useTheme();
@@ -58,7 +58,7 @@ export default function DashboardLayout() {
       }}
     >
       <DashboardHeader
-        logo={<SitemarkIcon />}
+        logo={<AssistantLogo />}
         title=""
         menuOpen={isNavigationExpanded}
         onToggleMenu={handleToggleHeaderMenu}

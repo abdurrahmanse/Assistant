@@ -17,7 +17,7 @@ import Info from '@/features/checkout/components/Info';
 import InfoMobile from '@/features/checkout/components/InfoMobile';
 import PaymentForm from '@/features/checkout/components/PaymentForm';
 import Review from '@/features/checkout/components/Review';
-import SitemarkIcon from '@/components/SitemarkIcon';
+import AssistantLogo from '@/components/AssistantLogo';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
 import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
 
@@ -76,7 +76,7 @@ export default function Checkout(props: { disableCustomTheme?: boolean }) {
             gap: 4,
           }}
         >
-          <SitemarkIcon />
+          <AssistantLogo />
           <Box
             sx={{
               display: 'flex',

@@ -12,7 +12,7 @@ export default function AssistantLogo() {
         '&:hover': { opacity: 0.8 }
       }}
     >
-      <img src="/logo.jpg" alt="Assistant Logo" style={{ height: 40, width: 'auto', borderRadius: 8 }} />
+      <img src="/logo.jpg" alt="Assistant Logo" style={{ height: 32, width: 'auto', borderRadius: 8 }} />
     </Box>
   );
 }

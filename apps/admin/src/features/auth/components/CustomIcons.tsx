@@ -1,6 +1,6 @@
 import SvgIcon from '@mui/material/SvgIcon';
 
-export function SitemarkIcon() {
+export function AssistantLogo() {
   return (
     <SvgIcon sx={{ height: 21, width: 100 }}>
       <svg width={86} height={19} viewBox="0 0 86 19" fill="none">
