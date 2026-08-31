@@ -37,9 +37,7 @@ export default function BlogPage() {
           <Grid container spacing={4}>
             {[1, 2, 3].map(i => (
               <Grid size={{ xs: 12, md: 4 }} key={i}>
-                <Skeleton variant="rectangular" height={250} sx={{ borderRadius: 4 }} />
-                <Skeleton height={40} sx={{ mt: 2 }} />
-                <Skeleton height={20} width="60%" />
+                <Skeleton variant="rectangular" height={500} sx={{ borderRadius: '24px' }} />
               </Grid>
             ))}
           </Grid>

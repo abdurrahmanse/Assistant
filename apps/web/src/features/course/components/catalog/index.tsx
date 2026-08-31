@@ -20,10 +20,19 @@ export default function CourseCatalog() {
     return (
       <Section container noPadding sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
 
-        <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 2, borderRadius: 2 }} />
-        <Skeleton width="60%" height={24} sx={{ mx: 'auto', mb: 4 }} />
-        <Grid container spacing={3}>
-          {[1, 2, 3].map((i) => <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: '20px' }} /></Grid>)}
+        <Box sx={{ textAlign: 'center', mb: 6 }}>
+          <Skeleton variant="rectangular" width="40%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
+          <Skeleton variant="text" width="50%" height={30} sx={{ mx: 'auto' }} />
+        </Box>
+        <Box sx={{ mb: 6 }}>
+          <Grid container spacing={2} alignItems="center" justifyContent="center">
+            <Grid size={{ xs: 12, md: 6 }}><Skeleton variant="rectangular" height={56} sx={{ borderRadius: '16px' }} /></Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}><Skeleton variant="rectangular" height={56} sx={{ borderRadius: '16px' }} /></Grid>
+            <Grid size={{ xs: 12, sm: 6, md: 3 }}><Skeleton variant="rectangular" height={56} sx={{ borderRadius: '16px' }} /></Grid>
+          </Grid>
+        </Box>
+        <Grid container spacing={4}>
+          {[1, 2, 3, 4, 5, 6].map((i) => <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}><Skeleton variant="rectangular" height={460} sx={{ borderRadius: '24px' }} /></Grid>)}
         </Grid>
 
       </Section>

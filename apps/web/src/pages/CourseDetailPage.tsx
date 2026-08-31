@@ -1,3 +1,4 @@
+import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container';
 import React from 'react';
 import Box from '@mui/material/Box';
@@ -16,6 +17,8 @@ import { CourseEnrollmentCard } from '@/features/course/components/detail/enroll
 import { CourseOverview } from '@/features/course/components/detail/overview';
 import { CourseFeatures } from '@/features/course/components/detail/features';
 import { CourseCurriculum } from '@/features/course/components/detail/curriculum';
+import FAQ from '@/features/home/components/faq';
+import Testimonials from '@/features/home/components/testimonials';
 
 export default function CourseDetailPage(props: { disableCustomTheme?: boolean }) {
   const { id } = useParams<{ id: string }>();
@@ -32,16 +35,58 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, }}>
           <Container maxWidth="lg">
           
-            <Skeleton width={140} height={36} sx={{ mb: 4 }} />
-            <Stack direction={{ xs: 'column', md: 'row' }} spacing={6}>
-              <Box sx={{ flex: 1 }}>
-                <Skeleton width="30%" height={32} sx={{ mb: 2 }} />
-                <Skeleton width="90%" height={56} sx={{ mb: 2 }} />
-                <Skeleton width="80%" height={24} />
-                <Skeleton width="60%" height={24} />
+            <Skeleton variant="rectangular" width={120} height={40} sx={{ mb: 4, borderRadius: 2 }} />
+            <Stack direction={{ xs: 'column', md: 'row' }} spacing={8} alignItems="flex-start" sx={{ mb: 8 }}>
+              <Box sx={{ flex: 1, minWidth: 0, width: '100%' }}>
+                <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+                  <Skeleton width={80} height={32} sx={{ borderRadius: 2 }} />
+                  <Skeleton width={100} height={32} sx={{ borderRadius: 2 }} />
+                </Stack>
+                <Skeleton variant="rectangular" width="90%" height={80} sx={{ mb: 3, borderRadius: 2 }} />
+                <Skeleton width="100%" height={24} />
+                <Skeleton width="80%" height={24} sx={{ mb: 6 }} />
+                <Skeleton variant="rectangular" width="100%" height={100} sx={{ borderRadius: '16px' }} />
               </Box>
-              <Skeleton variant="rectangular" width={380} height={560} sx={{ borderRadius: 3 }} />
+              <Box sx={{ width: { xs: '100%', md: '400px' }, flexShrink: 0 }}>
+                <Skeleton variant="rectangular" width="100%" height={600} sx={{ borderRadius: '24px' }} />
+              </Box>
             </Stack>
+            <Box sx={{ py: 6, borderTop: '1px solid', borderColor: 'divider' }}>
+              <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 4, borderRadius: 2 }} />
+              <Stack spacing={2} sx={{ mb: 6 }}>
+                {[1, 2].map((i) => (
+                  <Skeleton key={i} variant="rectangular" width="100%" height={64} sx={{ borderRadius: '12px' }} />
+                ))}
+              </Stack>
+
+              <Skeleton variant="rectangular" width="30%" height={40} sx={{ mb: 4, borderRadius: 2 }} />
+              <Grid container spacing={2} sx={{ mb: 6 }}>
+                {[1, 2, 3, 4].map((i) => (
+                  <Grid size={{ xs: 12, sm: 6 }} key={i}>
+                    <Skeleton variant="rectangular" height={64} sx={{ borderRadius: '12px' }} />
+                  </Grid>
+                ))}
+              </Grid>
+
+              <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 4, mx: 'auto', borderRadius: 2 }} />
+              <Grid container spacing={3} sx={{ mb: 6 }}>
+                {[1, 2, 3, 4].map((i) => (
+                  <Grid size={{ xs: 12, sm: 6, md: 3 }} key={i}>
+                    <Skeleton variant="rectangular" height={160} sx={{ borderRadius: '20px' }} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+
+            <Box sx={{ py: 6, borderTop: '1px solid', borderColor: 'divider' }}>
+              <Skeleton variant="rectangular" width="40%" height={48} sx={{ mb: 2, borderRadius: 2 }} />
+              <Skeleton width="60%" height={24} sx={{ mb: 6 }} />
+              <Stack spacing={2}>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <Skeleton key={i} variant="rectangular" width="100%" height={72} sx={{ borderRadius: '16px' }} />
+                ))}
+              </Stack>
+            </Box>
         </Container>
           
         </Box>
@@ -117,6 +162,16 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
           </Box>
         </Container>
         
+      </Box>
+
+      {/* Testimonials Section */}
+      <Box sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
+        <Testimonials />
+      </Box>
+
+      {/* FAQ Section */}
+      <Box sx={{ bgcolor: 'background.default' }}>
+        <FAQ />
       </Box>
     </MarketingLayout>
   );

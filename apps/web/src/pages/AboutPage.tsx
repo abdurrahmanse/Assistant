@@ -53,7 +53,6 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
                   ))}
                 </Grid>
               </Grid>
-            </Grid>)}
             </Grid>
         </Container>
           

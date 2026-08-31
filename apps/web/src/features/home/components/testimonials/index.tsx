@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import CardHeader from '@mui/material/CardHeader';
 
 import Avatar from '@mui/material/Avatar';
@@ -62,15 +63,19 @@ export default function Testimonials() {
   if (isLoading || !data) {
     return (
       <TestimonialsContainer id="testimonials">
-        <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 2 }} />
-        <Skeleton variant="text" width="60%" height={24} sx={{ mb: 4 }} />
-        <Grid container spacing={2} sx={{ width: '100%' }}>
+        <Container maxWidth="lg">
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
+          <Skeleton variant="text" width="60%" height={24} sx={{ mx: 'auto' }} />
+        </Box>
+        <Grid container spacing={3} sx={{ width: '100%' }}>
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
-              <Skeleton variant="rectangular" width="100%" height={150} />
+              <Skeleton variant="rectangular" width="100%" height={280} sx={{ borderRadius: '24px' }} />
             </Grid>
           ))}
         </Grid>
+        </Container>
       </TestimonialsContainer>
     );
   }
@@ -79,6 +84,7 @@ export default function Testimonials() {
 
   return (
     <TestimonialsContainer id="testimonials">
+      <Container maxWidth="lg">
       <Reveal delay={0.1}>
         <TestimonialsHeader>
         <Typography component="h2" variant="h2" gutterBottom sx={{ color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
@@ -113,6 +119,7 @@ export default function Testimonials() {
           </StyledGridItem>
         ))}
       </Grid>
+      </Container>
     </TestimonialsContainer>
   );
 }

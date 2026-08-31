@@ -19,7 +19,8 @@ export interface CourseCurriculumProps {
 export function CourseCurriculum({ course, copy, totalLessons }: CourseCurriculumProps) {
   return (
     <>
-      <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}><BookOpen size={36} color="#3b82f6" /> {copy.curriculumHeading}</Typography>
+      <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}> 
+      <BookOpen size={36} color="#3b82f6" /> {copy.curriculumHeading}</Typography>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 6 }}>
         {copy.curriculumMeta
           .replace('{sections}', String(course.modules?.length ?? 0))

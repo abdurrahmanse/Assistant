@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -30,12 +31,14 @@ export default function FAQ() {
   if (isLoading || !data) {
     return (
       <FAQContainer id="faq">
+        <Container maxWidth="md" sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 2 }} />
         <FAQBox>
           {[1, 2, 3, 4].map((i) => (
             <Skeleton key={i} variant="rectangular" width="100%" height={60} sx={{ mb: 1 }} />
           ))}
         </FAQBox>
+        </Container>
       </FAQContainer>
     );
   }
@@ -44,6 +47,7 @@ export default function FAQ() {
 
   return (
     <FAQContainer id="faq">
+      <Container maxWidth="md">
       <Reveal delay={0.1}>
       <FAQHeader variant="h4" sx={{ display: 'flex', alignItems: 'center', gap: 2, fontWeight: 900 }}>
         <MessageCircleQuestion size={40} color="var(--template-palette-primary-main)" />
@@ -94,6 +98,7 @@ bgcolor: 'rgba(255,255,255,0.6)',
           </Reveal>
         ))}
       </FAQBox>
+      </Container>
     </FAQContainer>
   );
 }
