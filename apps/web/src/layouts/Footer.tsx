@@ -17,11 +17,8 @@ export default function Footer() {
   const { data: siteMeta } = useSiteMetaQuery();
   
   const navLinks = [
-    { label: 'Home', path: '/' },
-    { label: 'Courses', path: '/courses' },
-    { label: 'Pricing', path: '/pricing' },
-    { label: 'About', path: '/about' },
-    { label: 'Contact', path: '/contact' },
+    { label: 'Blog', path: '/blog' },
+    { label: 'Newsletter', path: '/newsletter' },
   ];
 
   return (

@@ -42,20 +42,7 @@ export default function InstructorProfile() {
         {/* Sleek Glassmorphism Card */}
         <Reveal delay={0.2} direction="up">
 
-        <Box sx={{ 
-          p: { xs: 4, md: 8 }, 
-          borderRadius: '32px',
-          bgcolor: 'rgba(255,255,255,0.7)', 
-          backdropFilter: 'blur(40px)', 
-          border: '1px solid', 
-          borderColor: 'rgba(255,255,255,0.8)',
-          boxShadow: '0 24px 48px rgba(0,0,0,0.05)',
-          '[data-mui-color-scheme="dark"] &': { 
-            bgcolor: 'rgba(20,20,25,0.6)', 
-            borderColor: 'rgba(255,255,255,0.08)',
-            boxShadow: '0 24px 48px rgba(0,0,0,0.4)',
-          },
-        }}>
+        <Box>
           <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
             
             {/* Left: Professional Portrait */}
