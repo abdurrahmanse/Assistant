@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Dashboard from '@/pages/AnalyticsPage';
 import SignIn from '@/pages/SignInPage';
 import DashboardLayout from '@/layouts/CrudLayout/DashboardLayout';
+import AnalyticsDashboardLayout from '@/layouts/AnalyticsDashboardLayout';
 import EmployeeList from '@/features/crud/components/EmployeeList';
 import EmployeeShow from '@/features/crud/components/EmployeeShow';
 import EmployeeCreate from '@/features/crud/components/EmployeeCreate';
@@ -33,7 +34,13 @@ const themeComponents = {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Dashboard />,
+    element: <AnalyticsDashboardLayout />,
+    children: [
+      {
+        index: true,
+        element: <Dashboard />,
+      },
+    ],
   },
   {
     path: '/signin',
