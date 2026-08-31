@@ -1,12 +1,17 @@
-import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useColorScheme } from '@mui/material/styles';
+import { MutedText } from '@repo/ui/styled';
+import {
+  TestimonialsContainer,
+  TestimonialsHeader,
+  StyledGridItem,
+  TestimonialCard,
+  CardFooterBox,
+} from './Testimonials.styles';
 
 const userTestimonials = [
   {
@@ -93,81 +98,38 @@ export default function Testimonials() {
   }
 
   return (
-    <Container
-      id="testimonials"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
-      }}
-    >
-      <Box
-        sx={{
-          width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
-        }}
-      >
-        <Typography
-          component="h2"
-          variant="h4"
-          gutterBottom
-          sx={{ color: 'text.primary' }}
-        >
+    <TestimonialsContainer id="testimonials">
+      <TestimonialsHeader>
+        <Typography component="h2" variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
           Testimonials
         </Typography>
-        <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+        <MutedText variant="body1">
           See what our customers love about our products. Discover how we excel in
           efficiency, durability, and satisfaction. Join us for quality, innovation,
           and reliable support.
-        </Typography>
-      </Box>
+        </MutedText>
+      </TestimonialsHeader>
       <Grid container spacing={2}>
         {userTestimonials.map((testimonial, index) => (
-          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={index} sx={{ display: 'flex' }}>
-            <Card
-              variant="outlined"
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'space-between',
-                flexGrow: 1,
-              }}
-            >
+          <StyledGridItem size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+            <TestimonialCard variant="outlined">
               <CardContent>
-                <Typography
-                  variant="body1"
-                  gutterBottom
-                  sx={{ color: 'text.secondary' }}
-                >
+                <MutedText variant="body1" gutterBottom>
                   {testimonial.testimonial}
-                </Typography>
+                </MutedText>
               </CardContent>
-              <Box
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                }}
-              >
+              <CardFooterBox>
                 <CardHeader
                   avatar={testimonial.avatar}
                   title={testimonial.name}
                   subheader={testimonial.occupation}
                 />
-                <img
-                  src={logos[index]}
-                  alt={`Logo ${index + 1}`}
-                  style={logoStyle}
-                />
-              </Box>
-            </Card>
-          </Grid>
+                <img src={logos[index]} alt={`Logo ${index + 1}`} style={logoStyle} />
+              </CardFooterBox>
+            </TestimonialCard>
+          </StyledGridItem>
         ))}
       </Grid>
-    </Container>
+    </TestimonialsContainer>
   );
 }

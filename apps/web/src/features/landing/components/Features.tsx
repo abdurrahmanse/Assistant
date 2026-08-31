@@ -1,11 +1,19 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import { items } from './features/featuresData';
 import { MobileLayout } from './features/MobileLayout';
+import { MutedText } from '@repo/ui/styled';
+import {
+  FeaturesContainer,
+  FeaturesHeader,
+  FeaturesLayoutBox,
+  DesktopFeatureList,
+  FeatureItemButton,
+  FeatureItemContent,
+  DesktopImageWrapper,
+  DesktopImageCard,
+  FeatureImage,
+} from './Features.styles';
 
 export default function Features() {
   const [selectedItemIndex, setSelectedItemIndex] = React.useState(0);
@@ -17,118 +25,46 @@ export default function Features() {
   const selectedFeature = items[selectedItemIndex];
 
   return (
-    <Container id="features" sx={{ py: { xs: 8, sm: 16 } }}>
-      <Box sx={{ width: { sm: '100%', md: '60%' } }}>
-        <Typography
-          component="h2"
-          variant="h4"
-          gutterBottom
-          sx={{ color: 'text.primary' }}
-        >
+    <FeaturesContainer id="features">
+      <FeaturesHeader>
+        <Typography component="h2" variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
           Product features
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: 'text.secondary', mb: { xs: 2, sm: 4 } }}
-        >
+        <MutedText variant="body1" sx={{ mb: { xs: 2, sm: 4 } }}>
           Provide a brief overview of the key features of the product. For example,
           you could list the number of features, their types or benefits, and
           add-ons.
-        </Typography>
-      </Box>
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row-reverse' },
-          gap: 2,
-        }}
-      >
+        </MutedText>
+      </FeaturesHeader>
+      <FeaturesLayoutBox>
         <div>
-          <Box
-            sx={{
-              display: { xs: 'none', sm: 'flex' },
-              flexDirection: 'column',
-              gap: 2,
-              height: '100%',
-            }}
-          >
-            {items.map(({ icon, title, description }, index) => (
-              <Box
-                key={index}
-                component={Button}
-                onClick={() => handleItemClick(index)}
-                sx={[
-                  (theme) => ({
-                    p: 2,
-                    height: '100%',
-                    width: '100%',
-                    '&:hover': {
-                      backgroundColor: (theme.vars || theme).palette.action.hover,
-                    },
-                  }),
-                  selectedItemIndex === index && {
-                    backgroundColor: 'action.selected',
-                  },
-                ]}
-              >
-                <Box
-                  sx={[
-                    {
-                      width: '100%',
-                      display: 'flex',
-                      flexDirection: 'column',
-                      alignItems: 'left',
-                      gap: 1,
-                      textAlign: 'left',
-                      textTransform: 'none',
-                      color: 'text.secondary',
-                    },
-                    selectedItemIndex === index && {
-                      color: 'text.primary',
-                    },
-                  ]}
+          <DesktopFeatureList>
+            {items.map(({ icon, title, description }, index) => {
+              const isSelected = selectedItemIndex === index;
+              return (
+                <FeatureItemButton
+                  key={index}
+                  onClick={() => handleItemClick(index)}
+                  selected={isSelected}
                 >
-                  {icon}
-
-                  <Typography variant="h6">{title}</Typography>
-                  <Typography variant="body2">{description}</Typography>
-                </Box>
-              </Box>
-            ))}
-          </Box>
+                  <FeatureItemContent selected={isSelected}>
+                    {icon}
+                    <Typography variant="h6">{title}</Typography>
+                    <Typography variant="body2">{description}</Typography>
+                  </FeatureItemContent>
+                </FeatureItemButton>
+              );
+            })}
+          </DesktopFeatureList>
           <MobileLayout
             selectedItemIndex={selectedItemIndex}
             handleItemClick={handleItemClick}
             selectedFeature={selectedFeature}
           />
         </div>
-        <Box
-          sx={{
-            display: { xs: 'none', sm: 'flex' },
-            width: { xs: '100%', md: '70%' },
-            height: 'var(--items-image-height)',
-          }}
-        >
-          <Card
-            variant="outlined"
-            sx={{
-              height: '100%',
-              width: '100%',
-              display: { xs: 'none', sm: 'flex' },
-              pointerEvents: 'none',
-            }}
-          >
-            <Box
-              sx={(theme) => ({
-                m: 'auto',
-                width: 420,
-                height: 500,
-                backgroundSize: 'contain',
-                backgroundImage: 'var(--items-imageLight)',
-                ...theme.applyStyles('dark', {
-                  backgroundImage: 'var(--items-imageDark)',
-                }),
-              })}
+        <DesktopImageWrapper>
+          <DesktopImageCard variant="outlined">
+            <FeatureImage
               style={
                 items[selectedItemIndex]
                   ? ({
@@ -138,9 +74,9 @@ export default function Features() {
                   : {}
               }
             />
-          </Card>
-        </Box>
-      </Box>
-    </Container>
+          </DesktopImageCard>
+        </DesktopImageWrapper>
+      </FeaturesLayoutBox>
+    </FeaturesContainer>
   );
 }

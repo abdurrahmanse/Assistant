@@ -2,11 +2,15 @@ import * as React from 'react';
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
 import { ChevronDown } from "lucide-react";
+import {
+  FAQContainer,
+  FAQHeader,
+  FAQBox,
+  FAQDetailText,
+} from './FAQ.styles';
 
 export default function FAQ() {
   const [expanded, setExpanded] = React.useState<string[]>([]);
@@ -21,30 +25,11 @@ export default function FAQ() {
     };
 
   return (
-    <Container
-      id="faq"
-      sx={{
-        pt: { xs: 4, sm: 12 },
-        pb: { xs: 8, sm: 16 },
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        gap: { xs: 3, sm: 6 },
-      }}
-    >
-      <Typography
-        component="h2"
-        variant="h4"
-        sx={{
-          color: 'text.primary',
-          width: { sm: '100%', md: '60%' },
-          textAlign: { sm: 'left', md: 'center' },
-        }}
-      >
+    <FAQContainer id="faq">
+      <FAQHeader variant="h4">
         Frequently asked questions
-      </Typography>
-      <Box sx={{ width: '100%' }}>
+      </FAQHeader>
+      <FAQBox>
         <Accordion
           expanded={expanded.includes('panel1')}
           onChange={handleChange('panel1')}
@@ -59,16 +44,12 @@ export default function FAQ() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
+            <FAQDetailText variant="body2" gutterBottom>
               You can reach our customer support team by emailing&nbsp;
               <Link href="mailto:support@email.com">support@email.com</Link>
               &nbsp;or calling our toll-free number. We&apos;re here to assist you
               promptly.
-            </Typography>
+            </FAQDetailText>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -85,15 +66,11 @@ export default function FAQ() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
+            <FAQDetailText variant="body2" gutterBottom>
               Absolutely! We offer a hassle-free return policy. If you&apos;re not
               completely satisfied, you can return the product within [number of
               days] days for a full refund or exchange.
-            </Typography>
+            </FAQDetailText>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -110,15 +87,11 @@ export default function FAQ() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
+            <FAQDetailText variant="body2" gutterBottom>
               Our product distinguishes itself through its adaptability, durability,
               and innovative features. We prioritize user satisfaction and
               continually strive to exceed expectations in every aspect.
-            </Typography>
+            </FAQDetailText>
           </AccordionDetails>
         </Accordion>
         <Accordion
@@ -135,19 +108,15 @@ export default function FAQ() {
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <Typography
-              variant="body2"
-              gutterBottom
-              sx={{ maxWidth: { sm: '100%', md: '70%' } }}
-            >
+            <FAQDetailText variant="body2" gutterBottom>
               Yes, our product comes with a [length of warranty] warranty. It covers
               defects in materials and workmanship. If you encounter any issues
               covered by the warranty, please contact our customer support for
               assistance.
-            </Typography>
+            </FAQDetailText>
           </AccordionDetails>
         </Accordion>
-      </Box>
-    </Container>
+      </FAQBox>
+    </FAQContainer>
   );
 }
