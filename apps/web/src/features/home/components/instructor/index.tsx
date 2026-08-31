@@ -11,7 +11,8 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Reveal } from '@/components/Reveal';
 import { useInstructorQuery } from '@/features/landing/hooks/queries/useLandingQuery';
-import CountUp from 'react-countup';
+import CountUpModule from 'react-countup';
+const CountUp = (CountUpModule as any).default || CountUpModule;
 
 const SmartCounter = ({ text }: { text: string }) => {
   const match = text.match(/^([^0-9.-]*)([0-9.]+)(.*)$/);

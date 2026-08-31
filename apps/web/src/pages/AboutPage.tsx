@@ -7,7 +7,6 @@ import MarketingLayout from '@/layouts/MarketingLayout';
 import { useAboutQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import { AboutHero } from '@/features/about/components/hero';
 import { AboutStats } from '@/features/about/components/stats';
-import { AboutValues } from '@/features/about/components/values';
 import InstructorProfile from '@/features/home/components/instructor';
 import HomeHighlights from '@/features/home/components/highlights';
 import HomeTestimonials from '@/features/home/components/testimonials';
@@ -23,13 +22,38 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
         <Container maxWidth="lg">
           
-            <Skeleton variant="rectangular" width="60%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
-            <Skeleton variant="text" width="80%" sx={{ mx: 'auto', mb: 4 }} />
-            <Grid container spacing={3} sx={{ mb: 6 }}>
-              {[1, 2, 3, 4].map((i) => <Grid size={{ xs: 6, md: 3 }} key={i}><Skeleton variant="rectangular" height={100} sx={{ borderRadius: 3 }} /></Grid>)}
+            <Box sx={{ textAlign: 'center', mb: 10 }}>
+              <Skeleton variant="rectangular" width="40%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
+              <Skeleton variant="text" width="60%" height={30} sx={{ mx: 'auto' }} />
+            </Box>
+            
+            <Grid container spacing={3} sx={{ mb: 12 }}>
+              {[1, 2, 3, 4].map((i) => (
+                <Grid size={{ xs: 6, md: 3 }} key={i}>
+                  <Skeleton variant="rectangular" height={160} sx={{ borderRadius: '24px' }} />
+                </Grid>
+              ))}
             </Grid>
-            <Grid container spacing={3}>
-              {[1, 2, 3, 4, 5, 6].map((i) => <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}><Skeleton variant="rectangular" height={160} sx={{ borderRadius: 3 }} /></Grid>)}
+
+            <Grid container spacing={6} sx={{ mb: 6 }}>
+              <Grid size={{ xs: 12, md: 5 }}>
+                <Skeleton variant="rectangular" height={400} sx={{ borderRadius: '24px' }} />
+              </Grid>
+              <Grid size={{ xs: 12, md: 7 }}>
+                <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 4, borderRadius: 2 }} />
+                <Skeleton variant="text" height={24} sx={{ mb: 2 }} />
+                <Skeleton variant="text" height={24} sx={{ mb: 2 }} />
+                <Skeleton variant="text" height={24} sx={{ mb: 4 }} />
+                
+                <Grid container spacing={2}>
+                  {[1, 2, 3, 4].map((i) => (
+                    <Grid size={{ xs: 12, sm: 6 }} key={i}>
+                      <Skeleton variant="rectangular" height={80} sx={{ borderRadius: 2 }} />
+                    </Grid>
+                  ))}
+                </Grid>
+              </Grid>
+            </Grid>)}
             </Grid>
         </Container>
           
@@ -45,11 +69,6 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
         
           <AboutHero hero={about.hero} />
           <AboutStats stats={about.stats} />
-          <AboutValues 
-            heading={about.valuesHeading} 
-            subheading={about.valuesSubheading} 
-            values={about.values} 
-          />
           <InstructorProfile />
           <Divider sx={{ my: 4 }} />
           <HomeHighlights />

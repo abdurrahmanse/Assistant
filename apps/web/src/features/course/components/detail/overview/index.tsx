@@ -27,6 +27,45 @@ export function CourseOverview({ course, copy, totalLessons }: CourseOverviewPro
       <Grid container spacing={6}>
         {/* Left Column: Outcomes & Target Audience */}
         <Grid size={{ xs: 12 }}>
+
+          {/* Prerequisites Section */}
+          {course.prerequisites && course.prerequisites.length > 0 && (
+            <Box sx={{ mb: 6 }}>
+              <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <ListChecks size={32} color="#8b5cf6" /> {copy.prerequisitesHeading}
+              </Typography>
+              <Stack spacing={2}>
+                {course.prerequisites.map((req, i) => (
+                  <Stack key={i} direction="row" alignItems="flex-start" spacing={2} sx={{ p: 2, bgcolor: 'background.paper', borderRadius: '12px', border: '1px solid', borderColor: 'divider' }}>
+                    <Box sx={{ color: 'warning.main', mt: 0.2 }}><AlertCircle size={24} /></Box>
+                    <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                      {req}
+                    </Typography>
+                  </Stack>
+                ))}
+              </Stack>
+            </Box>
+          )}
+
+          {/* Includes Section */}
+          <Box sx={{ mb: 6 }}>
+            <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+              <Zap size={32} color="#10b981" /> {copy.includesHeading}
+            </Typography>
+            <Grid container spacing={2}>
+              {copy.includes.map((item) => (
+                <Grid size={{ xs: 12, sm: 6 }} key={item.icon}>
+                  <Stack direction="row" alignItems="center" spacing={2} sx={{ p: 2, bgcolor: 'background.paper', borderRadius: '12px', border: '1px solid', borderColor: 'divider' }}>
+                    <Box sx={{ color: 'primary.main', display: 'flex' }}>{includeIconMap[item.icon]}</Box>
+                    <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                      {item.text.replace('{lessons}', String(totalLessons))}
+                    </Typography>
+                  </Stack>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+
           {course.outcomes && course.outcomes.length > 0 && (
             <Box sx={{ mb: 6 }}>
               <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>

@@ -2,7 +2,8 @@ import { Users, Globe, Award, TrendingUp } from 'lucide-react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import CountUp from 'react-countup';
+import CountUpModule from 'react-countup';
+const CountUp = (CountUpModule as any).default || CountUpModule;
 
 const SmartCounter = ({ text }: { text: string }) => {
   const match = text.match(/^([^0-9.-]*)([0-9.]+)(.*)$/);

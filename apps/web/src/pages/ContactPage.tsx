@@ -21,12 +21,18 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
         <Container maxWidth="lg">
-          <Box sx={{ maxWidth: 900, mx: 'auto' }}>
-            <Skeleton width="40%" height={80} sx={{ mb: 2 }} />
-            <Skeleton width="60%" height={32} sx={{ mb: 10 }} />
-            <Grid container spacing={10}>
-              <Grid size={{ xs: 12, md: 4 }}><Skeleton variant="rectangular" height={300} sx={{ borderRadius: 2 }} /></Grid>
-              <Grid size={{ xs: 12, md: 8 }}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: 2 }} /></Grid>
+                    <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
+            <Box sx={{ mb: 10 }}>
+              <Skeleton width="40%" height={80} sx={{ mb: 2 }} />
+              <Skeleton width="60%" height={32} />
+            </Box>
+            <Grid container spacing={{ xs: 8, md: 12 }}>
+              <Grid size={{ xs: 12, md: 5 }}>
+                <Skeleton variant="rectangular" height={300} sx={{ borderRadius: 2 }} />
+              </Grid>
+              <Grid size={{ xs: 12, md: 7 }}>
+                <Skeleton variant="rectangular" height={500} sx={{ borderRadius: 2 }} />
+              </Grid>
             </Grid>
           </Box>
         </Container>
