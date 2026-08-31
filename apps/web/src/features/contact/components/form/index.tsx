@@ -1,5 +1,6 @@
 import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Alert from '@mui/material/Alert';
+import { Skeleton } from '@repo/ui';
 import Box from '@mui/material/Box';
 import { Button } from '@repo/ui';
 import Grid from '@mui/material/Grid';
@@ -19,6 +20,7 @@ type ContactFormProps = {
   isSuccess: boolean;
   isError: boolean;
   error: unknown;
+  isLoading?: boolean;
 };
 
 export default function ContactForm({
@@ -28,7 +30,12 @@ export default function ContactForm({
   isSuccess,
   isError,
   error,
+  isLoading,
 }: ContactFormProps) {
+  if (isLoading || !contact) {
+    return <Skeleton variant="rectangular" height={500} sx={{ borderRadius: 2 }} />;
+  }
+
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', subject: '', message: '' });
 
   const onChange = (field: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>

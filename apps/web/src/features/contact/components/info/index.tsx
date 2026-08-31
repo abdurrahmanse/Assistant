@@ -2,6 +2,7 @@ import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuer
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { Skeleton } from '@repo/ui';
 import { Clock, Mail, Phone } from 'lucide-react';
 import React from 'react';
 
@@ -14,10 +15,15 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 type ContactInfoProps = {
-  contact: ContactData;
+  contact?: ContactData;
+  isLoading?: boolean;
 };
 
-export default function ContactInfo({ contact }: ContactInfoProps) {
+export default function ContactInfo({ contact, isLoading }: ContactInfoProps) {
+  if (isLoading || !contact) {
+    return <Skeleton variant="rectangular" height={300} sx={{ borderRadius: 2 }} />;
+  }
+
   // We only take the first 3 primary contact methods to keep it minimal
   return (
     <Stack spacing={6} sx={{ mt: 2 }}>

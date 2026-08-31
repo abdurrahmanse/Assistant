@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -28,6 +29,7 @@ export default function Highlights() {
     return (
       <HighlightsWrapper id="highlights">
         <HighlightsContainer>
+        <Container maxWidth="lg">
           <Skeleton variant="rectangular" width="40%" height={40} />
           <Grid container spacing={2}>
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -36,6 +38,7 @@ export default function Highlights() {
               </Grid>
             ))}
           </Grid>
+        </Container>
         </HighlightsContainer>
       </HighlightsWrapper>
     );
@@ -46,6 +49,7 @@ export default function Highlights() {
   return (
     <HighlightsWrapper id="highlights">
       <HighlightsContainer>
+        <Container maxWidth="lg">
         <HighlightsHeader>
           <Typography component="h2" variant="h2" gutterBottom sx={{ fontWeight: 800, display: 'flex', alignItems: 'center', gap: 1.5 }}>
             <Zap size={40} color="#f59e0b" /> {highlights.title}
@@ -71,6 +75,7 @@ export default function Highlights() {
             </Grid>
           ))}
         </Grid>
+        </Container>
       </HighlightsContainer>
     </HighlightsWrapper>
   );

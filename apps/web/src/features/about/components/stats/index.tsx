@@ -2,6 +2,7 @@ import { Users, Globe, Award, TrendingUp } from 'lucide-react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { Skeleton } from '@repo/ui';
 import CountUpModule from 'react-countup';
 const CountUp = (CountUpModule as any).default || CountUpModule;
 
@@ -25,15 +26,28 @@ const SmartCounter = ({ text }: { text: string }) => {
 
 
 export interface AboutStatsProps {
-  stats: {
+  stats?: {
     label: string;
     value: string;
   }[];
+  isLoading?: boolean;
 }
 
 const statIcons = [<Users size={32} color="var(--template-palette-primary-main)" />, <Globe size={32} color="var(--template-palette-primary-main)" />, <Award size={32} color="var(--template-palette-primary-main)" />, <TrendingUp size={32} color="var(--template-palette-primary-main)" />];
 
-export function AboutStats({ stats }: AboutStatsProps) {
+export function AboutStats({ stats, isLoading }: AboutStatsProps) {
+  if (isLoading || !stats) {
+    return (
+      <Grid container spacing={3} sx={{ mb: 12 }}>
+        {[1, 2, 3, 4].map((i) => (
+          <Grid size={{ xs: 6, md: 3 }} key={i}>
+            <Skeleton variant="rectangular" height={160} sx={{ borderRadius: '24px' }} />
+          </Grid>
+        ))}
+      </Grid>
+    );
+  }
+
   return (
     <Grid container spacing={3} sx={{ mb: 6 }}>
       {stats.map((s, i) => (
@@ -62,4 +76,3 @@ backdropFilter: 'blur(24px)',
     </Grid>
   );
 }
-
