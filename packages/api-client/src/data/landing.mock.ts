@@ -40,7 +40,12 @@ export const LANDING_MOCK_DATA = {
     startButton: 'Start Learning Today',
     termsText: 'Join over 10,000+ students worldwide. By signing up you agree to our',
     termsLinkText: 'Terms & Conditions',
-    termsLinkHref: '#'
+    termsLinkHref: '#',
+    tracks: [
+      { id: "fullstack", title: "Full Stack Engineer", description: "Master React, Node.js, and modern cloud architecture to build scalable web applications.", icon: "Code2" },
+      { id: "datascience", title: "Data Scientist", description: "Harness Python, Machine Learning, and Big Data to extract actionable business insights.", icon: "Brain" },
+      { id: "marketing", title: "Digital Marketing Growth", description: "Drive revenue with SEO, performance marketing, and data-driven conversion strategies.", icon: "TrendingUp" }
+    ]
   },
   logoCollection: {
     title: 'Trusted by professionals from',

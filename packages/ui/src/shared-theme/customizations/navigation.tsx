@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { type Theme, alpha, type Components } from '@mui/material/styles';
-import { type SvgIconProps } from '@mui/material/SvgIcon';
 import { buttonBaseClasses } from '@mui/material/ButtonBase';
 import { dividerClasses } from '@mui/material/Divider';
 import { menuItemClasses } from '@mui/material/MenuItem';
@@ -63,7 +62,8 @@ export const navigationCustomizations: Components<Theme> = {
   },
   MuiSelect: {
     defaultProps: {
-      IconComponent: React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      IconComponent: React.forwardRef<SVGSVGElement, any>((props, ref) => (
         <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
       )),
     },

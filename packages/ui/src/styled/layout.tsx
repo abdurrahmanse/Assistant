@@ -1,10 +1,11 @@
+import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box, { type BoxProps } from '@mui/material/Box';
 
 /**
  * A reusable flexbox container that centers its children horizontally and vertically.
  */
-export const FlexCenter = styled(Box)<BoxProps>({
+export const FlexCenter: React.FC<BoxProps> = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
@@ -13,7 +14,7 @@ export const FlexCenter = styled(Box)<BoxProps>({
 /**
  * A reusable flexbox container with space-between alignment.
  */
-export const FlexBetween = styled(Box)<BoxProps>({
+export const FlexBetween: React.FC<BoxProps> = styled(Box)({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
@@ -22,7 +23,7 @@ export const FlexBetween = styled(Box)<BoxProps>({
 /**
  * Visually hides content for accessibility (screen readers) while removing it from the document flow.
  */
-export const VisuallyHidden = styled('span')({
+export const VisuallyHidden: React.FC<React.HTMLAttributes<HTMLSpanElement>> = styled('span')({
   border: 0,
   clip: 'rect(0 0 0 0)',
   height: '1px',

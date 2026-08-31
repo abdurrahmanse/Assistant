@@ -1,6 +1,6 @@
 
 1. Neo-Brutalism — Best
-Bold border, oversized typography, playful cards, slightly uneven/quirky layout—works great for developer portfolios or learning platforms.
+Bold border, oversized typography, playful cards, slightly uneven/quirky layout—works great for learning platforms.
 
 2. Glassmorphism — stylish
 Blur, transparency, gradients, floating cards—great for AI/Data Science/modern tech products.
@@ -9,9 +9,9 @@ Blur, transparency, gradients, floating cards—great for AI/Data Science/modern
 Rounded, soft, inflated-looking components. Gives a slightly friendly and playful feel.
 
 4. Minimalism + Playful Elements — My personal recommendation
-Main UI will be clean, but there will be fun illustrations, emoji, micro-interactions, colorful badges, playful cards in between. The result is personality without being childish.
+Main UI will be clean, but there will be fun illustrations, icon, micro-interactions, colorful badges, playful cards in between. The result is personality without being childish.
 
-💡 Especially for Developer/E-learning Platform
+💡 Especially for E-learning Platform
 
 I would do it like this:
 
