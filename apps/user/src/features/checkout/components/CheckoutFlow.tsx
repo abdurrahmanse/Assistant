@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
+import { Button } from '@repo/ui';
+import { Card } from '@repo/ui';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { ChevronLeft, ArrowRight } from "lucide-react";
@@ -125,7 +125,7 @@ export default function CheckoutFlow() {
                 <Button
                   startIcon={<ChevronLeft size={18} />}
                   onClick={handleBack}
-                  variant="text"
+                  variant="ghost"
                   sx={{ display: { xs: 'none', sm: 'flex' } }}
                 >
                   {buttons.previous}
@@ -135,7 +135,7 @@ export default function CheckoutFlow() {
                 <Button
                   startIcon={<ChevronLeft size={18} />}
                   onClick={handleBack}
-                  variant="outlined"
+                  variant="outline"
                   fullWidth
                   sx={{ display: { xs: 'flex', sm: 'none' } }}
                 >
@@ -143,7 +143,7 @@ export default function CheckoutFlow() {
                 </Button>
               )}
               <Button
-                variant="contained"
+                variant="primary"
                 onClick={handleNext}
                 sx={{ width: { xs: '100%', sm: 'fit-content' } }}
                 startIcon={<ArrowRight size={18} />}

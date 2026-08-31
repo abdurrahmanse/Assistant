@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
 import Skeleton from '@mui/material/Skeleton';
 
@@ -20,7 +20,7 @@ export function OrderSuccess() {
         {orderSuccess.message}
       </Typography>
       <Button
-        variant="contained"
+        variant="primary"
         sx={{
           alignSelf: 'start',
           width: { xs: '100%', sm: 'auto' },

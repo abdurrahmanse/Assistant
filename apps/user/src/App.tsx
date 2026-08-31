@@ -6,9 +6,12 @@ import CircularProgress from '@mui/material/CircularProgress';
 const SignInSide = React.lazy(() => import('@/pages/SignInPage'));
 const SignUp = React.lazy(() => import('@/pages/SignUpPage'));
 const Checkout = React.lazy(() => import('@/pages/CheckoutPage'));
+const MyLearning = React.lazy(() => import('@/pages/MyLearningPage'));
+const CoursePlayer = React.lazy(() => import('@/pages/CoursePlayerPage'));
+const Settings = React.lazy(() => import('@/pages/SettingsPage'));
 
 const PageLoader = () => (
-  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', bgcolor: 'background.default' }}>
     <CircularProgress />
   </Box>
 );
@@ -19,35 +22,59 @@ const router = createBrowserRouter([
   {
     errorElement: <RouteError />,
     children: [
-  {
-    path: '/',
-    element: <Navigate to="/signin" replace />,
-  },
-  {
-    path: '/signin',
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <SignInSide />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/signup',
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <SignUp />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/checkout',
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <Checkout />
-      </Suspense>
-    ),
-  },
-]
+      {
+        path: '/',
+        element: <Navigate to="/home" replace />,
+      },
+      {
+        path: '/signin',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <SignInSide />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/signup',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <SignUp />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/checkout',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Checkout />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/home',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <MyLearning />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/courses/:id',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <CoursePlayer />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/settings',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Settings />
+          </Suspense>
+        ),
+      },
+    ]
   }
 ]);
 

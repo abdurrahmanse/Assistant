@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import FormControl from '@mui/material/FormControl';
 import Link from '@mui/material/Link';
-import TextField from "@mui/material/TextField";
+import { TextInput as TextField } from '@repo/ui';
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from '@mui/material/IconButton';
 import { User, Mail, Lock , Eye, EyeOff , UserPlus} from "lucide-react";
 import Typography from '@mui/material/Typography';
-import MuiCard from '@mui/material/Card';
+import { Card as MuiCard } from '@repo/ui';
 import { styled } from '@mui/material/styles';
 import { GoogleIcon, FacebookIcon } from "./CustomIcons";
 import AssistantLogo from "@/components/AssistantLogo";
@@ -104,7 +104,7 @@ export default function SignUpCard() {
     }
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
-    navigate('/checkout');
+    navigate('/home');
   };
 
   return (
@@ -177,7 +177,7 @@ export default function SignUpCard() {
         <Button
           type="submit"
           fullWidth
-          variant="contained"
+          variant="primary"
           onClick={validateInputs}
           startIcon={<UserPlus size={18} />}>
           {signUp.submitButton}
@@ -189,7 +189,7 @@ export default function SignUpCard() {
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Button
           fullWidth
-          variant="outlined"
+          variant="outline"
           onClick={() => alert('Sign up with Google')}
           startIcon={<GoogleIcon />}
         >
@@ -197,7 +197,7 @@ export default function SignUpCard() {
         </Button>
         <Button
           fullWidth
-          variant="outlined"
+          variant="outline"
           onClick={() => alert('Sign up with Facebook')}
           startIcon={<FacebookIcon />}
         >

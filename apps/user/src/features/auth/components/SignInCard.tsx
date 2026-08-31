@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import IconButton from '@mui/material/IconButton';
-import MuiCard from '@mui/material/Card';
+import { Card as MuiCard } from '@repo/ui';
 import Checkbox from '@mui/material/Checkbox';
 import Divider from '@mui/material/Divider';
 import FormLabel from '@mui/material/FormLabel';
@@ -11,7 +11,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Link from '@mui/material/Link';
 import { useNavigate } from 'react-router';
 import { Link as RouterLink } from 'react-router';
-import TextField from "@mui/material/TextField";
+import { TextInput as TextField } from '@repo/ui';
 import InputAdornment from "@mui/material/InputAdornment";
 import { Mail, Lock , Eye, EyeOff , LogIn} from "lucide-react";
 import Typography from '@mui/material/Typography';
@@ -70,7 +70,7 @@ export default function SignInCard() {
     }
     const formData = new FormData(event.currentTarget);
     event.preventDefault();
-    navigate('/checkout');
+    navigate('/home');
   };
 
   const validateInputs = () => {
@@ -169,7 +169,7 @@ export default function SignInCard() {
           label={signIn.rememberMe}
         />
         <ForgotPassword open={open} handleClose={handleClose} />
-        <Button type="submit" fullWidth variant="contained" onClick={validateInputs} startIcon={<LogIn size={18} />}>
+        <Button type="submit" fullWidth variant="primary" onClick={validateInputs} startIcon={<LogIn size={18} />}>
           {signIn.submitButton}
         </Button>
         <Typography sx={{ textAlign: 'center' }}>
@@ -189,7 +189,7 @@ export default function SignInCard() {
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
         <Button
           fullWidth
-          variant="outlined"
+          variant="outline"
           onClick={() => alert('Sign in with Google')}
           startIcon={<GoogleIcon />}
         >
@@ -197,7 +197,7 @@ export default function SignInCard() {
         </Button>
         <Button
           fullWidth
-          variant="outlined"
+          variant="outline"
           onClick={() => alert('Sign in with Facebook')}
           startIcon={<FacebookIcon />}
         >
