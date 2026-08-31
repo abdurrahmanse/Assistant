@@ -91,15 +91,15 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
       )}
 
       {/* Overview & Features Section */}
-      <Box sx={{ py: { xs: 8, sm: 10 }, borderBottom: '1px solid', borderColor: 'divider' }}>
+      <Box sx={{ py: { xs: 4, sm: 6 }, borderBottom: '1px solid', borderColor: 'divider' }}>
         
-          <CourseOverview course={course} copy={copy} />
+          <CourseOverview course={course} copy={copy} totalLessons={totalLessons} />
           <CourseFeatures course={course} copy={copy} />
         
       </Box>
 
       {/* Curriculum Section */}
-      <Box sx={{ py: { xs: 8, sm: 12 }, }}>
+      <Box sx={{ py: { xs: 4, sm: 6 }, }}>
         
           <Box>
             <CourseCurriculum course={course} copy={copy} totalLessons={totalLessons} />

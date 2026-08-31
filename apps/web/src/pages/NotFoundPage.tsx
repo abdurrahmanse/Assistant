@@ -40,14 +40,14 @@ export default function NotFoundPage() {
             Lost in Space?
           </Typography>
           
-          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 460, mb: 6, fontSize: '1.1rem', lineHeight: 1.6 }}>
+          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 460, mb: 6, lineHeight: 1.6 }}>
             The page you're looking for doesn't exist or has been moved to another orbit. Let's get you back on track.
           </Typography>
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <Button 
               variant="contained" 
-              size="large" 
+              size="small" 
               startIcon={<Home size={20} />}
               onClick={() => navigate('/')}
               sx={{ fontWeight: 800, py: 1.5, px: 4, borderRadius: '12px', textTransform: 'none' }}
@@ -56,7 +56,7 @@ export default function NotFoundPage() {
             </Button>
             <Button 
               variant="outlined" 
-              size="large" 
+              size="small" 
               startIcon={<Compass size={20} />}
               onClick={() => navigate('/courses')}
               sx={{ fontWeight: 700, py: 1.5, px: 4, borderRadius: '12px', textTransform: 'none', bgcolor: 'background.paper' }}

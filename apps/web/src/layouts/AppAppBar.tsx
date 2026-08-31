@@ -10,7 +10,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
-import { Menu, X as CloseIcon, Home, BookOpen, Info, Mail, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
+import { Menu, X as CloseIcon, Home, BookOpen, Info, Mail, LayoutDashboard, LogIn, UserPlus, CreditCard } from 'lucide-react';
 import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
 import AssistantLogo from '@/components/AssistantLogo';
 import { useNavigate } from 'react-router';
@@ -25,6 +25,7 @@ const iconMap: Record<string, React.ReactNode> = {
   LayoutDashboard: <LayoutDashboard size={18} />,
   LogIn: <LogIn size={18} />,
   UserPlus: <UserPlus size={18} />,
+  CreditCard: <CreditCard size={18} />,
 };
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({

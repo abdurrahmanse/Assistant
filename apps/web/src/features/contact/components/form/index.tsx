@@ -62,7 +62,7 @@ export default function ContactForm({
           <Button
             type="submit"
             variant="contained"
-            size="large"
+            size="small"
             endIcon={<Send size={18} />}
             disabled={isPending}
             sx={{ fontWeight: 700, px: 6, py: 1.5, borderRadius: '30px', textTransform: 'none' }}

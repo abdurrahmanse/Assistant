@@ -27,7 +27,7 @@ export default function InstructorProfile() {
   const firstName = instructor.name.split(' ')[0];
 
   return (
-    <Box sx={{ py: { xs: 8, md: 16 }, px: 2, position: 'relative', overflow: 'hidden' }}>
+    <Box sx={{ py: { xs: 6, md: 8 }, px: 2, position: 'relative', overflow: 'hidden' }}>
       
       {/* Background Aurora element */}
       <Box sx={{
@@ -37,7 +37,7 @@ export default function InstructorProfile() {
       }} />
 
       <Box sx={{ maxWidth: 1200, mx: 'auto', position: 'relative', zIndex: 1 }}>
-        <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 12 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Chip label="Your Mentor" color="primary" sx={{ fontWeight: 900, borderRadius: '8px', border: '2px solid #000', boxShadow: '2px 2px 0px #000', mb: 3 }} />
           <Typography variant="h2" sx={{ fontWeight: 900, letterSpacing: '-0.02em', mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}><User size={40} color="#6366f1" /> {instructor.heading}</Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', fontWeight: 500 }}>
@@ -114,7 +114,7 @@ export default function InstructorProfile() {
                 {instructor.bio}
               </Typography>
 
-              <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1.1rem', lineHeight: 1.8, fontWeight: 500 }}>
+              <Typography variant="body1" color="text.secondary" sx={{ mb: 6, lineHeight: 1.8, fontWeight: 500 }}>
                 My goal isn't just to teach you syntax—it's to show you exactly how real-world, enterprise-level products are architected, built, and scaled. We cut the fluff and focus on the skills that actually get you hired and promoted.
               </Typography>
 

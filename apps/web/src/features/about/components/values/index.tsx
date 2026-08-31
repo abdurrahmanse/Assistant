@@ -28,7 +28,7 @@ export function AboutValues({ heading, subheading, values }: AboutValuesProps) {
     <>
       <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}><Target size={36} color="#ec4899" /> {heading}</Typography>
       <Typography color="text.secondary" sx={{ textAlign: 'center', mb: 6 }}>{subheading}</Typography>
-      <Grid container spacing={3} sx={{ mb: 12 }}>
+      <Grid container spacing={3} sx={{ mb: 6 }}>
         {values.map((item) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
             <Box sx={{

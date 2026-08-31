@@ -28,13 +28,14 @@ export const inputsCustomizations: Components<Theme> = {
   MuiButton: {
     defaultProps: {
       disableElevation: true,
+      size: 'small',
     },
     styleOverrides: {
       root: ({ theme }) => ({
         boxShadow: 'none',
         borderRadius: (theme.vars || theme).shape.borderRadius,
         textTransform: 'none',
-        fontWeight: 700,
+        fontWeight: 800,
         transition: 'all 0.2s ease',
         '&:hover': {
           transform: 'translate(-2px, -2px)',
@@ -143,12 +144,15 @@ export const inputsCustomizations: Components<Theme> = {
     },
   },
   MuiIconButton: {
+    defaultProps: {
+      size: 'small',
+    },
     styleOverrides: {
       root: ({ theme }) => ({
         boxShadow: 'none',
         borderRadius: (theme.vars || theme).shape.borderRadius,
         textTransform: 'none',
-        fontWeight: 600,
+        fontWeight: 800,
         letterSpacing: 0,
         color: (theme.vars || theme).palette.text.primary,
         border: '1px solid ',
@@ -220,7 +224,7 @@ export const inputsCustomizations: Components<Theme> = {
         padding: '12px 16px',
         textTransform: 'none',
         borderRadius: '10px',
-        fontWeight: 600,
+        fontWeight: 800,
         ...theme.applyStyles('dark', {
           color: gray[400],
           boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',

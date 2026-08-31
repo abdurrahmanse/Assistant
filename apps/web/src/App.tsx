@@ -10,6 +10,7 @@ const CoursesPage = React.lazy(() => import('@/pages/CoursesPage'));
 const CourseDetailPage = React.lazy(() => import('@/pages/CourseDetailPage'));
 const ContactPage = React.lazy(() => import('@/pages/ContactPage'));
 const AboutPage = React.lazy(() => import('@/pages/AboutPage'));
+const PricingPage = React.lazy(() => import('@/pages/PricingPage'));
 const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
 
 
@@ -31,6 +32,7 @@ export default function App() {
             <Route path="/courses/:id" element={<CourseDetailPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/pricing" element={<PricingPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>

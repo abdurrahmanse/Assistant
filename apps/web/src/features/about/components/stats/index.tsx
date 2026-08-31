@@ -14,7 +14,7 @@ const statIcons = [<Users size={32} color="var(--template-palette-primary-main)"
 
 export function AboutStats({ stats }: AboutStatsProps) {
   return (
-    <Grid container spacing={3} sx={{ mb: 12 }}>
+    <Grid container spacing={3} sx={{ mb: 6 }}>
       {stats.map((s, i) => (
         <Grid size={{ xs: 6, md: 3 }} key={s.label}>
           <Box sx={{ 

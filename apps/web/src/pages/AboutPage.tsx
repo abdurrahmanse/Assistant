@@ -22,8 +22,8 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
           
             <Skeleton variant="rectangular" width="60%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
-            <Skeleton variant="text" width="80%" sx={{ mx: 'auto', mb: 8 }} />
-            <Grid container spacing={3} sx={{ mb: 12 }}>
+            <Skeleton variant="text" width="80%" sx={{ mx: 'auto', mb: 4 }} />
+            <Grid container spacing={3} sx={{ mb: 6 }}>
               {[1, 2, 3, 4].map((i) => <Grid size={{ xs: 6, md: 3 }} key={i}><Skeleton variant="rectangular" height={100} sx={{ borderRadius: 3 }} /></Grid>)}
             </Grid>
             <Grid container spacing={3}>
@@ -47,9 +47,9 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
             values={about.values} 
           />
           <InstructorProfile />
-          <Divider sx={{ my: 8 }} />
+          <Divider sx={{ my: 4 }} />
           <HomeHighlights />
-          <Divider sx={{ my: 8 }} />
+          <Divider sx={{ my: 4 }} />
           <HomeTestimonials />
         
       </Box>

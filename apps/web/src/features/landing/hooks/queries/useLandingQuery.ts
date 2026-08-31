@@ -139,3 +139,11 @@ export function useHowItWorksQuery() {
     staleTime: 1000 * 60 * 60,
   });
 }
+
+// ─── Pricing section ──────────────────────────────────────────────────────────
+export const usePricingQuery = () =>
+  useQuery({
+    queryKey: [...landingKeys.all, 'pricing'] as const,
+    queryFn: () => landingService.getPricing(),
+    staleTime: 1000 * 60 * 5,
+  });

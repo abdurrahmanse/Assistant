@@ -20,10 +20,10 @@ export default function HowItWorks() {
   }
 
   return (
-    <Box sx={{ py: { xs: 8, md: 16 }, px: 2, borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider' }}>
+    <Box sx={{ py: { xs: 6, md: 8 }, px: 2, borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider' }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         
-        <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 12 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Typography variant="h2" sx={{ fontWeight: 900, letterSpacing: '-0.02em', mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}><Compass size={40} color="#10b981" /> {howItWorks.heading}</Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', fontWeight: 500 }}>
             {howItWorks.subheading}

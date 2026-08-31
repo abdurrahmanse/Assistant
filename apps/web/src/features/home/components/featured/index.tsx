@@ -23,10 +23,10 @@ export default function FeaturedCourse() {
   const course = data.items[0];
 
   return (
-    <Box sx={{ py: { xs: 8, md: 16 }, px: 2 }}>
+    <Box sx={{ py: { xs: 6, md: 8 }, px: 2 }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         
-        <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
+        <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Chip icon={<Flame size={16} />}
           label="Latest Release" color="primary" sx={{ fontWeight: 900, borderRadius: '8px', border: '2px solid #000', boxShadow: '2px 2px 0px #000', mb: 3 }} />
           <Typography variant="h2" sx={{ fontWeight: 900, letterSpacing: '-0.02em', mb: 2 }}><Crown size={40} color="#f59e0b" style={{ verticalAlign: 'middle', marginRight: '16px', transform: 'translateY(-4px)' }} />{siteMeta?.featuredLabel || 'Flagship Program'}</Typography>
@@ -74,7 +74,7 @@ export default function FeaturedCourse() {
             <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, lineHeight: 1.1, letterSpacing: '-0.02em' }}>
               {course.title}
             </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ mb: 4, fontSize: '1.1rem', lineHeight: 1.7 }}>
+            <Typography variant="body1" color="text.secondary" sx={{ mb: 4, lineHeight: 1.7 }}>
               {course.description}
             </Typography>
 
@@ -100,10 +100,10 @@ export default function FeaturedCourse() {
 
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center">
               <Button 
-                variant="contained" size="large" onClick={() => navigate(`/courses/${course.slug || course.id}`)}
+                variant="contained" size="small" onClick={() => navigate(`/courses/${course.slug || course.id}`)}
                 endIcon={<ArrowRight size={20} />}
                 sx={{ 
-                  fontWeight: 900, py: 2, px: 6, borderRadius: '16px', fontSize: '1.1rem',
+                  fontWeight: 900, py: 2, px: 6, borderRadius: '16px',
                   border: '2px solid #000', boxShadow: '4px 4px 0px #000',
                   '&:hover': { transform: 'translateY(-2px)', boxShadow: '6px 6px 0px #000' }
                 }}

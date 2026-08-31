@@ -5,8 +5,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { PlayCircle, CheckCircle2, ShieldCheck, Lock, BookOpen, Award, Zap, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import type { CourseItem } from '@repo/api-client';
-import { useCourseDetailQuery, useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import { useCourseDetailQuery, useSiteMetaQuery, usePricingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 const includeIconMap: Record<string, React.ReactNode> = {
   PlayCircle: <PlayCircle size={16} />,
@@ -24,6 +25,8 @@ export interface CourseEnrollmentCardProps {
 
 export function CourseEnrollmentCard({ course, copy, totalLessons }: CourseEnrollmentCardProps) {
   const { data: siteMeta } = useSiteMetaQuery();
+  const { data: pricing } = usePricingQuery();
+  const navigate = useNavigate();
   const checkoutUrl = `${siteMeta?.portalUrl ?? 'http://localhost:5174'}/checkout`;
   return (
     <Box sx={{
@@ -54,19 +57,44 @@ backdropFilter: 'blur(24px)',
       </Box>
 
       <Box sx={{ p: 4 }}>
-        <Stack direction="row" alignItems="center" justifyContent="space-between" sx={{ mb: 1 }}>
-          <Typography variant="h3" sx={{ fontWeight: 900, color: course.type === 'Free' ? 'success.main' : 'text.primary' }}>
-            {course.price}
-          </Typography>
-          {course.type !== 'Free' && <Typography variant="h6" color="text.disabled" sx={{ textDecoration: 'line-through' }}>{copy.originalPrice}</Typography>}
-        </Stack>
-        <Typography variant="body2" color="error.main" sx={{ mb: 3, fontWeight: 700 }}>
-          {copy.urgencyLabel}
-        </Typography>
-        
-        <Button variant="contained" size="large" fullWidth endIcon={<ArrowRight size={20} />} href={checkoutUrl} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none', fontSize: '1.1rem' }}>
-          {course.type === 'Free' ? copy.ctaFree : copy.ctaPremium}
-        </Button>
+        {course.type === 'Free' ? (
+          <>
+            <Typography variant="h3" sx={{ fontWeight: 900, color: 'success.main', mb: 1 }}>
+              {course.price}
+            </Typography>
+            <Button variant="contained" size="small" fullWidth endIcon={<ArrowRight size={20} />} href={checkoutUrl} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none' }}>
+              {copy.ctaFree}
+            </Button>
+          </>
+        ) : (
+          <Stack spacing={2} sx={{ mb: 3 }}>
+            {/* Option 1: Subscription */}
+            <Box sx={{ border: '2px solid', borderColor: 'primary.main', borderRadius: '16px', p: 2, bgcolor: 'rgba(99,102,241,0.05)', position: 'relative' }}>
+              <Box sx={{ position: 'absolute', top: -12, right: 16, bgcolor: 'primary.main', color: 'white', px: 1.5, py: 0.5, borderRadius: 4, fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase' }}>
+                Best Value
+              </Box>
+              <Typography variant="caption" fontWeight={800} color="primary.main" textTransform="uppercase">All Access Pass</Typography>
+              <Stack direction="row" alignItems="baseline" spacing={1} sx={{ mt: 0.5, mb: 1.5 }}>
+                <Typography variant="h4" fontWeight={900}>{pricing?.tiers?.[1]?.price || '$199/yr'}</Typography>
+              </Stack>
+              <Button variant="contained" size="small" color="primary" fullWidth endIcon={<ArrowRight size={16} />} onClick={() => navigate('/pricing')} sx={{ fontWeight: 800, borderRadius: '10px' }}>
+                Subscribe Annually
+              </Button>
+            </Box>
+
+            {/* Option 2: Single Course */}
+            <Box sx={{ border: '1px solid', borderColor: 'divider', borderRadius: '16px', p: 2 }}>
+              <Typography variant="caption" fontWeight={800} color="text.secondary" textTransform="uppercase">Course Only (Lifetime)</Typography>
+              <Stack direction="row" alignItems="baseline" spacing={1} sx={{ mt: 0.5, mb: 1.5 }}>
+                <Typography variant="h5" fontWeight={900}>{course.price}</Typography>
+                <Typography variant="body2" color="text.disabled" sx={{ textDecoration: 'line-through' }}>{copy.originalPrice}</Typography>
+              </Stack>
+              <Button variant="outlined" size="small" fullWidth endIcon={<ArrowRight size={16} />} href={checkoutUrl} sx={{ fontWeight: 800, borderRadius: '10px' }}>
+                Buy This Course
+              </Button>
+            </Box>
+          </Stack>
+        )}
         
         <Stack direction="row" justifyContent="center" spacing={2} sx={{ mb: 4 }}>
           <Stack direction="row" alignItems="center" spacing={0.5} sx={{ color: 'text.secondary' }}>
@@ -77,18 +105,7 @@ backdropFilter: 'blur(24px)',
           </Stack>
         </Stack>
         
-        <Divider sx={{ mb: 3 }} />
-        <Typography variant="subtitle2" sx={{ fontWeight: 800, mb: 2, textTransform: 'uppercase', letterSpacing: 1 }}>{copy.includesHeading}</Typography>
-        <Stack spacing={2}>
-          {copy.includes.map((item) => (
-            <Stack key={item.icon} direction="row" alignItems="flex-start" spacing={2}>
-              <Box sx={{ color: 'primary.main', mt: 0.2 }}>{includeIconMap[item.icon]}</Box>
-              <Typography variant="body2" sx={{ color: 'text.secondary', fontWeight: 600 }}>
-                {item.text.replace('{lessons}', String(totalLessons))}
-              </Typography>
-            </Stack>
-          ))}
-        </Stack>
+
       </Box>
     </Box>
   );

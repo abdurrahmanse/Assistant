@@ -79,6 +79,12 @@ export const surfacesCustomizations: Components<Theme> = {
           borderRadius: (theme.vars || theme).shape.borderRadius,
           border: `1px solid ${(theme.vars || theme).palette.divider}`,
           boxShadow: 'none',
+          '& h1, & h2, & h3, & h4, & h5, & h6, & .MuiTypography-h1, & .MuiTypography-h2, & .MuiTypography-h3, & .MuiTypography-h4, & .MuiTypography-h5, & .MuiTypography-h6': {
+            fontVariant: 'small-caps',
+            textTransform: 'lowercase',
+            fontSize: 'clamp(16px, 2vw, 22px)',
+            lineHeight: 1.2,
+          },
           ...theme.applyStyles('dark', {
             backgroundColor: 'rgba(9, 9, 11, 0.4)',
           }),
@@ -113,6 +119,12 @@ export const surfacesCustomizations: Components<Theme> = {
     styleOverrides: {
       root: {
         padding: 0,
+      },
+      title: {
+        fontVariant: 'small-caps',
+        textTransform: 'lowercase',
+        fontSize: 'clamp(16px, 2vw, 22px)',
+        lineHeight: 1.2,
       },
     },
   },

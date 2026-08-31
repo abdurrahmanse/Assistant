@@ -23,7 +23,7 @@ export function CourseFeatures({ course, copy }: CourseFeaturesProps) {
   ];
 
   return (
-    <Box sx={{ my: 8 }}>
+    <Box sx={{ my: 4 }}>
       <Typography variant="h3" sx={{ fontWeight: 900, mb: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
         <Sparkles size={36} color="#f59e0b" /> {copy.featuresHeading}
       </Typography>

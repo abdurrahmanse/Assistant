@@ -98,6 +98,11 @@ class LandingRepository {
   async getHowItWorks(): Promise<any> {
     return (LANDING_MOCK_DATA as any).howItWorks;
   }
+
+  /** Fetch pricing data */
+  async getPricing(): Promise<any> {
+    return (LANDING_MOCK_DATA as any).pricing;
+  }
 }
 
 export const landingRepository = new LandingRepository();

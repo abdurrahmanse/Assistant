@@ -3,16 +3,25 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import { CheckCircle2, AlertCircle, Target, Lightbulb, Users, ListChecks } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Target, Lightbulb, Users, ListChecks, PlayCircle, BookOpen, Award, Zap } from 'lucide-react';
 import type { CourseItem } from '@repo/api-client';
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+
+const includeIconMap: Record<string, React.ReactNode> = {
+  PlayCircle: <PlayCircle size={20} />,
+  BookOpen: <BookOpen size={20} />,
+  Award: <Award size={20} />,
+  Zap: <Zap size={20} />,
+  CheckCircle2: <CheckCircle2 size={20} />,
+};
 
 export interface CourseOverviewProps {
   course: CourseItem;
   copy: NonNullable<ReturnType<typeof useCourseDetailQuery>['data']>;
+  totalLessons: number;
 }
 
-export function CourseOverview({ course, copy }: CourseOverviewProps) {
+export function CourseOverview({ course, copy, totalLessons }: CourseOverviewProps) {
   return (
     <Box>
       <Grid container spacing={6}>
@@ -59,25 +68,44 @@ export function CourseOverview({ course, copy }: CourseOverviewProps) {
 
         {/* Right Column: Prerequisites */}
         <Grid size={{ xs: 12, md: 5 }}>
-          {course.prerequisites && course.prerequisites.length > 0 && (
+          <Stack spacing={4}>
+            {/* Includes Section */}
             <Box sx={{ p: 4, borderRadius: '24px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
               <Typography variant="h5" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <ListChecks size={28} color="#8b5cf6" /> {copy.prerequisitesHeading}
+                <Zap size={28} color="#10b981" /> {copy.includesHeading}
               </Typography>
-              <Stack spacing={2}>
-                {course.prerequisites.map((req, i) => (
-                  <Stack key={i} direction="row" spacing={1.5} alignItems="flex-start">
-                    <Box sx={{ color: 'warning.main', mt: 0.2 }}>
-                      <AlertCircle size={20} />
-                    </Box>
-                    <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>
-                      {req}
+              <Stack spacing={2.5}>
+                {copy.includes.map((item) => (
+                  <Stack key={item.icon} direction="row" alignItems="center" spacing={2}>
+                    <Box sx={{ color: 'primary.main', display: 'flex' }}>{includeIconMap[item.icon]}</Box>
+                    <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 600 }}>
+                      {item.text.replace('{lessons}', String(totalLessons))}
                     </Typography>
                   </Stack>
                 ))}
               </Stack>
             </Box>
-          )}
+
+            {course.prerequisites && course.prerequisites.length > 0 && (
+              <Box sx={{ p: 4, borderRadius: '24px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
+                <Typography variant="h5" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                  <ListChecks size={28} color="#8b5cf6" /> {copy.prerequisitesHeading}
+                </Typography>
+                <Stack spacing={2}>
+                  {course.prerequisites.map((req, i) => (
+                    <Stack key={i} direction="row" spacing={1.5} alignItems="flex-start">
+                      <Box sx={{ color: 'warning.main', mt: 0.2 }}>
+                        <AlertCircle size={20} />
+                      </Box>
+                      <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>
+                        {req}
+                      </Typography>
+                    </Stack>
+                  ))}
+                </Stack>
+              </Box>
+            )}
+          </Stack>
         </Grid>
       </Grid>
     </Box>

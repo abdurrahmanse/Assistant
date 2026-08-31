@@ -1,11 +1,11 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { ArrowRight, Play, Code2, Brain, TrendingUp, Sparkles, Rocket } from 'lucide-react';
+import { ArrowRight, Brain, Code2, Play, Rocket, Sparkles, TrendingUp } from 'lucide-react';
+import * as React from 'react';
 import { useNavigate } from 'react-router';
 
 const iconMap: Record<string, React.ReactNode> = {
@@ -30,7 +30,7 @@ export function HeroContent({ heroData }: HeroContentProps) {
         variant="outlined"
         sx={{ fontWeight: 800, mb: 3, borderRadius: '8px', borderWidth: 2 }}
       />
-      
+
       <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 6vw, 4rem)', lineHeight: 1.1, mb: 3, letterSpacing: '-0.02em' }}>
         {heroData.titlePrefix} <br />
         <Typography component="span" variant="inherit" sx={{
@@ -45,7 +45,7 @@ export function HeroContent({ heroData }: HeroContentProps) {
         <Rocket size={48} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginLeft: '12px', transform: 'translateY(-8px) rotate(15deg)' }} />
       </Typography>
 
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1.1rem', lineHeight: 1.6, maxWidth: 480 }}>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 6, lineHeight: 1.6, maxWidth: 480 }}>
         {heroData.subtitle}
       </Typography>
 
@@ -53,13 +53,13 @@ export function HeroContent({ heroData }: HeroContentProps) {
         <Button
           variant="contained" size="large" endIcon={<ArrowRight size={20} />}
           onClick={() => navigate('/courses')}
-          sx={{ fontWeight: 800, py: 1.75, px: 4, borderRadius: '12px', textTransform: 'none', fontSize: '1rem' }}
+          sx={{ fontWeight: 800, py: 1.75, px: 4, borderRadius: '12px', textTransform: 'none' }}
         >
           {heroData.startButton}
         </Button>
         <Button
           variant="outlined" size="large" startIcon={<Play size={20} />} href="#courses"
-          sx={{ fontWeight: 700, py: 1.75, px: 4, borderRadius: '12px', textTransform: 'none', fontSize: '1rem', bgcolor: 'background.paper' }}
+          sx={{ fontWeight: 700, py: 1.75, px: 4, borderRadius: '12px', textTransform: 'none', bgcolor: 'background.paper' }}
         >
           Browse Tracks
         </Button>
