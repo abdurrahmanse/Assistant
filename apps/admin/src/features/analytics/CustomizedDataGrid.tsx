@@ -1,16 +1,7 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { useAnalyticsQuery } from './hooks/queries/useAnalyticsQuery';
-import Skeleton from '@mui/material/Skeleton';
+import { columns, rows } from './internals/data/gridData';
 
 export default function CustomizedDataGrid() {
-  const { data, isLoading } = useAnalyticsQuery();
-
-  if (isLoading || !data) {
-    return <Skeleton variant="rectangular" width="100%" height={400} />;
-  }
-
-  const { columns, rows } = data.grid;
-
   return (
     <DataGrid
       checkboxSelection

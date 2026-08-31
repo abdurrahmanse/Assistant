@@ -1,14 +1,11 @@
-import { apiClient } from '../../../core/api/apiClient';
-import { CHECKOUT_MOCK_DATA, type CheckoutMockData } from '../data/checkout.mock';
+import { apiClient, CHECKOUT_MOCK_DATA, type CheckoutMockData } from '@repo/api-client';
 
-export class CheckoutRepository {
+class CheckoutRepository {
   async getCheckoutData(): Promise<CheckoutMockData> {
-    return apiClient.get('/api/v1/checkout', CHECKOUT_MOCK_DATA);
+    return apiClient.get('/checkout-data', CHECKOUT_MOCK_DATA);
   }
-  
   async updateCheckoutData(data: Partial<CheckoutMockData>): Promise<CheckoutMockData> {
-    return apiClient.get('/api/v1/checkout', { ...CHECKOUT_MOCK_DATA, ...data });
+    return apiClient.post('/checkout-data', data, { ...CHECKOUT_MOCK_DATA, ...data });
   }
 }
-
 export const checkoutRepository = new CheckoutRepository();

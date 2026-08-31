@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { analyticsRepository } from '../../repositories/analytics.repository';
-import type { AnalyticsMockData } from '../../data/analytics.mock';
+import type { AnalyticsMockData } from '@repo/api-client';
 
 export const useAnalyticsMutation = () => {
   const queryClient = useQueryClient();

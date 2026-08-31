@@ -5,9 +5,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import { Mail , X, ArrowRight} from "lucide-react";
+import OutlinedInput from '@mui/material/OutlinedInput';
+import { useAuthQuery } from '../hooks/queries/useAuthQuery';
 
 interface ForgotPasswordProps {
   open: boolean;
@@ -15,46 +14,52 @@ interface ForgotPasswordProps {
 }
 
 export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
+  const { data } = useAuthQuery();
+  
+  const fp = data?.forgotPassword || {
+    title: 'Reset password',
+    description: "Enter your account's email address and we'll send you a link to reset your password.",
+    emailPlaceholder: 'Email address',
+    cancelButton: 'Cancel',
+    submitButton: 'Continue'
+  };
+
   return (
     <Dialog
       open={open}
       onClose={handleClose}
-      slotProps={{
-        paper: {
-          component: 'form',
-          onSubmit: (event: React.SubmitEvent<HTMLFormElement>) => {
-            event.preventDefault();
-            handleClose();
-          },
-          sx: { backgroundImage: 'none' },
+      PaperProps={{
+        component: 'form',
+        onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+          event.preventDefault();
+          handleClose();
         },
+        sx: { backgroundImage: 'none' },
       }}
     >
-      <DialogTitle>Reset password</DialogTitle>
+      <DialogTitle>{fp.title}</DialogTitle>
       <DialogContent
         sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}
       >
         <DialogContentText>
-          Enter your account&apos;s email address, and we&apos;ll send you a link to
-          reset your password.
+          {fp.description}
         </DialogContentText>
         <OutlinedInput
           autoFocus
           required
           margin="dense"
           id="email"
-          startAdornment={<InputAdornment position="start"><Mail size={18} /></InputAdornment>}
           name="email"
           label="Email address"
-          placeholder="Email address"
+          placeholder={fp.emailPlaceholder}
           type="email"
           fullWidth
         />
       </DialogContent>
       <DialogActions sx={{ pb: 3, px: 3 }}>
-        <Button onClick={handleClose} startIcon={<X size={18} />}>Cancel</Button>
-        <Button variant="contained" type="submit" startIcon={<ArrowRight size={18} />}>
-          Continue
+        <Button onClick={handleClose}>{fp.cancelButton}</Button>
+        <Button variant="contained" type="submit">
+          {fp.submitButton}
         </Button>
       </DialogActions>
     </Dialog>

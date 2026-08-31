@@ -6,6 +6,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
+import Skeleton from '@mui/material/Skeleton';
 
 const addresses = ['1 MUI Drive', 'Reactville', 'Anytown', '99999', 'USA'];
 const payments = [
@@ -16,19 +18,29 @@ const payments = [
 ];
 
 export default function Review() {
+  const { data, isLoading } = useCheckoutQuery();
+
+  if (isLoading || !data) return <Skeleton variant="rectangular" height={300} />;
+  
+  const { products, ui: { labels, review } } = data;
+
   return (
     <Stack spacing={2}>
       <List disablePadding>
         <ListItem sx={{ py: 1, px: 0 }}>
           <ListItemText primary="Products" secondary="4 selected" />
-          <Typography variant="body2">$134.98</Typography>
+          <Typography variant="body2">{products.reduce((acc, p) => p.price === 'Free' ? acc : acc + parseFloat(p.price.substring(1)), 0).toFixed(2)}</Typography>
         </ListItem>
+        <Divider />
+        {products.map((product) => (
+          <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
+            <ListItemText primary={product.name} secondary={product.desc} />
+            <Typography variant="body2">{product.price}</Typography>
+          </ListItem>
+        ))}
+        <Divider />
         <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Shipping" secondary="Plus taxes" />
-          <Typography variant="body2">$9.99</Typography>
-        </ListItem>
-        <ListItem sx={{ py: 1, px: 0 }}>
-          <ListItemText primary="Total" />
+          <ListItemText primary={labels.total} />
           <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
             $144.97
           </Typography>
@@ -43,16 +55,18 @@ export default function Review() {
       >
         <div>
           <Typography variant="subtitle2" gutterBottom>
-            Shipment details
+            {review.shippingDetails}
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
           <Typography gutterBottom sx={{ color: 'text.secondary' }}>
+            John Smith
+          </Typography>
+          <Typography gutterBottom sx={{ color: 'text.secondary', mb: 0 }}>
             {addresses.join(', ')}
           </Typography>
         </div>
         <div>
           <Typography variant="subtitle2" gutterBottom>
-            Payment details
+            {review.paymentDetails}
           </Typography>
           <Grid container>
             {payments.map((payment) => (

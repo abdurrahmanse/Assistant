@@ -1,14 +1,11 @@
-import { apiClient } from '../../../core/api/apiClient';
-import { ANALYTICS_MOCK_DATA, type AnalyticsMockData } from '../data/analytics.mock';
+import { apiClient, ANALYTICS_MOCK_DATA, type AnalyticsMockData } from '@repo/api-client';
 
-export class AnalyticsRepository {
+class AnalyticsRepository {
   async getAnalyticsData(): Promise<AnalyticsMockData> {
-    return apiClient.get('/api/v1/analytics', ANALYTICS_MOCK_DATA);
+    return apiClient.get('/analytics-data', ANALYTICS_MOCK_DATA);
   }
-  
   async updateAnalyticsData(data: Partial<AnalyticsMockData>): Promise<AnalyticsMockData> {
-    return apiClient.get('/api/v1/analytics', { ...ANALYTICS_MOCK_DATA, ...data });
+    return apiClient.post('/analytics-data', data, { ...ANALYTICS_MOCK_DATA, ...data });
   }
 }
-
 export const analyticsRepository = new AnalyticsRepository();

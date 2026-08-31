@@ -1,20 +1,27 @@
 import * as React from 'react';
+import Alert from '@mui/material/Alert';
+import Box from '@mui/material/Box';
 import MuiCard from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardContent from '@mui/material/CardContent';
+import Checkbox from '@mui/material/Checkbox';
 import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormLabel from '@mui/material/FormLabel';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import RadioGroup from '@mui/material/RadioGroup';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { CreditCard, Landmark } from "lucide-react";
+import { CreditCard, Landmark, AlertCircle } from 'lucide-react';
+import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
+import Skeleton from '@mui/material/Skeleton';
 
-import { CreditCardForm } from './forms/CreditCardForm';
-import { BankTransferForm } from './forms/BankTransferForm';
-
-const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
+const Card = styled(MuiCard, {
+  shouldForwardProp: (prop) => prop !== 'selected',
+})<{ selected?: boolean }>(({ theme, selected }) => ({
   border: '1px solid',
-  borderColor: (theme.vars || theme).palette.divider,
+  borderColor: theme.palette.divider,
   width: '100%',
   '&:hover': {
     background:
@@ -32,24 +39,81 @@ const Card = styled(MuiCard)<{ selected?: boolean }>(({ theme }) => ({
     flexGrow: 1,
     maxWidth: `calc(50% - ${theme.spacing(1)})`,
   },
-  variants: [
-    {
-      props: ({ selected }) => selected,
-      style: {
-        borderColor: (theme.vars || theme).palette.primary.light,
-        ...theme.applyStyles('dark', {
-          borderColor: (theme.vars || theme).palette.primary.dark,
-        }),
-      },
-    },
-  ],
+  ...(selected && {
+    borderColor: theme.palette.primary.light,
+    ...theme.applyStyles('dark', {
+      borderColor: theme.palette.primary.dark,
+    }),
+  }),
+}));
+
+const PaymentContainer = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  width: '100%',
+  height: 375,
+  padding: theme.spacing(3),
+  borderRadius: `calc(${theme.shape.borderRadius}px + 4px)`,
+  border: '1px solid ',
+  borderColor: theme.palette.divider,
+  background:
+    'linear-gradient(to bottom right, hsla(220, 35%, 97%, 0.3) 25%, hsla(220, 20%, 88%, 0.3) 100%)',
+  boxShadow: '0px 4px 8px hsla(210, 0%, 0%, 0.05)',
+  [theme.breakpoints.up('xs')]: {
+    height: 300,
+  },
+  [theme.breakpoints.up('sm')]: {
+    height: 350,
+  },
+  ...theme.applyStyles('dark', {
+    background:
+      'linear-gradient(to right bottom, hsla(220, 30%, 6%, 0.2) 25%, hsla(220, 20%, 25%, 0.2) 100%)',
+    boxShadow: '0px 4px 8px hsl(220, 35%, 0%)',
+  }),
+}));
+
+const FormGrid = styled('div')(() => ({
+  display: 'flex',
+  flexDirection: 'column',
 }));
 
 export default function PaymentForm() {
+  const { data, isLoading } = useCheckoutQuery();
   const [paymentType, setPaymentType] = React.useState('creditCard');
+  const [cardNumber, setCardNumber] = React.useState('');
+  const [cvv, setCvv] = React.useState('');
+  const [expirationDate, setExpirationDate] = React.useState('');
 
-  const handlePaymentTypeChange = (event: { target: { value: string } }) => {
+  if (isLoading || !data) return <Skeleton variant="rectangular" height={300} />;
+  
+  const { ui: { paymentForm } } = data;
+
+  const handlePaymentTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPaymentType(event.target.value);
+  };
+
+  const handleCardNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.replace(/\D/g, '');
+    const formattedValue = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+    if (value.length <= 16) {
+      setCardNumber(formattedValue);
+    }
+  };
+
+  const handleCvvChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.replace(/\D/g, '');
+    if (value.length <= 3) {
+      setCvv(value);
+    }
+  };
+
+  const handleExpirationDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value.replace(/\D/g, '');
+    const formattedValue = value.replace(/(\d{2})(?=\d{2})/, '$1/');
+    if (value.length <= 4) {
+      setExpirationDate(formattedValue);
+    }
   };
 
   return (
@@ -79,20 +143,10 @@ export default function PaymentForm() {
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <CreditCard size={20}
-                  sx={[
-                    (theme: any) => ({
-                      color: 'grey.400',
-                      ...theme.applyStyles('dark', {
-                        color: 'grey.600',
-                      }),
-                    }),
-                    paymentType === 'creditCard' && {
-                      color: 'primary.main',
-                    },
-                  ]}
-                />
-                <Typography sx={{ fontWeight: 600 }}>Card</Typography>
+                <CreditCard size={20} />
+                <Typography sx={{ fontWeight: 600 }}>
+                  {paymentForm.methods[0].label}
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
@@ -109,28 +163,95 @@ export default function PaymentForm() {
               }}
             >
               <CardContent sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Landmark size={20}
-                  sx={[
-                    (theme: any) => ({
-                      color: 'grey.400',
-                      ...theme.applyStyles('dark', {
-                        color: 'grey.600',
-                      }),
-                    }),
-                    paymentType === 'bankTransfer' && {
-                      color: 'primary.main',
-                    },
-                  ]}
-                />
-                <Typography sx={{ fontWeight: 600 }}>Bank account</Typography>
+                <Landmark size={20} />
+                <Typography sx={{ fontWeight: 600 }}>
+                  {paymentForm.methods[1].label}
+                </Typography>
               </CardContent>
             </CardActionArea>
           </Card>
         </RadioGroup>
       </FormControl>
-      
-      {paymentType === 'creditCard' && <CreditCardForm />}
-      {paymentType === 'bankTransfer' && <BankTransferForm />}
+      {paymentType === 'creditCard' && (
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <PaymentContainer>
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Typography variant="subtitle2">Credit card</Typography>
+              <CreditCard size={24} color="gray" />
+            </Box>
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                gap: 2,
+              }}
+            >
+              <FormGrid sx={{ maxWidth: '20%' }}>
+                <FormLabel htmlFor="cvv" required>
+                  {paymentForm.cvv}
+                </FormLabel>
+                <OutlinedInput
+                  size="small"
+                  autoComplete="CVV"
+                  id="cvv"
+                  name="cvv"
+                  required
+                  value={cvv}
+                  onChange={handleCvvChange}
+                />
+              </FormGrid>
+              <FormGrid sx={{ maxWidth: '60%' }}>
+                <FormLabel htmlFor="card-expiration" required>
+                  {paymentForm.expirationDate}
+                </FormLabel>
+                <OutlinedInput
+                  size="small"
+                  autoComplete="card-expiration"
+                  id="card-expiration"
+                  name="card-expiration"
+                  required
+                  value={expirationDate}
+                  onChange={handleExpirationDateChange}
+                />
+              </FormGrid>
+            </Box>
+          </PaymentContainer>
+          <FormControlLabel
+            control={<Checkbox name="saveCard" />}
+            label={paymentForm.saveCard}
+          />
+        </Box>
+      )}
+      {paymentType === 'bankTransfer' && (
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Alert severity="warning" icon={<AlertCircle />}>
+            Your order will be processed once we receive the funds.
+          </Alert>
+          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+            Bank account details
+          </Typography>
+          <Typography variant="body1" gutterBottom>
+            Please transfer the payment to the bank account details shown below.
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+              Bank:
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>
+              Mastercredit
+            </Typography>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+              Routing number:
+            </Typography>
+            <Typography variant="body1" sx={{ fontWeight: 600 }}>
+              980624020
+            </Typography>
+          </Box>
+        </Box>
+      )}
     </Stack>
   );
 }

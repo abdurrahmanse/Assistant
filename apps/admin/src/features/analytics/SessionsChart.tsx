@@ -1,10 +1,12 @@
+import * as React from 'react';
 import { useTheme } from '@mui/material/styles';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { LineChart } from '@mui/x-charts/LineChart';
+import Skeleton from '@mui/material/Skeleton';
+import { useAnalyticsQuery } from './hooks/queries/useAnalyticsQuery';
 
 function AreaGradient({ color, id }: { color: string; id: string }) {
   return (
@@ -34,7 +36,8 @@ function getDaysInMonth(month: number, year: number) {
 
 export default function SessionsChart() {
   const theme = useTheme();
-  const data = getDaysInMonth(4, 2024);
+  const { data, isLoading } = useAnalyticsQuery();
+  const dataRef = React.useRef(getDaysInMonth(4, 2024));
 
   const colorPalette = [
     theme.palette.primary.light,
@@ -42,11 +45,17 @@ export default function SessionsChart() {
     theme.palette.primary.dark,
   ];
 
+  if (isLoading || !data) {
+    return <Skeleton variant="rectangular" width="100%" height={300} />;
+  }
+
+  const { charts } = data;
+
   return (
     <Card variant="outlined" sx={{ width: '100%' }}>
       <CardContent>
         <Typography component="h2" variant="subtitle2" gutterBottom>
-          Sessions
+          {charts.sessionsTitle}
         </Typography>
         <Stack sx={{ justifyContent: 'space-between' }}>
           <Stack
@@ -60,10 +69,9 @@ export default function SessionsChart() {
             <Typography variant="h4" component="p">
               13,277
             </Typography>
-            <Chip size="small" color="success" label="+35%" />
           </Stack>
           <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-            Sessions per day for the last 30 days
+            Total engagement points this month
           </Typography>
         </Stack>
         <LineChart
@@ -71,12 +79,10 @@ export default function SessionsChart() {
           xAxis={[
             {
               scaleType: 'point',
-              data,
+              data: dataRef.current,
               tickInterval: (index, i) => (i + 1) % 5 === 0,
-              height: 24,
             },
           ]}
-          yAxis={[{ width: 50 }]}
           series={[
             {
               id: 'direct',
@@ -122,8 +128,8 @@ export default function SessionsChart() {
             },
           ]}
           height={250}
-          margin={{ left: 0, right: 20, top: 20, bottom: 0 }}
-          grid={{ horizontal: true }}
+          margin={{ left: 50, right: 20, top: 20, bottom: 20 }}
+          grid={{ horizontal: true }} hideLegend
           sx={{
             '& .MuiAreaElement-series-organic': {
               fill: "url('#organic')",
@@ -135,7 +141,6 @@ export default function SessionsChart() {
               fill: "url('#direct')",
             },
           }}
-          hideLegend
         >
           <AreaGradient color={theme.palette.primary.dark} id="organic" />
           <AreaGradient color={theme.palette.primary.main} id="referral" />

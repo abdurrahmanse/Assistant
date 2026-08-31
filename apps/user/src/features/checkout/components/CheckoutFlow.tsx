@@ -11,8 +11,8 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import { OrderSuccess } from './OrderSuccess';
 import { CheckoutStepper } from './CheckoutStepper';
-
-const steps = ['Shipping address', 'Payment details', 'Review your order'];
+import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
+import Skeleton from '@mui/material/Skeleton';
 
 function getStepContent(step: number) {
   switch (step) {
@@ -28,7 +28,15 @@ function getStepContent(step: number) {
 }
 
 export default function CheckoutFlow() {
+  const { data, isLoading } = useCheckoutQuery();
   const [activeStep, setActiveStep] = React.useState(0);
+  
+  if (isLoading || !data) {
+    return <Skeleton variant="rectangular" width="100%" height={500} />;
+  }
+
+  const { ui } = data;
+  const { steps, buttons, labels } = ui;
   
   const handleNext = () => setActiveStep(activeStep + 1);
   const handleBack = () => setActiveStep(activeStep - 1);
@@ -69,7 +77,7 @@ export default function CheckoutFlow() {
         >
           <div>
             <Typography variant="subtitle2" gutterBottom>
-              Selected products
+              {labels.selectedProducts}
             </Typography>
             <Typography variant="body1">
               {totalPrice}
@@ -120,7 +128,7 @@ export default function CheckoutFlow() {
                   variant="text"
                   sx={{ display: { xs: 'none', sm: 'flex' } }}
                 >
-                  Previous
+                  {buttons.previous}
                 </Button>
               )}
               {activeStep !== 0 && (
@@ -131,7 +139,7 @@ export default function CheckoutFlow() {
                   fullWidth
                   sx={{ display: { xs: 'flex', sm: 'none' } }}
                 >
-                  Previous
+                  {buttons.previous}
                 </Button>
               )}
               <Button
@@ -140,7 +148,7 @@ export default function CheckoutFlow() {
                 sx={{ width: { xs: '100%', sm: 'fit-content' } }}
                 startIcon={<ArrowRight size={18} />}
               >
-                {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                {activeStep === steps.length - 1 ? buttons.placeOrder : buttons.next}
               </Button>
             </Box>
           </React.Fragment>

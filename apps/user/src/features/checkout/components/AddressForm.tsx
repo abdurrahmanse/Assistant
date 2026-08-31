@@ -2,10 +2,10 @@ import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormLabel from '@mui/material/FormLabel';
 import Grid from '@mui/material/Grid';
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputAdornment from "@mui/material/InputAdornment";
-import { User, Home, Building, MapPin, Map, Hash, Globe } from "lucide-react";
+import OutlinedInput from '@mui/material/OutlinedInput';
 import { styled } from '@mui/material/styles';
+import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
+import Skeleton from '@mui/material/Skeleton';
 
 const FormGrid = styled(Grid)(() => ({
   display: 'flex',
@@ -13,47 +13,50 @@ const FormGrid = styled(Grid)(() => ({
 }));
 
 export default function AddressForm() {
+  const { data, isLoading } = useCheckoutQuery();
+  
+  if (isLoading || !data) return <Skeleton variant="rectangular" height={300} />;
+
+  const { ui: { addressForm } } = data;
+
   return (
     <Grid container spacing={3}>
       <FormGrid size={{ xs: 12, md: 6 }}>
         <FormLabel htmlFor="first-name" required>
-          First name
+          {addressForm.firstName}
         </FormLabel>
         <OutlinedInput
           id="first-name"
-          startAdornment={<InputAdornment position="start"><User size={18} /></InputAdornment>}
           name="first-name"
-          type="text"
+          type="name"
           placeholder="John"
-          autoComplete="given-name"
+          autoComplete="first name"
           required
           size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 12, md: 6 }}>
         <FormLabel htmlFor="last-name" required>
-          Last name
+          {addressForm.lastName}
         </FormLabel>
         <OutlinedInput
           id="last-name"
-          startAdornment={<InputAdornment position="start"><User size={18} /></InputAdornment>}
           name="last-name"
-          type="text"
+          type="last-name"
           placeholder="Snow"
-          autoComplete="family-name"
+          autoComplete="last name"
           required
           size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 12 }}>
         <FormLabel htmlFor="address1" required>
-          Address line 1
+          {addressForm.address1}
         </FormLabel>
         <OutlinedInput
           id="address1"
-          startAdornment={<InputAdornment position="start"><Home size={18} /></InputAdornment>}
           name="address1"
-          type="text"
+          type="address1"
           placeholder="Street name and number"
           autoComplete="shipping address-line1"
           required
@@ -61,12 +64,11 @@ export default function AddressForm() {
         />
       </FormGrid>
       <FormGrid size={{ xs: 12 }}>
-        <FormLabel htmlFor="address2">Address line 2</FormLabel>
+        <FormLabel htmlFor="address2">{addressForm.address2}</FormLabel>
         <OutlinedInput
           id="address2"
-          startAdornment={<InputAdornment position="start"><Building size={18} /></InputAdornment>}
           name="address2"
-          type="text"
+          type="address2"
           placeholder="Apartment, suite, unit, etc. (optional)"
           autoComplete="shipping address-line2"
           required
@@ -75,43 +77,40 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="city" required>
-          City
+          {addressForm.city}
         </FormLabel>
         <OutlinedInput
           id="city"
-          startAdornment={<InputAdornment position="start"><MapPin size={18} /></InputAdornment>}
           name="city"
-          type="text"
+          type="city"
           placeholder="New York"
-          autoComplete="address-level2"
+          autoComplete="City"
           required
           size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="state" required>
-          State
+          {addressForm.state}
         </FormLabel>
         <OutlinedInput
           id="state"
-          startAdornment={<InputAdornment position="start"><Map size={18} /></InputAdornment>}
           name="state"
-          type="text"
+          type="state"
           placeholder="NY"
-          autoComplete="address-level1"
+          autoComplete="State"
           required
           size="small"
         />
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="zip" required>
-          Zip / Postal code
+          {addressForm.zip}
         </FormLabel>
         <OutlinedInput
           id="zip"
-          startAdornment={<InputAdornment position="start"><Hash size={18} /></InputAdornment>}
           name="zip"
-          type="text"
+          type="zip"
           placeholder="12345"
           autoComplete="shipping postal-code"
           required
@@ -120,15 +119,14 @@ export default function AddressForm() {
       </FormGrid>
       <FormGrid size={{ xs: 6 }}>
         <FormLabel htmlFor="country" required>
-          Country
+          {addressForm.country}
         </FormLabel>
         <OutlinedInput
           id="country"
-          startAdornment={<InputAdornment position="start"><Globe size={18} /></InputAdornment>}
           name="country"
-          type="text"
+          type="country"
           placeholder="United States"
-          autoComplete="shipping country-name"
+          autoComplete="shipping country"
           required
           size="small"
         />
@@ -136,7 +134,7 @@ export default function AddressForm() {
       <FormGrid size={{ xs: 12 }}>
         <FormControlLabel
           control={<Checkbox name="saveAddress" value="yes" />}
-          label="Use this address for payment details"
+          label={addressForm.saveAddress}
         />
       </FormGrid>
     </Grid>

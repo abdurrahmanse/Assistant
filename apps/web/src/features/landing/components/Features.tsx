@@ -45,7 +45,7 @@ export default function Features() {
   const { features } = data;
   
   // Create mapped items that inject the JSX icon
-  const itemsWithIcons = features.items.map(item => ({
+  const itemsWithIcons: any[] = features.items.map(item => ({
     ...item,
     icon: iconMap[item.iconName] || null
   }));
