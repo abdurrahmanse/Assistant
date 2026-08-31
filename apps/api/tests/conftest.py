@@ -23,13 +23,17 @@ async def engine():
     await eng.dispose()
 
 
+from sqlalchemy.pool import StaticPool
+
 @pytest_asyncio.fixture(autouse=True)
 async def clean_tables(engine):
     """Delete all rows from every table after each test for isolation."""
-    yield
-    async with engine.begin() as conn:
-        for table in reversed(Base.metadata.sorted_tables):
-            await conn.execute(table.delete())
+    try:
+        yield
+    finally:
+        async with engine.begin() as conn:
+            for table in reversed(Base.metadata.sorted_tables):
+                await conn.execute(table.delete())
 
 
 @pytest_asyncio.fixture
