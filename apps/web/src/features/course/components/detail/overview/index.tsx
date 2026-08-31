@@ -26,7 +26,7 @@ export function CourseOverview({ course, copy, totalLessons }: CourseOverviewPro
     <Box>
       <Grid container spacing={6}>
         {/* Left Column: Outcomes & Target Audience */}
-        <Grid size={{ xs: 12, md: 7 }}>
+        <Grid size={{ xs: 12 }}>
           {course.outcomes && course.outcomes.length > 0 && (
             <Box sx={{ mb: 6 }}>
               <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
@@ -66,47 +66,7 @@ export function CourseOverview({ course, copy, totalLessons }: CourseOverviewPro
           )}
         </Grid>
 
-        {/* Right Column: Prerequisites */}
-        <Grid size={{ xs: 12, md: 5 }}>
-          <Stack spacing={4}>
-            {/* Includes Section */}
-            <Box sx={{ p: 4, borderRadius: '24px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-              <Typography variant="h5" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                <Zap size={28} color="#10b981" /> {copy.includesHeading}
-              </Typography>
-              <Stack spacing={2.5}>
-                {copy.includes.map((item) => (
-                  <Stack key={item.icon} direction="row" alignItems="center" spacing={2}>
-                    <Box sx={{ color: 'primary.main', display: 'flex' }}>{includeIconMap[item.icon]}</Box>
-                    <Typography variant="body1" sx={{ color: 'text.secondary', fontWeight: 600 }}>
-                      {item.text.replace('{lessons}', String(totalLessons))}
-                    </Typography>
-                  </Stack>
-                ))}
-              </Stack>
-            </Box>
 
-            {course.prerequisites && course.prerequisites.length > 0 && (
-              <Box sx={{ p: 4, borderRadius: '24px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-                <Typography variant="h5" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                  <ListChecks size={28} color="#8b5cf6" /> {copy.prerequisitesHeading}
-                </Typography>
-                <Stack spacing={2}>
-                  {course.prerequisites.map((req, i) => (
-                    <Stack key={i} direction="row" spacing={1.5} alignItems="flex-start">
-                      <Box sx={{ color: 'warning.main', mt: 0.2 }}>
-                        <AlertCircle size={20} />
-                      </Box>
-                      <Typography variant="body2" sx={{ fontWeight: 600, color: 'text.secondary' }}>
-                        {req}
-                      </Typography>
-                    </Stack>
-                  ))}
-                </Stack>
-              </Box>
-            )}
-          </Stack>
-        </Grid>
       </Grid>
     </Box>
   );
