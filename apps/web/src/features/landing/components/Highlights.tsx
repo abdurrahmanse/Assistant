@@ -11,7 +11,7 @@ import {
   HighlightsHeader,
   HighlightCard,
 } from './Highlights.styles';
-import { useLandingData } from '../hooks/useLandingData';
+import { useLandingQuery } from '../hooks/queries/useLandingQuery';
 
 // Map string icon names from mock API to lucide components
 const iconMap: Record<string, React.ReactNode> = {
@@ -24,7 +24,7 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 export default function Highlights() {
-  const { data, isLoading } = useLandingData();
+  const { data, isLoading } = useLandingQuery();
 
   if (isLoading || !data) {
     return (

@@ -7,11 +7,11 @@ import {
   LogoGridContainer,
   LogoImage,
 } from './LogoCollection.styles';
-import { useLandingData } from '../hooks/useLandingData';
+import { useLandingQuery } from '../hooks/queries/useLandingQuery';
 
 export default function LogoCollection() {
   const { mode, systemMode } = useColorScheme();
-  const { data, isLoading } = useLandingData();
+  const { data, isLoading } = useLandingQuery();
 
   if (isLoading || !data) {
     return (

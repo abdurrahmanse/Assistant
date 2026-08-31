@@ -11,11 +11,11 @@ import {
   FAQBox,
   FAQDetailText,
 } from './FAQ.styles';
-import { useLandingData } from '../hooks/useLandingData';
+import { useLandingQuery } from '../hooks/queries/useLandingQuery';
 
 export default function FAQ() {
   const [expanded, setExpanded] = React.useState<string[]>([]);
-  const { data, isLoading } = useLandingData();
+  const { data, isLoading } = useLandingQuery();
 
   const handleChange =
     (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {

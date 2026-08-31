@@ -1,9 +1,9 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { useAnalyticsData } from './hooks/useAnalyticsData';
+import { useAnalyticsQuery } from './hooks/queries/useAnalyticsQuery';
 import Skeleton from '@mui/material/Skeleton';
 
 export default function CustomizedDataGrid() {
-  const { data, isLoading } = useAnalyticsData();
+  const { data, isLoading } = useAnalyticsQuery();
 
   if (isLoading || !data) {
     return <Skeleton variant="rectangular" width="100%" height={400} />;

@@ -13,7 +13,7 @@ import {
   TestimonialCard,
   CardFooterBox,
 } from './Testimonials.styles';
-import { useLandingData } from '../hooks/useLandingData';
+import { useLandingQuery } from '../hooks/queries/useLandingQuery';
 
 // Moved from static files:
 const darkModeLogos = [
@@ -41,7 +41,7 @@ const logoStyle = {
 
 export default function Testimonials() {
   const { mode, systemMode } = useColorScheme();
-  const { data, isLoading } = useLandingData();
+  const { data, isLoading } = useLandingQuery();
 
   let logos;
   if (mode === 'system') {

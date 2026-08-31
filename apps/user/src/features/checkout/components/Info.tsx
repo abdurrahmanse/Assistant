@@ -4,14 +4,14 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import { useCheckoutData } from '../hooks/useCheckoutData';
+import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
 
 interface InfoProps {
   totalPrice: string;
 }
 
 export default function Info({ totalPrice }: InfoProps) {
-  const { data, isLoading } = useCheckoutData();
+  const { data, isLoading } = useCheckoutQuery();
 
   if (isLoading || !data) {
     return (
