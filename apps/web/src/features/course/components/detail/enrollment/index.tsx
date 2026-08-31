@@ -1,8 +1,10 @@
+import { useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
-import { Play } from 'lucide-react';
+import { Play, ShoppingBag } from 'lucide-react';
 import { Skeleton } from '@repo/ui';
+import { useNavigate } from 'react-router';
 
 export interface CourseEnrollmentCardProps {
   course?: any;
@@ -12,6 +14,8 @@ export interface CourseEnrollmentCardProps {
 }
 
 export function CourseEnrollmentCard({ course, copy, totalLessons, isLoading }: CourseEnrollmentCardProps) {
+  const navigate = useNavigate();
+  const { data: siteMeta } = useSiteMetaQuery();
   if (isLoading || !course || !copy) {
     return (
       <Box sx={{ width: { xs: '100%', md: '400px' }, flexShrink: 0 }}>
@@ -21,16 +25,23 @@ export function CourseEnrollmentCard({ course, copy, totalLessons, isLoading }: 
   }
 
   return (
-    <Box sx={{ 
-      width: { xs: '100%', md: '400px' }, 
+    <Box sx={(theme) => ({ 
+      width: '100%', 
       flexShrink: 0,
-      bgcolor: 'background.paper',
+      bgcolor: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(24px)',
+      ...theme.applyStyles('dark', { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' }),
       borderRadius: '24px',
       overflow: 'hidden',
-      border: '1px solid',
-      borderColor: 'divider',
-      boxShadow: '0 20px 40px rgba(0,0,0,0.08)'
-    }}>
+      border: '2px solid',
+      borderColor: 'rgba(0,0,0,0.1)',
+      boxShadow: '8px 8px 0px rgba(99,102,241,1)',
+      transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+      '&:hover': {
+        transform: 'translateY(-4px)',
+        boxShadow: '8px 12px 0px rgba(99,102,241,1)',
+        borderColor: 'primary.main',
+      }
+    })}>
       {/* Video Preview Area */}
       <Box sx={{ position: 'relative', aspectRatio: '16/9', bgcolor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {course.previewVideo ? (
@@ -57,7 +68,7 @@ export function CourseEnrollmentCard({ course, copy, totalLessons, isLoading }: 
         <Typography variant="h3" fontWeight={900} mb={1}>{course.price}</Typography>
         <Typography variant="body2" color="text.secondary" mb={4}>{copy.moneyBackGuarantee}</Typography>
         
-        <Button variant="primary" fullWidth size="large" sx={{ py: 2, borderRadius: '12px', mb: 2, fontSize: '1.1rem' }}>
+        <Button onClick={() => window.location.href = siteMeta?.portalUrl ? `${siteMeta.portalUrl}/checkout` : 'http://localhost:5174/checkout'} variant="primary" fullWidth size="large" startIcon={<ShoppingBag size={20} />} sx={{ py: 2, borderRadius: '12px', mb: 2, fontSize: '1.1rem' }}>
           {copy.enrollButton}
         </Button>
         <Typography variant="body2" color="text.secondary" textAlign="center">

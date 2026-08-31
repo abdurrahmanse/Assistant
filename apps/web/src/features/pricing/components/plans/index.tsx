@@ -1,3 +1,4 @@
+import { useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -9,10 +10,11 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import ToggleButton from '@mui/material/ToggleButton';
 import { Badge as Chip } from '@repo/ui';
 import Tilt from 'react-parallax-tilt';
-import { Check, Zap } from 'lucide-react';
+import { Check, Zap, Rocket } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import type { PricingTier } from '@repo/api-client';
 import { Skeleton } from '@repo/ui';
+import { useNavigate } from 'react-router';
 
 export interface PricingPlansProps {
   tiers?: PricingTier[];
@@ -20,6 +22,8 @@ export interface PricingPlansProps {
 }
 
 export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
+  const navigate = useNavigate();
+  const { data: siteMeta } = useSiteMetaQuery();
   const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
 
   const handleBillingCycle = (event: React.MouseEvent<HTMLElement>, newCycle: 'monthly' | 'yearly') => {
@@ -206,9 +210,11 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
                     
                     <Box sx={{ pt: 4 }}>
                       <Button 
+                        onClick={() => tier.buttonText === 'Browse Courses' ? navigate('/courses') : (window.location.href = siteMeta?.portalUrl ? `${siteMeta.portalUrl}/checkout` : 'http://localhost:5174/checkout')}
                         fullWidth 
                         size="large"
                         variant={isHighlighted ? 'primary' : 'outline'} 
+                        endIcon={<Rocket size={18} />}
                         sx={{ 
                           py: 2, 
                           borderRadius: '16px', 

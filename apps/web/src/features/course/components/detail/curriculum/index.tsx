@@ -1,3 +1,4 @@
+import { useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -6,7 +7,8 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import { ChevronDown, PlayCircle, Lock } from 'lucide-react';
-import { Skeleton } from '@repo/ui';
+import { Skeleton, Button } from '@repo/ui';
+import { useNavigate } from 'react-router';
 
 export interface CourseCurriculumProps {
   course?: any;
@@ -16,6 +18,8 @@ export interface CourseCurriculumProps {
 }
 
 export function CourseCurriculum({ course, copy, totalLessons, isLoading }: CourseCurriculumProps) {
+  const navigate = useNavigate();
+  const { data: siteMeta } = useSiteMetaQuery();
   if (isLoading || !course || !copy) {
     return (
       <Box>
@@ -75,6 +79,9 @@ export function CourseCurriculum({ course, copy, totalLessons, isLoading }: Cour
                     )}
                     <Typography variant="body2" fontWeight={600} sx={{ flex: 1 }}>Lesson {lesson}: Understanding the core concepts</Typography>
                     <Typography variant="body2" color="text.secondary">10:00</Typography>
+                    {!(i === 0 && lesson === 1) && (
+                      <Button onClick={() => window.location.href = siteMeta?.portalUrl ? `${siteMeta.portalUrl}/checkout` : 'http://localhost:5174/checkout'} variant="primary" size="small" sx={{ ml: 2, borderRadius: '8px', py: 0.5, px: 2, fontSize: '0.75rem', fontWeight: 800 }}>Enroll</Button>
+                    )}
                   </Stack>
                 ))}
               </Stack>

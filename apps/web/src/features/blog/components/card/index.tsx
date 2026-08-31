@@ -5,7 +5,7 @@ import { Card, CardContent } from '@repo/ui';
 import CardMedia from '@mui/material/CardMedia';
 import { Badge as Chip } from '@repo/ui';
 import Stack from '@mui/material/Stack';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Clock, CalendarDays } from 'lucide-react';
 import { Skeleton } from '@repo/ui';
 
 export interface PostCardProps {
@@ -71,9 +71,9 @@ export function PostCard({ post, isLoading }: PostCardProps) {
       </Box>
       <CardContent sx={{ flexGrow: 1, p: 3, pt: 4, display: 'flex', flexDirection: 'column' }}>
         <Stack direction="row" spacing={2} sx={{ mb: 2, color: 'text.secondary', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1 }}>
-          <Box>{post.date}</Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}><CalendarDays size={14} /> {post.date}</Box>
           <Box>•</Box>
-          <Box>{post.readTime}</Box>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}><Clock size={14} /> {post.readTime}</Box>
         </Stack>
         <Typography variant="h5" sx={{ fontWeight: 900, mb: 2, lineHeight: 1.3, letterSpacing: '-0.02em' }}>
           {post.title}

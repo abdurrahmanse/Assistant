@@ -3,6 +3,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Reveal } from '@/components/Reveal';
+import { Newspaper } from 'lucide-react';
 
 export function BlogHero() {
   return (

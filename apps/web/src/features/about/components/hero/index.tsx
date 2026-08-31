@@ -2,6 +2,7 @@ import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Skeleton } from '@repo/ui';
+import { Rocket } from 'lucide-react';
 
 export interface AboutHeroProps {
   hero?: {

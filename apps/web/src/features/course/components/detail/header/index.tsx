@@ -1,9 +1,7 @@
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { Badge as Chip } from '@repo/ui';
-import { Clock, BookOpen, GraduationCap, Video, Users, FileText, Smartphone } from 'lucide-react';
-import { Skeleton } from '@repo/ui';
+import { Badge as Chip, Skeleton } from '@repo/ui';
 
 export interface CourseHeaderProps {
   course?: any;
@@ -35,21 +33,13 @@ export function CourseHeader({ course, copy, totalLessons, isLoading }: CourseHe
         <Chip label={course.category} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />
       </Stack>
 
-      <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1, letterSpacing: '-0.02em', fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+      <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1, letterSpacing: '-0.02em', }}>
         {course.title}
       </Typography>
 
       <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1.1rem', lineHeight: 1.6, maxWidth: 800 }}>
         {course.description}
       </Typography>
-
-      <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 2, p: 2, pr: 4, borderRadius: '16px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-        <Box component="img" src={course.instructor.avatar} sx={{ width: 48, height: 48, borderRadius: '50%' }} />
-        <Box>
-          <Typography variant="subtitle2" color="text.secondary" fontWeight={600} gutterBottom sx={{ lineHeight: 1 }}>{copy.instructorLabel}</Typography>
-          <Typography variant="subtitle1" fontWeight={800} sx={{ lineHeight: 1 }}>{course.instructor.name}</Typography>
-        </Box>
-      </Box>
     </Box>
   );
 }

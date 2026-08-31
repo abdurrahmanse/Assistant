@@ -106,3 +106,4 @@ export function CourseCard({ course, enrollFreeLabel, enrollPremiumLabel }: Cour
     </Box>
   );
 }
+export * from './skeleton';

@@ -1,12 +1,10 @@
 import React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Stack from '@mui/material/Stack';
 import { Button } from '@repo/ui';
 import { ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { CourseHeader } from '../header';
-import { CourseEnrollmentCard } from '../enrollment';
 
 export interface CourseHeroProps {
   course?: any;
@@ -19,7 +17,14 @@ export function CourseHero({ course, copy, totalLessons, isLoading }: CourseHero
   const navigate = useNavigate();
 
   return (
-    <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, position: 'relative', overflow: 'hidden' }}>
+    <Box sx={(theme) => ({ 
+      pt: { xs: 14, sm: 20 }, pb: { xs: 4, sm: 6 }, 
+      position: 'relative', overflow: 'hidden',
+      bgcolor: 'rgba(255,255,255,0.4)',
+      ...theme.applyStyles('dark', { bgcolor: 'rgba(20,20,25,0.4)' }),
+      borderBottom: '1px solid', borderColor: 'divider',
+      mb: 6
+    })}>
       <Container maxWidth="lg">
         {course?.gradient && <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: course.gradient }} />}
         {!course?.gradient && !isLoading && <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: 'primary.main' }} />}
@@ -28,10 +33,7 @@ export function CourseHero({ course, copy, totalLessons, isLoading }: CourseHero
           {copy?.backLabel || 'Back'}
         </Button>
 
-        <Stack direction={{ xs: 'column', md: 'row' }} spacing={8} alignItems="flex-start">
-          <CourseHeader course={course} copy={copy} totalLessons={totalLessons} isLoading={isLoading} />
-          <CourseEnrollmentCard course={course} copy={copy} totalLessons={totalLessons} isLoading={isLoading} />
-        </Stack>
+        <CourseHeader course={course} copy={copy} totalLessons={totalLessons} isLoading={isLoading} />
       </Container>
     </Box>
   );
