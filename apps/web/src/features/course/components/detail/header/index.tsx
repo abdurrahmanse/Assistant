@@ -1,66 +1,55 @@
-import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Box from '@mui/material/Box';
-import { Badge as Chip } from '@repo/ui';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import type { CourseItem } from '@repo/api-client';
-import { Clock, Layers, Star, Users } from 'lucide-react';
-import * as React from 'react';
+import { Badge as Chip } from '@repo/ui';
+import { Clock, BookOpen, GraduationCap, Video, Users, FileText, Smartphone } from 'lucide-react';
+import { Skeleton } from '@repo/ui';
 
 export interface CourseHeaderProps {
-  course: CourseItem;
-  copy: NonNullable<ReturnType<typeof useCourseDetailQuery>['data']>;
-  totalLessons: number;
+  course?: any;
+  copy?: any;
+  totalLessons?: number;
+  isLoading?: boolean;
 }
 
-export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) {
-  return (
-    <Box sx={{ flex: 1, minWidth: 0 }}>
-      <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', gap: 1 }}>
-        <Chip label={course.type} color={course.type === 'Free' ? 'success' : 'primary'} sx={{ fontWeight: 800, borderRadius: '6px' }} />
-        <Chip label={course.level} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />
-        {course.stack && <Chip label={course.stack} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px', borderStyle: 'dashed' }} />}
-      </Stack>
-
-      <Typography variant="h2" sx={{ fontWeight: 900, mb: 2, lineHeight: 1.15, }}>{course.title}</Typography>
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 4, fontSize: '1rem', lineHeight: 1.7 }}>{course.description}</Typography>
-
-      <Stack direction="row" sx={{ mb: 5, flexWrap: 'wrap', gap: 4, bgcolor: 'background.paper', p: 2, borderRadius: '16px', border: '1px solid', borderColor: 'divider' }}>
-        {course.rating && (
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Star size={24} fill="#f59e0b" color="#f59e0b" />
-            <Box>
-              <Typography fontWeight={900} lineHeight={1}>{course.rating}</Typography>
-              <Typography color="text.secondary" variant="caption">{copy.ratingLabel}</Typography>
-            </Box>
-          </Stack>
-        )}
-        {course.studentsCount && (
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Users size={24} color="#6366f1" />
-            <Box>
-              <Typography fontWeight={900} lineHeight={1}>{course.studentsCount.toLocaleString()}</Typography>
-              <Typography color="text.secondary" variant="caption">{copy.studentsLabel}</Typography>
-            </Box>
-          </Stack>
-        )}
-        {course.duration && (
-          <Stack direction="row" alignItems="center" spacing={1}>
-            <Clock size={24} color="#ec4899" />
-            <Box>
-              <Typography fontWeight={900} lineHeight={1}>{course.duration}</Typography>
-              <Typography color="text.secondary" variant="caption">{copy.durationLabel}</Typography>
-            </Box>
-          </Stack>
-        )}
-        <Stack direction="row" alignItems="center" spacing={1}>
-          <Layers size={24} color="#14b8a6" />
-          <Box>
-            <Typography fontWeight={900} lineHeight={1}>{totalLessons}</Typography>
-            <Typography color="text.secondary" variant="caption">{copy.lessonsLabel}</Typography>
-          </Box>
+export function CourseHeader({ course, copy, totalLessons, isLoading }: CourseHeaderProps) {
+  if (isLoading || !course || !copy) {
+    return (
+      <Box sx={{ flex: 1, minWidth: 0, width: '100%' }}>
+        <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+          <Skeleton width={80} height={32} sx={{ borderRadius: 2 }} />
+          <Skeleton width={100} height={32} sx={{ borderRadius: 2 }} />
         </Stack>
+        <Skeleton variant="rectangular" width="90%" height={80} sx={{ mb: 3, borderRadius: 2 }} />
+        <Skeleton width="100%" height={24} />
+        <Skeleton width="80%" height={24} sx={{ mb: 6 }} />
+        <Skeleton variant="rectangular" width="100%" height={100} sx={{ borderRadius: '16px' }} />
+      </Box>
+    );
+  }
+
+  return (
+    <Box sx={{ flex: 1, minWidth: 0, width: '100%' }}>
+      <Stack direction="row" spacing={1} sx={{ mb: 2 }}>
+        <Chip label={course.level} color="primary" variant="solid" sx={{ fontWeight: 800, borderRadius: '6px' }} />
+        <Chip label={course.category} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />
       </Stack>
+
+      <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1, letterSpacing: '-0.02em', fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
+        {course.title}
+      </Typography>
+
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1.1rem', lineHeight: 1.6, maxWidth: 800 }}>
+        {course.description}
+      </Typography>
+
+      <Box sx={{ display: 'inline-flex', alignItems: 'center', gap: 2, p: 2, pr: 4, borderRadius: '16px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
+        <Box component="img" src={course.instructor.avatar} sx={{ width: 48, height: 48, borderRadius: '50%' }} />
+        <Box>
+          <Typography variant="subtitle2" color="text.secondary" fontWeight={600} gutterBottom sx={{ lineHeight: 1 }}>{copy.instructorLabel}</Typography>
+          <Typography variant="subtitle1" fontWeight={800} sx={{ lineHeight: 1 }}>{course.instructor.name}</Typography>
+        </Box>
+      </Box>
     </Box>
   );
 }

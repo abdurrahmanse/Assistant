@@ -1,15 +1,11 @@
-import Container from '@mui/material/Container';
-import React from 'react';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { Skeleton } from '@repo/ui';
-import MarketingLayout from '@/layouts/MarketingLayout';
-import { useAboutQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import { AboutHero } from '@/features/about/components/hero';
 import { AboutStats } from '@/features/about/components/stats';
-import InstructorProfile from '@/features/home/components/instructor';
 import HomeHighlights from '@/features/home/components/highlights';
+import InstructorProfile from '@/features/home/components/instructor';
 import HomeTestimonials from '@/features/home/components/testimonials';
+import { useAboutQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import MarketingLayout from '@/layouts/MarketingLayout';
+import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 
 
@@ -18,22 +14,15 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
 
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
-        <Container maxWidth="lg">
-          <AboutHero hero={about?.hero} isLoading={isLoading} />
-          <AboutStats stats={about?.stats} isLoading={isLoading} />
-        </Container>
-      </Box>
-
-      <Box sx={{ pb: { xs: 8, sm: 12 } }}>
+      <Container maxWidth="lg" sx={{ mb: 12, px: { xs: 0, sm: 2 } }}>
+        <AboutHero hero={about?.hero} isLoading={isLoading} />
         <InstructorProfile />
-      </Box>
+        <AboutStats stats={about?.stats} isLoading={isLoading} />
+        <HomeHighlights />
 
-      <Divider sx={{ my: 4 }} />
-      <HomeHighlights />
-
-      <Divider sx={{ my: 4 }} />
-      <HomeTestimonials />
+        <Divider sx={{ my: 4 }} />
+        <HomeTestimonials />
+      </Container>
     </MarketingLayout>
   );
 }

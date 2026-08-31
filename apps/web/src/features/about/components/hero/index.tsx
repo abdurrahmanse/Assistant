@@ -13,7 +13,7 @@ export interface AboutHeroProps {
 export function AboutHero({ hero, isLoading }: AboutHeroProps) {
   if (isLoading || !hero) {
     return (
-      <Box sx={{ textAlign: 'center', mb: 10 }}>
+      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center' }}>
         <Skeleton variant="rectangular" width="40%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
         <Skeleton variant="text" width="60%" height={30} sx={{ mx: 'auto' }} />
       </Box>
@@ -21,7 +21,7 @@ export function AboutHero({ hero, isLoading }: AboutHeroProps) {
   }
 
   return (
-    <Box sx={{ textAlign: 'center', mb: 10 }}>
+    <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center' }}>
       <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1, whiteSpace: 'pre-line' }}>
         {hero.title}
       </Typography>

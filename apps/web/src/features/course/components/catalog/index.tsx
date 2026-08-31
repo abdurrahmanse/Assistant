@@ -42,7 +42,7 @@ export default function CourseCatalog() {
   const filterLabels = allData.filterLabels ?? { all: 'All', free: 'Free', premium: 'Premium' };
   const stacks = ['All', ...(allData.stacks || [])];
 
-  let filtered = allData.items;
+  let filtered = allData.items || [];
 
   if (filterType !== 'All') {
     filtered = filtered.filter((c) => c.type === filterType);

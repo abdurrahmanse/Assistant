@@ -1,23 +1,22 @@
-import Container from '@mui/material/Container';
 import CardHeader from '@mui/material/CardHeader';
 
-import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import { Skeleton, CardContent } from '@repo/ui';
-import { useColorScheme } from '@mui/material/styles';
-import { MutedText } from '@repo/ui/styled';
 import { Reveal } from '@/components/Reveal';
+import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+import { useColorScheme } from '@mui/material/styles';
+import Typography from '@mui/material/Typography';
+import { CardContent, Skeleton } from '@repo/ui';
+import { MutedText } from '@repo/ui/styled';
 import { MessageSquareQuote, Quote } from 'lucide-react';
 import {
-  TestimonialsContainer,
-  TestimonialsHeader,
+  CardFooterBox,
   StyledGridItem,
   TestimonialCard,
-  CardFooterBox,
+  TestimonialsContainer,
+  TestimonialsHeader,
 } from './styles';
-import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 // Moved from static files:
 const darkModeLogos = [
@@ -63,7 +62,7 @@ export default function Testimonials() {
   if (isLoading || !data) {
     return (
       <TestimonialsContainer id="testimonials">
-        <Container maxWidth="lg">
+
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
           <Skeleton variant="text" width="60%" height={24} sx={{ mx: 'auto' }} />
@@ -75,7 +74,7 @@ export default function Testimonials() {
             </Grid>
           ))}
         </Grid>
-        </Container>
+
       </TestimonialsContainer>
     );
   }
@@ -84,42 +83,41 @@ export default function Testimonials() {
 
   return (
     <TestimonialsContainer id="testimonials">
-      <Container maxWidth="lg">
+
       <Reveal delay={0.1}>
         <TestimonialsHeader>
-        <Typography component="h2" variant="h2" gutterBottom sx={{ color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
-          <MessageSquareQuote size={40} color="#6366f1" /> {testimonials.title}
-        </Typography>
-        <MutedText variant="body1">
-          {testimonials.subtitle}
-        </MutedText>
-      </TestimonialsHeader>
-        </Reveal>
+          <Typography component="h2" variant="h2" gutterBottom sx={{ color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
+            <MessageSquareQuote size={40} color="#6366f1" /> {testimonials.title}
+          </Typography>
+          <MutedText variant="body1">
+            {testimonials.subtitle}
+          </MutedText>
+        </TestimonialsHeader>
+      </Reveal>
       <Grid container spacing={2}>
         {testimonials.items.map((testimonial, index) => (
           <StyledGridItem size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <Reveal delay={0.2 + (index * 0.1)} direction="up">
-            <TestimonialCard variant="outlined">
-              <CardContent>
-                <Box sx={{ mb: 2 }}><Quote size={24} color="#ec4899" opacity={0.5} /></Box>
-                <MutedText variant="body1" gutterBottom>
-                  {testimonial.testimonial}
-                </MutedText>
-              </CardContent>
-              <CardFooterBox>
-                <CardHeader
-                  avatar={<Avatar alt={testimonial.name} src={testimonial.avatarSrc} />}
-                  title={testimonial.name}
-                  subheader={testimonial.occupation}
-                />
-                <img src={logos[index % logos.length]} alt={`Logo ${index + 1}`} style={logoStyle} />
-              </CardFooterBox>
-            </TestimonialCard>
+              <TestimonialCard variant="outlined">
+                <CardContent>
+                  <Box sx={{ mb: 2 }}><Quote size={24} color="#ec4899" opacity={0.5} /></Box>
+                  <MutedText variant="body1" gutterBottom>
+                    {testimonial.testimonial}
+                  </MutedText>
+                </CardContent>
+                <CardFooterBox>
+                  <CardHeader
+                    avatar={<Avatar alt={testimonial.name} src={testimonial.avatarSrc} />}
+                    title={testimonial.name}
+                    subheader={testimonial.occupation}
+                  />
+                  <img src={logos[index % logos.length]} alt={`Logo ${index + 1}`} style={logoStyle} />
+                </CardFooterBox>
+              </TestimonialCard>
             </Reveal>
           </StyledGridItem>
         ))}
       </Grid>
-      </Container>
     </TestimonialsContainer>
   );
 }
