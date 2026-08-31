@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import { CheckCircle2, AlertCircle, Target } from 'lucide-react';
+import { CheckCircle2, AlertCircle, Target, Lightbulb, Users, ListChecks } from 'lucide-react';
 import type { CourseItem } from '@repo/api-client';
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
@@ -20,8 +20,8 @@ export function CourseOverview({ course, copy }: CourseOverviewProps) {
         <Grid size={{ xs: 12, md: 7 }}>
           {course.outcomes && course.outcomes.length > 0 && (
             <Box sx={{ mb: 6 }}>
-              <Typography variant="h4" sx={{ fontWeight: 900, mb: 3 }}>
-                {copy.outcomesHeading}
+              <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <Lightbulb size={32} color="#f59e0b" /> {copy.outcomesHeading}
               </Typography>
               <Grid container spacing={2}>
                 {course.outcomes.map((outcome, i) => (
@@ -42,8 +42,8 @@ export function CourseOverview({ course, copy }: CourseOverviewProps) {
 
           {course.targetAudience && (
             <Box sx={{ mb: 6 }}>
-              <Typography variant="h4" sx={{ fontWeight: 900, mb: 3 }}>
-                {copy.targetAudienceHeading}
+              <Typography variant="h4" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <Users size={32} color="#ec4899" /> {copy.targetAudienceHeading}
               </Typography>
               <Stack direction="row" spacing={2} alignItems="flex-start" sx={{ p: 3, bgcolor: 'background.paper', borderRadius: '16px', border: '1px solid', borderColor: 'divider' }}>
                 <Box sx={{ color: 'primary.main' }}>
@@ -61,8 +61,8 @@ export function CourseOverview({ course, copy }: CourseOverviewProps) {
         <Grid size={{ xs: 12, md: 5 }}>
           {course.prerequisites && course.prerequisites.length > 0 && (
             <Box sx={{ p: 4, borderRadius: '24px', bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider' }}>
-              <Typography variant="h5" sx={{ fontWeight: 900, mb: 3 }}>
-                {copy.prerequisitesHeading}
+              <Typography variant="h5" sx={{ fontWeight: 900, mb: 3, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                <ListChecks size={28} color="#8b5cf6" /> {copy.prerequisitesHeading}
               </Typography>
               <Stack spacing={2}>
                 {course.prerequisites.map((req, i) => (

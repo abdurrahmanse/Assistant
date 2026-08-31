@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
-import { PlayCircle, ChevronDown } from 'lucide-react';
+import { PlayCircle, ChevronDown, BookOpen } from 'lucide-react';
 import type { CourseItem } from '@repo/api-client';
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
@@ -19,7 +19,7 @@ export interface CourseCurriculumProps {
 export function CourseCurriculum({ course, copy, totalLessons }: CourseCurriculumProps) {
   return (
     <>
-      <Typography variant="h3" sx={{ fontWeight: 900, mb: 2 }}>{copy.curriculumHeading}</Typography>
+      <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, display: 'flex', alignItems: 'center', gap: 1.5 }}><BookOpen size={36} color="#3b82f6" /> {copy.curriculumHeading}</Typography>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1.1rem' }}>
         {copy.curriculumMeta
           .replace('{sections}', String(course.modules?.length ?? 0))

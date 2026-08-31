@@ -39,7 +39,7 @@ export default function HomeHero() {
             <HeroContent heroData={heroData} />
           </Grid>
           <Grid size={{ xs: 12, md: 6 }}>
-            <HeroMedia media={heroData.media} />
+            <HeroMedia heroData={heroData as any} />
           </Grid>
         </Grid>
       </Box>

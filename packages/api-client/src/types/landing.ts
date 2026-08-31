@@ -7,6 +7,7 @@ export interface CourseModule {
 
 export interface CourseItem {
   id: number;
+  slug: string;
   title: string;
   type: 'Free' | 'Premium';
   price: string;
@@ -54,6 +55,8 @@ export interface HeroData {
   termsText: string;
   termsLinkText: string;
   termsLinkHref: string;
+  activeStudentsLabel?: string;
+  activeStudentsCount?: string;
   tracks: HeroTrackItem[];
   media?: {
     type: 'video' | 'image';

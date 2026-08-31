@@ -48,7 +48,7 @@ backdropFilter: 'blur(24px)',
         )}
         {!course.previewVideo && (
           <Box sx={{ position: 'absolute', zIndex: 2, display: 'flex', alignItems: 'center', gap: 1, p: 1, pr: 2, borderRadius: '99px', bgcolor: 'rgba(0,0,0,0.6)', color: 'white', backdropFilter: 'blur(8px)' }}>
-            <PlayCircle size={20} /> <Typography variant="caption" fontWeight={700}>Preview Course</Typography>
+            <PlayCircle size={20} /> <Typography variant="caption" fontWeight={700}>{copy.ctaPreview}</Typography>
           </Box>
         )}
       </Box>
@@ -58,10 +58,10 @@ backdropFilter: 'blur(24px)',
           <Typography variant="h3" sx={{ fontWeight: 900, color: course.type === 'Free' ? 'success.main' : 'text.primary' }}>
             {course.price}
           </Typography>
-          {course.type !== 'Free' && <Typography variant="h6" color="text.disabled" sx={{ textDecoration: 'line-through' }}>$1,999</Typography>}
+          {course.type !== 'Free' && <Typography variant="h6" color="text.disabled" sx={{ textDecoration: 'line-through' }}>{copy.originalPrice}</Typography>}
         </Stack>
         <Typography variant="body2" color="error.main" sx={{ mb: 3, fontWeight: 700 }}>
-          Ends soon! Limited time offer.
+          {copy.urgencyLabel}
         </Typography>
         
         <Button variant="contained" size="large" fullWidth endIcon={<ArrowRight size={20} />} href={checkoutUrl} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none', fontSize: '1.1rem' }}>
@@ -70,10 +70,10 @@ backdropFilter: 'blur(24px)',
         
         <Stack direction="row" justifyContent="center" spacing={2} sx={{ mb: 4 }}>
           <Stack direction="row" alignItems="center" spacing={0.5} sx={{ color: 'text.secondary' }}>
-            <ShieldCheck size={16} /> <Typography variant="caption" fontWeight={600}>Secure checkout</Typography>
+            <ShieldCheck size={16} /> <Typography variant="caption" fontWeight={600}>{copy.secureCheckoutLabel}</Typography>
           </Stack>
           <Stack direction="row" alignItems="center" spacing={0.5} sx={{ color: 'text.secondary' }}>
-            <Lock size={16} /> <Typography variant="caption" fontWeight={600}>SSL Encrypted</Typography>
+            <Lock size={16} /> <Typography variant="caption" fontWeight={600}>{copy.sslLabel}</Typography>
           </Stack>
         </Stack>
         

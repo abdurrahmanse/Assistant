@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import { FileText, HelpCircle, Award, Users } from 'lucide-react';
+import { FileText, HelpCircle, Award, Users, Sparkles } from 'lucide-react';
 import type { CourseItem } from '@repo/api-client';
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
@@ -24,8 +24,8 @@ export function CourseFeatures({ course, copy }: CourseFeaturesProps) {
 
   return (
     <Box sx={{ my: 8 }}>
-      <Typography variant="h3" sx={{ fontWeight: 900, mb: 4, textAlign: 'center' }}>
-        {copy.featuresHeading}
+      <Typography variant="h3" sx={{ fontWeight: 900, mb: 4, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
+        <Sparkles size={36} color="#f59e0b" /> {copy.featuresHeading}
       </Typography>
       <Grid container spacing={3}>
         {featureList.map((f) => (

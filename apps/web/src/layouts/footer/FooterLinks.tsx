@@ -5,6 +5,7 @@ import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router';
+import { ChevronRight } from 'lucide-react';
 import { useFooterQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 export function FooterLinks() {
@@ -44,13 +45,13 @@ export function FooterLinks() {
                 component="button"
                 variant="body2"
                 onClick={() => navigate(link.path!)}
-                sx={linkSx}
+                sx={{ ...linkSx, display: 'flex', alignItems: 'center' }}
               >
-                {link.label}
+                <ChevronRight size={14} style={{ marginRight: '4px', opacity: 0.5 }} /> {link.label}
               </Link>
             ) : (
-              <Link key={link.label} href={link.href ?? '#'} variant="body2" sx={{ color: 'text.secondary' }}>
-                {link.label}
+              <Link key={link.label} href={link.href ?? '#'} variant="body2" sx={{ color: 'text.secondary', display: 'flex', alignItems: 'center' }}>
+                <ChevronRight size={14} style={{ marginRight: '4px', opacity: 0.5 }} /> {link.label}
               </Link>
             )
           )}

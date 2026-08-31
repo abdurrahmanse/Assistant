@@ -11,11 +11,14 @@ const float = keyframes`
   100% { transform: translateY(0px); }
 `;
 
-interface HeroMediaProps {
-  media: any;
+import type { HeroData } from '@repo/api-client';
+
+export interface HeroMediaProps {
+  heroData: HeroData;
 }
 
-export function HeroMedia({ media }: HeroMediaProps) {
+export function HeroMedia({ heroData }: HeroMediaProps) {
+  const media = heroData.media;
   return (
     <Box sx={{ position: 'relative', width: '100%', maxWidth: { xs: 280, sm: 320, md: 360 }, mx: 'auto' }}>
       
@@ -59,7 +62,7 @@ export function HeroMedia({ media }: HeroMediaProps) {
          <Avatar src="https://i.pravatar.cc/100?img=1" sx={{ width: 32, height: 32, border: '2px solid white' }} />
          <Box>
            <Typography variant="caption" sx={{ fontWeight: 800, display: 'block', lineHeight: 1, textShadow: '0 2px 4px rgba(0,0,0,0.2)' }}>20k+</Typography>
-           <Typography variant="caption" sx={{ opacity: 0.9, fontSize: '0.65rem', fontWeight: 600, textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>Active Students</Typography>
+           <Typography variant="caption" sx={{ opacity: 0.9, fontSize: '0.65rem', fontWeight: 600, textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>{heroData.activeStudentsLabel}</Typography>
          </Box>
       </Box>
 

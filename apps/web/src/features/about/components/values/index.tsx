@@ -26,7 +26,7 @@ export interface AboutValuesProps {
 export function AboutValues({ heading, subheading, values }: AboutValuesProps) {
   return (
     <>
-      <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, textAlign: 'center' }}>{heading}</Typography>
+      <Typography variant="h3" sx={{ fontWeight: 900, mb: 2, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}><Target size={36} color="#ec4899" /> {heading}</Typography>
       <Typography color="text.secondary" sx={{ textAlign: 'center', mb: 6 }}>{subheading}</Typography>
       <Grid container spacing={3} sx={{ mb: 12 }}>
         {values.map((item) => (

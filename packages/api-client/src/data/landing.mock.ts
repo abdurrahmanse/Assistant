@@ -27,6 +27,7 @@ export const LANDING_MOCK_DATA = {
       twitter: 'https://x.com/skillforge',
     },
     copyright: 'SkillForge Academy',
+    featuredLabel: 'Flagship Program',
     moneyBackDays: 30,
   },
 
@@ -98,6 +99,8 @@ export const LANDING_MOCK_DATA = {
     termsText: 'Join over 10,000+ students worldwide. By signing up you agree to our',
     termsLinkText: 'Terms & Conditions',
     termsLinkHref: '#',
+    activeStudentsLabel: 'Active Students',
+    activeStudentsCount: '10,000+',
     tracks: [
       {
         id: 'fullstack',
@@ -140,7 +143,8 @@ export const LANDING_MOCK_DATA = {
     items: [
       {
         id: 1,
-        title: 'Advanced React & Next.js Architecture',
+      slug: 'advanced-react-and-nextjs-architecture',
+      title: 'Advanced React & Next.js Architecture',
         type: 'Premium',
         price: '$999',
         level: 'Senior',
@@ -168,7 +172,8 @@ export const LANDING_MOCK_DATA = {
       },
       {
         id: 2,
-        title: 'Machine Learning Engineering',
+      slug: 'machine-learning-engineering',
+      title: 'Machine Learning Engineering',
         type: 'Premium',
         price: '$1,299',
         level: 'Intermediate',
@@ -195,7 +200,8 @@ export const LANDING_MOCK_DATA = {
       },
       {
         id: 3,
-        title: 'Growth Marketing & Analytics',
+      slug: 'growth-marketing-and-analytics',
+      title: 'Growth Marketing & Analytics',
         type: 'Premium',
         price: '$799',
         level: 'Beginner to Pro',
@@ -222,7 +228,8 @@ export const LANDING_MOCK_DATA = {
       },
       {
         id: 4,
-        title: 'Modern API Design (Free Preview)',
+      slug: 'modern-api-design-(free-preview)',
+      title: 'Modern API Design (Free Preview)',
         type: 'Free',
         price: '$0',
         level: 'Intermediate',
@@ -249,7 +256,8 @@ export const LANDING_MOCK_DATA = {
       },
       {
         id: 5,
-        title: 'Data Visualization Mastery',
+      slug: 'data-visualization-mastery',
+      title: 'Data Visualization Mastery',
         type: 'Premium',
         price: '$599',
         level: 'All Levels',
@@ -276,7 +284,8 @@ export const LANDING_MOCK_DATA = {
       },
       {
         id: 6,
-        title: 'Cloud DevOps & Kubernetes',
+      slug: 'cloud-devops-and-kubernetes',
+      title: 'Cloud DevOps & Kubernetes',
         type: 'Premium',
         price: '$1,499',
         level: 'Expert',
@@ -377,6 +386,16 @@ export const LANDING_MOCK_DATA = {
     featuresHeading: 'Course Features',
 
     instructorLabel: 'Taught by',
+    originalPrice: '$1,999',
+    urgencyLabel: 'Ends soon! Limited time offer.',
+    secureCheckoutLabel: 'Secure checkout',
+    sslLabel: 'SSL Encrypted',
+    ratingLabel: 'Rating',
+    studentsLabel: 'Students',
+    durationLabel: 'Total video',
+    lessonsLabel: 'Lessons',
+    courseNotFound: 'Course not found',
+    browseCourses: 'Browse Courses',
     priceSubtext: 'Full lifetime access',
     ctaFree: 'Start Free Preview',
     ctaPremium: 'Enroll Now',

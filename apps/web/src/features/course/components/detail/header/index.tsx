@@ -32,7 +32,7 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
             <Star size={24} fill="#f59e0b" color="#f59e0b" />
             <Box>
               <Typography fontWeight={900} lineHeight={1}>{course.rating}</Typography>
-              <Typography color="text.secondary" variant="caption">Rating</Typography>
+              <Typography color="text.secondary" variant="caption">{copy.ratingLabel}</Typography>
             </Box>
           </Stack>
         )}
@@ -41,7 +41,7 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
             <Users size={24} color="#6366f1" />
             <Box>
               <Typography fontWeight={900} lineHeight={1}>{course.studentsCount.toLocaleString()}</Typography>
-              <Typography color="text.secondary" variant="caption">Students</Typography>
+              <Typography color="text.secondary" variant="caption">{copy.studentsLabel}</Typography>
             </Box>
           </Stack>
         )}
@@ -50,7 +50,7 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
             <Clock size={24} color="#ec4899" />
             <Box>
               <Typography fontWeight={900} lineHeight={1}>{course.duration}</Typography>
-              <Typography color="text.secondary" variant="caption">Total video</Typography>
+              <Typography color="text.secondary" variant="caption">{copy.durationLabel}</Typography>
             </Box>
           </Stack>
         )}
@@ -58,7 +58,7 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
           <Layers size={24} color="#14b8a6" />
           <Box>
             <Typography fontWeight={900} lineHeight={1}>{totalLessons}</Typography>
-            <Typography color="text.secondary" variant="caption">Lessons</Typography>
+            <Typography color="text.secondary" variant="caption">{copy.lessonsLabel}</Typography>
           </Box>
         </Stack>
       </Stack>

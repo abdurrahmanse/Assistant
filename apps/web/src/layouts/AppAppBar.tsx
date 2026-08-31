@@ -121,8 +121,8 @@ export default function AppAppBar() {
                   <IconButton onClick={toggleDrawer(false)}><CloseIcon /></IconButton>
                 </Box>
                 {navLinks.map((link) => (
-                  <MenuItem key={link.path} sx={{ fontWeight: 600 }} onClick={() => { navigate(link.path); toggleDrawer(false)(); }}>
-                    {link.label}
+                  <MenuItem key={link.path} sx={{ fontWeight: 600, display: 'flex', gap: 1.5, alignItems: 'center' }} onClick={() => { navigate(link.path); toggleDrawer(false)(); }}>
+                    {iconMap[link.icon]} {link.label}
                   </MenuItem>
                 ))}
                 <Divider sx={{ my: 2 }} />

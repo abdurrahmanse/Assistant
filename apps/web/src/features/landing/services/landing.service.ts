@@ -31,7 +31,7 @@ class LandingService {
   /** Single course by ID */
   getCourseById = async (id: string) => {
     const data = await landingRepository.getCourses();
-    return data.items.find((c) => c.id.toString() === id) ?? null;
+    return data.items.find((c) => c.id.toString() === id || c.slug === id) ?? null;
   };
 
   /** About page data */

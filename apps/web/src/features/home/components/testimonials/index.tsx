@@ -3,9 +3,11 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { useColorScheme } from '@mui/material/styles';
 import { MutedText } from '@repo/ui/styled';
+import { MessageSquareQuote, Quote } from 'lucide-react';
 import {
   TestimonialsContainer,
   TestimonialsHeader,
@@ -77,8 +79,8 @@ export default function Testimonials() {
   return (
     <TestimonialsContainer id="testimonials">
       <TestimonialsHeader>
-        <Typography component="h2" variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
-          {testimonials.title}
+        <Typography component="h2" variant="h2" gutterBottom sx={{ color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
+          <MessageSquareQuote size={40} color="#6366f1" /> {testimonials.title}
         </Typography>
         <MutedText variant="body1">
           {testimonials.subtitle}
@@ -89,6 +91,7 @@ export default function Testimonials() {
           <StyledGridItem size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <TestimonialCard variant="outlined">
               <CardContent>
+                <Box sx={{ mb: 2 }}><Quote size={24} color="#ec4899" opacity={0.5} /></Box>
                 <MutedText variant="body1" gutterBottom>
                   {testimonial.testimonial}
                 </MutedText>

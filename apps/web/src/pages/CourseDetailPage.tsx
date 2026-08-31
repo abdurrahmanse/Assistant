@@ -51,8 +51,8 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, textAlign: 'center' }}>
           
-            <Typography variant="h4" fontWeight={800} sx={{ mb: 2 }}>Course not found</Typography>
-            <Button variant="contained" onClick={() => navigate('/courses')}>Browse Courses</Button>
+            <Typography variant="h4" fontWeight={800} sx={{ mb: 2 }}>{copy?.courseNotFound}</Typography>
+            <Button variant="contained" onClick={() => navigate('/courses')}>{copy?.browseCourses}</Button>
           
         </Box>
       </MarketingLayout>
@@ -101,7 +101,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
       {/* Curriculum Section */}
       <Box sx={{ py: { xs: 8, sm: 12 }, }}>
         
-          <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+          <Box>
             <CourseCurriculum course={course} copy={copy} totalLessons={totalLessons} />
           </Box>
         

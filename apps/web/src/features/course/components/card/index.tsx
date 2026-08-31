@@ -24,7 +24,7 @@ export interface CourseCardProps {
 export function CourseCard({ course, enrollFreeLabel, enrollPremiumLabel }: CourseCardProps) {
   const navigate = useNavigate();
   return (
-    <Box onClick={() => navigate(`/courses/${course.id}`)} sx={{
+    <Box onClick={() => navigate(`/courses/${course.slug || course.id}`)} sx={{
       height: '100%', display: 'flex', flexDirection: 'column',
       borderRadius: '24px', 
       border: '2px solid', 

@@ -8,11 +8,12 @@ import Chip from '@mui/material/Chip';
 import Skeleton from '@mui/material/Skeleton';
 import { Play, Star, Clock, ArrowRight, ShieldCheck, CheckCircle2, Flame, Crown } from 'lucide-react';
 import { useNavigate } from 'react-router';
-import { useCoursesQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import { useCoursesQuery, useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 export default function FeaturedCourse() {
   const navigate = useNavigate();
   const { data, isLoading } = useCoursesQuery();
+  const { data: siteMeta } = useSiteMetaQuery();
 
   if (isLoading || !data || data.items.length === 0) {
     return <Box sx={{ py: 12, px: 2 }}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: 4, maxWidth: 1000, mx: 'auto' }} /></Box>;
@@ -28,7 +29,7 @@ export default function FeaturedCourse() {
         <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>
           <Chip icon={<Flame size={16} />}
           label="Latest Release" color="primary" sx={{ fontWeight: 900, borderRadius: '8px', border: '2px solid #000', boxShadow: '2px 2px 0px #000', mb: 3 }} />
-          <Typography variant="h2" sx={{ fontWeight: 900, letterSpacing: '-0.02em', mb: 2 }}><Crown size={40} color="#f59e0b" style={{ verticalAlign: 'middle', marginRight: '16px', transform: 'translateY(-4px)' }} />Flagship Program</Typography>
+          <Typography variant="h2" sx={{ fontWeight: 900, letterSpacing: '-0.02em', mb: 2 }}><Crown size={40} color="#f59e0b" style={{ verticalAlign: 'middle', marginRight: '16px', transform: 'translateY(-4px)' }} />{siteMeta?.featuredLabel || 'Flagship Program'}</Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', fontWeight: 500 }}>
             Master the most requested skills on the market right now.
           </Typography>
@@ -58,7 +59,7 @@ export default function FeaturedCourse() {
                   border: '2px solid rgba(255, 255, 255, 0.8)', boxShadow: '0 8px 32px rgba(0,0,0,0.2)', cursor: 'pointer',
                   transition: 'transform 0.2s', '&:hover': { transform: 'translate(-50%, -50%) scale(1.1)' }
                 }}
-                onClick={() => navigate(`/courses/${course.id}`)}
+                onClick={() => navigate(`/courses/${course.slug || course.id}`)}
               >
                 <Play size={40} fill="currentColor" style={{ marginLeft: '6px' }} />
               </Box>
@@ -99,7 +100,7 @@ export default function FeaturedCourse() {
 
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center">
               <Button 
-                variant="contained" size="large" onClick={() => navigate(`/courses/${course.id}`)}
+                variant="contained" size="large" onClick={() => navigate(`/courses/${course.slug || course.id}`)}
                 endIcon={<ArrowRight size={20} />}
                 sx={{ 
                   fontWeight: 900, py: 2, px: 6, borderRadius: '16px', fontSize: '1.1rem',

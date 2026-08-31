@@ -2,7 +2,7 @@ import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
-import { Settings2, Wrench, ThumbsUp, Sparkles, Headphones, BarChart3 } from 'lucide-react';
+import { Settings2, Wrench, ThumbsUp, Sparkles, Headphones, BarChart3, Zap } from 'lucide-react';
 import Box from '@mui/material/Box';
 import {
   HighlightsWrapper,
@@ -47,8 +47,8 @@ export default function Highlights() {
     <HighlightsWrapper id="highlights">
       <HighlightsContainer>
         <HighlightsHeader>
-          <Typography component="h2" variant="h4" gutterBottom sx={{ fontWeight: 800 }}>
-            {highlights.title}
+          <Typography component="h2" variant="h2" gutterBottom sx={{ fontWeight: 800, display: 'flex', alignItems: 'center', gap: 1.5 }}>
+            <Zap size={40} color="#f59e0b" /> {highlights.title}
           </Typography>
           <Typography variant="body1" color="text.secondary">
             {highlights.subtitle}
