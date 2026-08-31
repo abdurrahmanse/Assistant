@@ -17,7 +17,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
   if (isLoading || !contact) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-        <Box sx={{ pt: { xs: 16, md: 24 }, pb: 12, bgcolor: 'background.default' }}>
+        <Box sx={{ pt: { xs: 16, md: 24 }, pb: 12, }}>
           <Box sx={{ maxWidth: 900, mx: 'auto' }}>
             <Skeleton width="40%" height={80} sx={{ mb: 2 }} />
             <Skeleton width="60%" height={32} sx={{ mb: 10 }} />
@@ -33,7 +33,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
 
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-      <Box sx={{ pt: { xs: 16, md: 24 }, pb: 12, bgcolor: 'background.default' }}>
+      <Box sx={{ pt: { xs: 16, md: 24 }, pb: 12, }}>
         <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
           
           <Box sx={{ mb: { xs: 8, md: 12 } }}>

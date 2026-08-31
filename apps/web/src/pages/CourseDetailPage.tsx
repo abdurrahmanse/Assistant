@@ -28,7 +28,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
   if (isLoading) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, bgcolor: 'background.default' }}>
+        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, }}>
           
             <Skeleton width={140} height={36} sx={{ mb: 4 }} />
             <Stack direction={{ xs: 'column', md: 'row' }} spacing={6}>
@@ -49,7 +49,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
   if (!course || !copy) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, bgcolor: 'background.default', textAlign: 'center' }}>
+        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, textAlign: 'center' }}>
           
             <Typography variant="h4" fontWeight={800} sx={{ mb: 2 }}>Course not found</Typography>
             <Button variant="contained" onClick={() => navigate('/courses')}>Browse Courses</Button>
@@ -64,7 +64,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       {/* Hero Section */}
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 6, sm: 10 }, bgcolor: 'background.default', position: 'relative', overflow: 'hidden' }}>
+      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 6, sm: 10 }, position: 'relative', overflow: 'hidden' }}>
         <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: course.gradient || 'primary.main' }} />
         
           <Button startIcon={<ArrowLeft size={18} />} onClick={() => navigate('/courses')} sx={{ mb: 4, fontWeight: 700, color: 'text.secondary', textTransform: 'none' }}>
@@ -91,7 +91,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
       )}
 
       {/* Overview & Features Section */}
-      <Box sx={{ py: { xs: 8, sm: 10 }, bgcolor: 'background.default', borderBottom: '1px solid', borderColor: 'divider' }}>
+      <Box sx={{ py: { xs: 8, sm: 10 }, borderBottom: '1px solid', borderColor: 'divider' }}>
         
           <CourseOverview course={course} copy={copy} />
           <CourseFeatures course={course} copy={copy} />
@@ -99,7 +99,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
       </Box>
 
       {/* Curriculum Section */}
-      <Box sx={{ py: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
+      <Box sx={{ py: { xs: 8, sm: 12 }, }}>
         
           <Box sx={{ maxWidth: 800, mx: 'auto' }}>
             <CourseCurriculum course={course} copy={copy} totalLessons={totalLessons} />

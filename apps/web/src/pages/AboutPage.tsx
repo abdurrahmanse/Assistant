@@ -19,7 +19,7 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
   if (isLoading || !about) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
+        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
           
             <Skeleton variant="rectangular" width="60%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
             <Skeleton variant="text" width="80%" sx={{ mx: 'auto', mb: 8 }} />
@@ -37,7 +37,7 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
 
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
+      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
         
           <AboutHero hero={about.hero} />
           <AboutStats stats={about.stats} />
