@@ -88,7 +88,7 @@ export interface PricingTier {
   price: string;
   description: string[];
   buttonText: string;
-  buttonVariant: 'outlined' | 'contained';
+  buttonVariant: 'primary' | 'outline' | 'secondary' | 'ghost' | 'glass';
   buttonColor: 'primary' | 'secondary';
 }
 

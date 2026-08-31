@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { ErrorBoundary } from '@repo/ui/components/ErrorBoundary';
+import { Toaster } from 'sonner';
 
 const HomePage = React.lazy(() => import('@/pages/HomePage'));
 const CoursesPage = React.lazy(() => import('@/pages/CoursesPage'));
@@ -12,7 +13,6 @@ const ContactPage = React.lazy(() => import('@/pages/ContactPage'));
 const AboutPage = React.lazy(() => import('@/pages/AboutPage'));
 const PricingPage = React.lazy(() => import('@/pages/PricingPage'));
 const BlogPage = React.lazy(() => import('@/pages/BlogPage'));
-const NewsletterPage = React.lazy(() => import('@/pages/NewsletterPage'));
 const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
 
 
@@ -26,6 +26,7 @@ export default function App() {
   return (
     <ErrorBoundary>
       <CssBaseline enableColorScheme />
+      <Toaster position="top-center" richColors />
       <BrowserRouter>
         <Suspense fallback={<PageLoader />}>
           <Routes>
@@ -36,8 +37,7 @@ export default function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/blog" element={<BlogPage />} />
-            <Route path="/newsletter" element={<NewsletterPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+                        <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>

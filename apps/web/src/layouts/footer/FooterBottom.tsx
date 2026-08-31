@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import TwitterIcon from '@mui/icons-material/X';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import { useSiteMetaQuery, useFooterQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 function CopyrightText({ name }: { name: string }) {
@@ -55,7 +55,7 @@ export function FooterBottom() {
                 </Link>
               </React.Fragment>
             ))}
-            <CopyrightText name={siteMeta?.copyright ?? 'SkillForge'} />
+            <CopyrightText name={siteMeta?.copyright ?? 'Learn with Abdur Rahman'} />
           </>
         )}
       </div>

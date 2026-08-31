@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Divider from '@mui/material/Divider';
 import { PlayCircle, CheckCircle2, ShieldCheck, Lock, BookOpen, Award, Zap, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router';
@@ -62,7 +62,7 @@ backdropFilter: 'blur(24px)',
             <Typography variant="h3" sx={{ fontWeight: 900, color: 'success.main', mb: 1 }}>
               {course.price}
             </Typography>
-            <Button variant="contained" size="small" fullWidth endIcon={<ArrowRight size={20} />} href={checkoutUrl} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none' }}>
+            <Button variant="primary" size="small" fullWidth endIcon={<ArrowRight size={20} />} href={checkoutUrl} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none' }}>
               {copy.ctaFree}
             </Button>
           </>
@@ -77,7 +77,7 @@ backdropFilter: 'blur(24px)',
               <Stack direction="row" alignItems="baseline" spacing={1} sx={{ mt: 0.5, mb: 1.5 }}>
                 <Typography variant="h4" fontWeight={900}>{pricing?.tiers?.[1]?.price || '$199/yr'}</Typography>
               </Stack>
-              <Button variant="contained" size="small" color="primary" fullWidth endIcon={<ArrowRight size={16} />} onClick={() => navigate('/pricing')} sx={{ fontWeight: 800, borderRadius: '10px' }}>
+              <Button variant="primary" size="small" color="primary" fullWidth endIcon={<ArrowRight size={16} />} onClick={() => navigate('/pricing')} sx={{ fontWeight: 800, borderRadius: '10px' }}>
                 Subscribe Annually
               </Button>
             </Box>
@@ -89,7 +89,7 @@ backdropFilter: 'blur(24px)',
                 <Typography variant="h5" fontWeight={900}>{course.price}</Typography>
                 <Typography variant="body2" color="text.disabled" sx={{ textDecoration: 'line-through' }}>{copy.originalPrice}</Typography>
               </Stack>
-              <Button variant="outlined" size="small" fullWidth endIcon={<ArrowRight size={16} />} href={checkoutUrl} sx={{ fontWeight: 800, borderRadius: '10px' }}>
+              <Button variant="outline" size="small" fullWidth endIcon={<ArrowRight size={16} />} href={checkoutUrl} sx={{ fontWeight: 800, borderRadius: '10px' }}>
                 Buy This Course
               </Button>
             </Box>

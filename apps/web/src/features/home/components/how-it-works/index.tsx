@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import { Reveal } from '@/components/Reveal';
 import { Code2, MessageCircle, Layers, Compass } from 'lucide-react';
 import { useHowItWorksQuery } from '@/features/landing/hooks/queries/useLandingQuery';

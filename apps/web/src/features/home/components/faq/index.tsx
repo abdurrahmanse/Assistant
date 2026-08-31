@@ -3,7 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import { Reveal } from '@/components/Reveal';
 import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import {

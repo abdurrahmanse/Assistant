@@ -7,7 +7,7 @@ export function NavLogo() {
   const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate('/')}>
-      <AssistantLogo />
+      <AssistantLogo hideText />
     </Box>
   );
 }

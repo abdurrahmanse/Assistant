@@ -1,10 +1,11 @@
+import Container from '@mui/material/Container';
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Skeleton from '@mui/material/Skeleton';
+import { Badge as Chip } from '@repo/ui';
+import { Skeleton } from '@repo/ui';
 import { ArrowLeft } from 'lucide-react';
 import MarketingLayout from '@/layouts/MarketingLayout';
 import { useParams, useNavigate } from 'react-router';
@@ -40,6 +41,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
               </Box>
               <Skeleton variant="rectangular" width={380} height={560} sx={{ borderRadius: 3 }} />
             </Stack>
+        </Container>
           
         </Box>
       </MarketingLayout>
@@ -52,7 +54,8 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, textAlign: 'center' }}>
           
             <Typography variant="h4" fontWeight={800} sx={{ mb: 2 }}>{copy?.courseNotFound}</Typography>
-            <Button variant="contained" onClick={() => navigate('/courses')}>{copy?.browseCourses}</Button>
+            <Button variant="primary" onClick={() => navigate('/courses')}>{copy?.browseCourses}</Button>
+        </Container>
           
         </Box>
       </MarketingLayout>
@@ -65,6 +68,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       {/* Hero Section */}
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, position: 'relative', overflow: 'hidden' }}>
+        <Container maxWidth="lg">
         <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: course.gradient || 'primary.main' }} />
         
           <Button startIcon={<ArrowLeft size={18} />} onClick={() => navigate('/courses')} sx={{ mb: 4, fontWeight: 700, color: 'text.secondary', textTransform: 'none' }}>
@@ -84,7 +88,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
           
             <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1, alignItems: 'center' }}>
               <Typography variant="body2" color="text.secondary" fontWeight={600}>{copy.topicsLabel}</Typography>
-              {course.tags.map((tag) => <Chip key={tag} label={tag} size="small" variant="outlined" sx={{ fontWeight: 700, borderRadius: '6px' }} />)}
+              {course.tags.map((tag) => <Chip key={tag} label={tag} size="small" variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />)}
             </Stack>
           
         </Box>
@@ -104,6 +108,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
           <Box>
             <CourseCurriculum course={course} copy={copy} totalLessons={totalLessons} />
           </Box>
+        </Container>
         
       </Box>
     </MarketingLayout>

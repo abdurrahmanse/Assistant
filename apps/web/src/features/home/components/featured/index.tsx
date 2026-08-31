@@ -2,10 +2,10 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Skeleton from '@mui/material/Skeleton';
+import { Badge as Chip } from '@repo/ui';
+import { Skeleton } from '@repo/ui';
 import { Reveal } from '@/components/Reveal';
 import { Play, Star, Clock, ArrowRight, ShieldCheck, CheckCircle2, Flame, Crown } from 'lucide-react';
 import { useNavigate } from 'react-router';
@@ -103,7 +103,7 @@ export default function FeaturedCourse() {
 
             <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center">
               <Button 
-                variant="contained" size="small" onClick={() => navigate(`/courses/${course.slug || course.id}`)}
+                variant="primary" size="small" onClick={() => navigate(`/courses/${course.slug || course.id}`)}
                 endIcon={<ArrowRight size={20} />}
                 sx={{ 
                   fontWeight: 900, py: 2, px: 6, borderRadius: '16px',

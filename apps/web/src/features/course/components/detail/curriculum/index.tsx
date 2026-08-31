@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -52,7 +52,7 @@ export function CourseCurriculum({ course, copy, totalLessons }: CourseCurriculu
                   </Stack>
                 ))}
                 {mod.lessons > 4 && (
-                  <Button variant="text" sx={{ width: 'fit-content', ml: 4, fontWeight: 700 }}>
+                  <Button variant="ghost" sx={{ width: 'fit-content', ml: 4, fontWeight: 700 }}>
                     + {mod.lessons - 4} more lessons
                   </Button>
                 )}

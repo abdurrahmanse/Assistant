@@ -1,10 +1,10 @@
 import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
+
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton, CardContent } from '@repo/ui';
 import { useColorScheme } from '@mui/material/styles';
 import { MutedText } from '@repo/ui/styled';
 import { Reveal } from '@/components/Reveal';

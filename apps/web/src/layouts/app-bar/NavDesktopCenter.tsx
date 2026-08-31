@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Skeleton from '@mui/material/Skeleton';
+import { Button } from '@repo/ui';
+import { Skeleton } from '@repo/ui';
 import { useNavigate } from 'react-router';
 import { navIconMap } from './navIconMap';
 
@@ -20,7 +20,7 @@ export function NavDesktopCenter({ navLinks, isLoading }: NavDesktopCenterProps)
         : navLinks.map((link) => (
             <Button
               key={link.path}
-              variant="text"
+              variant="ghost"
               color="info"
               size="small"
               sx={{ fontWeight: 600 }}

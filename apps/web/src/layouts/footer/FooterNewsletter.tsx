@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import { TextInput as TextField } from '@repo/ui';
 import InputAdornment from '@mui/material/InputAdornment';
 import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import Alert from '@mui/material/Alert';
 import { Mail, Send } from 'lucide-react';
 import AssistantLogo from '@/components/AssistantLogo';
@@ -56,7 +56,7 @@ export function FooterNewsletter() {
             variant="outlined"
             fullWidth
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e: any) => setEmail(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSubscribe()}
             aria-label={newsletter?.emailPlaceholder ?? 'Email address'}
             placeholder={newsletter?.emailPlaceholder ?? 'Your email address'}
@@ -64,7 +64,7 @@ export function FooterNewsletter() {
             sx={{ width: '250px' }}
           />
           <Button
-            variant="contained"
+            variant="primary"
             color="primary"
             size="small"
             sx={{ flexShrink: 0 }}

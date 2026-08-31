@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import { TextInput as TextField } from '@repo/ui';
 import InputAdornment from '@mui/material/InputAdornment';
 import Select from '@mui/material/Select';
 import type { SelectChangeEvent } from '@mui/material/Select';
@@ -32,7 +32,7 @@ export function CourseFilters({ filterType, setFilterType, searchQuery, setSearc
         {(['All', 'Free', 'Premium'] as const).map((f) => (
           <Button
             key={f}
-            variant={filterType === f ? 'contained' : 'outlined'}
+            variant={filterType === f ? 'primary' : 'outline'}
             size="small"
             onClick={() => setFilterType(f)}
             color={filterType === f ? 'primary' : 'inherit'}
@@ -62,7 +62,7 @@ export function CourseFilters({ filterType, setFilterType, searchQuery, setSearc
           size="small"
           placeholder="Search courses..."
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          onChange={(e: any) => setSearchQuery(e.target.value)}
           slotProps={{
             input: {
               startAdornment: (

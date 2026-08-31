@@ -1,8 +1,8 @@
 import { useCoursesQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import Typography from '@mui/material/Typography';
 import { Compass } from 'lucide-react';
 import * as React from 'react';
@@ -70,7 +70,7 @@ export default function CourseCatalog() {
       {filtered.length === 0 ? (
         <Box sx={{ textAlign: 'center', py: 10 }}>
           <Typography variant="h6" fontWeight={700} color="text.secondary">No courses found matching your criteria.</Typography>
-          <Button variant="outlined" sx={{ mt: 2, borderRadius: '12px' }} onClick={() => { setSearchQuery(''); setSelectedStack('All'); setFilterType('All'); }}>
+          <Button variant="outline" sx={{ mt: 2, borderRadius: '12px' }} onClick={() => { setSearchQuery(''); setSelectedStack('All'); setFilterType('All'); }}>
             Clear Filters
           </Button>
         </Box>

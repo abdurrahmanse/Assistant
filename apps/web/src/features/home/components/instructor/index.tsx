@@ -3,14 +3,34 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Skeleton from '@mui/material/Skeleton';
+import { Badge as Chip } from '@repo/ui';
+import { Skeleton } from '@repo/ui';
 import { User, Award, Users } from 'lucide-react';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { Reveal } from '@/components/Reveal';
 import { useInstructorQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import CountUp from 'react-countup';
+
+const SmartCounter = ({ text }: { text: string }) => {
+  const match = text.match(/^([^0-9.-]*)([0-9.]+)(.*)$/);
+  if (!match) return <>{text}</>;
+  const [_, prefix, num, suffix] = match;
+  return (
+    <CountUp 
+      start={0} 
+      end={parseFloat(num)} 
+      decimals={num.includes('.') ? 1 : 0} 
+      duration={2.5} 
+      prefix={prefix} 
+      suffix={suffix} 
+      enableScrollSpy 
+      scrollSpyOnce 
+    />
+  );
+};
+
 
 const iconMap: Record<string, React.ReactNode> = {
   Twitter: <TwitterIcon fontSize="small" />,
@@ -84,7 +104,7 @@ export default function InstructorProfile() {
                 icon={<User size={16} />} 
                 label="Your Sole Instructor" 
                 color="primary" 
-                variant="outlined" 
+                variant="outline" 
                 size="small"
                 sx={{ fontWeight: 800, mb: 4, borderRadius: '8px', borderWidth: 2 }} 
               />
@@ -109,7 +129,7 @@ export default function InstructorProfile() {
                       {i === 0 ? <Award size={28} /> : <Users size={28} />}
                     </Box>
                     <Box>
-                      <Typography variant="h5" fontWeight={900} lineHeight={1}>{stat.value}</Typography>
+                      <Typography variant="h5" fontWeight={900} lineHeight={1}><SmartCounter text={stat.value} /></Typography>
                       <Typography variant="caption" color="text.secondary" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: 0.5 }}>{stat.label}</Typography>
                     </Box>
                   </Stack>

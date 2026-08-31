@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import Stack from '@mui/material/Stack';
 import { useNavigate } from 'react-router';
 import { ChevronRight } from 'lucide-react';

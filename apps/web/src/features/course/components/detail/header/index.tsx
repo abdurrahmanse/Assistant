@@ -1,7 +1,7 @@
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import Chip from '@mui/material/Chip';
+import { Badge as Chip } from '@repo/ui';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import type { CourseItem } from '@repo/api-client';
@@ -27,8 +27,8 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
     <Box sx={{ flex: 1, minWidth: 0 }}>
       <Stack direction="row" spacing={1} sx={{ mb: 2, flexWrap: 'wrap', gap: 1 }}>
         <Chip label={course.type} color={course.type === 'Free' ? 'success' : 'primary'} sx={{ fontWeight: 800, borderRadius: '6px' }} />
-        <Chip label={course.level} variant="outlined" sx={{ fontWeight: 700, borderRadius: '6px' }} />
-        {course.stack && <Chip label={course.stack} variant="outlined" sx={{ fontWeight: 700, borderRadius: '6px', borderStyle: 'dashed' }} />}
+        <Chip label={course.level} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />
+        {course.stack && <Chip label={course.stack} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px', borderStyle: 'dashed' }} />}
       </Stack>
 
       <Typography variant="h2" sx={{ fontWeight: 900, mb: 2, lineHeight: 1.15, }}>{course.title}</Typography>

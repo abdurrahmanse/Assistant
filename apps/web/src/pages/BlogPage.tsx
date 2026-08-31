@@ -3,11 +3,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import { Card, CardContent } from '@repo/ui';
+
 import CardMedia from '@mui/material/CardMedia';
-import Skeleton from '@mui/material/Skeleton';
-import Chip from '@mui/material/Chip';
+import { Skeleton } from '@repo/ui';
+import { Badge as Chip } from '@repo/ui';
 import Stack from '@mui/material/Stack';
 import { useBlogQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import MarketingLayout from '@/layouts/MarketingLayout';
@@ -20,6 +20,7 @@ export default function BlogPage() {
   return (
     <MarketingLayout>
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center' }}>
+        <Container maxWidth="lg">
         <Reveal delay={0.1}>
           <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(3rem, 6vw, 4.5rem)', lineHeight: 1.1, mb: 3, letterSpacing: '-0.02em' }}>
             Engineering <Box component="span" sx={{ color: 'primary.main' }}>Insights</Box>

@@ -10,7 +10,7 @@ interface SEOProps {
 }
 
 export default function SEO({
-  title = "Assistant - Your Smart Companion",
+  title = "Learn with Abdur Rahman",
   description = "Empower your workflow with Assistant. The smartest tool to help you get things done.",
   keywords = "assistant, productivity, AI, smart tool, workflow",
   image = "https://assistant.com/og-image.jpg",

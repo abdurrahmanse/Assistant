@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import Tilt from 'react-parallax-tilt';
 import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
+import { Badge as Chip } from '@repo/ui';
 import Typography from '@mui/material/Typography';
 import { Play, Code2, Brain, TrendingUp, MonitorPlay, BarChart, Star, Clock, Zap, Gift } from 'lucide-react';
 import { useNavigate } from 'react-router';

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
-import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { Menu, X as CloseIcon } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { navIconMap } from './navIconMap';
@@ -29,7 +29,7 @@ export function NavMobile({ navLinks, cta, portalUrl, signinUrl }: NavMobileProp
 
   return (
     <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
-      <ColorModeIconDropdown size="medium" />
+      <ThemeToggle />
       <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}><Menu size={20} /></IconButton>
       <Drawer anchor="top" open={open} onClose={toggleDrawer(false)} slotProps={{ paper: { sx: { top: 'var(--template-frame-height, 0px)' } } }}>
         <Box sx={{ p: 2, bgcolor: 'background.default' }}>
@@ -42,9 +42,9 @@ export function NavMobile({ navLinks, cta, portalUrl, signinUrl }: NavMobileProp
             </MenuItem>
           ))}
           <Divider sx={{ my: 2 }} />
-          <MenuItem><Button color="primary" variant="contained" fullWidth onClick={() => { navigate('/contact'); toggleDrawer(false)(); }} startIcon={navIconMap[cta.signup.icon]}>{cta.signup.label}</Button></MenuItem>
-          <MenuItem><Button color="primary" variant="outlined" fullWidth href={signinUrl} startIcon={navIconMap[cta.signin.icon]}>{cta.signin.label}</Button></MenuItem>
-          <MenuItem><Button color="inherit" variant="text" fullWidth href={portalUrl} startIcon={navIconMap[cta.portal.icon]}>{cta.portal.label}</Button></MenuItem>
+          <MenuItem><Button color="primary" variant="primary" fullWidth onClick={() => { navigate('/contact'); toggleDrawer(false)(); }} startIcon={navIconMap[cta.signup.icon]}>{cta.signup.label}</Button></MenuItem>
+          <MenuItem><Button color="primary" variant="outline" fullWidth href={signinUrl} startIcon={navIconMap[cta.signin.icon]}>{cta.signin.label}</Button></MenuItem>
+          <MenuItem><Button color="inherit" variant="ghost" fullWidth href={portalUrl} startIcon={navIconMap[cta.portal.icon]}>{cta.portal.label}</Button></MenuItem>
         </Box>
       </Drawer>
     </Box>

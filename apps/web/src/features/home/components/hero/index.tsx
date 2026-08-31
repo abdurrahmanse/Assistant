@@ -1,7 +1,8 @@
+import Container from '@mui/material/Container';
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import { useHeroQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import { HeroContent } from './HeroContent';
 import { HeroMedia } from './HeroMedia';
@@ -33,7 +34,7 @@ export default function HomeHero() {
       {/* Background decoration */}
 
 
-      <Box sx={{ position: 'relative', zIndex: 1 }}>
+      <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
         <Grid container spacing={{ xs: 6, md: 8 }} alignItems="center">
           <Grid size={{ xs: 12, md: 6 }}>
             <HeroContent heroData={heroData} />
@@ -42,7 +43,7 @@ export default function HomeHero() {
             <HeroMedia heroData={heroData as any} />
           </Grid>
         </Grid>
-      </Box>
+      </Container>
     </Box>
   );
 }

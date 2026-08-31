@@ -1,13 +1,14 @@
 import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Alert from '@mui/material/Alert';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import TextField from '@mui/material/TextField';
+import { TextInput as TextField } from '@repo/ui';
 import InputAdornment from '@mui/material/InputAdornment';
 import { Send, User, AtSign, MessageSquareText } from 'lucide-react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { toast } from 'sonner';
 
 type ContactData = NonNullable<ReturnType<typeof useContactQuery>['data']>;
 
@@ -40,6 +41,19 @@ export default function ContactForm({
 
   const { fields, submitLabel } = contact.form;
 
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success('Message sent successfully.');
+      setForm({ firstName: '', lastName: '', email: '', subject: '', message: '' });
+    }
+  }, [isSuccess]);
+
+  useEffect(() => {
+    if (isError) {
+      toast.error((error as Error)?.message ?? 'Failed to send.');
+    }
+  }, [isError, error]);
+
   return (
     <Box component="form" onSubmit={handleSubmit}>
       <Stack spacing={4}>
@@ -55,13 +69,12 @@ export default function ContactForm({
         <TextField label={fields.email} type="email" variant="standard" fullWidth value={form.email} onChange={onChange('email')} required slotProps={{ input: { startAdornment: <InputAdornment position="start"><AtSign size={20} color="var(--template-palette-text-secondary)" /></InputAdornment> } }} />
         <TextField label={fields.message} variant="standard" multiline rows={4} fullWidth value={form.message} onChange={onChange('message')} required slotProps={{ input: { startAdornment: <InputAdornment position="start" sx={{ alignSelf: 'flex-start', mt: 1 }}><MessageSquareText size={20} color="var(--template-palette-text-secondary)" /></InputAdornment> } }} />
 
-        {isSuccess && <Alert severity="success" sx={{ borderRadius: 2 }}>Message sent successfully.</Alert>}
-        {isError && <Alert severity="error" sx={{ borderRadius: 2 }}>{(error as Error)?.message ?? 'Failed to send.'}</Alert>}
+        
 
         <Box sx={{ pt: 2 }}>
           <Button
             type="submit"
-            variant="contained"
+            variant="primary"
             size="small"
             endIcon={<Send size={18} />}
             disabled={isPending}

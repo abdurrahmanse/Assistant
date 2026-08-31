@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
+import { Button } from '@repo/ui';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { useNavigate } from 'react-router';
 import { navIconMap } from './navIconMap';
 
@@ -20,16 +20,16 @@ export function NavDesktopRight({ cta, portalUrl, signinUrl }: NavDesktopRightPr
 
   return (
     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
-      <Button color="inherit" variant="text" size="small" sx={{ fontWeight: 600 }} href={portalUrl} startIcon={navIconMap[cta.portal.icon]}>
+      <Button color="inherit" variant="ghost" size="small" sx={{ fontWeight: 600 }} href={portalUrl} startIcon={navIconMap[cta.portal.icon]}>
         {cta.portal.label}
       </Button>
-      <Button color="primary" variant="text" size="small" sx={{ fontWeight: 600 }} href={signinUrl} startIcon={navIconMap[cta.signin.icon]}>
+      <Button color="primary" variant="ghost" size="small" sx={{ fontWeight: 600 }} href={signinUrl} startIcon={navIconMap[cta.signin.icon]}>
         {cta.signin.label}
       </Button>
-      <Button color="primary" variant="contained" size="small" sx={{ fontWeight: 700 }} onClick={() => navigate('/contact')} startIcon={navIconMap[cta.signup.icon]}>
+      <Button color="primary" variant="primary" size="small" sx={{ fontWeight: 700 }} onClick={() => navigate('/contact')} startIcon={navIconMap[cta.signup.icon]}>
         {cta.signup.label}
       </Button>
-      <ColorModeIconDropdown />
+      <ThemeToggle />
     </Box>
   );
 }

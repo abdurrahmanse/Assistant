@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import { Button } from '@repo/ui';
 import Stack from '@mui/material/Stack';
 import { Home, Compass } from 'lucide-react';
 import { useNavigate } from 'react-router';
@@ -46,7 +46,7 @@ export default function NotFoundPage() {
 
           <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2}>
             <Button 
-              variant="contained" 
+              variant="primary" 
               size="small" 
               startIcon={<Home size={20} />}
               onClick={() => navigate('/')}
@@ -55,7 +55,7 @@ export default function NotFoundPage() {
               Back to Home
             </Button>
             <Button 
-              variant="outlined" 
+              variant="outline" 
               size="small" 
               startIcon={<Compass size={20} />}
               onClick={() => navigate('/courses')}

@@ -1,9 +1,10 @@
+import Container from '@mui/material/Container';
 import { Handshake, Paperclip, Headset } from 'lucide-react';
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import Skeleton from '@mui/material/Skeleton';
+import { Skeleton } from '@repo/ui';
 import MarketingLayout from '@/layouts/MarketingLayout';
 import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import { useContactFormMutation } from '@/features/landing/hooks/mutations/useLandingMutation';
@@ -19,6 +20,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
+        <Container maxWidth="lg">
           <Box sx={{ maxWidth: 900, mx: 'auto' }}>
             <Skeleton width="40%" height={80} sx={{ mb: 2 }} />
             <Skeleton width="60%" height={32} sx={{ mb: 10 }} />
@@ -27,6 +29,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
               <Grid size={{ xs: 12, md: 8 }}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: 2 }} /></Grid>
             </Grid>
           </Box>
+        </Container>
         </Box>
       </MarketingLayout>
     );
@@ -35,6 +38,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
+        <Container maxWidth="lg">
         <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
           
           <ContactHero heading={contact.heading} subheading={contact.subheading} />
@@ -63,6 +67,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
           </Grid>
           
         </Box>
+        </Container>
       </Box>
     </MarketingLayout>
   );
