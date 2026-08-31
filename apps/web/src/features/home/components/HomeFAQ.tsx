@@ -10,8 +10,8 @@ import {
   FAQHeader,
   FAQBox,
   FAQDetailText,
-} from './FAQ.styles';
-import { useLandingQuery } from '../hooks/queries/useLandingQuery';
+} from './HomeFAQ.styles';
+import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 export default function FAQ() {
   const [expanded, setExpanded] = React.useState<string[]>([]);

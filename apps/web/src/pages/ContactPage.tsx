@@ -1,62 +1,66 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import Grid from '@mui/material/Grid';
+import Skeleton from '@mui/material/Skeleton';
+
 import MarketingLayout from '@/layouts/MarketingLayout';
+import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import { useContactFormMutation } from '@/features/landing/hooks/mutations/useLandingMutation';
+
+import ContactInfo from '@/features/contact/components/ContactInfo';
+import ContactForm from '@/features/contact/components/ContactForm';
 
 export default function ContactPage(props: { disableCustomTheme?: boolean }) {
+  const { data: contact, isLoading } = useContactQuery();
+  const { mutate: submit, isPending, isSuccess, isError, error } = useContactFormMutation();
+
+  if (isLoading || !contact) {
+    return (
+      <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
+        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
+          
+            <Skeleton variant="rectangular" width="40%" height={50} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
+            <Grid container spacing={6}>
+              <Grid size={{ xs: 12, md: 5 }}>{[1, 2, 3, 4, 5].map((i) => <Skeleton key={i} height={60} sx={{ mb: 1 }} />)}</Grid>
+              <Grid size={{ xs: 12, md: 7 }}><Skeleton variant="rectangular" height={480} sx={{ borderRadius: 3 }} /></Grid>
+            </Grid>
+          
+        </Box>
+      </MarketingLayout>
+    );
+  }
+
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
-        <Container maxWidth="md">
-          <Typography variant="h1" sx={{ textAlign: 'center', mb: 2, fontSize: 'clamp(2.5rem, 8vw, 3.5rem)' }}>
-            Get in Touch
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ textAlign: 'center', mb: 8 }}>
-            Have questions about a course or need enterprise training? We are here to help.
-          </Typography>
+        
+          <Box sx={{ textAlign: 'center', mb: 8 }}>
+            <Typography variant="h2" sx={{ fontWeight: 900, mb: 2 }}>{contact.heading}</Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto' }}>
+              {contact.subheading}
+            </Typography>
+          </Box>
 
-          <Stack direction={{ xs: 'column', md: 'row' }} spacing={6}>
-            <Box sx={{ flex: 1 }}>
-              <Stack spacing={4}>
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                  <Box sx={{ p: 1.5, borderRadius: '12px', bgcolor: 'primary.main', color: 'primary.contrastText' }}>
-                    <Mail size={24} />
-                  </Box>
-                  <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Email Us</Typography>
-                    <Typography variant="body2" color="text.secondary">support@academy.com</Typography>
-                  </Box>
-                </Box>
-                
-                <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-                  <Box sx={{ p: 1.5, borderRadius: '12px', bgcolor: 'primary.main', color: 'primary.contrastText' }}>
-                    <Phone size={24} />
-                  </Box>
-                  <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Call Us</Typography>
-                    <Typography variant="body2" color="text.secondary">+1 (555) 123-4567</Typography>
-                  </Box>
-                </Box>
-              </Stack>
-            </Box>
-            
-            <Box sx={{ flex: 1, p: 4, borderRadius: '24px', bgcolor: (theme) => theme.palette.mode === 'dark' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.4)', backdropFilter: 'blur(16px)', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 30px rgba(0, 0, 0, 0.05)' }}>
-              <Stack spacing={3}>
-                <TextField label="Full Name" variant="outlined" fullWidth />
-                <TextField label="Email Address" variant="outlined" fullWidth />
-                <TextField label="Message" variant="outlined" multiline rows={4} fullWidth />
-                <Button variant="contained" size="large" endIcon={<Send size={18} />} sx={{ fontWeight: 800 }}>
-                  Send Message
-                </Button>
-              </Stack>
-            </Box>
-          </Stack>
-        </Container>
+          <Grid container spacing={6}>
+            {/* Left */}
+            <Grid size={{ xs: 12, md: 5 }}>
+              <ContactInfo contact={contact} />
+            </Grid>
+
+            {/* Right: form */}
+            <Grid size={{ xs: 12, md: 7 }}>
+              <ContactForm
+                contact={contact}
+                submit={submit}
+                isPending={isPending}
+                isSuccess={isSuccess}
+                isError={isError}
+                error={error}
+              />
+            </Grid>
+          </Grid>
+        
       </Box>
     </MarketingLayout>
   );

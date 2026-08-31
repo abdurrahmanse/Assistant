@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 
-export const TestimonialsContainer = styled(Container)(({ theme }) => ({
+export const TestimonialsContainer = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(8),
   position: 'relative',

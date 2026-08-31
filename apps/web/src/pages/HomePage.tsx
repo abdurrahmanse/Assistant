@@ -1,23 +1,23 @@
-import Divider from '@mui/material/Divider';
-import Hero from '@/features/landing/components/Hero';
-import CourseCatalog from '@/features/landing/components/CourseCatalog';
-import Highlights from '@/features/landing/components/Highlights';
-import Testimonials from '@/features/landing/components/Testimonials';
-import FAQ from '@/features/landing/components/FAQ';
+import CourseCatalog from '@/features/course/components/CourseCatalog';
+import HomeFAQ from '@/features/home/components/HomeFAQ';
+import HomeHero from '@/features/home/components/HomeHero';
+import HomeHighlights from '@/features/home/components/HomeHighlights';
+import HomeTestimonials from '@/features/home/components/HomeTestimonials';
 import MarketingLayout from '@/layouts/MarketingLayout';
+import Divider from '@mui/material/Divider';
 
 export default function MarketingPage(props: { disableCustomTheme?: boolean }) {
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-      <Hero />
+      <HomeHero />
       <div>
         <CourseCatalog />
         <Divider />
-        <Testimonials />
+        <HomeTestimonials />
         <Divider />
-        <Highlights />
+        <HomeHighlights />
         <Divider />
-        <FAQ />
+        <HomeFAQ />
       </div>
     </MarketingLayout>
   );

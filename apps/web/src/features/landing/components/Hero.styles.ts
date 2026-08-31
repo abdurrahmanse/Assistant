@@ -1,6 +1,6 @@
 import { styled, keyframes } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 
@@ -13,7 +13,7 @@ export const HeroWrapper = styled(Box)(({ theme }) => ({
   }),
 }));
 
-export const HeroContainer = styled(Container)(({ theme }) => ({
+export const HeroContainer = styled(Box)(({ theme }) => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
@@ -119,7 +119,7 @@ export const TrackIconWrapper = styled(Box)(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'center',
   width: '64px',
-  height: '64px',
+  minHeight: '64px',
   borderRadius: '16px',
   background: `linear-gradient(135deg, ${theme.palette.primary.light}20, ${theme.palette.primary.main}40)`,
   color: theme.palette.primary.main,

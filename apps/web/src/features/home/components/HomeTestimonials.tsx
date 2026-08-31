@@ -12,8 +12,8 @@ import {
   StyledGridItem,
   TestimonialCard,
   CardFooterBox,
-} from './Testimonials.styles';
-import { useLandingQuery } from '../hooks/queries/useLandingQuery';
+} from './HomeTestimonials.styles';
+import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 // Moved from static files:
 const darkModeLogos = [

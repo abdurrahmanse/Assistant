@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { styled } from "@mui/material/styles";
-import { LogIn, UserPlus, BookOpen, Mail, Home, Info, LayoutDashboard } from "lucide-react";
-import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -10,10 +8,24 @@ import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
 import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
-import { Menu, X as CloseIcon } from "lucide-react";
+import Box from '@mui/material/Box';
+import Skeleton from '@mui/material/Skeleton';
+import { Menu, X as CloseIcon, Home, BookOpen, Info, Mail, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
 import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
 import AssistantLogo from '@/components/AssistantLogo';
 import { useNavigate } from 'react-router';
+import { useNavQuery, useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+
+// Icon map driven entirely by the data layer
+const iconMap: Record<string, React.ReactNode> = {
+  Home: <Home size={18} />,
+  BookOpen: <BookOpen size={18} />,
+  Info: <Info size={18} />,
+  Mail: <Mail size={18} />,
+  LayoutDashboard: <LayoutDashboard size={18} />,
+  LogIn: <LogIn size={18} />,
+  UserPlus: <UserPlus size={18} />,
+};
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -35,10 +47,17 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
+  const { data: navData, isLoading: navLoading } = useNavQuery();
+  const { data: siteMeta } = useSiteMetaQuery();
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
-  };
+  const toggleDrawer = (newOpen: boolean) => () => setOpen(newOpen);
+
+  const portalUrl = siteMeta?.portalUrl ?? 'http://localhost:5174';
+  const signinUrl = siteMeta?.signinUrl ?? 'http://localhost:5174/signin';
+  const signupUrl = siteMeta?.signupUrl ?? 'http://localhost:5174/signup';
+
+  const navLinks = navData?.links ?? [];
+  const cta = navData?.cta ?? { portal: { label: 'My Portal', icon: 'LayoutDashboard' }, signin: { label: 'Sign in', icon: 'LogIn' }, signup: { label: 'Sign up free', icon: 'UserPlus' } };
 
   return (
     <AppBar
@@ -49,92 +68,67 @@ export default function AppAppBar() {
         bgcolor: 'transparent !important',
         backgroundImage: 'none !important',
         border: 'none !important',
-        outline: 'none !important',
-        backdropFilter: 'none !important',
-        WebkitBackdropFilter: 'none !important',
         mt: 'calc(var(--template-frame-height, 0px) + 28px)',
       }}
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0, cursor: 'pointer' }} onClick={() => navigate('/')}>
+          {/* Logo */}
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', cursor: 'pointer' }} onClick={() => navigate('/')}>
             <AssistantLogo />
           </Box>
-          
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/')} startIcon={<Home size={18} />}>
-              Home
-            </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/courses')} startIcon={<BookOpen size={18} />}>
-              Courses
-            </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/about')} startIcon={<Info size={18} />}>
-              About
-            </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/contact')} startIcon={<Mail size={18} />}>
-              Contact
-            </Button>
+
+          {/* Center nav — desktop */}
+          <Box sx={{ display: { xs: 'none', md: 'flex' }, position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
+            {navLoading
+              ? [1, 2, 3, 4].map((i) => <Skeleton key={i} width={70} height={32} sx={{ mx: 0.5 }} />)
+              : navLinks.map((link) => (
+                  <Button
+                    key={link.path}
+                    variant="text"
+                    color="info"
+                    size="small"
+                    sx={{ fontWeight: 600 }}
+                    onClick={() => navigate(link.path)}
+                    startIcon={iconMap[link.icon]}
+                  >
+                    {link.label}
+                  </Button>
+                ))}
           </Box>
 
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: { xs: 'none', md: 'flex' },
-              gap: 1,
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-            }}
-          >
-            <Button color="inherit" variant="text" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/dashboard')} startIcon={<LayoutDashboard size={18} />}>
-              Dashboard
+          {/* Right CTAs — desktop */}
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, gap: 1, alignItems: 'center', justifyContent: 'flex-end' }}>
+            <Button color="inherit" variant="text" size="small" sx={{ fontWeight: 600 }} href={portalUrl} startIcon={iconMap[cta.portal.icon]}>
+              {cta.portal.label}
             </Button>
-            <Button color="primary" variant="text" size="small" sx={{ fontWeight: 600 }} href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
-              Sign in
+            <Button color="primary" variant="text" size="small" sx={{ fontWeight: 600 }} href={signinUrl} startIcon={iconMap[cta.signin.icon]}>
+              {cta.signin.label}
+            </Button>
+            <Button color="primary" variant="contained" size="small" sx={{ fontWeight: 700 }} href={signupUrl} startIcon={iconMap[cta.signup.icon]}>
+              {cta.signup.label}
             </Button>
             <ColorModeIconDropdown />
           </Box>
+
+          {/* Mobile menu */}
           <Box sx={{ display: { xs: 'flex', md: 'none' }, gap: 1 }}>
             <ColorModeIconDropdown size="medium" />
-            <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}>
-              <Menu size={20} />
-            </IconButton>
-            <Drawer
-              anchor="top"
-              open={open}
-              onClose={toggleDrawer(false)}
-              slotProps={{
-                paper: {
-                  sx: {
-                    top: 'var(--template-frame-height, 0px)',
-                  },
-                },
-              }}
-            >
-              <Box sx={{ p: 2, backgroundColor: 'background.default' }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'flex-end',
-                  }}
-                >
-                  <IconButton onClick={toggleDrawer(false)}>
-                    <CloseIcon />
-                  </IconButton>
+            <IconButton aria-label="Menu button" onClick={toggleDrawer(true)}><Menu size={20} /></IconButton>
+            <Drawer anchor="top" open={open} onClose={toggleDrawer(false)} slotProps={{ paper: { sx: { top: 'var(--template-frame-height, 0px)' } } }}>
+              <Box sx={{ p: 2, bgcolor: 'background.default' }}>
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                  <IconButton onClick={toggleDrawer(false)}><CloseIcon /></IconButton>
                 </Box>
-
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/'); toggleDrawer(false)(); }}>Home</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/courses'); toggleDrawer(false)(); }}>Courses</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/about'); toggleDrawer(false)(); }}>About</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/contact'); toggleDrawer(false)(); }}>Contact</MenuItem>
-                <Divider sx={{ my: 3 }} />
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/dashboard'); toggleDrawer(false)(); }}>
-                  <LayoutDashboard size={18} style={{ marginRight: 8 }} /> Dashboard
-                </MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }}>
-                  <Button color="primary" variant="outlined" fullWidth href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
-                    Sign in
-                  </Button>
-                </MenuItem>
+                {navLinks.map((link) => (
+                  <MenuItem key={link.path} sx={{ fontWeight: 600 }} onClick={() => { navigate(link.path); toggleDrawer(false)(); }}>
+                    {link.label}
+                  </MenuItem>
+                ))}
+                <Divider sx={{ my: 2 }} />
+                <MenuItem><Button color="primary" variant="contained" fullWidth href={signupUrl} startIcon={iconMap[cta.signup.icon]}>{cta.signup.label}</Button></MenuItem>
+                <MenuItem><Button color="primary" variant="outlined" fullWidth href={signinUrl} startIcon={iconMap[cta.signin.icon]}>{cta.signin.label}</Button></MenuItem>
+                <MenuItem><Button color="inherit" variant="text" fullWidth href={portalUrl} startIcon={iconMap[cta.portal.icon]}>{cta.portal.label}</Button></MenuItem>
               </Box>
             </Drawer>
           </Box>

@@ -1,9 +1,9 @@
 import { styled } from '@mui/material/styles';
-import Container from '@mui/material/Container';
+
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-export const FAQContainer = styled(Container)(({ theme }) => ({
+export const FAQContainer = styled(Box)(({ theme }) => ({
   paddingTop: theme.spacing(4),
   paddingBottom: theme.spacing(8),
   position: 'relative',

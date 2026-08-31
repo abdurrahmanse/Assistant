@@ -10,11 +10,11 @@ const CoursesPage = React.lazy(() => import('@/pages/CoursesPage'));
 const CourseDetailPage = React.lazy(() => import('@/pages/CourseDetailPage'));
 const ContactPage = React.lazy(() => import('@/pages/ContactPage'));
 const AboutPage = React.lazy(() => import('@/pages/AboutPage'));
-const DashboardPage = React.lazy(() => import('@/pages/DashboardPage'));
-const LearnPage = React.lazy(() => import('@/pages/LearnPage'));
+const NotFoundPage = React.lazy(() => import('@/pages/NotFoundPage'));
+
 
 const PageLoader = () => (
-  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%' }}>
+  <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
     <CircularProgress />
   </Box>
 );
@@ -31,8 +31,7 @@ export default function App() {
             <Route path="/courses/:id" element={<CourseDetailPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/about" element={<AboutPage />} />
-            <Route path="/dashboard" element={<DashboardPage />} />
-            <Route path="/learn/:id" element={<LearnPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </BrowserRouter>
