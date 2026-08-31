@@ -1,3 +1,5 @@
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 import React from 'react';
 import Grid from '@mui/material/Grid';
 import { Reveal } from '@/components/Reveal';
@@ -11,18 +13,18 @@ export interface BlogGridProps {
 export function BlogGrid({ posts, isLoading }: BlogGridProps) {
   if (isLoading || !posts) {
     return (
-      <Grid container spacing={4}>
+      <Box sx={{ pb: 12 }}><Container maxWidth="lg"><Grid container spacing={4}>
         {[1, 2, 3].map(i => (
           <Grid size={{ xs: 12, md: 4 }} key={i}>
             <PostCard isLoading={true} />
           </Grid>
         ))}
-      </Grid>
+      </Grid></Container></Box>
     );
   }
 
   return (
-    <Grid container spacing={4}>
+    <Box sx={{ pb: 12 }}><Container maxWidth="lg"><Grid container spacing={4}>
       {posts.map((post: any, index: number) => (
         <Grid size={{ xs: 12, md: 4 }} key={post.id}>
           <Reveal delay={0.2 + (index * 0.15)} direction="up">
@@ -30,6 +32,6 @@ export function BlogGrid({ posts, isLoading }: BlogGridProps) {
           </Reveal>
         </Grid>
       ))}
-    </Grid>
+    </Grid></Container></Box>
   );
 }

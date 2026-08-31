@@ -29,15 +29,15 @@ export default function ContactInfo({ contact, isLoading }: ContactInfoProps) {
     <Stack spacing={6} sx={{ mt: 2 }}>
       {contact.contactInfo.slice(0, 3).map((item) => (
         <Stack key={item.label} direction="row" spacing={3} alignItems="center">
-          <Box sx={{ 
+          <Box sx={(theme) => ({ 
             width: 64, height: 64, borderRadius: '16px', 
             bgcolor: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(16px)',
             border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',
-            '[data-mui-color-scheme="dark"] &': { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' },
+            ...theme.applyStyles('dark', { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' }),
             display: 'flex', alignItems: 'center', justifyContent: 'center',
             color: 'primary.main', boxShadow: '4px 4px 0px rgba(99,102,241,1)',
             transform: 'rotate(-2deg)', transition: 'transform 0.2s', '&:hover': { transform: 'rotate(0deg)' }
-          }}>
+          })}>
             {iconMap[item.icon] || <Mail size={24} strokeWidth={1.5} />}
           </Box>
           <Box>

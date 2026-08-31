@@ -98,7 +98,7 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
               color="success" 
               variant="solid"
               size="small" 
-              sx={{ 
+              sx={(theme) => ({ 
                 position: 'absolute', 
                 top: -12, 
                 right: -32, 
@@ -108,8 +108,8 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
                 transform: 'rotate(12deg)',
                 boxShadow: '0 4px 12px rgba(16, 185, 129, 0.4)',
                 border: '2px solid white',
-                '[data-mui-color-scheme="dark"] &': { border: '2px solid #111' }
-              }} 
+                ...theme.applyStyles('dark', { border: '2px solid #111' })
+              })} 
             />
           </Box>
         </Reveal>
@@ -170,7 +170,7 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
                       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', my: 3 }}>
                         <Typography variant="h2" align="center" color="text.primary" sx={{ fontWeight: 900, letterSpacing: '-0.03em' }}>
                           {tier.title === 'Annual Subscription' || tier.title === 'Pro Plan' 
-                            ? (billingCycle === 'yearly' ? '$199' : '$19')
+                            ? (billingCycle === 'yearly' ? '$29' : '$3')
                             : tier.price?.replace('/mo', '').replace('/month', '')}
                         </Typography>
                         {(tier.title === 'Annual Subscription' || tier.title === 'Pro Plan' || tier.price?.includes('/')) && (

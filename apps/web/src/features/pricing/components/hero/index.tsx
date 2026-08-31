@@ -46,14 +46,11 @@ export function PricingHero({ title, subtitle, isLoading }: PricingHeroProps) {
               sx={{ fontWeight: 800, px: 1, py: 2.5, borderRadius: '20px', border: '2px solid' }} 
             />
           </Box>
-          <Typography variant="h1" sx={{ 
+          <Typography variant="h1" sx={(theme) => ({ 
             fontWeight: 900, mb: 3, lineHeight: 1.1, fontSize: 'clamp(3rem, 6vw, 4.5rem)',
-            background: 'linear-gradient(135deg, #111 0%, #666 100%)',
-            '[data-mui-color-scheme="dark"] &': { background: 'linear-gradient(135deg, #fff 0%, #aaa 100%)' },
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
+            color: 'text.primary',
             letterSpacing: '-0.02em'
-          }}>
+          })}>
             {title}
           </Typography>
           <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 680, mx: 'auto', fontSize: '1.25rem', lineHeight: 1.6, fontWeight: 500 }}>

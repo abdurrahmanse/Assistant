@@ -1,5 +1,4 @@
 import React from 'react';
-import Container from '@mui/material/Container';
 import { useBlogQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import MarketingLayout from '@/layouts/MarketingLayout';
 import { BlogHero } from '@/features/blog/components/hero';
@@ -10,12 +9,8 @@ export default function BlogPage() {
 
   return (
     <MarketingLayout>
-      <Container maxWidth="lg">
-        <BlogHero />
-        <Container maxWidth="lg" sx={{ mb: 12, px: { xs: 0, sm: 2 } }}>
-          <BlogGrid posts={blog} isLoading={isLoading} />
-        </Container>
-      </Container>
+      <BlogHero />
+      <BlogGrid posts={blog} isLoading={isLoading} />
     </MarketingLayout>
   );
 }

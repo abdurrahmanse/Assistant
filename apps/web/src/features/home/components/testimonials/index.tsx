@@ -9,13 +9,12 @@ import { useColorScheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { CardContent, Skeleton } from '@repo/ui';
 import { MutedText } from '@repo/ui/styled';
-import { MessageSquareQuote, Quote } from 'lucide-react';
+import { Container, MessageSquareQuote, Quote } from 'lucide-react';
 import {
   CardFooterBox,
   StyledGridItem,
   TestimonialCard,
-  TestimonialsContainer,
-  TestimonialsHeader,
+  TestimonialsHeader
 } from './styles';
 
 // Moved from static files:
@@ -61,7 +60,7 @@ export default function Testimonials() {
 
   if (isLoading || !data) {
     return (
-      <TestimonialsContainer id="testimonials">
+      <Container id="testimonials">
 
         <Box sx={{ textAlign: 'center', mb: 8 }}>
           <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
@@ -74,15 +73,15 @@ export default function Testimonials() {
             </Grid>
           ))}
         </Grid>
+      </Container>
 
-      </TestimonialsContainer>
     );
   }
 
   const { testimonials } = data;
 
   return (
-    <TestimonialsContainer id="testimonials">
+    <Container id="testimonials">
 
       <Reveal delay={0.1}>
         <TestimonialsHeader>
@@ -118,6 +117,6 @@ export default function Testimonials() {
           </StyledGridItem>
         ))}
       </Grid>
-    </TestimonialsContainer>
+    </Container>
   );
 }

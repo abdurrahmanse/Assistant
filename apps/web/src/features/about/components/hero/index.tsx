@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Skeleton } from '@repo/ui';
@@ -14,20 +15,24 @@ export function AboutHero({ hero, isLoading }: AboutHeroProps) {
   if (isLoading || !hero) {
     return (
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center' }}>
+      <Container maxWidth="lg">
         <Skeleton variant="rectangular" width="40%" height={60} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
         <Skeleton variant="text" width="60%" height={30} sx={{ mx: 'auto' }} />
-      </Box>
+      </Container>
+    </Box>
     );
   }
 
   return (
     <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center' }}>
+      <Container maxWidth="lg">
       <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1, whiteSpace: 'pre-line' }}>
         {hero.title}
       </Typography>
       <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 680, mx: 'auto', fontSize: '1rem', lineHeight: 1.7 }}>
         {hero.subtitle}
       </Typography>
+      </Container>
     </Box>
   );
 }

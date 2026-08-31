@@ -1,3 +1,4 @@
+import Container from '@mui/material/Container';
 import { Users, Globe, Award, TrendingUp } from 'lucide-react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -38,41 +39,41 @@ const statIcons = [<Users size={32} color="var(--template-palette-primary-main)"
 export function AboutStats({ stats, isLoading }: AboutStatsProps) {
   if (isLoading || !stats) {
     return (
-      <Grid container spacing={3} sx={{ mb: 12 }}>
+      <Box sx={{ py: 6 }}><Container maxWidth="lg"><Grid container spacing={3}>
         {[1, 2, 3, 4].map((i) => (
           <Grid size={{ xs: 6, md: 3 }} key={i}>
             <Skeleton variant="rectangular" height={160} sx={{ borderRadius: '24px' }} />
           </Grid>
         ))}
-      </Grid>
+      </Grid></Container></Box>
     );
   }
 
   return (
-    <Grid container spacing={3} sx={{ mb: 6 }}>
+    <Box sx={{ py: 6 }}><Container maxWidth="lg"><Grid container spacing={3}>
       {stats.map((s, i) => (
         <Grid size={{ xs: 6, md: 3 }} key={s.label}>
-          <Box sx={{ 
+          <Box sx={(theme) => ({ 
             textAlign: 'center', p: 3, 
             borderRadius: '24px', 
             bgcolor: 'rgba(255,255,255,0.6)',
 backdropFilter: 'blur(24px)',
             border: '2px solid', 
             borderColor: 'rgba(0,0,0,0.1)',
-'[data-mui-color-scheme="dark"] &': { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' },
+...theme.applyStyles('dark', { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' }),
             transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
             '&:hover': {
               transform: 'translateY(-6px) rotate(1deg)',
               boxShadow: '6px 6px 0px rgba(99,102,241,1)',
               borderColor: 'primary.main',
             }
-          }}>
+          })}>
             <Box sx={{ mb: 2 }}>{statIcons[i % statIcons.length]}</Box>
             <Typography variant="h3" sx={{ fontWeight: 900, color: 'primary.main' }}><SmartCounter text={s.value} /></Typography>
             <Typography variant="body2" color="text.secondary" fontWeight={600}>{s.label}</Typography>
           </Box>
         </Grid>
       ))}
-    </Grid>
+    </Grid></Container></Box>
   );
 }

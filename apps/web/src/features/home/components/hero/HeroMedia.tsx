@@ -25,13 +25,13 @@ export function HeroMedia({ heroData }: HeroMediaProps) {
     <Box sx={{ position: 'relative', width: '100%', maxWidth: { xs: 280, sm: 320, md: 360 }, mx: 'auto' }}>
       
       {/* Main Reels Video Container */}
-      <Box sx={{
+      <Box sx={(theme) => ({
         position: 'relative', borderRadius: '32px', overflow: 'hidden',
-        boxShadow: '0 30px 80px rgba(0,0,0,0.15)', '[data-mui-color-scheme="dark"] &': { boxShadow: '0 30px 80px rgba(0,0,0,0.6)' },
+        boxShadow: '0 30px 80px rgba(0,0,0,0.15)', ...theme.applyStyles('dark', { boxShadow: '0 30px 80px rgba(0,0,0,0.6)' }),
         border: '8px solid', borderColor: 'background.paper', aspectRatio: '9/16',
         bgcolor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center',
         '&::before': { content: '""', position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0))', zIndex: 2, pointerEvents: 'none' }
-      }}>
+      })}>
         {media?.type === 'video' ? (
           <video autoPlay muted loop playsInline poster={media.poster} style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
             <source src={media.url} type="video/mp4" />

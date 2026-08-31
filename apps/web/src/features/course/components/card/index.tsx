@@ -25,13 +25,13 @@ export interface CourseCardProps {
 export function CourseCard({ course, enrollFreeLabel, enrollPremiumLabel }: CourseCardProps) {
   const navigate = useNavigate();
   return (
-    <Box onClick={() => navigate(`/courses/${course.slug || course.id}`)} sx={{
+    <Box onClick={() => navigate(`/courses/${course.slug || course.id}`)} sx={(theme) => ({
       height: '100%', display: 'flex', flexDirection: 'column',
       borderRadius: '24px', 
       border: '2px solid', 
       borderColor: 'rgba(0,0,0,0.1)',
-bgcolor: 'rgba(255,255,255,0.6)',
-'[data-mui-color-scheme="dark"] &': { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' },
+      bgcolor: 'rgba(255,255,255,0.6)',
+      ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' }),
       backdropFilter: 'blur(24px)',
       cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', overflow: 'hidden',
       position: 'relative',
@@ -41,8 +41,8 @@ bgcolor: 'rgba(255,255,255,0.6)',
         borderColor: 'primary.main',
         '& .course-thumbnail': { transform: 'scale(1.08) rotate(1deg)' },
         '& .course-icon': { transform: 'scale(1.1) translateY(-4px)' }
-      },
-    }}>
+      }
+    })}>
       <Box sx={{ width: '100%', aspectRatio: '16/9', position: 'relative', overflow: 'hidden', p: 1.5 }}>
         <Box sx={{ width: '100%', height: '100%', borderRadius: '16px', overflow: 'hidden', position: 'relative' }}>
           {course.thumbnail ? (
@@ -83,7 +83,7 @@ bgcolor: 'rgba(255,255,255,0.6)',
           {course.description}
         </Typography>
         
-        <Box sx={{ borderTop: '2px dashed', borderColor: 'rgba(0,0,0,0.1)', '[data-mui-color-scheme="dark"] &': { borderColor: 'rgba(255,255,255,0.1)' }, pt: 2, mt: 'auto' }}>
+        <Box sx={(theme) => ({ borderTop: '2px dashed', borderColor: 'rgba(0,0,0,0.1)', ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)' }), pt: 2, mt: 'auto' })}>
           <Stack direction="row" justifyContent="space-between" alignItems="center">
             <Stack direction="row" spacing={2}>
               {course.rating && (

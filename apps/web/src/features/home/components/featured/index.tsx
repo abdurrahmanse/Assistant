@@ -41,12 +41,12 @@ export default function FeaturedCourse() {
         <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
           {/* Left: Huge Video/Thumbnail */}
           <Grid size={{ xs: 12, md: 6 }}>
-            <Box sx={{
+            <Box sx={(theme) => ({
               position: 'relative', borderRadius: '32px', overflow: 'hidden',
               boxShadow: '8px 8px 0px rgba(99,102,241,1)',
-              border: '2px solid', borderColor: 'rgba(0,0,0,0.1)', '[data-mui-color-scheme="dark"] &': { borderColor: 'rgba(255,255,255,0.1)' },
+              border: '2px solid', borderColor: 'rgba(0,0,0,0.1)', ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)' }),
               aspectRatio: '4/3', bgcolor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center'
-            }}>
+            })}>
               {course.previewVideo ? (
                 <video autoPlay muted loop playsInline poster={course.thumbnail} style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
                   <source src={course.previewVideo} type="video/mp4" />

@@ -1,11 +1,8 @@
-import MarketingLayout from '@/layouts/MarketingLayout';
+import FAQ from '@/features/home/components/faq';
+import FeaturedCourse from '@/features/home/components/featured';
 import HomeHero from '@/features/home/components/hero';
 import { TechMarquee } from '@/features/home/components/hero/TechMarquee';
-import FeaturedCourse from '@/features/home/components/featured';
-import HowItWorks from '@/features/home/components/how-it-works';
-import InstructorProfile from '@/features/home/components/instructor';
-import Testimonials from '@/features/home/components/testimonials';
-import FAQ from '@/features/home/components/faq';
+import MarketingLayout from '@/layouts/MarketingLayout';
 
 
 export default function MarketingPage(props: { disableCustomTheme?: boolean }) {
@@ -13,12 +10,9 @@ export default function MarketingPage(props: { disableCustomTheme?: boolean }) {
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       <HomeHero />
       <TechMarquee />
-      <HowItWorks />
       <FeaturedCourse />
-      <InstructorProfile />
-      <Testimonials />
       <FAQ />
-      
+
     </MarketingLayout>
   );
 }
