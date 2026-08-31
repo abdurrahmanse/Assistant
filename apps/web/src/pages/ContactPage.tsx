@@ -9,6 +9,7 @@ import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuer
 import { useContactFormMutation } from '@/features/landing/hooks/mutations/useLandingMutation';
 import ContactInfo from '@/features/contact/components/info';
 import ContactForm from '@/features/contact/components/form';
+import { ContactHero } from '@/features/contact/components/hero';
 
 export default function ContactPage(props: { disableCustomTheme?: boolean }) {
   const { data: contact, isLoading } = useContactQuery();
@@ -17,7 +18,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
   if (isLoading || !contact) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-        <Box sx={{ pt: { xs: 8, md: 12 }, pb: 12, }}>
+        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
           <Box sx={{ maxWidth: 900, mx: 'auto' }}>
             <Skeleton width="40%" height={80} sx={{ mb: 2 }} />
             <Skeleton width="60%" height={32} sx={{ mb: 10 }} />
@@ -33,18 +34,10 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
 
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-      <Box sx={{ pt: { xs: 8, md: 12 }, pb: 12, }}>
+      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, }}>
         <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
           
-          <Box sx={{ mb: { xs: 4, md: 6 } }}>
-            <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(2rem, 5vw, 3.5rem)', letterSpacing: '-0.03em', mb: 3 }}>
-              <Handshake size={64} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginRight: '16px', transform: 'translateY(-8px) rotate(-10deg)' }} />
-              {contact.heading}
-            </Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 600, fontWeight: 400, fontSize: '1.2rem', lineHeight: 1.6 }}>
-              {contact.subheading}
-            </Typography>
-          </Box>
+          <ContactHero heading={contact.heading} subheading={contact.subheading} />
 
           <Grid container spacing={{ xs: 8, md: 12 }}>
             <Grid size={{ xs: 12, md: 5 }}>

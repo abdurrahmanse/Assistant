@@ -37,7 +37,7 @@ export const LANDING_MOCK_DATA = {
       { label: 'Home', path: '/', icon: 'Home' },
       { label: 'Courses', path: '/courses', icon: 'BookOpen' },
       { label: 'About', path: '/about', icon: 'Info' },
-      
+      { label: 'Pricing', path: '/pricing', icon: 'CreditCard' },
     ],
     cta: {
       portal: { label: 'My Portal', icon: 'LayoutDashboard' },

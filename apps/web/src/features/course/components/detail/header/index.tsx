@@ -1,12 +1,12 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
-import Chip from '@mui/material/Chip';
-import Avatar from '@mui/material/Avatar';
-import { Star, Users, Clock, Layers, Zap, ListChecks, PlayCircle, BookOpen, Award, CheckCircle2, AlertCircle } from 'lucide-react';
-import type { CourseItem } from '@repo/api-client';
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import type { CourseItem } from '@repo/api-client';
+import { AlertCircle, Award, BookOpen, CheckCircle2, Clock, Layers, ListChecks, PlayCircle, Star, Users, Zap } from 'lucide-react';
+import * as React from 'react';
 
 const includeIconMap: Record<string, React.ReactNode> = {
   PlayCircle: <PlayCircle size={18} />,
@@ -31,8 +31,8 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
         {course.stack && <Chip label={course.stack} variant="outlined" sx={{ fontWeight: 700, borderRadius: '6px', borderStyle: 'dashed' }} />}
       </Stack>
 
-      <Typography variant="h2" sx={{ fontWeight: 900, mb: 2, lineHeight: 1.15, fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>{course.title}</Typography>
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 4, fontSize: '1.2rem', lineHeight: 1.7 }}>{course.description}</Typography>
+      <Typography variant="h2" sx={{ fontWeight: 900, mb: 2, lineHeight: 1.15, }}>{course.title}</Typography>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 4, fontSize: '1rem', lineHeight: 1.7 }}>{course.description}</Typography>
 
       <Stack direction={{ xs: 'column', md: 'row' }} spacing={4} sx={{ mb: 5 }}>
         {/* Includes Section */}
@@ -109,19 +109,7 @@ export function CourseHeader({ course, copy, totalLessons }: CourseHeaderProps) 
         </Stack>
       </Stack>
 
-      {course.instructor && (
-        <Stack direction="row" alignItems="center" spacing={2} sx={{ p: 2.5, borderRadius: '16px' }}>
-          <Avatar src="/static/images/avatar/1.jpg" sx={{ bgcolor: 'primary.main', width: 56, height: 56, fontWeight: 900 }}>
-            {course.instructor.charAt(0)}
-          </Avatar>
-          <Box>
-            <Typography variant="caption" color="text.secondary" fontWeight={600} sx={{ textTransform: 'uppercase', letterSpacing: 1 }}>
-              {copy.instructorLabel}
-            </Typography>
-            <Typography variant="subtitle1" fontWeight={800} sx={{ fontSize: '1.1rem' }}>{course.instructor}</Typography>
-          </Box>
-        </Stack>
-      )}
+      
     </Box>
   );
 }

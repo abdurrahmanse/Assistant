@@ -64,7 +64,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       {/* Hero Section */}
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 6, sm: 10 }, position: 'relative', overflow: 'hidden' }}>
+      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, position: 'relative', overflow: 'hidden' }}>
         <Box sx={{ position: 'absolute', top: 0, left: 0, right: 0, height: 4, background: course.gradient || 'primary.main' }} />
         
           <Button startIcon={<ArrowLeft size={18} />} onClick={() => navigate('/courses')} sx={{ mb: 4, fontWeight: 700, color: 'text.secondary', textTransform: 'none' }}>

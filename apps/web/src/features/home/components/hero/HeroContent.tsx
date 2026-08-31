@@ -31,7 +31,7 @@ export function HeroContent({ heroData }: HeroContentProps) {
         sx={{ fontWeight: 800, mb: 3, borderRadius: '8px', borderWidth: 2 }}
       />
 
-      <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(2.5rem, 6vw, 4rem)', lineHeight: 1.1, mb: 3, letterSpacing: '-0.02em' }}>
+      <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(3rem, 6vw, 4.5rem)', lineHeight: 1.1, mb: 3, letterSpacing: '-0.02em' }}>
         {heroData.titlePrefix} <br />
         <Typography component="span" variant="inherit" sx={{
           color: 'primary.main', position: 'relative',
@@ -45,7 +45,7 @@ export function HeroContent({ heroData }: HeroContentProps) {
         <Rocket size={48} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginLeft: '12px', transform: 'translateY(-8px) rotate(15deg)' }} />
       </Typography>
 
-      <Typography variant="body1" color="text.secondary" sx={{ mb: 6, lineHeight: 1.6, maxWidth: 480 }}>
+      <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1rem', lineHeight: 1.6, maxWidth: 480 }}>
         {heroData.subtitle}
       </Typography>
 
