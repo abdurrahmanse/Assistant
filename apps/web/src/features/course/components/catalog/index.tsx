@@ -1,6 +1,6 @@
 import { useCoursesQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Box from '@mui/material/Box';
-import { Button } from '@repo/ui';
+import { Button, Section } from '@repo/ui';
 import Grid from '@mui/material/Grid';
 import { Skeleton } from '@repo/ui';
 import Typography from '@mui/material/Typography';
@@ -18,7 +18,7 @@ export default function CourseCatalog() {
 
   if (isLoading || !allData) {
     return (
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
+      <Section container noPadding sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
 
         <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 2, borderRadius: 2 }} />
         <Skeleton width="60%" height={24} sx={{ mx: 'auto', mb: 4 }} />
@@ -26,7 +26,7 @@ export default function CourseCatalog() {
           {[1, 2, 3].map((i) => <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: '20px' }} /></Grid>)}
         </Grid>
 
-      </Box>
+      </Section>
     );
   }
 
@@ -53,7 +53,7 @@ export default function CourseCatalog() {
   }
 
   return (
-    <Box id="courses" sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
+    <Section container noPadding id="courses" sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
 
       <Box sx={{ textAlign: 'center', mb: 6 }}>
         <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1 }}><Compass size={36} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginRight: '12px', transform: 'translateY(-4px)' }} />{allData.title}</Typography>
@@ -88,6 +88,6 @@ export default function CourseCatalog() {
         </Grid>
       )}
 
-    </Box>
+    </Section>
   );
 }

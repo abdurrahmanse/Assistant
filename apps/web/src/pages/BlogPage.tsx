@@ -29,6 +29,7 @@ export default function BlogPage() {
             Deep dives into modern web architecture, performance optimization, and scalable systems.
           </Typography>
         </Reveal>
+        </Container>
       </Box>
 
       <Container maxWidth="lg" sx={{ mb: 12 }}>

@@ -30,6 +30,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, }}>
+          <Container maxWidth="lg">
           
             <Skeleton width={140} height={36} sx={{ mb: 4 }} />
             <Stack direction={{ xs: 'column', md: 'row' }} spacing={6}>
@@ -52,6 +53,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
         <Box sx={{ pt: { xs: 14, sm: 20 }, pb: 8, textAlign: 'center' }}>
+          <Container maxWidth="lg">
           
             <Typography variant="h4" fontWeight={800} sx={{ mb: 2 }}>{copy?.courseNotFound}</Typography>
             <Button variant="primary" onClick={() => navigate('/courses')}>{copy?.browseCourses}</Button>
@@ -80,31 +82,36 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
             <CourseEnrollmentCard course={course} copy={copy} totalLessons={totalLessons} />
           </Stack>
         
+      </Container>
       </Box>
 
       {/* Topics / Tags Bar */}
       {course.tags && course.tags.length > 0 && (
         <Box sx={{ borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider', py: 2 }}>
           
-            <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1, alignItems: 'center' }}>
+            <Container maxWidth="lg">
+          <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1, alignItems: 'center' }}>
               <Typography variant="body2" color="text.secondary" fontWeight={600}>{copy.topicsLabel}</Typography>
               {course.tags.map((tag) => <Chip key={tag} label={tag} size="small" variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />)}
             </Stack>
           
-        </Box>
+        </Container>
+      </Box>
       )}
 
       {/* Overview & Features Section */}
       <Box sx={{ py: { xs: 4, sm: 6 }, borderBottom: '1px solid', borderColor: 'divider' }}>
         
+          <Container maxWidth="lg">
           <CourseOverview course={course} copy={copy} totalLessons={totalLessons} />
           <CourseFeatures course={course} copy={copy} />
         
+      </Container>
       </Box>
 
       {/* Curriculum Section */}
       <Box sx={{ py: { xs: 4, sm: 6 }, }}>
-        
+        <Container maxWidth="lg">
           <Box>
             <CourseCurriculum course={course} copy={copy} totalLessons={totalLessons} />
           </Box>
