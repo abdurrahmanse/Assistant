@@ -2,7 +2,7 @@ import * as React from 'react';
 import { GridActionsCellItem } from "@mui/x-data-grid";
 import type { GridColDef } from '@mui/x-data-grid';
 import { Edit, Trash2 } from "lucide-react";
-import type { Employee } from '@/features/crud/data/employees';
+import type { Employee } from '@repo/api-client';
 
 interface UseEmployeeColumnsProps {
   onEdit: (employee: Employee) => void;

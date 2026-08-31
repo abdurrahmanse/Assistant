@@ -5,3 +5,4 @@ export * from './data/checkout.mock';
 export * from './data/crud.mock';
 export * from './data/layout.mock';
 export * from './data/landing.mock';
+export * from './types';

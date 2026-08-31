@@ -1,16 +1,7 @@
  
+import type { Employee, EmployeeRole } from "@repo/api-client";
+
 import type { GridFilterModel, GridPaginationModel, GridSortModel } from '@mui/x-data-grid';
-
-type EmployeeRole = 'Market' | 'Finance' | 'Development';
-
-export interface Employee {
-  id: number;
-  name: string;
-  age: number;
-  joinDate: string;
-  role: EmployeeRole;
-  isFullTime: boolean;
-}
 
 const INITIAL_EMPLOYEES_STORE: Employee[] = [
   {

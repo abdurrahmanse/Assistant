@@ -1,3 +1,5 @@
+import type { Employee } from "@repo/api-client";
+
  
 import * as React from 'react';
 import { useNavigate } from 'react-router';
@@ -5,7 +7,7 @@ import useNotifications from '@/features/crud/hooks/useNotifications/useNotifica
 import {
   createOne as createEmployee,
   validate as validateEmployee,
-  type Employee,
+ 
 } from '@/features/crud/data/employees';
 import EmployeeForm, {
   type FormFieldValue,

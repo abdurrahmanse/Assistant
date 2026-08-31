@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+import { styled, keyframes } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -63,7 +63,6 @@ export const EmailFormStack = styled(Stack)(({ theme }) => ({
   },
 }));
 
-import { keyframes } from '@mui/system';
 
 const float = keyframes`
   0% { transform: translateY(0px); }

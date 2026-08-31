@@ -1,8 +1,5 @@
-export interface Product {
-  name: string;
-  desc: string;
-  price: string;
-}
+import type { Product } from "../types/ecommerce";
+
 
 export const CHECKOUT_MOCK_DATA = {
   products: [

@@ -1,8 +1,5 @@
-export interface AuthContentItem {
-  icon: string;
-  title: string;
-  description: string;
-}
+import type { AuthContentItem } from "../types/auth";
+
 
 export const mockAuthData = {
   signIn: {

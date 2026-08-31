@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { styled, alpha } from "@mui/material/styles";
-import { Star, MessageSquare, Sparkles, CreditCard, HelpCircle, ChevronRight, LogIn, UserPlus } from "lucide-react";
+import { styled } from "@mui/material/styles";
+import { LogIn, UserPlus, BookOpen, Mail, Home, Info, LayoutDashboard } from "lucide-react";
 import Box from '@mui/material/Box';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,6 +13,7 @@ import Drawer from '@mui/material/Drawer';
 import { Menu, X as CloseIcon } from "lucide-react";
 import ColorModeIconDropdown from '@repo/ui/shared-theme/ColorModeIconDropdown';
 import AssistantLogo from '@/components/AssistantLogo';
+import { useNavigate } from 'react-router';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -33,6 +34,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function AppAppBar() {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const toggleDrawer = (newOpen: boolean) => () => {
     setOpen(newOpen);
@@ -55,28 +57,22 @@ export default function AppAppBar() {
     >
       <Container maxWidth="lg">
         <StyledToolbar variant="dense" disableGutters>
-          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0 }}>
+          <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', px: 0, cursor: 'pointer' }} onClick={() => navigate('/')}>
             <AssistantLogo />
           </Box>
           
           <Box sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'center', position: 'absolute', left: '50%', transform: 'translateX(-50%)' }}>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Star size={18} />}>
-              Features
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/')} startIcon={<Home size={18} />}>
+              Home
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<MessageSquare size={18} />}>
-              Testimonials
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/courses')} startIcon={<BookOpen size={18} />}>
+              Courses
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<Sparkles size={18} />}>
-              Highlights
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/about')} startIcon={<Info size={18} />}>
+              About
             </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<CreditCard size={18} />}>
-              Pricing
-            </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600, minWidth: 0 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })} startIcon={<HelpCircle size={18} />}>
-              FAQ
-            </Button>
-            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600, minWidth: 0 }} startIcon={<ChevronRight size={18} />}>
-              Blog
+            <Button variant="text" color="info" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/contact')} startIcon={<Mail size={18} />}>
+              Contact
             </Button>
           </Box>
 
@@ -89,11 +85,11 @@ export default function AppAppBar() {
               justifyContent: 'flex-end',
             }}
           >
+            <Button color="inherit" variant="text" size="small" sx={{ fontWeight: 600 }} onClick={() => navigate('/dashboard')} startIcon={<LayoutDashboard size={18} />}>
+              Dashboard
+            </Button>
             <Button color="primary" variant="text" size="small" sx={{ fontWeight: 600 }} href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>
               Sign in
-            </Button>
-            <Button color="primary" variant="contained" size="small" sx={{ fontWeight: 600 }} href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
-              Sign up
             </Button>
             <ColorModeIconDropdown />
           </Box>
@@ -122,20 +118,17 @@ export default function AppAppBar() {
                   }}
                 >
                   <IconButton onClick={toggleDrawer(false)}>
+                    <CloseIcon />
                   </IconButton>
                 </Box>
 
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('features')?.scrollIntoView({ behavior: 'smooth' })}>Features</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('testimonials')?.scrollIntoView({ behavior: 'smooth' })}>Testimonials</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('highlights')?.scrollIntoView({ behavior: 'smooth' })}>Highlights</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })}>Pricing</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }} onClick={() => document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' })}>FAQ</MenuItem>
-                <MenuItem sx={{ fontWeight: 600 }}>Blog</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/'); toggleDrawer(false)(); }}>Home</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/courses'); toggleDrawer(false)(); }}>Courses</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/about'); toggleDrawer(false)(); }}>About</MenuItem>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/contact'); toggleDrawer(false)(); }}>Contact</MenuItem>
                 <Divider sx={{ my: 3 }} />
-                <MenuItem sx={{ fontWeight: 600 }}>
-                  <Button color="primary" variant="contained" fullWidth href="http://localhost:5174/signup" startIcon={<UserPlus size={18} />}>
-                    Sign up
-                  </Button>
+                <MenuItem sx={{ fontWeight: 600 }} onClick={() => { navigate('/dashboard'); toggleDrawer(false)(); }}>
+                  <LayoutDashboard size={18} style={{ marginRight: 8 }} /> Dashboard
                 </MenuItem>
                 <MenuItem sx={{ fontWeight: 600 }}>
                   <Button color="primary" variant="outlined" fullWidth href="http://localhost:5174/signin" startIcon={<LogIn size={18} />}>

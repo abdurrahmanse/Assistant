@@ -1,3 +1,5 @@
+import type { Employee } from "@repo/api-client";
+
  
  
 import * as React from 'react';
@@ -17,7 +19,7 @@ import useNotifications from '@/features/crud/hooks/useNotifications/useNotifica
 import {
   deleteOne as deleteEmployee,
   getMany as getEmployees,
-  type Employee,
+ 
 } from '@/features/crud/data/employees';
 import PageContainer from '@/layouts/CrudLayout/PageContainer';
 import { useEmployeeColumns } from './useEmployeeColumns';

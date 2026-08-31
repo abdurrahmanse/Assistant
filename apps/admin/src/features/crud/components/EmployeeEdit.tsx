@@ -1,3 +1,5 @@
+import type { Employee } from "@repo/api-client";
+
  
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
@@ -9,7 +11,7 @@ import {
   getOne as getEmployee,
   updateOne as updateEmployee,
   validate as validateEmployee,
-  type Employee,
+ 
 } from '@/features/crud/data/employees';
 import EmployeeForm, {
   type FormFieldValue,

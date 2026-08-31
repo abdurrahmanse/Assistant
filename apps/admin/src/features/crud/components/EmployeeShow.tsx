@@ -1,3 +1,5 @@
+import type { Employee } from "@repo/api-client";
+
  
 import * as React from 'react';
 import Alert from '@mui/material/Alert';
@@ -17,7 +19,7 @@ import useNotifications from '@/features/crud/hooks/useNotifications/useNotifica
 import {
   deleteOne as deleteEmployee,
   getOne as getEmployee,
-  type Employee,
+ 
 } from '@/features/crud/data/employees';
 import PageContainer from '@/layouts/CrudLayout/PageContainer';
 

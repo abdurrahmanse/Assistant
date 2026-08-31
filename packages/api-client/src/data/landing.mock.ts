@@ -1,35 +1,4 @@
-export interface FeatureItem {
-  iconName: string;
-  title: string;
-  description: string;
-  imageLight?: string;
-  imageDark?: string;
-}
-export interface HighlightItem {
-  iconName: string;
-  title: string;
-  description: string;
-}
-export interface PricingTier {
-  title: string;
-  subheader?: string;
-  price: string;
-  description: string[];
-  buttonText: string;
-  buttonVariant: 'outlined' | 'contained';
-  buttonColor: 'primary' | 'secondary';
-}
-export interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
-}
-export interface TestimonialItem {
-  avatarSrc: string;
-  name: string;
-  occupation: string;
-  testimonial: string;
-}
+import type { CourseItem, HeroTrackItem, FeatureItem, HighlightItem, PricingTier, FAQItem, TestimonialItem } from "../types/landing";
 
 export const LANDING_MOCK_DATA = {
   hero: {
@@ -45,7 +14,19 @@ export const LANDING_MOCK_DATA = {
       { id: "fullstack", title: "Full Stack Engineer", description: "Master React, Node.js, and modern cloud architecture to build scalable web applications.", icon: "Code2" },
       { id: "datascience", title: "Data Scientist", description: "Harness Python, Machine Learning, and Big Data to extract actionable business insights.", icon: "Brain" },
       { id: "marketing", title: "Digital Marketing Growth", description: "Drive revenue with SEO, performance marketing, and data-driven conversion strategies.", icon: "TrendingUp" }
-    ]
+    ] as HeroTrackItem[]
+  },
+  
+  courses: {
+    title: 'Explore Our Curated Courses',
+    subtitle: 'From absolute beginner to advanced engineering, master the skills you need to succeed.',
+    items: [
+      { id: 1, title: 'HTML & CSS Foundations', type: 'Free', price: '$0', level: 'Beginner', icon: 'MonitorPlay', description: 'Start your journey into web development by mastering the building blocks of the web.' },
+      { id: 2, title: 'Advanced React Patterns', type: 'Premium', price: '$49', level: 'Advanced', icon: 'Code2', description: 'Master custom hooks, Suspense, and performance optimization for enterprise scale.' },
+      { id: 3, title: 'Data Science with Python', type: 'Premium', price: '$89', level: 'Intermediate', icon: 'Brain', description: 'Learn pandas, NumPy, and scikit-learn to analyze data and build predictive models.' },
+      { id: 4, title: 'Digital Marketing 101', type: 'Free', price: '$0', level: 'Beginner', icon: 'TrendingUp', description: 'Understand SEO, paid advertising, and content strategy basics.' },
+      { id: 5, title: 'Growth Hacking Masterclass', type: 'Premium', price: '$99', level: 'Advanced', icon: 'BarChart', description: 'Data-driven conversion strategies and viral loop engineering.' }
+    ] as CourseItem[]
   },
   logoCollection: {
     title: 'Trusted by professionals from',

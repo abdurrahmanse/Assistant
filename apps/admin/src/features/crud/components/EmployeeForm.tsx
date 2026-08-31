@@ -20,7 +20,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from 'react-router';
 import dayjs, { Dayjs } from 'dayjs';
-import type { Employee } from '@/features/crud/data/employees';
+import type { Employee } from '@repo/api-client';
 
 export interface EmployeeFormState {
   values: Partial<Omit<Employee, 'id'>>;
