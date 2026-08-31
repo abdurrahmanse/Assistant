@@ -9,7 +9,7 @@ import {
   HighlightsContainer,
   HighlightsHeader,
   HighlightCard,
-} from './HomeHighlights.styles';
+} from './styles';
 import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 const iconMap: Record<string, React.ReactNode> = {

@@ -32,10 +32,12 @@ export function AboutValues({ heading, subheading, values }: AboutValuesProps) {
         {values.map((item) => (
           <Grid size={{ xs: 12, sm: 6, md: 4 }} key={item.title}>
             <Box sx={{
-              p: 4, height: '100%', borderRadius: '20px',
-              bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider',
-              transition: 'all 0.2s',
-              '&:hover': { transform: 'translateY(-4px)', boxShadow: 4, borderColor: 'primary.main' },
+              p: 4, height: '100%', borderRadius: '24px',
+              bgcolor: 'rgba(255,255,255,0.6)',
+              '[data-mui-color-scheme="dark"] &': { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' },
+              backdropFilter: 'blur(24px)', border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',
+              transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              '&:hover': { transform: 'translateY(-6px) rotate(-1deg)', boxShadow: '6px 6px 0px rgba(236,72,153,1)', borderColor: 'primary.main' },
             }}>
               <Box sx={{ color: 'primary.main', mb: 2 }}>{iconMap[item.icon]}</Box>
               <Typography variant="h6" sx={{ fontWeight: 800, mb: 1 }}>{item.title}</Typography>

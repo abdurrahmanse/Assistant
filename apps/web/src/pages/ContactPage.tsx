@@ -3,13 +3,11 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
-
 import MarketingLayout from '@/layouts/MarketingLayout';
 import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import { useContactFormMutation } from '@/features/landing/hooks/mutations/useLandingMutation';
-
-import ContactInfo from '@/features/contact/components/ContactInfo';
-import ContactForm from '@/features/contact/components/ContactForm';
+import ContactInfo from '@/features/contact/components/info';
+import ContactForm from '@/features/contact/components/form';
 
 export default function ContactPage(props: { disableCustomTheme?: boolean }) {
   const { data: contact, isLoading } = useContactQuery();
@@ -18,14 +16,15 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
   if (isLoading || !contact) {
     return (
       <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-        <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
-          
-            <Skeleton variant="rectangular" width="40%" height={50} sx={{ mx: 'auto', mb: 3, borderRadius: 2 }} />
-            <Grid container spacing={6}>
-              <Grid size={{ xs: 12, md: 5 }}>{[1, 2, 3, 4, 5].map((i) => <Skeleton key={i} height={60} sx={{ mb: 1 }} />)}</Grid>
-              <Grid size={{ xs: 12, md: 7 }}><Skeleton variant="rectangular" height={480} sx={{ borderRadius: 3 }} /></Grid>
+        <Box sx={{ pt: { xs: 16, md: 24 }, pb: 12, bgcolor: 'background.default' }}>
+          <Box sx={{ maxWidth: 900, mx: 'auto' }}>
+            <Skeleton width="40%" height={80} sx={{ mb: 2 }} />
+            <Skeleton width="60%" height={32} sx={{ mb: 10 }} />
+            <Grid container spacing={10}>
+              <Grid size={{ xs: 12, md: 4 }}><Skeleton variant="rectangular" height={300} sx={{ borderRadius: 2 }} /></Grid>
+              <Grid size={{ xs: 12, md: 8 }}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: 2 }} /></Grid>
             </Grid>
-          
+          </Box>
         </Box>
       </MarketingLayout>
     );
@@ -33,23 +32,30 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
 
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
-        
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="h2" sx={{ fontWeight: 900, mb: 2 }}>{contact.heading}</Typography>
-            <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto' }}>
+      <Box sx={{ pt: { xs: 16, md: 24 }, pb: 12, bgcolor: 'background.default' }}>
+        <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
+          
+          <Box sx={{ mb: { xs: 8, md: 12 } }}>
+            <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(3rem, 6vw, 4.5rem)', letterSpacing: '-0.03em', mb: 3 }}>
+              {contact.heading}
+            </Typography>
+            <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, fontWeight: 400, lineHeight: 1.6 }}>
               {contact.subheading}
             </Typography>
           </Box>
 
-          <Grid container spacing={6}>
-            {/* Left */}
+          <Grid container spacing={{ xs: 8, md: 12 }}>
             <Grid size={{ xs: 12, md: 5 }}>
+              <Typography variant="overline" color="text.secondary" fontWeight={800} letterSpacing={1.5}>
+                Get in touch
+              </Typography>
               <ContactInfo contact={contact} />
             </Grid>
 
-            {/* Right: form */}
             <Grid size={{ xs: 12, md: 7 }}>
+              <Typography variant="overline" color="text.secondary" fontWeight={800} letterSpacing={1.5} sx={{ display: 'block', mb: 4 }}>
+                Send a message
+              </Typography>
               <ContactForm
                 contact={contact}
                 submit={submit}
@@ -60,7 +66,8 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
               />
             </Grid>
           </Grid>
-        
+          
+        </Box>
       </Box>
     </MarketingLayout>
   );

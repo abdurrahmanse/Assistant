@@ -89,6 +89,15 @@ class LandingRepository {
   async updateLandingData(data: Partial<LandingMockData>): Promise<LandingMockData> {
     return apiClient.post<LandingMockData>('/landing', data, { ...LANDING_MOCK_DATA, ...data });
   }
+  /** Fetch instructor profile */
+  async getInstructor(): Promise<any> {
+    return (LANDING_MOCK_DATA as any).instructor;
+  }
+
+  /** Fetch how it works */
+  async getHowItWorks(): Promise<any> {
+    return (LANDING_MOCK_DATA as any).howItWorks;
+  }
 }
 
 export const landingRepository = new LandingRepository();

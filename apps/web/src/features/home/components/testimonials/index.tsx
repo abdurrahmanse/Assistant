@@ -12,7 +12,7 @@ import {
   StyledGridItem,
   TestimonialCard,
   CardFooterBox,
-} from './HomeTestimonials.styles';
+} from './styles';
 import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 // Moved from static files:

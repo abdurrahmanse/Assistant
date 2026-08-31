@@ -1,4 +1,4 @@
-import CourseCatalog from '@/features/course/components/CourseCatalog';
+import CourseCatalog from '@/features/course/components/catalog';
 import MarketingLayout from '@/layouts/MarketingLayout';
 
 export default function CoursesPage(props: { disableCustomTheme?: boolean }) {

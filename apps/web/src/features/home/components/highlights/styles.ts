@@ -34,15 +34,19 @@ export const HighlightsHeader = styled(Box)(({ theme }) => ({
 
 export const HighlightCard = styled(Stack)(({ theme }) => ({
   color: 'inherit',
-  padding: theme.spacing(3),
+  padding: theme.spacing(4),
   minHeight: '100%',
-  borderRadius: '16px',
-  border: `1px solid ${theme.palette.divider}`,
-  backgroundColor: (theme.vars || theme).palette.background.paper,
-  transition: 'transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease',
+  borderRadius: '24px',
+  border: '2px solid',
+  borderColor: 'rgba(0,0,0,0.1)',
+  ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)' }),
+  backgroundColor: 'rgba(255,255,255,0.6)',
+  ...theme.applyStyles('dark', { backgroundColor: 'rgba(20,20,25,0.6)' }),
+  backdropFilter: 'blur(24px)',
+  transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
   '&:hover': {
-    transform: 'translateY(-4px)',
-    boxShadow: theme.shadows[4],
+    transform: 'translateY(-6px) rotate(-1deg)',
+    boxShadow: '8px 8px 0px rgba(16,185,129,1)',
     borderColor: theme.palette.primary.main,
-  },
+  }
 }));

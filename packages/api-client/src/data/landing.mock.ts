@@ -543,6 +543,46 @@ export const LANDING_MOCK_DATA = {
   },
 
   // ── LOGO COLLECTION ───────────────────────────────────────────────────────
+
+  instructor: {
+    heading: "Meet Your Instructor",
+    subheading: "I've helped thousands of developers transition into senior roles and build production-grade applications.",
+    name: "Abdur Rahman",
+    title: "Senior Full-Stack Engineer & Architect",
+    bio: "Hey! I'm a passionate software engineer with over a decade of experience building scalable enterprise applications. I created this platform to cut through the noise and teach you the exact patterns, tools, and architectures used by top tech companies. No fluff, just real-world engineering.",
+    avatar: "https://i.pravatar.cc/500?img=11",
+    stats: [
+      { label: "Years Exp.", value: "10+" },
+      { label: "Students", value: "20k+" },
+      { label: "Companies", value: "15+" }
+    ],
+    socials: [
+      { platform: "Twitter", url: "#", icon: "Twitter" },
+      { platform: "GitHub", url: "#", icon: "GitHub" },
+      { platform: "LinkedIn", url: "#", icon: "LinkedIn" }
+    ]
+  },
+  howItWorks: {
+    heading: "The Path to Mastery",
+    subheading: "A proven, step-by-step process to take you from fundamentals to advanced engineering.",
+    steps: [
+      {
+        title: "1. Project-Based Learning",
+        description: "Forget boring lectures. We build real, production-ready applications from day one.",
+        icon: "Code2"
+      },
+      {
+        title: "2. Code Reviews & Feedback",
+        description: "Get your code reviewed by me. Learn best practices and avoid common pitfalls.",
+        icon: "MessageCircle"
+      },
+      {
+        title: "3. Enterprise Architecture",
+        description: "Master system design, scalable infrastructure, and CI/CD pipelines.",
+        icon: "Layers"
+      }
+    ]
+  },
   logoCollection: {
     title: 'Trusted by professionals from',
     logos: [

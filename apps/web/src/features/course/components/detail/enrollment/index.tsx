@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
-import { PlayCircle, CheckCircle2, ShieldCheck, Lock, BookOpen, Award, Zap } from 'lucide-react';
+import { PlayCircle, CheckCircle2, ShieldCheck, Lock, BookOpen, Award, Zap, ArrowRight } from 'lucide-react';
 import type { CourseItem } from '@repo/api-client';
 import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
@@ -26,9 +26,13 @@ export function CourseEnrollmentCard({ course, copy, totalLessons }: CourseEnrol
   return (
     <Box sx={{
       width: { xs: '100%', md: '400px' }, flexShrink: 0,
-      borderRadius: '24px', bgcolor: 'background.paper',
-      border: '1px solid', borderColor: 'divider', overflow: 'hidden',
-      boxShadow: (theme) => theme.palette.mode === 'dark' ? '0 30px 80px rgba(0,0,0,0.6)' : '0 30px 80px rgba(0,0,0,0.1)',
+      borderRadius: '24px', 
+      bgcolor: 'rgba(255,255,255,0.6)',
+backdropFilter: 'blur(24px)',
+      border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',
+'[data-mui-color-scheme="dark"] &': { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' },
+      overflow: 'hidden',
+      boxShadow: '8px 8px 0px rgba(99,102,241,1)',
     }}>
       <Box sx={{ width: '100%', aspectRatio: '16/9', position: 'relative', bgcolor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
         {course.previewVideo ? (
@@ -58,7 +62,7 @@ export function CourseEnrollmentCard({ course, copy, totalLessons }: CourseEnrol
           Ends soon! Limited time offer.
         </Typography>
         
-        <Button variant="contained" size="large" fullWidth sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none', fontSize: '1.1rem' }}>
+        <Button variant="contained" size="large" fullWidth endIcon={<ArrowRight size={20} />} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none', fontSize: '1.1rem' }}>
           {course.type === 'Free' ? copy.ctaFree : copy.ctaPremium}
         </Button>
         

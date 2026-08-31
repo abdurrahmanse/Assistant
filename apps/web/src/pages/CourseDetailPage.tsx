@@ -10,11 +10,11 @@ import MarketingLayout from '@/layouts/MarketingLayout';
 import { useParams, useNavigate } from 'react-router';
 import { useCourseByIdQuery, useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
-import { CourseHeader } from '@/features/course/components/detail/CourseHeader';
-import { CourseEnrollmentCard } from '@/features/course/components/detail/CourseEnrollmentCard';
-import { CourseOverview } from '@/features/course/components/detail/CourseOverview';
-import { CourseFeatures } from '@/features/course/components/detail/CourseFeatures';
-import { CourseCurriculum } from '@/features/course/components/detail/CourseCurriculum';
+import { CourseHeader } from '@/features/course/components/detail/header';
+import { CourseEnrollmentCard } from '@/features/course/components/detail/enrollment';
+import { CourseOverview } from '@/features/course/components/detail/overview';
+import { CourseFeatures } from '@/features/course/components/detail/features';
+import { CourseCurriculum } from '@/features/course/components/detail/curriculum';
 
 export default function CourseDetailPage(props: { disableCustomTheme?: boolean }) {
   const { id } = useParams<{ id: string }>();

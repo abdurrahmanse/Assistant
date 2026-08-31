@@ -1,24 +1,16 @@
-import CourseCatalog from '@/features/course/components/CourseCatalog';
-import HomeFAQ from '@/features/home/components/HomeFAQ';
-import HomeHero from '@/features/home/components/HomeHero';
-import HomeHighlights from '@/features/home/components/HomeHighlights';
-import HomeTestimonials from '@/features/home/components/HomeTestimonials';
 import MarketingLayout from '@/layouts/MarketingLayout';
-import Divider from '@mui/material/Divider';
+import HomeHero from '@/features/home/components/hero';
+import FeaturedCourse from '@/features/home/components/featured';
+import HowItWorks from '@/features/home/components/how-it-works';
+import InstructorProfile from '@/features/home/components/instructor';
 
 export default function MarketingPage(props: { disableCustomTheme?: boolean }) {
   return (
     <MarketingLayout disableCustomTheme={props.disableCustomTheme}>
       <HomeHero />
-      <div>
-        <CourseCatalog />
-        <Divider />
-        <HomeTestimonials />
-        <Divider />
-        <HomeHighlights />
-        <Divider />
-        <HomeFAQ />
-      </div>
+      <HowItWorks />
+      <FeaturedCourse />
+      <InstructorProfile />
     </MarketingLayout>
   );
 }

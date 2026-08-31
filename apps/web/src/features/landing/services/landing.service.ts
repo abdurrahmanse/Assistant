@@ -45,6 +45,8 @@ class LandingService {
 
   /** Testimonials section */
   getTestimonials = () => landingRepository.getTestimonials();
+  getInstructor = () => landingRepository.getInstructor();
+  getHowItWorks = () => landingRepository.getHowItWorks();
 
   /** FAQ section */
   getFaq = () => landingRepository.getFaq();

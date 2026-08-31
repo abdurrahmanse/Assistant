@@ -4,10 +4,14 @@ import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 import MarketingLayout from '@/layouts/MarketingLayout';
 import { useAboutQuery } from '@/features/landing/hooks/queries/useLandingQuery';
-import { AboutHero } from '@/features/about/components/AboutHero';
-import { AboutStats } from '@/features/about/components/AboutStats';
-import { AboutValues } from '@/features/about/components/AboutValues';
-import { AboutTeam } from '@/features/about/components/AboutTeam';
+import { AboutHero } from '@/features/about/components/hero';
+import { AboutStats } from '@/features/about/components/stats';
+import { AboutValues } from '@/features/about/components/values';
+import InstructorProfile from '@/features/home/components/instructor';
+import HomeHighlights from '@/features/home/components/highlights';
+import HomeTestimonials from '@/features/home/components/testimonials';
+import Divider from '@mui/material/Divider';
+
 
 export default function AboutPage(props: { disableCustomTheme?: boolean }) {
   const { data: about, isLoading } = useAboutQuery();
@@ -42,11 +46,11 @@ export default function AboutPage(props: { disableCustomTheme?: boolean }) {
             subheading={about.valuesSubheading} 
             values={about.values} 
           />
-          <AboutTeam 
-            heading={about.teamHeading} 
-            subheading={about.teamSubheading} 
-            team={about.team} 
-          />
+          <InstructorProfile />
+          <Divider sx={{ my: 8 }} />
+          <HomeHighlights />
+          <Divider sx={{ my: 8 }} />
+          <HomeTestimonials />
         
       </Box>
     </MarketingLayout>

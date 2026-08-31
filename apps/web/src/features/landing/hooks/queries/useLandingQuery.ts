@@ -123,3 +123,19 @@ export const useCourseDetailQuery = () =>
     queryFn: () => landingService.getCourseDetail(),
     staleTime: 1000 * 60 * 10,
   });
+
+export function useInstructorQuery() {
+  return useQuery({
+    queryKey: ['landing', 'instructor'],
+    queryFn: () => landingService.getInstructor(),
+    staleTime: 1000 * 60 * 60,
+  });
+}
+
+export function useHowItWorksQuery() {
+  return useQuery({
+    queryKey: ['landing', 'howItWorks'],
+    queryFn: () => landingService.getHowItWorks(),
+    staleTime: 1000 * 60 * 60,
+  });
+}

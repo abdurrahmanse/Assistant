@@ -4,13 +4,13 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import {
   FAQContainer,
   FAQHeader,
   FAQBox,
   FAQDetailText,
-} from './HomeFAQ.styles';
+} from './styles';
 import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 export default function FAQ() {
@@ -43,7 +43,8 @@ export default function FAQ() {
 
   return (
     <FAQContainer id="faq">
-      <FAQHeader variant="h4">
+      <FAQHeader variant="h4" sx={{ display: 'flex', alignItems: 'center', gap: 2, fontWeight: 900 }}>
+        <MessageCircleQuestion size={40} color="var(--template-palette-primary-main)" />
         {faq.title}
       </FAQHeader>
       <FAQBox>
@@ -52,13 +53,32 @@ export default function FAQ() {
             key={q.id}
             expanded={expanded.includes(q.id)}
             onChange={handleChange(q.id)}
+            sx={{
+              mb: 2,
+              borderRadius: '16px !important',
+              border: '2px solid',
+              borderColor: 'rgba(0,0,0,0.1)',
+bgcolor: 'rgba(255,255,255,0.6)',
+'[data-mui-color-scheme="dark"] &': { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' },
+              backdropFilter: 'blur(16px)',
+              '&:before': { display: 'none' },
+              transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
+              '&:hover': {
+                borderColor: 'primary.main',
+              },
+              ...(expanded.includes(q.id) && {
+                boxShadow: '4px 4px 0px rgba(99,102,241,1)',
+                borderColor: 'primary.main',
+                transform: 'translateX(-4px) translateY(-2px)',
+              })
+            }}
           >
             <AccordionSummary
               expandIcon={<ChevronDown size={20} />}
               aria-controls={`${q.id}-content`}
               id={`${q.id}-header`}
             >
-              <Typography variant="subtitle2">
+              <Typography variant="subtitle2" sx={{ fontWeight: 800 }}>
                 {q.question}
               </Typography>
             </AccordionSummary>

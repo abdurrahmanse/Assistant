@@ -5,8 +5,8 @@ import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import * as React from 'react';
-import { CourseCard } from './CourseCard';
-import { CourseFilters } from './CourseFilters';
+import { CourseCard } from '../card';
+import { CourseFilters } from '../filters';
 
 export default function CourseCatalog() {
   const [filterType, setFilterType] = React.useState<'All' | 'Free' | 'Premium'>('All');
