@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 import { MutedText } from '@repo/ui/styled';
 import {
   PricingContainer,
@@ -18,68 +19,41 @@ import {
   FeatureLineText,
   StyledCheckCircle,
 } from './Pricing.styles';
-
-const tiers = [
-  {
-    title: 'Free',
-    price: '0',
-    description: [
-      '10 users included',
-      '2 GB of storage',
-      'Help center access',
-      'Email support',
-    ],
-    buttonText: 'Sign up for free',
-    buttonVariant: 'outlined',
-    buttonColor: 'primary',
-  },
-  {
-    title: 'Professional',
-    subheader: 'Recommended',
-    price: '15',
-    description: [
-      '20 users included',
-      '10 GB of storage',
-      'Help center access',
-      'Priority email support',
-      'Dedicated team',
-      'Best deals',
-    ],
-    buttonText: 'Start now',
-    buttonVariant: 'contained',
-    buttonColor: 'secondary',
-  },
-  {
-    title: 'Enterprise',
-    price: '30',
-    description: [
-      '50 users included',
-      '30 GB of storage',
-      'Help center access',
-      'Phone & email support',
-    ],
-    buttonText: 'Contact us',
-    buttonVariant: 'outlined',
-    buttonColor: 'primary',
-  },
-];
+import { useLandingData } from '../hooks/useLandingData';
 
 export default function Pricing() {
+  const { data, isLoading } = useLandingData();
+
+  if (isLoading || !data) {
+    return (
+      <PricingContainer id="pricing">
+        <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 2 }} />
+        <Skeleton variant="text" width="60%" height={24} sx={{ mb: 4 }} />
+        <PricingGrid container spacing={3}>
+          {[1, 2, 3].map((i) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
+              <Skeleton variant="rectangular" width="100%" height={400} />
+            </Grid>
+          ))}
+        </PricingGrid>
+      </PricingContainer>
+    );
+  }
+
+  const { pricing } = data;
+
   return (
     <PricingContainer id="pricing">
       <PricingHeader>
         <Typography component="h2" variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
-          Pricing
+          {pricing.title}
         </Typography>
         <MutedText variant="body1">
-          Quickly build an effective pricing table for your potential customers with
-          this layout. <br />
-          It&apos;s built with default Material UI components with little
-          customization.
+          {pricing.subtitle}
         </MutedText>
       </PricingHeader>
       <PricingGrid container spacing={3}>
-        {tiers.map((tier) => {
+        {pricing.tiers.map((tier) => {
           const isProfessional = tier.title === 'Professional';
           return (
             <Grid
@@ -92,7 +66,7 @@ export default function Pricing() {
                     <Typography component="h3" variant="h6">
                       {tier.title}
                     </Typography>
-                    {isProfessional && (
+                    {isProfessional && tier.subheader && (
                       <Chip icon={<Sparkles size={20} />} label={tier.subheader} />
                     )}
                   </CardHeaderBox>

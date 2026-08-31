@@ -3,6 +3,7 @@ import CardContent from '@mui/material/CardContent';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import Skeleton from '@mui/material/Skeleton';
 import { useColorScheme } from '@mui/material/styles';
 import { MutedText } from '@repo/ui/styled';
 import {
@@ -12,52 +13,9 @@ import {
   TestimonialCard,
   CardFooterBox,
 } from './Testimonials.styles';
+import { useLandingData } from '../hooks/useLandingData';
 
-const userTestimonials = [
-  {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
-    name: 'Remy Sharp',
-    occupation: 'Senior Engineer',
-    testimonial:
-      "I absolutely love how versatile this product is! Whether I'm tackling work projects or indulging in my favorite hobbies, it seamlessly adapts to my changing needs. Its intuitive design has truly enhanced my daily routine, making tasks more efficient and enjoyable.",
-  },
-  {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
-    name: 'Travis Howard',
-    occupation: 'Lead Product Designer',
-    testimonial:
-      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
-  },
-  {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
-    name: 'Cindy Baker',
-    occupation: 'CTO',
-    testimonial:
-      'The level of simplicity and user-friendliness in this product has significantly simplified my life. I appreciate the creators for delivering a solution that not only meets but exceeds user expectations.',
-  },
-  {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
-    name: 'Julia Stewart',
-    occupation: 'Senior Engineer',
-    testimonial:
-      "I appreciate the attention to detail in the design of this product. The small touches make a big difference, and it's evident that the creators focused on delivering a premium experience.",
-  },
-  {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
-    name: 'John Smith',
-    occupation: 'Product Designer',
-    testimonial:
-      "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
-  },
-  {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
-    name: 'Daniel Wolf',
-    occupation: 'CDO',
-    testimonial:
-      "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
-  },
-];
-
+// Moved from static files:
 const darkModeLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d520d0517ae8e8ddf13_Bern-white.svg',
@@ -83,6 +41,7 @@ const logoStyle = {
 
 export default function Testimonials() {
   const { mode, systemMode } = useColorScheme();
+  const { data, isLoading } = useLandingData();
 
   let logos;
   if (mode === 'system') {
@@ -97,20 +56,36 @@ export default function Testimonials() {
     logos = darkModeLogos;
   }
 
+  if (isLoading || !data) {
+    return (
+      <TestimonialsContainer id="testimonials">
+        <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 2 }} />
+        <Skeleton variant="text" width="60%" height={24} sx={{ mb: 4 }} />
+        <Grid container spacing={2} sx={{ width: '100%' }}>
+          {[1, 2, 3, 4, 5, 6].map((i) => (
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
+              <Skeleton variant="rectangular" width="100%" height={150} />
+            </Grid>
+          ))}
+        </Grid>
+      </TestimonialsContainer>
+    );
+  }
+
+  const { testimonials } = data;
+
   return (
     <TestimonialsContainer id="testimonials">
       <TestimonialsHeader>
         <Typography component="h2" variant="h4" gutterBottom sx={{ color: 'text.primary' }}>
-          Testimonials
+          {testimonials.title}
         </Typography>
         <MutedText variant="body1">
-          See what our customers love about our products. Discover how we excel in
-          efficiency, durability, and satisfaction. Join us for quality, innovation,
-          and reliable support.
+          {testimonials.subtitle}
         </MutedText>
       </TestimonialsHeader>
       <Grid container spacing={2}>
-        {userTestimonials.map((testimonial, index) => (
+        {testimonials.items.map((testimonial, index) => (
           <StyledGridItem size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <TestimonialCard variant="outlined">
               <CardContent>
@@ -120,11 +95,11 @@ export default function Testimonials() {
               </CardContent>
               <CardFooterBox>
                 <CardHeader
-                  avatar={testimonial.avatar}
+                  avatar={<Avatar alt={testimonial.name} src={testimonial.avatarSrc} />}
                   title={testimonial.name}
                   subheader={testimonial.occupation}
                 />
-                <img src={logos[index]} alt={`Logo ${index + 1}`} style={logoStyle} />
+                <img src={logos[index % logos.length]} alt={`Logo ${index + 1}`} style={logoStyle} />
               </CardFooterBox>
             </TestimonialCard>
           </StyledGridItem>

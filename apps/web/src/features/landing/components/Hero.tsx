@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import InputAdornment from "@mui/material/InputAdornment";
 import { Mail, Rocket } from "lucide-react";
 import Typography from '@mui/material/Typography';
+import Skeleton from '@mui/material/Skeleton';
 import { VisuallyHidden, GradientText } from '@repo/ui/styled';
 import {
   HeroWrapper,
@@ -14,22 +15,37 @@ import {
   HeroSubtitle,
   EmailFormStack,
 } from './Hero.styles';
+import { useLandingData } from '../hooks/useLandingData';
 
 export default function Hero() {
+  const { data, isLoading } = useLandingData();
+
+  if (isLoading || !data) {
+    return (
+      <HeroWrapper id="hero">
+        <HeroContainer>
+          <Skeleton variant="rectangular" width="60%" height={80} sx={{ mb: 2 }} />
+          <Skeleton variant="text" width="80%" height={40} />
+          <Skeleton variant="text" width="70%" height={40} sx={{ mb: 4 }} />
+        </HeroContainer>
+      </HeroWrapper>
+    );
+  }
+
+  const { hero } = data;
+
   return (
     <HeroWrapper id="hero">
       <HeroContainer>
         <HeroContentStack spacing={2} useFlexGap>
           <HeroTitle variant="h1">
-            Our&nbsp;latest&nbsp;
+            {hero.titlePrefix}&nbsp;
             <GradientText component="span" variant="h1" sx={{ fontSize: 'inherit' }}>
-              products
+              {hero.titleHighlight}
             </GradientText>
           </HeroTitle>
           <HeroSubtitle>
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
+            {hero.subtitle}
           </HeroSubtitle>
           <EmailFormStack direction={{ xs: 'column', sm: 'row' }} spacing={1} useFlexGap>
             <InputLabel htmlFor="email-hero">
@@ -62,9 +78,9 @@ export default function Hero() {
             </Button>
           </EmailFormStack>
           <Typography variant="caption" sx={{ color: 'text.secondary', textAlign: 'center' }}>
-            By clicking &quot;Start now&quot; you agree to our&nbsp;
-            <Link href="#" color="primary">
-              Terms & Conditions
+            {hero.termsText}&nbsp;
+            <Link href={hero.termsLinkHref} color="primary">
+              {hero.termsLinkText}
             </Link>
             .
           </Typography>

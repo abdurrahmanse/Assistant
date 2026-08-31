@@ -1,10 +1,8 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import MuiChip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { items } from './featuresData';
 
 interface ChipProps {
   selected?: boolean;
@@ -30,16 +28,27 @@ const Chip = styled(MuiChip)<ChipProps>(({ theme }) => ({
   ],
 }));
 
+interface FeatureItem {
+  iconName: string;
+  title: string;
+  description: string;
+  imageLight: string;
+  imageDark: string;
+  icon?: React.ReactNode;
+}
+
 interface MobileLayoutProps {
   selectedItemIndex: number;
   handleItemClick: (index: number) => void;
-  selectedFeature: (typeof items)[0];
+  selectedFeature: FeatureItem;
+  items: FeatureItem[];
 }
 
 export function MobileLayout({
   selectedItemIndex,
   handleItemClick,
   selectedFeature,
+  items,
 }: MobileLayoutProps) {
   if (!items[selectedItemIndex]) {
     return null;
