@@ -20,7 +20,7 @@ export default function HowItWorks() {
   }
 
   return (
-    <Box sx={{ py: { xs: 8, md: 16 }, bgcolor: 'background.paper', px: 2, borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider' }}>
+    <Box sx={{ py: { xs: 8, md: 16 }, px: 2, borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider' }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         
         <Box sx={{ textAlign: 'center', mb: { xs: 8, md: 12 } }}>
@@ -36,7 +36,7 @@ export default function HowItWorks() {
               <Box sx={{ 
                 p: { xs: 4, md: 5 }, height: '100%',
                 borderRadius: '24px', border: '2px solid', borderColor: 'divider',
-                bgcolor: 'background.default', position: 'relative',
+                position: 'relative',
                 transition: 'transform 0.3s', '&:hover': { transform: 'translateY(-6px)', borderColor: 'primary.main', boxShadow: '6px 6px 0px rgba(99,102,241,0.5)' }
               }}>
                 <Box sx={{ 

@@ -22,7 +22,7 @@ export default function FeaturedCourse() {
   const course = data.items[0];
 
   return (
-    <Box sx={{ py: { xs: 8, md: 16 }, bgcolor: 'background.default', px: 2 }}>
+    <Box sx={{ py: { xs: 8, md: 16 }, px: 2 }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         
         <Box sx={{ textAlign: 'center', mb: { xs: 6, md: 10 } }}>

@@ -80,7 +80,7 @@ export default function CourseDetailPage(props: { disableCustomTheme?: boolean }
 
       {/* Topics / Tags Bar */}
       {course.tags && course.tags.length > 0 && (
-        <Box sx={{ bgcolor: 'background.paper', borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider', py: 2 }}>
+        <Box sx={{ borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider', py: 2 }}>
           
             <Stack direction="row" spacing={1} flexWrap="wrap" sx={{ gap: 1, alignItems: 'center' }}>
               <Typography variant="body2" color="text.secondary" fontWeight={600}>{copy.topicsLabel}</Typography>

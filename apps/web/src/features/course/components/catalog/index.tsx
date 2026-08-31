@@ -18,7 +18,7 @@ export default function CourseCatalog() {
 
   if (isLoading || !allData) {
     return (
-      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
+      <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
         
           <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 2, borderRadius: 2 }} />
           <Skeleton width="60%" height={24} sx={{ mx: 'auto', mb: 4 }} />
@@ -53,7 +53,7 @@ export default function CourseCatalog() {
   }
 
   return (
-    <Box id="courses" sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
+    <Box id="courses" sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
       
         <Box sx={{ textAlign: 'center', mb: 6 }}>
           <Typography variant="h3" sx={{ fontWeight: 900, mb: 2 }}><Compass size={36} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginRight: '12px', transform: 'translateY(-4px)' }} />{allData.title}</Typography>
