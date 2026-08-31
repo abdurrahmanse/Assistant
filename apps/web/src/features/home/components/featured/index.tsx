@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Chip from '@mui/material/Chip';
 import Skeleton from '@mui/material/Skeleton';
+import { Reveal } from '@/components/Reveal';
 import { Play, Star, Clock, ArrowRight, ShieldCheck, CheckCircle2, Flame, Crown } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { useCoursesQuery, useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
@@ -26,6 +27,7 @@ export default function FeaturedCourse() {
     <Box sx={{ py: { xs: 6, md: 8 }, px: 2 }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         
+        <Reveal delay={0.1}>
         <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Chip icon={<Flame size={16} />}
           label="Latest Release" color="primary" sx={{ fontWeight: 900, borderRadius: '8px', border: '2px solid #000', boxShadow: '2px 2px 0px #000', mb: 3 }} />
@@ -34,6 +36,7 @@ export default function FeaturedCourse() {
             Master the most requested skills on the market right now.
           </Typography>
         </Box>
+        </Reveal>
 
         <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
           {/* Left: Huge Video/Thumbnail */}

@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import { useColorScheme } from '@mui/material/styles';
 import { MutedText } from '@repo/ui/styled';
+import { Reveal } from '@/components/Reveal';
 import { MessageSquareQuote, Quote } from 'lucide-react';
 import {
   TestimonialsContainer,
@@ -78,7 +79,8 @@ export default function Testimonials() {
 
   return (
     <TestimonialsContainer id="testimonials">
-      <TestimonialsHeader>
+      <Reveal delay={0.1}>
+        <TestimonialsHeader>
         <Typography component="h2" variant="h2" gutterBottom sx={{ color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
           <MessageSquareQuote size={40} color="#6366f1" /> {testimonials.title}
         </Typography>
@@ -86,9 +88,11 @@ export default function Testimonials() {
           {testimonials.subtitle}
         </MutedText>
       </TestimonialsHeader>
+        </Reveal>
       <Grid container spacing={2}>
         {testimonials.items.map((testimonial, index) => (
           <StyledGridItem size={{ xs: 12, sm: 6, md: 4 }} key={index}>
+            <Reveal delay={0.2 + (index * 0.1)} direction="up">
             <TestimonialCard variant="outlined">
               <CardContent>
                 <Box sx={{ mb: 2 }}><Quote size={24} color="#ec4899" opacity={0.5} /></Box>
@@ -105,6 +109,7 @@ export default function Testimonials() {
                 <img src={logos[index % logos.length]} alt={`Logo ${index + 1}`} style={logoStyle} />
               </CardFooterBox>
             </TestimonialCard>
+            </Reveal>
           </StyledGridItem>
         ))}
       </Grid>

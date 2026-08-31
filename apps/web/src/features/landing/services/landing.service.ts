@@ -51,6 +51,7 @@ class LandingService {
 
   /** FAQ section */
   getFaq = () => landingRepository.getFaq();
+  getBlog = () => landingRepository.getBlog();
 
   /** Course detail copy strings */
   getCourseDetail = () => landingRepository.getCourseDetail();

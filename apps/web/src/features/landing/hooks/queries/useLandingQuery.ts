@@ -147,3 +147,10 @@ export const usePricingQuery = () =>
     queryFn: () => landingService.getPricing(),
     staleTime: 1000 * 60 * 5,
   });
+
+export const useBlogQuery = () =>
+  useQuery({
+    queryKey: [...landingKeys.all, 'blog'] as const,
+    queryFn: () => landingService.getBlog(),
+    staleTime: 1000 * 60 * 10,
+  });

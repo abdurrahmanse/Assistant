@@ -4,6 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import Skeleton from '@mui/material/Skeleton';
+import { Reveal } from '@/components/Reveal';
 import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import {
   FAQContainer,
@@ -43,14 +44,16 @@ export default function FAQ() {
 
   return (
     <FAQContainer id="faq">
+      <Reveal delay={0.1}>
       <FAQHeader variant="h4" sx={{ display: 'flex', alignItems: 'center', gap: 2, fontWeight: 900 }}>
         <MessageCircleQuestion size={40} color="var(--template-palette-primary-main)" />
         {faq.title}
       </FAQHeader>
+      </Reveal>
       <FAQBox>
-        {faq.questions.map((q) => (
+        {faq.questions.map((q, index) => (
+          <Reveal delay={0.2 + (index * 0.1)} direction="up" key={q.id}>
           <Accordion
-            key={q.id}
             expanded={expanded.includes(q.id)}
             onChange={handleChange(q.id)}
             sx={{
@@ -84,13 +87,11 @@ bgcolor: 'rgba(255,255,255,0.6)',
             </AccordionSummary>
             <AccordionDetails>
               <FAQDetailText variant="body2" gutterBottom>
-                {/* Normally we might dangerouslySetInnerHTML here if it contains HTML links,
-                    but since the mock is plain text, we render it directly. If we need links,
-                    we'd format it differently in the API response or parse markdown. */}
                 {q.answer}
               </FAQDetailText>
             </AccordionDetails>
           </Accordion>
+          </Reveal>
         ))}
       </FAQBox>
     </FAQContainer>

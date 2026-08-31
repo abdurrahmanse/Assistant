@@ -9,6 +9,7 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { Check } from 'lucide-react';
+import { Reveal } from '@/components/Reveal';
 import type { PricingTier } from '@repo/api-client';
 
 export interface PricingPlansProps {
@@ -19,8 +20,9 @@ export function PricingPlans({ tiers }: PricingPlansProps) {
   return (
     <Container maxWidth="lg" sx={{ mb: 10 }}>
       <Grid container spacing={4} justifyContent="center" alignItems="stretch">
-        {tiers.map((tier) => (
+        {tiers.map((tier, index) => (
           <Grid size={{ xs: 12, md: 4 }} key={tier.title}>
+            <Reveal delay={0.1 + (index * 0.15)} direction="up" width="100%">
             <Card 
               sx={{ 
                 display: 'flex', 
@@ -78,6 +80,7 @@ export function PricingPlans({ tiers }: PricingPlansProps) {
                 </Button>
               </CardActions>
             </Card>
+            </Reveal>
           </Grid>
         ))}
       </Grid>

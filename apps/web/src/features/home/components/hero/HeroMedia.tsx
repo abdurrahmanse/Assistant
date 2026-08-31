@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
+import { Reveal } from '@/components/Reveal';
 import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
 import { Play, Star } from 'lucide-react';
@@ -20,6 +21,7 @@ export interface HeroMediaProps {
 export function HeroMedia({ heroData }: HeroMediaProps) {
   const media = heroData.media;
   return (
+    <Reveal delay={0.4} direction="left">
     <Box sx={{ position: 'relative', width: '100%', maxWidth: { xs: 280, sm: 320, md: 360 }, mx: 'auto' }}>
       
       {/* Main Reels Video Container */}
@@ -86,5 +88,6 @@ export function HeroMedia({ heroData }: HeroMediaProps) {
       </Box>
 
     </Box>
+    </Reveal>
   );
 }

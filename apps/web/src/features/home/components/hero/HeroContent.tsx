@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import { ArrowRight, Brain, Code2, Play, Rocket, Sparkles, TrendingUp } from 'lucide-react';
 import * as React from 'react';
 import { useNavigate } from 'react-router';
+import { Reveal } from '@/components/Reveal';
 
 const iconMap: Record<string, React.ReactNode> = {
   Code2: <Code2 size={20} />,
@@ -23,6 +24,7 @@ export function HeroContent({ heroData }: HeroContentProps) {
 
   return (
     <Box>
+      <Reveal delay={0.1}>
       <Chip
         icon={<Sparkles size={16} />}
         label={heroData.badge}
@@ -30,7 +32,9 @@ export function HeroContent({ heroData }: HeroContentProps) {
         variant="outlined"
         sx={{ fontWeight: 800, mb: 3, borderRadius: '8px', borderWidth: 2 }}
       />
+      </Reveal>
 
+      <Reveal delay={0.2}>
       <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(3rem, 6vw, 4.5rem)', lineHeight: 1.1, mb: 3, letterSpacing: '-0.02em' }}>
         {heroData.titlePrefix} <br />
         <Typography component="span" variant="inherit" sx={{
@@ -44,11 +48,15 @@ export function HeroContent({ heroData }: HeroContentProps) {
         </Typography>
         <Rocket size={48} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginLeft: '12px', transform: 'translateY(-8px) rotate(15deg)' }} />
       </Typography>
+      </Reveal>
 
+      <Reveal delay={0.3}>
       <Typography variant="body1" color="text.secondary" sx={{ mb: 6, fontSize: '1rem', lineHeight: 1.6, maxWidth: 480 }}>
         {heroData.subtitle}
       </Typography>
+      </Reveal>
 
+      <Reveal delay={0.4}>
       <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mb: 4 }}>
         <Button
           variant="contained" size="large" endIcon={<ArrowRight size={20} />}
@@ -64,13 +72,16 @@ export function HeroContent({ heroData }: HeroContentProps) {
           Browse Tracks
         </Button>
       </Stack>
+      </Reveal>
 
+      <Reveal delay={0.5}>
       <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
         {heroData.termsText}{' '}
         <Link href={heroData.termsLinkHref} color="primary" sx={{ fontWeight: 600 }}>
           {heroData.termsLinkText}
         </Link>
       </Typography>
+      </Reveal>
 
       {/* Floating feature blocks */}
       <Stack direction="row" spacing={3} sx={{ mt: 8, display: { xs: 'none', sm: 'flex' } }}>

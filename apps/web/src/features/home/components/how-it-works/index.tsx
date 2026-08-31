@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Skeleton from '@mui/material/Skeleton';
+import { Reveal } from '@/components/Reveal';
 import { Code2, MessageCircle, Layers, Compass } from 'lucide-react';
 import { useHowItWorksQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
@@ -23,12 +24,14 @@ export default function HowItWorks() {
     <Box sx={{ py: { xs: 6, md: 8 }, px: 2, borderTop: '1px solid', borderBottom: '1px solid', borderColor: 'divider' }}>
       <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
         
+        <Reveal delay={0.1}>
         <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
           <Typography variant="h2" sx={{ fontWeight: 900, letterSpacing: '-0.02em', mb: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}><Compass size={40} color="#10b981" /> {howItWorks.heading}</Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, mx: 'auto', fontWeight: 500 }}>
             {howItWorks.subheading}
           </Typography>
         </Box>
+        </Reveal>
 
         <Grid container spacing={{ xs: 6, md: 4 }}>
           {howItWorks.steps.map((step: any) => (

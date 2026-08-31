@@ -153,7 +153,7 @@ export const LANDING_MOCK_DATA = {
         rating: 4.9,
         studentsCount: 12400,
         duration: '45 hours',
-        instructor: 'Sarah Drasner',
+        instructor: 'Abdur Rahman',
         tags: ['React', 'Next.js', 'TypeScript', 'Frontend'],
         stack: 'Frontend',
         gradient: 'linear-gradient(135deg, #00C6ff 0%, #0072ff 100%)',
@@ -316,6 +316,37 @@ export const LANDING_MOCK_DATA = {
 
 
   // ── ABOUT ─────────────────────────────────────────────────────────────────
+  // ── BLOG ──────────────────────────────────────────────────────────────────
+  blog: [
+    {
+      id: '1',
+      title: 'Architecting Scalable React Applications in 2024',
+      excerpt: 'Learn the exact patterns and feature-sliced design principles we use to scale enterprise React codebases without the spaghetti.',
+      date: 'Aug 24, 2024',
+      readTime: '8 min read',
+      category: 'Architecture',
+      image: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      id: '2',
+      title: 'Why I stopped using Redux and moved to React Query',
+      excerpt: 'Server state and client state are fundamentally different. Here is how React Query completely simplifies data fetching and caching.',
+      date: 'Aug 18, 2024',
+      readTime: '6 min read',
+      category: 'State Management',
+      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+    },
+    {
+      id: '3',
+      title: 'The ultimate guide to modern CSS architectures',
+      excerpt: 'From CSS-in-JS to utility classes like Tailwind, understand the pros, cons, and performance implications of modern styling.',
+      date: 'Aug 10, 2024',
+      readTime: '12 min read',
+      category: 'Styling',
+      image: 'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?auto=format&fit=crop&w=800&q=80',
+    }
+  ],
+
   about: {
     hero: {
       title: 'We are on a mission to\naccelerate human learning.',
@@ -570,7 +601,7 @@ export const LANDING_MOCK_DATA = {
     name: "Abdur Rahman",
     title: "Senior Full-Stack Engineer & Architect",
     bio: "Hey! I'm a passionate software engineer with over a decade of experience building scalable enterprise applications. I created this platform to cut through the noise and teach you the exact patterns, tools, and architectures used by top tech companies. No fluff, just real-world engineering.",
-    avatar: "https://i.pravatar.cc/500?img=11",
+    avatar: "/static/images/instructor.jpeg",
     stats: [
       { label: "Years Exp.", value: "10+" },
       { label: "Students", value: "20k+" },

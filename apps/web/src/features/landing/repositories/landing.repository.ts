@@ -57,6 +57,10 @@ class LandingRepository {
   }
 
   /** Fetch FAQ */
+  async getBlog(): Promise<any> {
+    return apiClient.get<any>('/blog', (LANDING_MOCK_DATA as any).blog);
+  }
+
   async getFaq(): Promise<LandingMockData['faq']> {
     return apiClient.get<LandingMockData['faq']>('/faq', LANDING_MOCK_DATA.faq);
   }
