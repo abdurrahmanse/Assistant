@@ -3,35 +3,36 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-
-const products = [
-  {
-    name: 'Professional plan',
-    desc: 'Monthly subscription',
-    price: '$15.00',
-  },
-  {
-    name: 'Dedicated support',
-    desc: 'Included in the Professional plan',
-    price: 'Free',
-  },
-  {
-    name: 'Hardware',
-    desc: 'Devices needed for development',
-    price: '$69.99',
-  },
-  {
-    name: 'Landing page template',
-    desc: 'License',
-    price: '$49.99',
-  },
-];
+import Skeleton from '@mui/material/Skeleton';
+import { useCheckoutData } from '../hooks/useCheckoutData';
 
 interface InfoProps {
   totalPrice: string;
 }
 
 export default function Info({ totalPrice }: InfoProps) {
+  const { data, isLoading } = useCheckoutData();
+
+  if (isLoading || !data) {
+    return (
+      <React.Fragment>
+        <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
+          Total
+        </Typography>
+        <Typography variant="h4" gutterBottom>
+          {totalPrice}
+        </Typography>
+        <List disablePadding>
+          {[1, 2, 3, 4].map((i) => (
+            <Skeleton key={i} variant="rectangular" width="100%" height={40} sx={{ mb: 2 }} />
+          ))}
+        </List>
+      </React.Fragment>
+    );
+  }
+
+  const { products } = data;
+
   return (
     <React.Fragment>
       <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>

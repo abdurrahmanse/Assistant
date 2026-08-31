@@ -1,7 +1,16 @@
 import { DataGrid } from '@mui/x-data-grid';
-import { columns, rows } from '@/features/analytics/internals/data/gridData';
+import { useAnalyticsData } from './hooks/useAnalyticsData';
+import Skeleton from '@mui/material/Skeleton';
 
 export default function CustomizedDataGrid() {
+  const { data, isLoading } = useAnalyticsData();
+
+  if (isLoading || !data) {
+    return <Skeleton variant="rectangular" width="100%" height={400} />;
+  }
+
+  const { columns, rows } = data.grid;
+
   return (
     <DataGrid
       checkboxSelection
@@ -19,26 +28,10 @@ export default function CustomizedDataGrid() {
       slotProps={{
         filterPanel: {
           filterFormProps: {
-            logicOperatorInputProps: {
-              variant: 'outlined',
-              size: 'small',
-            },
-            columnInputProps: {
-              variant: 'outlined',
-              size: 'small',
-              sx: { mt: 'auto' },
-            },
-            operatorInputProps: {
-              variant: 'outlined',
-              size: 'small',
-              sx: { mt: 'auto' },
-            },
-            valueInputProps: {
-              InputComponentProps: {
-                variant: 'outlined',
-                size: 'small',
-              },
-            },
+            logicOperatorInputProps: { variant: 'outlined', size: 'small' },
+            columnInputProps: { variant: 'outlined', size: 'small', sx: { mt: 'auto' } },
+            operatorInputProps: { variant: 'outlined', size: 'small', sx: { mt: 'auto' } },
+            valueInputProps: { InputComponentProps: { variant: 'outlined', size: 'small' } },
           },
         },
       }}
