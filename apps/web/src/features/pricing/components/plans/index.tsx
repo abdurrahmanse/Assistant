@@ -41,7 +41,16 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
         <Grid container spacing={4} justifyContent="center" alignItems="stretch">
           {[1, 2, 3].map((i) => (
             <Grid size={{ xs: 12, md: 4 }} key={i}>
-              <Skeleton variant="rectangular" height={500} sx={{ borderRadius: 4 }} />
+              <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', p: 4, borderRadius: '32px', border: '2px solid', borderColor: 'divider' }}>
+                <Skeleton variant="text" width="60%" height={32} sx={{ mx: 'auto', mb: 3 }} />
+                <Skeleton variant="rectangular" width="40%" height={60} sx={{ mx: 'auto', mb: 2, borderRadius: 2 }} />
+                <Skeleton variant="text" width="80%" height={24} sx={{ mx: 'auto', mb: 4 }} />
+                <Skeleton variant="rectangular" width="100%" height={2} sx={{ mb: 4 }} />
+                {[1,2,3,4,5].map(j => <Skeleton key={j} variant="text" width="90%" height={24} sx={{ mb: 2.5 }} />)}
+                <Box sx={{ pt: 4, mt: 'auto' }}>
+                  <Skeleton variant="rectangular" width="100%" height={56} sx={{ borderRadius: '16px' }} />
+                </Box>
+              </Box>
             </Grid>
           ))}
         </Grid>

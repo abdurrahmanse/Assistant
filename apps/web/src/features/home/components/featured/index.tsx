@@ -17,7 +17,39 @@ export default function FeaturedCourse() {
   const { data: siteMeta } = useSiteMetaQuery();
 
   if (isLoading || !data || data.items.length === 0) {
-    return <Box sx={{ py: 12, px: 2 }}><Skeleton variant="rectangular" height={400} sx={{ borderRadius: 4, maxWidth: 1000, mx: 'auto' }} /></Box>;
+    return (
+      <Box sx={{ py: { xs: 6, md: 8 }, px: 2 }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
+            <Skeleton variant="rectangular" width={140} height={32} sx={{ mx: 'auto', mb: 3, borderRadius: '8px' }} />
+            <Skeleton variant="text" width="60%" height={48} sx={{ mx: 'auto', mb: 2 }} />
+            <Skeleton variant="text" width="40%" height={24} sx={{ mx: 'auto' }} />
+          </Box>
+          <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '4/3', borderRadius: '32px' }} />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Skeleton variant="text" width="20%" height={20} sx={{ mb: 1 }} />
+              <Skeleton variant="text" width="80%" height={48} sx={{ mb: 2 }} />
+              <Skeleton variant="text" width="100%" height={24} />
+              <Skeleton variant="text" width="100%" height={24} sx={{ mb: 4 }} />
+              <Stack direction="row" spacing={3} sx={{ mb: 4 }}>
+                <Skeleton variant="rectangular" width={100} height={24} sx={{ borderRadius: 1 }} />
+                <Skeleton variant="rectangular" width={100} height={24} sx={{ borderRadius: 1 }} />
+              </Stack>
+              <Stack spacing={2} sx={{ mb: 6 }}>
+                {[1, 2, 3].map((i) => <Skeleton key={i} variant="rectangular" width="60%" height={24} sx={{ borderRadius: 1 }} />)}
+              </Stack>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} alignItems="center">
+                <Skeleton variant="rectangular" width={220} height={56} sx={{ borderRadius: '16px' }} />
+                <Skeleton variant="rectangular" width={100} height={40} sx={{ ml: { sm: 'auto !important' }, borderRadius: 1 }} />
+              </Stack>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    );
   }
 
   // We only feature ONE course on the home page (the first one)

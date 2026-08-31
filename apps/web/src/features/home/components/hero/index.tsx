@@ -12,18 +12,20 @@ export default function HomeHero() {
   if (isLoading || !heroData) {
     return (
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 } }}>
-        <Grid container spacing={6} alignItems="center">
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Skeleton width={180} height={32} sx={{ mb: 3, borderRadius: 2 }} />
-            <Skeleton width="100%" height={80} sx={{ mb: 2 }} />
-            <Skeleton width="80%" height={80} sx={{ mb: 3 }} />
-            <Skeleton width="90%" height={24} sx={{ mb: 6 }} />
-            <Skeleton width={300} height={56} sx={{ borderRadius: 2 }} />
+        <Container maxWidth="lg">
+          <Grid container spacing={6} alignItems="center">
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Skeleton width={180} height={32} sx={{ mb: 3, borderRadius: 2 }} />
+              <Skeleton width="100%" height={80} sx={{ mb: 2 }} />
+              <Skeleton width="80%" height={80} sx={{ mb: 3 }} />
+              <Skeleton width="90%" height={24} sx={{ mb: 6 }} />
+              <Skeleton width={300} height={56} sx={{ borderRadius: 2 }} />
+            </Grid>
+            <Grid size={{ xs: 12, md: 6 }}>
+              <Skeleton variant="rectangular" width="100%" height={400} sx={{ borderRadius: 4 }} />
+            </Grid>
           </Grid>
-          <Grid size={{ xs: 12, md: 6 }}>
-            <Skeleton variant="rectangular" width="100%" height={400} sx={{ borderRadius: 4 }} />
-          </Grid>
-        </Grid>
+        </Container>
       </Box>
     );
   }

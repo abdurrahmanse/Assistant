@@ -17,7 +17,28 @@ export default function HowItWorks() {
   const { data: howItWorks, isLoading } = useHowItWorksQuery();
 
   if (isLoading || !howItWorks) {
-    return <Box sx={{ py: 12, px: 2 }}><Skeleton variant="rectangular" height={300} sx={{ borderRadius: 4, maxWidth: 1000, mx: 'auto' }} /></Box>;
+    return (
+      <Box sx={{ py: { xs: 6, md: 8 }, px: 2 }}>
+        <Box sx={{ maxWidth: 1200, mx: 'auto' }}>
+          <Box sx={{ textAlign: 'center', mb: { xs: 4, md: 6 } }}>
+            <Skeleton variant="rectangular" width="40%" height={48} sx={{ mx: 'auto', mb: 2, borderRadius: 2 }} />
+            <Skeleton variant="text" width="60%" height={32} sx={{ mx: 'auto' }} />
+          </Box>
+          <Grid container spacing={{ xs: 6, md: 4 }}>
+            {[1, 2, 3].map((i) => (
+              <Grid size={{ xs: 12, md: 4 }} key={i}>
+                <Box sx={{ p: { xs: 4, md: 5 }, height: '100%', borderRadius: '24px', border: '2px solid', borderColor: 'divider' }}>
+                  <Skeleton variant="rectangular" width={64} height={64} sx={{ borderRadius: '16px', mb: 4 }} />
+                  <Skeleton variant="text" width="80%" height={32} sx={{ mb: 2 }} />
+                  <Skeleton variant="text" width="100%" height={24} sx={{ mb: 1 }} />
+                  <Skeleton variant="text" width="90%" height={24} />
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
+    );
   }
 
   return (

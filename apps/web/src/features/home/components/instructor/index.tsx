@@ -42,7 +42,30 @@ export default function InstructorProfile() {
   const { data: instructor, isLoading } = useInstructorQuery();
 
   if (isLoading || !instructor) {
-    return <Box sx={{ py: 12, px: 2 }}><Skeleton variant="rectangular" height={500} sx={{ borderRadius: 4, maxWidth: 1200, mx: 'auto' }} /></Box>;
+    return (
+      <Box sx={{ py: { xs: 8, md: 12 }, px: 2 }}>
+        <Box sx={{ maxWidth: 1000, mx: 'auto' }}>
+          <Grid container spacing={{ xs: 6, md: 10 }} alignItems="center">
+            <Grid size={{ xs: 12, md: 5 }}>
+              <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '3/4', borderRadius: '24px' }} />
+            </Grid>
+            <Grid size={{ xs: 12, md: 7 }}>
+              <Skeleton variant="rectangular" width={140} height={32} sx={{ mb: 4, borderRadius: '8px' }} />
+              <Skeleton variant="text" width="80%" height={56} sx={{ mb: 3 }} />
+              <Skeleton variant="text" width="100%" height={24} sx={{ mb: 1 }} />
+              <Skeleton variant="text" width="90%" height={24} sx={{ mb: 3 }} />
+              <Skeleton variant="text" width="100%" height={24} sx={{ mb: 1 }} />
+              <Skeleton variant="text" width="95%" height={24} sx={{ mb: 5 }} />
+              
+              <Stack direction="row" spacing={{ xs: 2, sm: 4 }} sx={{ mb: 5 }}>
+                <Skeleton variant="rectangular" height={80} sx={{ flex: 1, borderRadius: '16px' }} />
+                <Skeleton variant="rectangular" height={80} sx={{ flex: 1, borderRadius: '16px' }} />
+              </Stack>
+            </Grid>
+          </Grid>
+        </Box>
+      </Box>
+    );
   }
 
   const firstName = instructor.name.split(' ')[0];

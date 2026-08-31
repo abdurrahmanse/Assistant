@@ -19,7 +19,18 @@ export function CourseEnrollmentCard({ course, copy, totalLessons, isLoading }: 
   if (isLoading || !course || !copy) {
     return (
       <Box sx={{ width: { xs: '100%', md: '400px' }, flexShrink: 0 }}>
-        <Skeleton variant="rectangular" width="100%" height={600} sx={{ borderRadius: '24px' }} />
+        <Box sx={(theme) => ({ 
+          width: '100%', borderRadius: '24px', overflow: 'hidden', border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',
+          bgcolor: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(24px)', ...theme.applyStyles('dark', { bgcolor: 'rgba(20,20,25,0.6)', borderColor: 'rgba(255,255,255,0.1)' })
+        })}>
+          <Skeleton variant="rectangular" sx={{ width: '100%', aspectRatio: '16/9' }} />
+          <Box sx={{ p: 4 }}>
+            <Skeleton variant="text" width="40%" height={48} sx={{ mb: 1 }} />
+            <Skeleton variant="text" width="60%" height={20} sx={{ mb: 4 }} />
+            <Skeleton variant="rectangular" width="100%" height={56} sx={{ borderRadius: '12px', mb: 2 }} />
+            <Skeleton variant="text" width="50%" height={20} sx={{ mx: 'auto' }} />
+          </Box>
+        </Box>
       </Box>
     );
   }

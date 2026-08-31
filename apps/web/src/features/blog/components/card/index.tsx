@@ -15,7 +15,28 @@ export interface PostCardProps {
 
 export function PostCard({ post, isLoading }: PostCardProps) {
   if (isLoading || !post) {
-    return <Skeleton variant="rectangular" height={500} sx={{ borderRadius: '24px' }} />;
+    return (
+      <Box sx={(theme) => ({ 
+        height: '100%', display: 'flex', flexDirection: 'column',
+        borderRadius: '24px', border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',
+        bgcolor: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(24px)',
+        ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' }),
+      })}>
+        <Box sx={{ p: 1.5, pb: 0 }}>
+          <Skeleton variant="rectangular" height={220} sx={{ borderRadius: '16px' }} />
+        </Box>
+        <Box sx={{ p: 3, pt: 4, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+          <Skeleton variant="text" width="50%" height={20} sx={{ mb: 2 }} />
+          <Skeleton variant="text" width="90%" height={32} sx={{ mb: 1 }} />
+          <Skeleton variant="text" width="70%" height={32} sx={{ mb: 2 }} />
+          <Skeleton variant="text" width="100%" height={20} />
+          <Skeleton variant="text" width="90%" height={20} sx={{ mb: 4 }} />
+          <Box sx={(theme) => ({ mt: 'auto', pt: 2, borderTop: '2px dashed', borderColor: 'rgba(0,0,0,0.1)', ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)' }) })}>
+            <Skeleton variant="text" width="40%" height={24} />
+          </Box>
+        </Box>
+      </Box>
+    );
   }
 
   return (

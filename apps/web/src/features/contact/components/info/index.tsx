@@ -21,7 +21,19 @@ type ContactInfoProps = {
 
 export default function ContactInfo({ contact, isLoading }: ContactInfoProps) {
   if (isLoading || !contact) {
-    return <Skeleton variant="rectangular" height={300} sx={{ borderRadius: 2 }} />;
+    return (
+      <Stack spacing={6} sx={{ mt: 2 }}>
+        {[1, 2, 3].map((i) => (
+          <Stack key={i} direction="row" spacing={3} alignItems="center">
+            <Skeleton variant="rectangular" width={64} height={64} sx={{ borderRadius: '16px' }} />
+            <Box sx={{ flex: 1 }}>
+              <Skeleton variant="text" width="40%" height={24} sx={{ mb: 1 }} />
+              <Skeleton variant="text" width="70%" height={20} />
+            </Box>
+          </Stack>
+        ))}
+      </Stack>
+    );
   }
 
   // We only take the first 3 primary contact methods to keep it minimal

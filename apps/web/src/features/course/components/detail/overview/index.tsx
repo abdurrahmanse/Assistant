@@ -24,11 +24,13 @@ export function CourseOverview({ course, copy, totalLessons, isLoading }: Course
     return (
       <Box sx={{ mb: 8 }}>
         <Skeleton variant="rectangular" width="40%" height={40} sx={{ mb: 4, borderRadius: 2 }} />
-        <Stack spacing={2} sx={{ mb: 6 }}>
-          {[1, 2].map((i) => (
-            <Skeleton key={i} variant="rectangular" width="100%" height={64} sx={{ borderRadius: '12px' }} />
+        <Grid container spacing={2} sx={{ mb: 6 }}>
+          {[1, 2, 3, 4].map((i) => (
+            <Grid size={{ xs: 12, sm: 6 }} key={i}>
+              <Skeleton variant="rectangular" width="100%" height={64} sx={{ borderRadius: '12px' }} />
+            </Grid>
           ))}
-        </Stack>
+        </Grid>
 
         <Skeleton variant="rectangular" width="30%" height={40} sx={{ mb: 4, borderRadius: 2 }} />
         <Grid container spacing={2} sx={{ mb: 6 }}>

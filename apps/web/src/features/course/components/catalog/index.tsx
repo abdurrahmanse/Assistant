@@ -6,7 +6,7 @@ import { Skeleton } from '@repo/ui';
 import Typography from '@mui/material/Typography';
 import { Compass } from 'lucide-react';
 import * as React from 'react';
-import { CourseCard } from '../card';
+import { CourseCard, CourseCardSkeleton } from '../card';
 import { CourseFilters } from '../filters';
 
 export default function CourseCatalog() {
@@ -32,7 +32,7 @@ export default function CourseCatalog() {
           </Grid>
         </Box>
         <Grid container spacing={4}>
-          {[1, 2, 3, 4, 5, 6].map((i) => <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}><Skeleton variant="rectangular" height={460} sx={{ borderRadius: '24px' }} /></Grid>)}
+          {[1, 2, 3, 4, 5, 6].map((i) => <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}><CourseCardSkeleton /></Grid>)}
         </Grid>
 
       </Section>

@@ -33,7 +33,17 @@ export default function ContactForm({
   isLoading,
 }: ContactFormProps) {
   if (isLoading || !contact) {
-    return <Skeleton variant="rectangular" height={500} sx={{ borderRadius: 2 }} />;
+    return (
+      <Stack spacing={4}>
+        <Grid container spacing={3}>
+          <Grid size={{ xs: 12, sm: 6 }}><Skeleton variant="rectangular" height={56} sx={{ borderRadius: 1 }} /></Grid>
+          <Grid size={{ xs: 12, sm: 6 }}><Skeleton variant="rectangular" height={56} sx={{ borderRadius: 1 }} /></Grid>
+        </Grid>
+        <Skeleton variant="rectangular" height={56} sx={{ borderRadius: 1 }} />
+        <Skeleton variant="rectangular" height={130} sx={{ borderRadius: 1 }} />
+        <Box sx={{ pt: 2 }}><Skeleton variant="rectangular" width={160} height={48} sx={{ borderRadius: '30px' }} /></Box>
+      </Stack>
+    );
   }
 
   const [form, setForm] = useState({ firstName: '', lastName: '', email: '', subject: '', message: '' });
