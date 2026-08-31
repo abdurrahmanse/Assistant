@@ -105,7 +105,7 @@ export default function AppAppBar() {
             <Button color="primary" variant="text" size="small" sx={{ fontWeight: 600 }} href={signinUrl} startIcon={iconMap[cta.signin.icon]}>
               {cta.signin.label}
             </Button>
-            <Button color="primary" variant="contained" size="small" sx={{ fontWeight: 700 }} href={signupUrl} startIcon={iconMap[cta.signup.icon]}>
+            <Button color="primary" variant="contained" size="small" sx={{ fontWeight: 700 }} onClick={() => navigate('/contact')} startIcon={iconMap[cta.signup.icon]}>
               {cta.signup.label}
             </Button>
             <ColorModeIconDropdown />
@@ -126,7 +126,7 @@ export default function AppAppBar() {
                   </MenuItem>
                 ))}
                 <Divider sx={{ my: 2 }} />
-                <MenuItem><Button color="primary" variant="contained" fullWidth href={signupUrl} startIcon={iconMap[cta.signup.icon]}>{cta.signup.label}</Button></MenuItem>
+                <MenuItem><Button color="primary" variant="contained" fullWidth onClick={() => navigate('/contact')} startIcon={iconMap[cta.signup.icon]}>{cta.signup.label}</Button></MenuItem>
                 <MenuItem><Button color="primary" variant="outlined" fullWidth href={signinUrl} startIcon={iconMap[cta.signin.icon]}>{cta.signin.label}</Button></MenuItem>
                 <MenuItem><Button color="inherit" variant="text" fullWidth href={portalUrl} startIcon={iconMap[cta.portal.icon]}>{cta.portal.label}</Button></MenuItem>
               </Box>

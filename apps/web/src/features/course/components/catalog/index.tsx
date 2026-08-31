@@ -1,3 +1,4 @@
+import { Compass } from 'lucide-react';
 import { useCoursesQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -55,7 +56,7 @@ export default function CourseCatalog() {
     <Box id="courses" sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, bgcolor: 'background.default' }}>
       
         <Box sx={{ textAlign: 'center', mb: 6 }}>
-          <Typography variant="h3" sx={{ fontWeight: 900, mb: 2 }}>{allData.title}</Typography>
+          <Typography variant="h3" sx={{ fontWeight: 900, mb: 2 }}><Compass size={36} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginRight: '12px', transform: 'translateY(-4px)' }} />{allData.title}</Typography>
           <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 560, mx: 'auto', mb: 4 }}>{allData.subtitle}</Typography>
         </Box>
 

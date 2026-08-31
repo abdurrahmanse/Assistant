@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import Divider from '@mui/material/Divider';
 import { PlayCircle, CheckCircle2, ShieldCheck, Lock, BookOpen, Award, Zap, ArrowRight } from 'lucide-react';
 import type { CourseItem } from '@repo/api-client';
-import { useCourseDetailQuery } from '@/features/landing/hooks/queries/useLandingQuery';
+import { useCourseDetailQuery, useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 
 const includeIconMap: Record<string, React.ReactNode> = {
   PlayCircle: <PlayCircle size={16} />,
@@ -23,6 +23,8 @@ export interface CourseEnrollmentCardProps {
 }
 
 export function CourseEnrollmentCard({ course, copy, totalLessons }: CourseEnrollmentCardProps) {
+  const { data: siteMeta } = useSiteMetaQuery();
+  const checkoutUrl = `${siteMeta?.portalUrl ?? 'http://localhost:5174'}/checkout`;
   return (
     <Box sx={{
       width: { xs: '100%', md: '400px' }, flexShrink: 0,
@@ -62,7 +64,7 @@ backdropFilter: 'blur(24px)',
           Ends soon! Limited time offer.
         </Typography>
         
-        <Button variant="contained" size="large" fullWidth endIcon={<ArrowRight size={20} />} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none', fontSize: '1.1rem' }}>
+        <Button variant="contained" size="large" fullWidth endIcon={<ArrowRight size={20} />} href={checkoutUrl} sx={{ fontWeight: 900, py: 2, borderRadius: '14px', mb: 2, textTransform: 'none', fontSize: '1.1rem' }}>
           {course.type === 'Free' ? copy.ctaFree : copy.ctaPremium}
         </Button>
         

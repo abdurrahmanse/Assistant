@@ -1,3 +1,4 @@
+import { Handshake, Paperclip, Headset } from 'lucide-react';
 import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -37,6 +38,7 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
           
           <Box sx={{ mb: { xs: 8, md: 12 } }}>
             <Typography variant="h1" sx={{ fontWeight: 900, fontSize: 'clamp(3rem, 6vw, 4.5rem)', letterSpacing: '-0.03em', mb: 3 }}>
+              <Handshake size={64} color="var(--template-palette-primary-main)" style={{ verticalAlign: 'middle', marginRight: '16px', transform: 'translateY(-8px) rotate(-10deg)' }} />
               {contact.heading}
             </Typography>
             <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 600, fontWeight: 400, lineHeight: 1.6 }}>
@@ -47,14 +49,14 @@ export default function ContactPage(props: { disableCustomTheme?: boolean }) {
           <Grid container spacing={{ xs: 8, md: 12 }}>
             <Grid size={{ xs: 12, md: 5 }}>
               <Typography variant="overline" color="text.secondary" fontWeight={800} letterSpacing={1.5}>
-                Get in touch
+                <Headset size={16} style={{ verticalAlign: 'middle', marginRight: '8px', transform: 'translateY(-2px)' }} />Get in touch
               </Typography>
               <ContactInfo contact={contact} />
             </Grid>
 
             <Grid size={{ xs: 12, md: 7 }}>
               <Typography variant="overline" color="text.secondary" fontWeight={800} letterSpacing={1.5} sx={{ display: 'block', mb: 4 }}>
-                Send a message
+                <Paperclip size={16} style={{ verticalAlign: 'middle', marginRight: '8px', transform: 'translateY(-2px)' }} />Send a message
               </Typography>
               <ContactForm
                 contact={contact}

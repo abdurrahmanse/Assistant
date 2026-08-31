@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
-import { Send } from 'lucide-react';
+import InputAdornment from '@mui/material/InputAdornment';
+import { Send, User, AtSign, MessageSquareText } from 'lucide-react';
 import React, { useState } from 'react';
 
 type ContactData = NonNullable<ReturnType<typeof useContactQuery>['data']>;
@@ -44,15 +45,15 @@ export default function ContactForm({
       <Stack spacing={4}>
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <TextField label={fields.firstName} variant="standard" fullWidth value={form.firstName} onChange={onChange('firstName')} required />
+            <TextField label={fields.firstName} variant="standard" fullWidth value={form.firstName} onChange={onChange('firstName')} required slotProps={{ input: { startAdornment: <InputAdornment position="start"><User size={20} color="var(--template-palette-text-secondary)" /></InputAdornment> } }} />
           </Grid>
           <Grid size={{ xs: 12, sm: 6 }}>
-            <TextField label={fields.lastName} variant="standard" fullWidth value={form.lastName} onChange={onChange('lastName')} required />
+            <TextField label={fields.lastName} variant="standard" fullWidth value={form.lastName} onChange={onChange('lastName')} required slotProps={{ input: { startAdornment: <InputAdornment position="start"><User size={20} color="var(--template-palette-text-secondary)" /></InputAdornment> } }} />
           </Grid>
         </Grid>
         
-        <TextField label={fields.email} type="email" variant="standard" fullWidth value={form.email} onChange={onChange('email')} required />
-        <TextField label={fields.message} variant="standard" multiline rows={4} fullWidth value={form.message} onChange={onChange('message')} required />
+        <TextField label={fields.email} type="email" variant="standard" fullWidth value={form.email} onChange={onChange('email')} required slotProps={{ input: { startAdornment: <InputAdornment position="start"><AtSign size={20} color="var(--template-palette-text-secondary)" /></InputAdornment> } }} />
+        <TextField label={fields.message} variant="standard" multiline rows={4} fullWidth value={form.message} onChange={onChange('message')} required slotProps={{ input: { startAdornment: <InputAdornment position="start" sx={{ alignSelf: 'flex-start', mt: 1 }}><MessageSquareText size={20} color="var(--template-palette-text-secondary)" /></InputAdornment> } }} />
 
         {isSuccess && <Alert severity="success" sx={{ borderRadius: 2 }}>Message sent successfully.</Alert>}
         {isError && <Alert severity="error" sx={{ borderRadius: 2 }}>{(error as Error)?.message ?? 'Failed to send.'}</Alert>}

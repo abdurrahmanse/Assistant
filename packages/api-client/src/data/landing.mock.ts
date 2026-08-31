@@ -36,12 +36,12 @@ export const LANDING_MOCK_DATA = {
       { label: 'Home', path: '/', icon: 'Home' },
       { label: 'Courses', path: '/courses', icon: 'BookOpen' },
       { label: 'About', path: '/about', icon: 'Info' },
-      { label: 'Contact', path: '/contact', icon: 'Mail' },
+      
     ],
     cta: {
       portal: { label: 'My Portal', icon: 'LayoutDashboard' },
       signin: { label: 'Sign in', icon: 'LogIn' },
-      signup: { label: 'Sign up free', icon: 'UserPlus' },
+      signup: { label: 'Contact', icon: 'Mail' },
     },
   },
 
