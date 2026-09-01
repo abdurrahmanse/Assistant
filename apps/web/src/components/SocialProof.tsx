@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { toast } from 'sonner';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { CheckCircle2 } from 'lucide-react';
+import * as React from 'react';
+import { toast } from 'sonner';
 
 const mockEvents = [
   { name: 'Michael', action: 'just enrolled in', item: 'Full-Stack Mastery' },
@@ -13,22 +13,7 @@ const mockEvents = [
 ];
 
 export function SocialProof() {
-  React.useEffect(() => {
-    // Initial delay of 5 seconds, then every 45 seconds
-    const timeout = setTimeout(() => {
-      showRandomProof();
-      
-      const interval = setInterval(() => {
-        showRandomProof();
-      }, 45000);
-
-      return () => clearInterval(interval);
-    }, 5000);
-
-    return () => clearTimeout(timeout);
-  }, []);
-
-  const showRandomProof = () => {
+  function showRandomProof() {
     const event = mockEvents[Math.floor(Math.random() * mockEvents.length)];
     
     toast.custom((t) => (
@@ -51,7 +36,22 @@ export function SocialProof() {
         </Box>
       </Box>
     ), { duration: 5000, position: 'bottom-left' });
-  };
+  }
+
+  React.useEffect(() => {
+    // Initial delay of 5 seconds, then every 45 seconds
+    const timeout = setTimeout(() => {
+      showRandomProof();
+      
+      const interval = setInterval(() => {
+        showRandomProof();
+      }, 45000);
+
+      return () => clearInterval(interval);
+    }, 5000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return null;
 }

@@ -39,7 +39,7 @@ export default function SettingsPage() {
         <Grid container spacing={6}>
           {/* Avatar Section */}
           <Grid size={{ xs: 12 }}>
-            <Card sx={{ p: 4, borderRadius: '24px', display: 'flex', alignItems: 'center', gap: 4, boxShadow: '0 4px 20px rgba(0,0,0,0.05)', border: '1px solid', borderColor: 'divider' }}>
+            <Card sx={{ p: 4, borderRadius: '24px', display: 'flex', alignItems: 'center', gap: 4, boxShadow: '4px 4px 0px rgba(0,0,0,0.1)', border: '2px solid', borderColor: 'divider', '&:hover': { transform: 'translateY(-2px)', boxShadow: '6px 6px 0px rgba(0,0,0,0.1)' }, transition: 'all 0.2s ease' }}>
               <Avatar src={mockUser.avatar} sx={{ width: 100, height: 100 }} />
               <Box>
                 <Typography variant="h6" fontWeight={800} mb={1}>Profile Picture</Typography>
@@ -58,7 +58,7 @@ export default function SettingsPage() {
 
           {/* Profile Form */}
           <Grid size={{ xs: 12 }}>
-            <Card sx={{ p: { xs: 4, md: 6 }, borderRadius: '24px', boxShadow: '0 4px 20px rgba(0,0,0,0.05)', border: '1px solid', borderColor: 'divider' }}>
+            <Card sx={{ p: { xs: 4, md: 6 }, borderRadius: '24px', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)', border: '2px solid', borderColor: 'divider', '&:hover': { transform: 'translateY(-2px)', boxShadow: '6px 6px 0px rgba(0,0,0,0.1)' }, transition: 'all 0.2s ease' }}>
               <Typography variant="h5" fontWeight={800} mb={4}>Personal Information</Typography>
               
               <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>

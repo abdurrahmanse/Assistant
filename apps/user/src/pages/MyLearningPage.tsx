@@ -4,13 +4,10 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import { Card } from '@repo/ui';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { Button } from '@repo/ui';
-import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
-import { PlayCircle, Clock } from 'lucide-react';
+import { Button, Badge as Chip } from '@repo/ui';
+import LinearProgress from '@mui/material/LinearProgress';
+import { PlayCircle, CheckCircle2, Play } from 'lucide-react';
 import { mockEnrolledCourses } from '@/data/mock';
 import { useNavigate } from 'react-router';
 
@@ -34,40 +31,72 @@ export default function MyLearningPage() {
         <Grid container spacing={4}>
           {mockEnrolledCourses.map((course) => (
             <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>
-              <Card sx={{ 
-                height: '100%', display: 'flex', flexDirection: 'column', 
-                borderRadius: '24px', overflow: 'hidden',
-                transition: 'transform 0.2s', '&:hover': { transform: 'translateY(-4px)', boxShadow: '0 12px 24px rgba(0,0,0,0.1)' }
-              }}>
-                <Box sx={{ position: 'relative' }}>
-                  <CardMedia
-                    component="img"
-                    height="200"
-                    image={course.thumbnail}
-                    alt={course.title}
-                  />
-                  <Box sx={{ 
-                    position: 'absolute', bottom: 0, left: 0, right: 0, 
-                    background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)',
-                    p: 2, pt: 6
+              
+              <Box 
+                onClick={() => navigate(`/courses/${course.id}`)} 
+                sx={(theme) => ({
+                  height: '100%', display: 'flex', flexDirection: 'column',
+                  borderRadius: '24px', 
+                  border: '2px solid', 
+                  borderColor: 'rgba(0,0,0,0.1)',
+                  bgcolor: 'rgba(255,255,255,0.6)',
+                  ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' }),
+                  backdropFilter: 'blur(24px)',
+                  cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', overflow: 'hidden',
+                  position: 'relative',
+                  '&:hover': {
+                    transform: 'translateY(-8px) rotate(-1deg)',
+                    boxShadow: '8px 8px 0px rgba(99,102,241,1)',
+                    borderColor: 'primary.main',
+                    '& .course-thumbnail': { transform: 'scale(1.08) rotate(1deg)' },
+                    '& .course-icon': { transform: 'scale(1.1) translateY(-4px)' }
+                  }
+              })}>
+                
+                <Box sx={{ width: '100%', aspectRatio: '16/9', position: 'relative', overflow: 'hidden', p: 1.5 }}>
+                  <Box sx={{ width: '100%', height: '100%', borderRadius: '16px', overflow: 'hidden', position: 'relative' }}>
+                    <Box component="img" src={course.thumbnail} alt={course.title} className="course-thumbnail" sx={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
+                  </Box>
+                  
+                  {/* Progress Badge */}
+                  <Box sx={{ position: 'absolute', top: 24, right: 24, display: 'flex', gap: 1 }}>
+                    <Chip 
+                      icon={course.progress === 100 ? <CheckCircle2 size={14} style={{ color: '#000' }} /> : <PlayCircle size={14} style={{ color: '#000' }} />} 
+                      label={course.progress === 100 ? 'Completed' : 'In Progress'} 
+                      size="small" 
+                      sx={{ 
+                        fontWeight: 900, borderRadius: '8px', 
+                        bgcolor: course.progress === 100 ? '#10b981' : '#f59e0b', color: '#000',
+                        border: '2px solid #000', boxShadow: '2px 2px 0px #000',
+                        textTransform: 'uppercase', letterSpacing: 0.5
+                      }} 
+                    />
+                  </Box>
+                  
+                  {/* Playful Floating Icon */}
+                  <Box className="course-icon" sx={{ 
+                    position: 'absolute', bottom: -8, left: 24, p: 1.5, 
+                    borderRadius: '16px', bgcolor: 'primary.main', color: 'primary.contrastText', 
+                    display: 'flex', border: '2px solid #000', boxShadow: '4px 4px 0px #000',
+                    transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
                   }}>
-                    <Typography variant="subtitle2" color="white" fontWeight={700}>
-                      {course.instructor}
-                    </Typography>
+                    <Play size={24} />
                   </Box>
                 </Box>
-                
-                <CardContent sx={{ flexGrow: 1, p: 3, display: 'flex', flexDirection: 'column' }}>
-                  <Typography variant="h6" fontWeight={800} sx={{ mb: 3, lineHeight: 1.3 }}>
-                    {course.title}
-                  </Typography>
 
+                <Box sx={{ p: 3, pt: 4, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                  <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1.5, mb: 1 }}>
+                    {course.instructor}
+                  </Typography>
+                  
+                  <Typography variant="h5" sx={{ fontWeight: 900, mb: 1.5, lineHeight: 1.2, letterSpacing: '-0.02em' }}>{course.title}</Typography>
+                  
                   <Box sx={{ mt: 'auto', mb: 3 }}>
                     <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
-                      <Typography variant="body2" fontWeight={700} color={course.progress === 100 ? 'success.main' : 'primary.main'}>
-                        {course.progress === 100 ? 'Completed' : `${course.progress}% Complete`}
+                      <Typography variant="body2" fontWeight={800} color={course.progress === 100 ? 'success.main' : 'primary.main'}>
+                        {course.progress}%
                       </Typography>
-                      <Typography variant="caption" color="text.secondary" fontWeight={600}>
+                      <Typography variant="caption" color="text.secondary" fontWeight={700}>
                         {course.completedLessons} / {course.totalLessons} lessons
                       </Typography>
                     </Stack>
@@ -75,22 +104,19 @@ export default function MyLearningPage() {
                       variant="determinate" 
                       value={course.progress} 
                       color={course.progress === 100 ? 'success' : 'primary'}
-                      sx={{ height: 8, borderRadius: 4, bgcolor: 'divider' }}
+                      sx={{ height: 8, borderRadius: 4, bgcolor: 'divider', '& .MuiLinearProgress-bar': { borderRadius: 4 } }}
                     />
                   </Box>
 
                   <Button 
-                    variant="primary" 
+                    variant={course.progress === 100 ? "outline" : "primary"} 
                     fullWidth 
-                    color={course.progress === 100 ? "inherit" : "primary"}
-                    startIcon={course.progress === 100 ? null : <PlayCircle size={18} />}
-                    onClick={() => navigate(`/courses/${course.id}`)}
-                    sx={{ py: 1.5, borderRadius: '12px', fontWeight: 700 }}
                   >
                     {course.progress === 100 ? 'Review Course' : (course.progress === 0 ? 'Start Course' : 'Continue Learning')}
                   </Button>
-                </CardContent>
-              </Card>
+                </Box>
+              </Box>
+
             </Grid>
           ))}
         </Grid>

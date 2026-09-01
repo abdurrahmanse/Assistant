@@ -1,5 +1,5 @@
-import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import React, { useRef } from 'react';
 
 interface RevealProps {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export function Reveal({ children, width = '100%', delay = 0, direction = 'up' }
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-10% 0px" });
 
-  let initialConfig = { opacity: 0, y: 0, x: 0 };
+  const initialConfig = { opacity: 0, y: 0, x: 0 };
   
   if (direction === 'up') initialConfig.y = 50;
   if (direction === 'down') initialConfig.y = -50;

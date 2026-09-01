@@ -1,14 +1,11 @@
 import { useContactQuery } from '@/features/landing/hooks/queries/useLandingQuery';
-import Alert from '@mui/material/Alert';
-import { Skeleton } from '@repo/ui';
 import Box from '@mui/material/Box';
-import { Button } from '@repo/ui';
 import Grid from '@mui/material/Grid';
-import Stack from '@mui/material/Stack';
-import { TextInput as TextField } from '@repo/ui';
 import InputAdornment from '@mui/material/InputAdornment';
-import { Send, User, AtSign, MessageSquareText } from 'lucide-react';
-import React, { useState, useEffect } from 'react';
+import Stack from '@mui/material/Stack';
+import { Button, Skeleton, TextInput as TextField } from '@repo/ui';
+import { AtSign, MessageSquareText, Send, User } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
 type ContactData = NonNullable<ReturnType<typeof useContactQuery>['data']>;
@@ -61,6 +58,7 @@ export default function ContactForm({
   useEffect(() => {
     if (isSuccess) {
       toast.success('Message sent successfully.');
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setForm({ firstName: '', lastName: '', email: '', subject: '', message: '' });
     }
   }, [isSuccess]);

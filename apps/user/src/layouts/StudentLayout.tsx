@@ -160,6 +160,18 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
       </AppBar>
 
       {/* Main Content Area */}
+      <Box sx={[
+        { minHeight: '100vh', display: 'flex', flexDirection: 'column' },
+        (theme) => ({
+          '&::before': {
+            content: '""', display: 'block', position: 'fixed', zIndex: -1, inset: 0,
+            backgroundImage: 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+            ...theme.applyStyles('dark', {
+              backgroundImage: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
+            }),
+          }
+        })
+      ]}>
       <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', pt: '100px' }}>
         {children}
       </Box>
@@ -170,6 +182,7 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
           © {new Date().getFullYear()} Learn with Abdur Rahman. All rights reserved.
         </Typography>
       </Box>
+    </Box>
     </AppTheme>
   );
 }

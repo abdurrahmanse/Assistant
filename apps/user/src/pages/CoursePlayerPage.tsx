@@ -59,7 +59,7 @@ export default function CoursePlayerPage() {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 mb: 4,
-                boxShadow: '0 12px 32px rgba(0,0,0,0.2)'
+                boxShadow: '8px 8px 0px rgba(0,0,0,1)', border: '4px solid #000'
               }}>
                 {currentLesson?.videoUrl ? (
                   <video 
@@ -83,7 +83,7 @@ export default function CoursePlayerPage() {
                 </Stack>
               </Stack>
 
-              <Paper variant="outlined" sx={{ borderRadius: '16px', overflow: 'hidden' }}>
+              <Paper variant="outlined" sx={{ borderRadius: '16px', overflow: 'hidden', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)' }}>
                 <Tabs value={activeTab} onChange={(e, v) => setActiveTab(v)} sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
                   <Tab label="Overview" sx={{ fontWeight: 700 }} />
                   <Tab label="Downloads & Resources" sx={{ fontWeight: 700 }} />
@@ -118,7 +118,7 @@ export default function CoursePlayerPage() {
 
             {/* Right: Curriculum Sidebar */}
             <Grid size={{ xs: 12, lg: 4 }}>
-              <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column' }}>
+              <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)' }}>
                 <Box sx={{ p: 3, borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
                   <Typography variant="h6" fontWeight={800} mb={1}>Course Curriculum</Typography>
                   <Typography variant="body2" color="text.secondary" mb={2}>{course.progress}% Completed</Typography>
