@@ -1,9 +1,9 @@
-import React, { Suspense } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
+import CssBaseline from '@mui/material/CssBaseline';
 import { ErrorBoundary } from '@repo/ui/components/ErrorBoundary';
+import React, { Suspense } from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 
 const SignInSide = React.lazy(() => import('@/pages/SignInPage'));
 const SignUp = React.lazy(() => import('@/pages/SignUpPage'));

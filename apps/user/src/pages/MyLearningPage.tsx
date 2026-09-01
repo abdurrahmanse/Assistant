@@ -1,14 +1,13 @@
-import React from 'react';
-import StudentLayout from '@/layouts/StudentLayout';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import { Button, Badge as Chip } from '@repo/ui';
-import LinearProgress from '@mui/material/LinearProgress';
-import { PlayCircle, CheckCircle2, Play } from 'lucide-react';
 import { mockEnrolledCourses } from '@/data/mock';
+import StudentLayout from '@/layouts/StudentLayout';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import LinearProgress from '@mui/material/LinearProgress';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { Button, Badge as Chip } from '@repo/ui';
+import { CheckCircle2, Play, PlayCircle } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 export default function MyLearningPage() {
@@ -17,7 +16,7 @@ export default function MyLearningPage() {
   return (
     <StudentLayout>
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
             My Learning
           </Typography>
@@ -27,7 +26,7 @@ export default function MyLearningPage() {
         </Container>
       </Box>
 
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Grid container spacing={4}>
           {mockEnrolledCourses.map((course) => (
             <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>

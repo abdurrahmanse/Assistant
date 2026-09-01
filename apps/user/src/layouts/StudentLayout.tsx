@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
-import Box from '@mui/material/Box';
-import AppTheme from '@repo/ui/shared-theme/AppTheme';
-import CssBaseline from '@mui/material/CssBaseline';
-import ColorModeSelect from '@repo/ui/shared-theme/ColorModeSelect';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import { Button } from '@repo/ui';
-import Avatar from '@mui/material/Avatar';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
-import Divider from '@mui/material/Divider';
-import Container from '@mui/material/Container';
-import { styled } from '@mui/material/styles';
-import { LogOut, Settings, BookOpen, GraduationCap, Compass, LayoutDashboard } from 'lucide-react';
 import AssistantLogo from '@/components/AssistantLogo';
 import { mockUser } from '@/data/mock';
-import { useNavigate, useLocation } from 'react-router';
+import AppBar from '@mui/material/AppBar';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import { styled } from '@mui/material/styles';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { Button } from '@repo/ui';
+import AppTheme from '@repo/ui/shared-theme/AppTheme';
+import ColorModeSelect from '@repo/ui/shared-theme/ColorModeSelect';
+import { X as CloseIcon, Compass, LayoutDashboard, LogOut, Menu as MenuIcon, Settings } from 'lucide-react';
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -38,8 +39,13 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function StudentLayout({ children, disableCustomTheme }: { children: React.ReactNode, disableCustomTheme?: boolean }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const toggleMobileDrawer = (newOpen: boolean) => () => {
+    setMobileOpen(newOpen);
+  };
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -154,6 +160,29 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                   <LogOut size={18} style={{ marginRight: '12px' }} /> Sign Out
                 </MenuItem>
               </Menu>
+            </Box>
+
+            {/* Mobile Navigation Drawer */}
+            <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 1 }}>
+              <IconButton aria-label="Menu button" onClick={toggleMobileDrawer(true)}>
+                <MenuIcon size={20} />
+              </IconButton>
+              <Drawer anchor="top" open={mobileOpen} onClose={toggleMobileDrawer(false)} slotProps={{ paper: { sx: { top: 'var(--template-frame-height, 0px)' } } }}>
+                <Box sx={{ p: 2, bgcolor: 'background.default' }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+                    <IconButton onClick={toggleMobileDrawer(false)}><CloseIcon size={20} /></IconButton>
+                  </Box>
+                  {navItems.map((link) => (
+                    <MenuItem key={link.label} sx={{ fontWeight: 600, display: 'flex', gap: 1.5, alignItems: 'center', py: 1.5 }} 
+                      onClick={() => {
+                        if (link.external) window.location.href = link.path;
+                        else { navigate(link.path); toggleMobileDrawer(false)(); }
+                      }}>
+                      {link.icon} {link.label}
+                    </MenuItem>
+                  ))}
+                </Box>
+              </Drawer>
             </Box>
           </StyledToolbar>
         </Container>
