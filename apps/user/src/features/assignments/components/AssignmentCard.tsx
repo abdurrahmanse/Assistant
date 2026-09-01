@@ -4,16 +4,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button, Badge as Chip } from '@repo/ui';
 import { Clock, FileText } from 'lucide-react';
+import type { Assignment } from '../../../types';
 
 interface AssignmentCardProps {
-  assignment: {
-    id: string;
-    course: string;
-    title: string;
-    status: string;
-    dueDate: string;
-    grade?: string | null;
-  };
+  assignment: Assignment;
 }
 
 export function AssignmentCard({ assignment }: AssignmentCardProps) {

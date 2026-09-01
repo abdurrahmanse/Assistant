@@ -1,8 +1,6 @@
-import { Theme } from '@mui/material/styles';
-import type { Theme, SxProps } from '@mui/material/styles';
+import type { SxProps, Theme } from '@mui/material/styles';
 
 export const styles = {
-  card: (theme: Theme) => ({
   card: ((theme: Theme) => ({
     height: '100%', 
     display: 'flex', 
@@ -24,7 +22,6 @@ export const styles = {
       boxShadow: '8px 8px 0px rgba(99,102,241,1)',
       borderColor: 'primary.main',
     }
-  }),
   })) as SxProps<Theme>,
   thumbnailWrapper: { 
     width: '100%', 

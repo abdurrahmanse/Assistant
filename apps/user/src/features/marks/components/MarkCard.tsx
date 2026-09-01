@@ -4,16 +4,10 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import { Award, CheckCircle2 } from 'lucide-react';
+import type { Mark } from '../../../types';
 
 interface MarkCardProps {
-  mark: {
-    id: string;
-    course: string;
-    title: string;
-    score: number;
-    total: number;
-    date: string;
-  };
+  mark: Mark;
 }
 
 export function MarkCard({ mark }: MarkCardProps) {
