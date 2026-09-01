@@ -14,7 +14,7 @@ import { styled, useColorScheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
-import { Award, Compass, FileText, Flame, LayoutDashboard, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
+import { Award, Compass, CreditCard, FileText, Flame, LayoutDashboard, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -157,6 +157,10 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                 <MenuItem onClick={() => handleNavigate('/settings')} sx={{ py: 1.5, fontWeight: 600 }}>
                   <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><Settings size={16} /></Box>
                   Account Settings
+                </MenuItem>
+                <MenuItem onClick={() => handleNavigate('/billing')} sx={{ py: 1.5, fontWeight: 600 }}>
+                  <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><CreditCard size={16} /></Box>
+                  Billing & Subscription
                 </MenuItem>
                 <MenuItem onClick={() => handleNavigate('/signin')} sx={{ py: 1.5, fontWeight: 600, color: 'error.main' }}>
                   <Box sx={{ mr: 1.5, display: 'flex', color: 'error.main' }}><LogOut size={16} /></Box>

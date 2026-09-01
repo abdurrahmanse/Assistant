@@ -25,7 +25,7 @@ export default function SettingsPage() {
   return (
     <StudentLayout>
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
             Account Settings
           </Typography>
@@ -35,7 +35,7 @@ export default function SettingsPage() {
         </Container>
       </Box>
 
-      <Container maxWidth="md" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Grid container spacing={6}>
           {/* Avatar Section */}
           <Grid size={{ xs: 12 }}>

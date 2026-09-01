@@ -13,7 +13,7 @@ export default function MarksPage() {
   return (
     <StudentLayout>
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
             Marks & Grades
           </Typography>
@@ -23,7 +23,7 @@ export default function MarksPage() {
         </Container>
       </Box>
 
-      <Container maxWidth="xl" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Grid container spacing={4}>
           {mockMarks.map((mark) => {
             const percentage = Math.round((mark.score / mark.total) * 100);

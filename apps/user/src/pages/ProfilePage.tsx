@@ -13,7 +13,7 @@ export default function ProfilePage() {
   return (
     <StudentLayout>
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="md">
+        <Container maxWidth="lg">
           <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
             My Profile
           </Typography>
@@ -23,7 +23,7 @@ export default function ProfilePage() {
         </Container>
       </Box>
 
-      <Container maxWidth="md" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box sx={(theme) => ({
           borderRadius: '24px', p: { xs: 4, md: 6 },
           border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',

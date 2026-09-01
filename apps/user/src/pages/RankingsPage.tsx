@@ -10,7 +10,7 @@ export default function RankingsPage() {
   return (
     <StudentLayout>
       <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="xl">
+        <Container maxWidth="lg">
           <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
             Rankings
           </Typography>
@@ -20,7 +20,7 @@ export default function RankingsPage() {
         </Container>
       </Box>
 
-      <Container maxWidth="md" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
         <Box sx={(theme) => ({
           borderRadius: '24px', 
           border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',

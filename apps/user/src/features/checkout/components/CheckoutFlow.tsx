@@ -1,26 +1,29 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
-import { Button } from '@repo/ui';
-import { Card } from '@repo/ui';
 import CardContent from '@mui/material/CardContent';
+import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
-import { ChevronLeft, ArrowRight } from "lucide-react";
+import { Button, Card } from '@repo/ui';
+import { ArrowRight, ChevronLeft } from "lucide-react";
+import * as React from 'react';
+import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
 import AddressForm from './AddressForm';
+import { CheckoutStepper } from './CheckoutStepper';
 import InfoMobile from './InfoMobile';
+import { OrderSuccess } from './OrderSuccess';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
-import { OrderSuccess } from './OrderSuccess';
-import { CheckoutStepper } from './CheckoutStepper';
-import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
-import Skeleton from '@mui/material/Skeleton';
+
+import PlanSelection from './PlanSelection';
 
 function getStepContent(step: number) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <PlanSelection />;
     case 1:
-      return <PaymentForm />;
+      return <AddressForm />;
     case 2:
+      return <PaymentForm />;
+    case 3:
       return <Review />;
     default:
       throw new Error('Unknown step');
@@ -36,7 +39,9 @@ export default function CheckoutFlow() {
   }
 
   const { ui } = data;
-  const { steps, buttons, labels } = ui;
+  const { buttons, labels } = ui;
+  // Prepend Plan Selection to the API steps
+  const steps = ['Plan Selection', ...ui.steps];
   
   const handleNext = () => setActiveStep(activeStep + 1);
   const handleBack = () => setActiveStep(activeStep - 1);
