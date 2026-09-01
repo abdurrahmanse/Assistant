@@ -1,3 +1,5 @@
+import { Heading, Text } from '@repo/ui';
+import { Compass } from 'lucide-react';
 import { mockAvailableCourses } from '@/data/mock';
 import { CourseCard } from '@/features/courses/components/CourseCard';
 import StudentLayout from '@/layouts/StudentLayout';
@@ -12,18 +14,18 @@ export default function CoursesPage() {
 
   return (
     <StudentLayout>
-      <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="lg">
-          <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
-            Discover Courses
-          </Typography>
-          <Typography variant="h6" color="text.secondary" fontWeight={500}>
-            Expand your skills with our premium catalog.
-          </Typography>
-        </Container>
-      </Box>
+      
 
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
+        <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
+            <Compass size={32} />
+          </Box>
+          <Box>
+            <Heading level={2}>Discover Courses</Heading>
+            <Text muted>Expand your skills with our premium catalog.</Text>
+          </Box>
+        </Box>
         <Grid container spacing={4}>
           {mockAvailableCourses.map((course) => (
             <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>

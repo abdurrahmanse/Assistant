@@ -5,8 +5,10 @@ import Typography from '@mui/material/Typography';
 import { Button, Badge as Chip } from '@repo/ui';
 import { CheckCircle2, Play, PlayCircle } from 'lucide-react';
 
+import type { EnrolledCourse } from '@/interfaces';
+
 interface CourseProgressCardProps {
-  course: any;
+  course: EnrolledCourse;
   onClick: () => void;
 }
 

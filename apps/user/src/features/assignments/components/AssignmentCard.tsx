@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button, Badge as Chip } from '@repo/ui';
 import { Clock, FileText } from 'lucide-react';
-import type { Assignment } from '../../../types';
+import type { Assignment } from '@/interfaces';
 
 interface AssignmentCardProps {
   assignment: Assignment;

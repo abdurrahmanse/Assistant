@@ -3,7 +3,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import { Download, FileText } from 'lucide-react';
-import type { Resource } from '../../../types';
+import type { Resource } from '@/interfaces';
 
 interface ResourcesTabProps {
   resources: Resource[];

@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import { Button } from '@repo/ui';
+import { Heading, Text,  Button } from '@repo/ui';
 import { TextInput as TextField } from '@repo/ui';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
@@ -13,7 +13,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Avatar from '@mui/material/Avatar';
 import { Card } from '@repo/ui';
 import Divider from '@mui/material/Divider';
-import { User, Mail, Lock, Upload, Save } from 'lucide-react';
+import { User, Mail, Lock, Upload, Save, Settings } from 'lucide-react';
 import { mockUser } from '@/data/mock';
 
 export default function SettingsPage() {
@@ -24,18 +24,18 @@ export default function SettingsPage() {
 
   return (
     <StudentLayout>
-      <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="lg">
-          <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
-            Account Settings
-          </Typography>
-          <Typography variant="h6" color="text.secondary" fontWeight={500}>
-            Manage your profile, email, and security preferences.
-          </Typography>
-        </Container>
-      </Box>
+      
 
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
+        <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
+            <Settings size={32} />
+          </Box>
+          <Box>
+            <Heading level={2}>Account Settings</Heading>
+            <Text muted>Manage your profile, email, and security preferences.</Text>
+          </Box>
+        </Box>
         <Grid container spacing={6}>
           {/* Avatar Section */}
           <Grid size={{ xs: 12 }}>

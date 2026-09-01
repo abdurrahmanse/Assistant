@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import { Award, CheckCircle2, FileText } from 'lucide-react';
 import React from 'react';
-import type { ActivityItem } from '../../../types';
+import type { ActivityItem } from '@/interfaces';
 
 interface RecentActivityFeedProps {
   activities: ActivityItem[];

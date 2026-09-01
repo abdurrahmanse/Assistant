@@ -6,11 +6,12 @@ import Typography from '@mui/material/Typography';
 import { CheckCircle2, ChevronDown, Circle, FileText, Lock, PlayCircle } from 'lucide-react';
 
 import { PomodoroWidget } from './PomodoroWidget';
+import type { CourseDetails, CourseLesson, CourseModule } from '@/interfaces';
 
 interface CurriculumSidebarProps {
-  course: any;
-  currentLesson: any;
-  onLessonSelect: (lesson: any) => void;
+  course: CourseDetails;
+  currentLesson: CourseLesson;
+  onLessonSelect: (lesson: CourseLesson) => void;
   strictMode?: boolean;
 }
 
@@ -18,17 +19,17 @@ export function CurriculumSidebar({ course, currentLesson, onLessonSelect, stric
   
   // Calculate if a lesson should be locked based on strict mode
   // A lesson is locked if it's NOT completed AND there is a previous lesson in the whole course that is NOT completed.
-  const allLessons = course.modules.flatMap((m: any) => m.lessons);
+  const allLessons = course.modules?.flatMap((m: CourseModule) => m.lessons) || [];
   
-  const isLessonLocked = (lesson: any) => {
+  const isLessonLocked = (lesson: CourseLesson) => {
     if (!strictMode) return false;
     if (lesson.isCompleted) return false; // completed lessons are never locked
     
     // Find the index of this lesson
-    const currentIndex = allLessons.findIndex((l: any) => l.id === lesson.id);
+    const currentIndex = allLessons.findIndex((l: CourseLesson) => l.id === lesson.id);
     
     // Check if any previous lesson is uncompleted
-    const hasUncompletedPrevious = allLessons.slice(0, currentIndex).some((l: any) => !l.isCompleted);
+    const hasUncompletedPrevious = allLessons.slice(0, currentIndex).some((l: CourseLesson) => !l.isCompleted);
     return hasUncompletedPrevious;
   };
 
@@ -53,13 +54,13 @@ export function CurriculumSidebar({ course, currentLesson, onLessonSelect, stric
       </Box>
 
       <Box sx={{ flexGrow: 1, overflowY: 'auto' }}>
-        {course.modules.map((mod: any, idx: number) => (
+        {course.modules?.map((mod: CourseModule, idx: number) => (
           <Accordion key={mod.id} defaultExpanded={idx === 0 || idx === 1} disableGutters elevation={0} sx={{ '&:before': { display: 'none' }, borderBottom: '1px solid', borderColor: 'divider' }}>
             <AccordionSummary expandIcon={<ChevronDown size={20} />} sx={{ bgcolor: 'rgba(0,0,0,0.02)', py: 1 }}>
               <Typography variant="subtitle2" fontWeight={800}>{mod.title}</Typography>
             </AccordionSummary>
             <AccordionDetails sx={{ p: 0 }}>
-              {mod.lessons.map((lesson: any) => {
+              {mod.lessons.map((lesson: CourseLesson) => {
                 const isActive = currentLesson?.id === lesson.id;
                 const locked = isLessonLocked(lesson);
                 

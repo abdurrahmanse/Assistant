@@ -5,8 +5,10 @@ import { Plyr } from 'plyr-react';
 import 'plyr-react/plyr.css';
 import { useEffect, useRef } from 'react';
 
+import type { CourseLesson } from '@/interfaces';
+
 interface VideoPlayerProps {
-  currentLesson: any;
+  currentLesson: CourseLesson;
   onVideoEnd?: () => void;
 }
 
@@ -14,16 +16,22 @@ export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
   const playerRef = useRef<APITypes>(null);
 
   useEffect(() => {
-    const player = playerRef.current?.plyr;
+    const player = playerRef.current?.plyr as any;
     if (player && onVideoEnd) {
       const handleEnded = () => {
         onVideoEnd();
       };
-      player.on('ended', handleEnded);
       
-      return () => {
-        player.off('ended', handleEnded);
-      };
+      if (typeof player.on === 'function') {
+        player.on('ended', handleEnded);
+        return () => player.off('ended', handleEnded);
+      } else if (typeof player.addEventListener === 'function') {
+        player.addEventListener('ended', handleEnded);
+        return () => player.removeEventListener('ended', handleEnded);
+      } else if (player.elements && player.elements.container) {
+        player.elements.container.addEventListener('ended', handleEnded);
+        return () => player.elements.container.removeEventListener('ended', handleEnded);
+      }
     }
   }, [currentLesson, onVideoEnd]);
 

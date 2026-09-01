@@ -1,1 +1,4 @@
 "Please refactor this entire projects all apps file into small, highly reusable, single-responsibility components following an enterprise-level, production-grade folder structure (e.g., modular separation of features, shared UI, and layouts). Extract each logical section or page into its own dedicated file and directory, ensuring clean separation of concerns, strict modularity, and maximum scalability."
+
+
+Now your job is to refactor the entire website. For example, why did I use Turbo Repo? The benefits of Turbo Repo are used in my main website and user website. That is, the things that should be included in the package, starting from API, data, UI, components, and use them on the main site and use them on the user website. That is, check whether the share system that is there for Turbo Repo or the main purpose of creating Turbo Repo has been used or whether there has been a total improvement. And update the user website accordingly.

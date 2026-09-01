@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import { Award, Bell, BookOpen, Compass, CreditCard, FileText, Flame, LayoutDashboard, LifeBuoy, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
+import { styles } from './StudentLayout.styles';
 
 const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   display: 'flex',
@@ -79,43 +80,24 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       <AppBar
         position="fixed"
         enableColorOnDark
-        sx={{
-          boxShadow: 'none !important',
-          bgcolor: 'transparent !important',
-          backgroundImage: 'none !important',
-          border: 'none !important',
-          mt: 'calc(var(--template-frame-height, 0px) + 28px)',
-        }}
+        sx={styles.appBar}
       >
         <Container maxWidth="lg">
           <StyledToolbar variant="dense" disableGutters>
             {/* Logo */}
-            <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', mr: 2, px: 1 }} onClick={() => handleNavigate('/home')}>
+            <Box sx={styles.logoWrapper} onClick={() => handleNavigate('/home')}>
               <AssistantLogo />
             </Box>
 
             {/* Desktop Navigation */}
-            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, ml: 2 }}>
+            <Stack direction="row" spacing={1} sx={styles.desktopNavStack}>
               {topBarItems.map((item) => {
                 const isActive = location.pathname.startsWith(item.path);
                 return (
                   <Box
                     key={item.label}
                     onClick={() => handleNavigate(item.path)}
-                    sx={{
-                      px: 2,
-                      py: 1,
-                      cursor: 'pointer',
-                      borderRadius: '8px',
-                      typography: 'subtitle2',
-                      fontWeight: 700,
-                      color: isActive ? 'primary.main' : 'text.primary',
-                      bgcolor: isActive ? 'primary.50' : 'transparent',
-                      transition: 'all 0.2s',
-                      '&:hover': {
-                        bgcolor: isActive ? 'primary.50' : 'action.hover',
-                      }
-                    }}
+                    sx={styles.navItem(isActive)}
                   >
                     {item.label}
                   </Box>
@@ -129,7 +111,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
             {/* User Menu (Right) */}
             <Stack direction="row" alignItems="center" spacing={{ xs: 1, sm: 2 }}>
               {/* Streak Counter */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, px: 2, py: 0.75, borderRadius: '12px', bgcolor: 'rgba(249, 115, 22, 0.1)', color: '#f97316', fontWeight: 800 }}>
+              <Box sx={styles.streakBadge}>
                 <Flame size={18} fill="currentColor" />
                 <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'none', sm: 'block' } }}>{`3 Day Streak`}</Typography>
                 <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'block', sm: 'none' } }}>{`3`}</Typography>
@@ -139,17 +121,17 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
                 onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
                 color="inherit"
                 size="small"
-                sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.1)' } }}
+                sx={styles.themeToggle}
               >
                 {mode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
               </IconButton>
               
-              <Box sx={{ textAlign: 'right', display: { xs: 'none', sm: 'block' } }}>
+              <Box sx={styles.userInfoBlock}>
                 <Typography variant="subtitle2" fontWeight={800}>{mockUser.name}</Typography>
                 <Typography variant="caption" color="text.secondary" sx={{ fontWeight: 600 }}>Student</Typography>
               </Box>
               
-              <IconButton onClick={handleMenu} size="small" sx={{ p: 0.5, border: '2px solid', borderColor: 'divider', borderRadius: '50%' }}>
+              <IconButton onClick={handleMenu} size="small" sx={styles.avatarButton}>
                 <Avatar sx={{ width: 32, height: 32 }} src={mockUser.avatar} />
               </IconButton>
               
@@ -161,29 +143,20 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 PaperProps={{
                   elevation: 0,
-                  sx: {
-                    overflow: 'visible',
-                    filter: 'drop-shadow(0px 4px 20px rgba(0,0,0,0.1))',
-                    mt: 1.5,
-                    borderRadius: '16px',
-                    minWidth: 200,
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    bgcolor: 'background.paper'
-                  },
+                  sx: styles.menuPaper,
                 }}
               >
-                <Box sx={{ px: 2, py: 1.5, display: { xs: 'block', sm: 'none' } }}>
+                <Box sx={styles.mobileUserInfo}>
                   <Typography variant="subtitle2" fontWeight={800}>{mockUser.name}</Typography>
                   <Typography variant="caption" color="text.secondary">{mockUser.email}</Typography>
                   <Divider sx={{ mt: 1.5 }} />
                 </Box>
                 
                 {/* Mobile Navigation Links (Hidden on Desktop) */}
-                <Box sx={{ display: { md: 'none' } }}>
+                <Box sx={styles.mobileNavBlock}>
                   {topBarItems.map((item) => (
-                    <MenuItem key={item.label} onClick={() => handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 700 }}>
-                      <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}>
+                    <MenuItem key={item.label} onClick={() => handleNavigate(item.path)} sx={styles.menuItem}>
+                      <Box sx={styles.menuItemIcon}>
                         {item.label === 'Dashboard' && <LayoutDashboard size={16} />}
                         {item.label === 'My Courses' && <BookOpen size={16} />}
                         {item.label === 'Discover' && <Compass size={16} />}
@@ -197,8 +170,8 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
                 </Box>
                 
                 {dropdownItems.map((item) => (
-                  <MenuItem key={item.label} onClick={() => handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 700 }}>
-                    <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}>
+                  <MenuItem key={item.label} onClick={() => handleNavigate(item.path)} sx={styles.menuItem}>
+                    <Box sx={styles.menuItemIcon}>
                       {item.icon}
                     </Box>
                     {item.label}
@@ -206,16 +179,16 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
                 ))}
                 
                 <Divider />
-                <MenuItem onClick={() => handleNavigate('/settings')} sx={{ py: 1.5, fontWeight: 700 }}>
-                  <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><Settings size={16} /></Box>
+                <MenuItem onClick={() => handleNavigate('/settings')} sx={styles.menuItem}>
+                  <Box sx={styles.menuItemIcon}><Settings size={16} /></Box>
                   Account Settings
                 </MenuItem>
-                <MenuItem onClick={() => handleNavigate('/billing')} sx={{ py: 1.5, fontWeight: 700 }}>
-                  <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><CreditCard size={16} /></Box>
+                <MenuItem onClick={() => handleNavigate('/billing')} sx={styles.menuItem}>
+                  <Box sx={styles.menuItemIcon}><CreditCard size={16} /></Box>
                   Billing & Subscription
                 </MenuItem>
-                <MenuItem onClick={() => handleNavigate('/signin')} sx={{ py: 1.5, fontWeight: 700, color: 'error.main' }}>
-                  <Box sx={{ mr: 1.5, display: 'flex', color: 'error.main' }}><LogOut size={16} /></Box>
+                <MenuItem onClick={() => handleNavigate('/signin')} sx={styles.signOutMenuItem}>
+                  <Box sx={styles.signOutIcon}><LogOut size={16} /></Box>
                   Sign Out
                 </MenuItem>
               </Menu>
@@ -226,13 +199,13 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       </AppBar>
 
       {/* Main Content Area */}
-      <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
-        <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', pt: '100px' }}>
+      <Box sx={styles.mainWrapper}>
+        <Box component="main" sx={styles.mainContent}>
           {children}
         </Box>
 
         {/* Footer Exact Match */}
-        <Box component="footer" sx={{ py: 4, textAlign: 'center', borderTop: '1px solid', borderColor: 'divider', bgcolor: 'background.paper', mt: 'auto' }}>
+        <Box component="footer" sx={styles.footer}>
           <Typography variant="body2" color="text.secondary" fontWeight={600}>
             © {new Date().getFullYear()} Learn with Abdur Rahman. All rights reserved.
           </Typography>

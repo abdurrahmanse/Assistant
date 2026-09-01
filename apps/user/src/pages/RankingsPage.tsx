@@ -1,3 +1,4 @@
+import { Heading, Text } from '@repo/ui';
 import { mockRankings } from '@/data/mock';
 import StudentLayout from '@/layouts/StudentLayout';
 import Avatar from '@mui/material/Avatar';
@@ -9,18 +10,18 @@ import { Trophy } from 'lucide-react';
 export default function RankingsPage() {
   return (
     <StudentLayout>
-      <Box sx={{ bgcolor: 'background.paper', borderBottom: '1px solid', borderColor: 'divider', pt: 8, pb: 6 }}>
-        <Container maxWidth="lg">
-          <Typography variant="h3" fontWeight={900} sx={{ letterSpacing: '-0.02em', mb: 2 }}>
-            Rankings
-          </Typography>
-          <Typography variant="h6" color="text.secondary" fontWeight={500}>
-            Global leaderboard for top performing students.
-          </Typography>
-        </Container>
-      </Box>
+      
 
-      <Container maxWidth="lg" sx={{ py: 8 }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
+        <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
+            <Trophy size={32} />
+          </Box>
+          <Box>
+            <Heading level={2}>Rankings</Heading>
+            <Text muted>Global leaderboard for top performing students.</Text>
+          </Box>
+        </Box>
         <Box sx={(theme) => ({
           borderRadius: '24px', 
           border: '2px solid', borderColor: 'rgba(0,0,0,0.1)',

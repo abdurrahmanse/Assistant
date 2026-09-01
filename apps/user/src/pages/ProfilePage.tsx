@@ -1,4 +1,5 @@
 import { mockUser } from '@/data/mock';
+import { styles } from './ProfilePage.styles';
 import StudentLayout from '@/layouts/StudentLayout';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -8,14 +9,13 @@ import InputAdornment from '@mui/material/InputAdornment';
 import Stack from '@mui/material/Stack';
 import { Button, Card, CardContent, Heading, Text, TextInput as TextField } from '@repo/ui';
 import { Camera, CheckCircle2, Globe, Link, Mail, MapPin, Save, User } from 'lucide-react';
-import React from 'react';
 
 export default function ProfilePage() {
   return (
     <StudentLayout>
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
-        <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
+        <Box sx={styles.headerWrapper}>
+          <Box sx={styles.headerIconBox}>
             <User size={32} />
           </Box>
           <Box>
@@ -30,27 +30,14 @@ export default function ProfilePage() {
             <Stack spacing={4}>
               <Card glass hoverable sx={{ overflow: 'hidden' }}>
                 {/* Banner */}
-                <Box sx={{ 
-                  height: 100, 
-                  background: 'linear-gradient(135deg, var(--template-palette-primary-main) 0%, var(--template-palette-secondary-main) 100%)' 
-                }} />
-                <CardContent sx={{ pt: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                  <Box sx={{ position: 'relative', mt: -6, mb: 2 }}>
+                <Box sx={styles.banner} />
+                <CardContent sx={styles.cardContent}>
+                  <Box sx={styles.avatarWrapper}>
                     <Avatar 
                       src={mockUser.avatar} 
-                      sx={{ 
-                        width: 100, height: 100, 
-                        border: '4px solid', borderColor: 'background.paper',
-                        boxShadow: '0 4px 14px rgba(0,0,0,0.1)'
-                      }} 
+                      sx={styles.avatar} 
                     />
-                    <Box sx={{ 
-                      position: 'absolute', bottom: 0, right: 0, 
-                      bgcolor: 'primary.main', color: 'white', 
-                      p: 0.75, borderRadius: '50%', cursor: 'pointer',
-                      border: '2px solid', borderColor: 'background.paper',
-                      transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.1)' }
-                    }}>
+                    <Box sx={styles.cameraButton}>
                       <Camera size={14} />
                     </Box>
                   </Box>
@@ -58,7 +45,7 @@ export default function ProfilePage() {
                   <Heading level={4} sx={{ mb: 0.5 }}>{mockUser.name}</Heading>
                   <Text muted sx={{ mb: 2 }}>Student</Text>
                   
-                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'success.main', mb: 3 }}>
+                  <Box sx={styles.verifiedBadge}>
                     <CheckCircle2 size={16} />
                     <Text variant="caption" bold sx={{ color: 'inherit' }}>Verified Account</Text>
                   </Box>
@@ -71,15 +58,15 @@ export default function ProfilePage() {
                 <CardContent>
                   <Heading level={5} sx={{ mb: 3 }}>Completion Stats</Heading>
                   <Stack spacing={2}>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={styles.statsRow}>
                       <Text muted>Courses Enrolled</Text>
                       <Heading level={6}>4</Heading>
                     </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={styles.statsRow}>
                       <Text muted>Courses Completed</Text>
                       <Heading level={6}>1</Heading>
                     </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <Box sx={styles.statsRow}>
                       <Text muted>Certificates Earned</Text>
                       <Heading level={6}>1</Heading>
                     </Box>
@@ -94,7 +81,7 @@ export default function ProfilePage() {
             <Stack spacing={4}>
               {/* Personal Information */}
               <Card glass>
-                <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+                <CardContent sx={styles.formCardContent}>
                   <Heading level={4} sx={{ mb: 1 }}>Personal Information</Heading>
                   <Text muted sx={{ mb: 4 }}>Update your basic profile details.</Text>
                   
@@ -154,7 +141,7 @@ export default function ProfilePage() {
 
               {/* Social Links */}
               <Card glass>
-                <CardContent sx={{ p: { xs: 3, md: 4 } }}>
+                <CardContent sx={styles.formCardContent}>
                   <Heading level={4} sx={{ mb: 1 }}>Social Profiles</Heading>
                   <Text muted sx={{ mb: 4 }}>Connect your social accounts to your public profile.</Text>
                   
@@ -179,7 +166,7 @@ export default function ProfilePage() {
               </Card>
 
               {/* Action Buttons */}
-              <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 2, pt: 2 }}>
+              <Box sx={styles.actionButtons}>
                 <Button variant="outline">Cancel</Button>
                 <Button variant="primary" startIcon={<Save size={18} />}>
                   Save Changes

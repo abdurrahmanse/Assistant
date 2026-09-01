@@ -60,3 +60,36 @@ export interface StatItem {
   trend?: string;
   color?: string;
 }
+
+export interface CourseLesson {
+  id: string;
+  title: string;
+  duration: string;
+  isCompleted: boolean;
+  type: string;
+  videoUrl?: string;
+}
+
+export interface CourseModule {
+  id: string;
+  title: string;
+  lessons: CourseLesson[];
+}
+
+export interface CourseDetails extends Course {
+  progress?: number;
+  modules?: CourseModule[];
+  resources?: Resource[];
+}
+
+export interface EnrolledCourse {
+  id: string;
+  slug: string;
+  title: string;
+  instructor: string;
+  thumbnail: string;
+  progress: number;
+  totalLessons: number;
+  completedLessons: number;
+  lastAccessed: string;
+}

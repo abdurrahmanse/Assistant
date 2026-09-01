@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
+import type { CourseDetails, CourseModule, CourseLesson } from '@/interfaces';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
 
 // Classroom Components
@@ -44,16 +45,16 @@ export default function CoursePlayerPage() {
   }
   
   // Find first uncompleted video as default, or fallback to first
-  const defaultLesson = course.modules[0]?.lessons[0] as any;
+  const defaultLesson = course.modules?.[0]?.lessons[0] as CourseLesson;
   const [currentLesson, setCurrentLesson] = useState(defaultLesson);
   const [activeTab, setActiveTab] = useState(0);
   const [localCourse, setLocalCourse] = useState(course);
 
   // Flatten lessons for easier navigation logic
-  const allLessons = localCourse.modules.flatMap((m: any) => m.lessons);
-  const currentLessonIndex = allLessons.findIndex((l: any) => l.id === currentLesson.id);
+  const allLessons = localCourse.modules?.flatMap((m: CourseModule) => m.lessons) || [];
+  const currentLessonIndex = allLessons.findIndex((l: CourseLesson) => l.id === currentLesson.id);
 
-  const handleLessonSelect = (lesson: any) => {
+  const handleLessonSelect = (lesson: CourseLesson) => {
     if (lesson.type === 'video' || lesson.type === 'quiz') {
       setCurrentLesson(lesson);
     }
@@ -74,14 +75,14 @@ export default function CoursePlayerPage() {
   const markCurrentLessonComplete = () => {
     if (currentLesson.isCompleted) return;
     
-    const updatedModules = localCourse.modules.map((m: any) => ({
+    const updatedModules = localCourse.modules?.map((m: CourseModule) => ({
       ...m,
-      lessons: m.lessons.map((l: any) => l.id === currentLesson.id ? { ...l, isCompleted: true } : l)
+      lessons: m.lessons.map((l: CourseLesson) => l.id === currentLesson.id ? { ...l, isCompleted: true } : l)
     }));
     
     // Calculate new overall progress
     const totalLessons = allLessons.length;
-    const completedLessons = updatedModules.flatMap((m: any) => m.lessons).filter((l: any) => l.isCompleted).length;
+    const completedLessons = updatedModules.flatMap((m: CourseModule) => m.lessons).filter((l: CourseLesson) => l.isCompleted).length;
     const newProgress = Math.round((completedLessons / totalLessons) * 100);
 
     setLocalCourse({ ...localCourse, modules: updatedModules, progress: newProgress });

@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import { Clock, MoreVertical, PlayCircle, Plus } from 'lucide-react';
 import { useState } from 'react';
-import type { Note } from '../../../types';
+import type { Note } from '@/interfaces';
 
 export function NotesTab() {
   const [notes, setNotes] = useState<Note[]>([

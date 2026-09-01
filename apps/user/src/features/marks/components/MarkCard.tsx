@@ -4,7 +4,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import { Award, CheckCircle2 } from 'lucide-react';
-import type { Mark } from '../../../types';
+import type { Mark } from '@/interfaces';
 
 interface MarkCardProps {
   mark: Mark;

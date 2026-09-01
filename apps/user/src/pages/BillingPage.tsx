@@ -6,8 +6,8 @@ import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import { Button } from '@repo/ui';
-import { AlertCircle, CheckCircle2, CreditCard } from 'lucide-react';
+import { Heading, Text,  Button } from '@repo/ui';
+import { AlertCircle, CheckCircle2, CreditCard }  from 'lucide-react';
 
 export default function BillingPage() {
   const currentPlan = {
