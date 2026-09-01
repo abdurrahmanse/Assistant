@@ -1,13 +1,32 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import type { APITypes } from 'plyr-react';
 import { Plyr } from 'plyr-react';
 import 'plyr-react/plyr.css';
+import { useEffect, useRef } from 'react';
 
 interface VideoPlayerProps {
   currentLesson: any;
+  onVideoEnd?: () => void;
 }
 
-export function VideoPlayer({ currentLesson }: VideoPlayerProps) {
+export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
+  const playerRef = useRef<APITypes>(null);
+
+  useEffect(() => {
+    const player = playerRef.current?.plyr;
+    if (player && onVideoEnd) {
+      const handleEnded = () => {
+        onVideoEnd();
+      };
+      player.on('ended', handleEnded);
+      
+      return () => {
+        player.off('ended', handleEnded);
+      };
+    }
+  }, [currentLesson, onVideoEnd]);
+
   return (
     <Box sx={{ 
       width: '100%', 
@@ -24,6 +43,7 @@ export function VideoPlayer({ currentLesson }: VideoPlayerProps) {
     }}>
       {currentLesson?.videoUrl ? (
         <Plyr
+          ref={playerRef}
           source={{
             type: 'video',
             sources: [{ src: currentLesson.videoUrl, provider: 'html5' }],

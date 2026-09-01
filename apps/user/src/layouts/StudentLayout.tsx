@@ -96,8 +96,8 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
               {/* Streak Counter */}
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, px: 2, py: 0.75, borderRadius: '12px', bgcolor: 'rgba(249, 115, 22, 0.1)', color: '#f97316', fontWeight: 800 }}>
                 <Flame size={18} fill="currentColor" />
-                <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'none', sm: 'block' } }}>3 Day Streak</Typography>
-                <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'block', sm: 'none' } }}>3</Typography>
+                <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'none', sm: 'block' } }}>{`3 Day Streak`}</Typography>
+                <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'block', sm: 'none' } }}>{`3`}</Typography>
               </Box>
 
               <IconButton 
@@ -145,7 +145,7 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                 </Box>
                 
                 {navItems.map((item) => (
-                  <MenuItem key={item.label} onClick={() => item.external ? window.location.href = item.path : handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 600 }}>
+                  <MenuItem key={item.label} onClick={() => item.external ? window.location.href = item.path : handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 700 }}>
                     <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}>
                       {item.icon}
                     </Box>
@@ -154,15 +154,15 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                 ))}
                 
                 <Divider />
-                <MenuItem onClick={() => handleNavigate('/settings')} sx={{ py: 1.5, fontWeight: 600 }}>
+                <MenuItem onClick={() => handleNavigate('/settings')} sx={{ py: 1.5, fontWeight: 700 }}>
                   <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><Settings size={16} /></Box>
                   Account Settings
                 </MenuItem>
-                <MenuItem onClick={() => handleNavigate('/billing')} sx={{ py: 1.5, fontWeight: 600 }}>
+                <MenuItem onClick={() => handleNavigate('/billing')} sx={{ py: 1.5, fontWeight: 700 }}>
                   <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><CreditCard size={16} /></Box>
                   Billing & Subscription
                 </MenuItem>
-                <MenuItem onClick={() => handleNavigate('/signin')} sx={{ py: 1.5, fontWeight: 600, color: 'error.main' }}>
+                <MenuItem onClick={() => handleNavigate('/signin')} sx={{ py: 1.5, fontWeight: 700, color: 'error.main' }}>
                   <Box sx={{ mr: 1.5, display: 'flex', color: 'error.main' }}><LogOut size={16} /></Box>
                   Sign Out
                 </MenuItem>

@@ -1,19 +1,18 @@
-import React from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Stack from '@mui/material/Stack';
 import Divider from '@mui/material/Divider';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 import { Button, Badge as Chip } from '@repo/ui';
-import { FileText, Clock } from 'lucide-react';
+import { Clock, FileText } from 'lucide-react';
 
 interface AssignmentCardProps {
   assignment: {
     id: string;
-    title: string;
     course: string;
-    dueDate: string;
+    title: string;
     status: string;
-    grade?: string;
+    dueDate: string;
+    grade?: string | null;
   };
 }
 

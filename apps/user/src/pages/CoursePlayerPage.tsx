@@ -47,6 +47,11 @@ export default function CoursePlayerPage() {
   const defaultLesson = course.modules[0]?.lessons[0] as any;
   const [currentLesson, setCurrentLesson] = useState(defaultLesson);
   const [activeTab, setActiveTab] = useState(0);
+  const [localCourse, setLocalCourse] = useState(course);
+
+  // Flatten lessons for easier navigation logic
+  const allLessons = localCourse.modules.flatMap((m: any) => m.lessons);
+  const currentLessonIndex = allLessons.findIndex((l: any) => l.id === currentLesson.id);
 
   const handleLessonSelect = (lesson: any) => {
     if (lesson.type === 'video' || lesson.type === 'quiz') {
@@ -54,11 +59,43 @@ export default function CoursePlayerPage() {
     }
   };
 
+  const handleNextLesson = () => {
+    if (currentLessonIndex < allLessons.length - 1) {
+      setCurrentLesson(allLessons[currentLessonIndex + 1]);
+    }
+  };
+
+  const handlePrevLesson = () => {
+    if (currentLessonIndex > 0) {
+      setCurrentLesson(allLessons[currentLessonIndex - 1]);
+    }
+  };
+
+  const markCurrentLessonComplete = () => {
+    if (currentLesson.isCompleted) return;
+    
+    const updatedModules = localCourse.modules.map((m: any) => ({
+      ...m,
+      lessons: m.lessons.map((l: any) => l.id === currentLesson.id ? { ...l, isCompleted: true } : l)
+    }));
+    
+    // Calculate new overall progress
+    const totalLessons = allLessons.length;
+    const completedLessons = updatedModules.flatMap((m: any) => m.lessons).filter((l: any) => l.isCompleted).length;
+    const newProgress = Math.round((completedLessons / totalLessons) * 100);
+
+    setLocalCourse({ ...localCourse, modules: updatedModules, progress: newProgress });
+    setCurrentLesson({ ...currentLesson, isCompleted: true });
+    
+    // Auto-advance
+    handleNextLesson();
+  };
+
   return (
     <StudentLayout>
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
         
-        <CourseHeader title={course.title} onBack={() => navigate('/home')} />
+        <CourseHeader title={localCourse.title} onBack={() => navigate('/home')} />
 
         <Container maxWidth="lg" sx={{ flexGrow: 1, py: 4, display: 'flex', flexDirection: 'column' }}>
           <Grid container spacing={4} sx={{ flexGrow: 1 }}>
@@ -66,13 +103,21 @@ export default function CoursePlayerPage() {
             {/* Left: Player & Tabs */}
             <Grid size={{ xs: 12, lg: 8 }} sx={{ display: 'flex', flexDirection: 'column' }}>
               
-              <VideoPlayer currentLesson={currentLesson} />
+              <VideoPlayer currentLesson={currentLesson} onVideoEnd={markCurrentLessonComplete} />
 
               <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={900}>{currentLesson?.title}</Typography>
+                <Typography variant="h4" fontWeight={900}>{currentLesson?.title || ''}</Typography>
                 <Stack direction="row" spacing={2}>
-                  <Button variant="outline" startIcon={<ChevronLeft size={18} />} sx={{ borderRadius: '12px' }}>Prev</Button>
-                  <Button variant="primary" endIcon={<ChevronRight size={18} />} sx={{ borderRadius: '12px' }}>Next Lesson</Button>
+                  {currentLessonIndex > 0 ? (
+                    <Button variant="outline" startIcon={<ChevronLeft size={18} />} sx={{ borderRadius: '12px' }} onClick={handlePrevLesson}>Prev</Button>
+                  ) : null}
+                  
+                  {/* Next Lesson is ONLY available if the current lesson is completed */}
+                  {currentLesson.isCompleted && currentLessonIndex < allLessons.length - 1 ? (
+                    <Button variant="primary" endIcon={<ChevronRight size={18} />} sx={{ borderRadius: '12px' }} onClick={handleNextLesson}>
+                      Next Lesson
+                    </Button>
+                  ) : null}
                 </Stack>
               </Stack>
 
@@ -85,11 +130,11 @@ export default function CoursePlayerPage() {
                   <Tab label="Q&A Discussions" sx={{ fontWeight: 700 }} />
                 </Tabs>
                 <Box sx={{ p: 4, minHeight: 300, bgcolor: 'background.paper' }}>
-                  {activeTab === 0 && <OverviewTab />}
-                  {activeTab === 1 && <NotesTab />}
-                  {activeTab === 2 && <ResourcesTab resources={course.resources} />}
-                  {activeTab === 3 && <ReviewFeedbackTab />}
-                  {activeTab === 4 && <QAndATab />}
+                  {activeTab === 0 ? <OverviewTab /> : null}
+                  {activeTab === 1 ? <NotesTab /> : null}
+                  {activeTab === 2 ? <ResourcesTab resources={localCourse.resources} /> : null}
+                  {activeTab === 3 ? <ReviewFeedbackTab /> : null}
+                  {activeTab === 4 ? <QAndATab /> : null}
                 </Box>
               </Paper>
             </Grid>
@@ -97,7 +142,12 @@ export default function CoursePlayerPage() {
             {/* Right: Curriculum Sidebar */}
             <Grid size={{ xs: 12, lg: 4 }}>
               <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)' }}>
-                <CurriculumSidebar course={course} currentLesson={currentLesson} onLessonSelect={handleLessonSelect} />
+                <CurriculumSidebar 
+                  course={localCourse} 
+                  currentLesson={currentLesson} 
+                  onLessonSelect={handleLessonSelect} 
+                  strictMode={true}
+                />
               </Paper>
             </Grid>
             

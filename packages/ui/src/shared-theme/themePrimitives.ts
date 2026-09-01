@@ -308,16 +308,19 @@ export const colorSchemes = {
 };
 
 export const typography = {
-  fontFamily: '"Rajdhani", sans-serif',
-  h1: { fontFamily: '"Kalam", cursive', background: 'linear-gradient(90deg, var(--template-palette-primary-main), #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h2: { fontFamily: '"Kalam", cursive', background: 'linear-gradient(90deg, var(--template-palette-primary-main), #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h3: { fontFamily: '"Kalam", cursive', background: 'linear-gradient(90deg, var(--template-palette-primary-main), #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h4: { fontFamily: '"Kalam", cursive', background: 'linear-gradient(90deg, var(--template-palette-primary-main), #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h5: { fontFamily: '"Kalam", cursive', background: 'linear-gradient(90deg, var(--template-palette-primary-main), #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', fontSize: 'clamp(18px, 2.5vw, 24px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h6: { fontFamily: '"Kalam", cursive', background: 'linear-gradient(90deg, var(--template-palette-primary-main), #ec4899)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', color: 'transparent', fontSize: 'clamp(16px, 2vw, 20px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  body1: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600 },
-  body2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 600 },
+  fontFamily: '"Rajdhani", "Inter", "Plus Jakarta Sans", "Roboto", sans-serif',
+  h1: { fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em' },
+  h2: { fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em' },
+  h3: { fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em' },
+  h4: { fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em' },
+  h5: { fontSize: '1.25rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0em' },
+  h6: { fontSize: '1rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0em' },
+  subtitle1: { fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, letterSpacing: '0em' },
+  subtitle2: { fontSize: '0.875rem', fontWeight: 700, lineHeight: 1.4, letterSpacing: '0em' },
+  body1: { fontSize: defaultTheme.typography.pxToRem(16), fontWeight: 500, letterSpacing: '0em' },
+  body2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 500, letterSpacing: '0em' },
   caption: { fontSize: defaultTheme.typography.pxToRem(12), fontWeight: 600 },
+  overline: { fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' },
 };
 
 export const shape = {
