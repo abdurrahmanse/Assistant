@@ -5,14 +5,9 @@ import Typography from '@mui/material/Typography';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { Activity } from 'lucide-react';
 
-interface LearningActivityChartProps {
-  seriesData: number[];
-  labels: string[];
-}
-
-export function LearningActivityChart({ seriesData, labels }: LearningActivityChartProps) {
+export function LearningActivityChart() {
   return (
-    <Paper variant="outlined" sx={{ p: 4, height: '100%', borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}>
+    <Paper variant="outlined" sx={{ p: 4, height: '100%', borderRadius: '24px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column' }}>
       <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
         <Box>
           <Typography variant="h6" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -21,15 +16,14 @@ export function LearningActivityChart({ seriesData, labels }: LearningActivityCh
           <Typography variant="body2" color="text.secondary">Hours spent learning over the last 7 days</Typography>
         </Box>
       </Stack>
-      <Box sx={{ width: '100%', flexGrow: 1, minHeight: { xs: 250, md: 'auto' } }}>
+      <Box sx={{ width: '100%', flexGrow: 1, minHeight: 250 }}>
         <BarChart
-          series={[{ data: seriesData, color: 'var(--template-palette-primary-main)' }]}
-          xAxis={[{ data: labels, scaleType: 'band' }]}
+          series={[{ data: [1.2, 2.5, 0.8, 4.2, 3.1, 1.5, 2.0], color: 'var(--template-palette-primary-main)' }]}
+          xAxis={[{ data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'], scaleType: 'band' }]}
           margin={{ top: 10, bottom: 30, left: 40, right: 10 }}
-          borderRadius={8}
+          borderRadius={6}
         />
       </Box>
     </Paper>
   );
 }
-

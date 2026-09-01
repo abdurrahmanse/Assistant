@@ -76,7 +76,12 @@ export interface CourseModule {
   lessons: CourseLesson[];
 }
 
-export interface CourseDetails extends Course {
+export interface CourseDetails {
+  id: string;
+  slug: string;
+  title: string;
+  instructor: string;
+  thumbnail?: string;
   progress?: number;
   modules?: CourseModule[];
   resources?: Resource[];
@@ -92,4 +97,11 @@ export interface EnrolledCourse {
   totalLessons: number;
   completedLessons: number;
   lastAccessed: string;
+}
+
+export interface UserProfile {
+  id: string;
+  name: string;
+  email: string;
+  avatar: string;
 }
