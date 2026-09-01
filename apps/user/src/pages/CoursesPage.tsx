@@ -1,13 +1,12 @@
-import React from 'react';
-import StudentLayout from '@/layouts/StudentLayout';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import { Button, Badge as Chip } from '@repo/ui';
-import { Star, Users, ArrowRight } from 'lucide-react';
 import { mockAvailableCourses } from '@/data/mock';
+import StudentLayout from '@/layouts/StudentLayout';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { Button, Badge as Chip } from '@repo/ui';
+import { ArrowRight, Star, Users } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 export default function CoursesPage() {
@@ -38,13 +37,14 @@ export default function CoursesPage() {
                 ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' }),
                 backdropFilter: 'blur(24px)',
                 overflow: 'hidden',
+                cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)',
                 '&:hover': {
                   transform: 'translateY(-4px)',
                   boxShadow: '8px 8px 0px rgba(99,102,241,1)',
                   borderColor: 'primary.main',
                 }
-              })}>
+              })} onClick={() => navigate(`/checkout?course=${course.slug}`)}>
                 <Box sx={{ width: '100%', aspectRatio: '16/9', position: 'relative', overflow: 'hidden' }}>
                   <Box component="img" src={course.thumbnail} alt={course.title} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   <Box sx={{ position: 'absolute', top: 16, right: 16 }}>
@@ -76,7 +76,7 @@ export default function CoursesPage() {
                         <Typography variant="body2" fontWeight={600}>{course.students}</Typography>
                       </Stack>
                     </Stack>
-                    <Button variant="primary" fullWidth endIcon={<ArrowRight size={16} />} onClick={() => navigate('/checkout')}>
+                    <Button variant="primary" fullWidth endIcon={<ArrowRight size={16} />} onClick={(e) => { e.stopPropagation(); navigate(`/checkout?course=${course.slug}`); }}>
                       Enroll Now
                     </Button>
                   </Box>

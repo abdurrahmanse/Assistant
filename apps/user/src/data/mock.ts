@@ -8,6 +8,7 @@ export const mockUser = {
 export const mockEnrolledCourses = [
   {
     id: 'c_1',
+    slug: 'the-fullstack-nextjs-masterclass',
     title: 'The Fullstack Next.js Masterclass',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&q=80',
@@ -18,6 +19,7 @@ export const mockEnrolledCourses = [
   },
   {
     id: 'c_2',
+    slug: 'advanced-react-patterns',
     title: 'Advanced React Patterns & Performance',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&q=80',
@@ -28,6 +30,7 @@ export const mockEnrolledCourses = [
   },
   {
     id: 'c_3',
+    slug: 'modern-ui-ux-with-tailwind',
     title: 'Modern UI/UX with Tailwind & Framer Motion',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
@@ -40,6 +43,7 @@ export const mockEnrolledCourses = [
 
 export const mockCourseDetails = {
   id: 'c_1',
+  slug: 'the-fullstack-nextjs-masterclass',
   title: 'The Fullstack Next.js Masterclass',
   instructor: 'Abdur Rahman',
   progress: 45,
@@ -104,6 +108,7 @@ export const mockRankings: { rank: number; name: string; points: number; avatar:
 export const mockAvailableCourses = [
   {
     id: 'c_4',
+    slug: 'mastering-typescript',
     title: 'Mastering TypeScript in 2024',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80',
@@ -114,6 +119,7 @@ export const mockAvailableCourses = [
   },
   {
     id: 'c_5',
+    slug: 'nodejs-backend-architecture',
     title: 'Node.js Backend Architecture',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80',
@@ -124,6 +130,7 @@ export const mockAvailableCourses = [
   },
   {
     id: 'c_6',
+    slug: 'figma-to-react',
     title: 'Figma to React: The Complete Guide',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
@@ -134,6 +141,7 @@ export const mockAvailableCourses = [
   },
   {
     id: 'c_7',
+    slug: 'graphql-api-masterclass',
     title: 'GraphQL API Masterclass',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',

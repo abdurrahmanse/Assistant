@@ -2,17 +2,16 @@ import { mockEnrolledCourses, mockUser } from '@/data/mock';
 import StudentLayout from '@/layouts/StudentLayout';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
 import Grid from '@mui/material/Grid';
 import LinearProgress from '@mui/material/LinearProgress';
+import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import Avatar from '@mui/material/Avatar';
-import Divider from '@mui/material/Divider';
-import { Button, Badge as Chip } from '@repo/ui';
-import { CheckCircle2, Play, PlayCircle, Clock, BookOpen, Award, TrendingUp, Activity, CheckCircle, FileText } from 'lucide-react';
-import { useNavigate } from 'react-router';
 import { BarChart } from '@mui/x-charts/BarChart';
+import { Button, Badge as Chip } from '@repo/ui';
+import { Activity, Award, BookOpen, CheckCircle, CheckCircle2, Clock, FileText, Play, PlayCircle, TrendingUp } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 export default function MyLearningPage() {
   const navigate = useNavigate();
@@ -77,9 +76,23 @@ export default function MyLearningPage() {
             </Paper>
           </Grid>
 
-          {/* Recent Activity Sidebar */}
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Paper variant="outlined" sx={{ p: 0, height: '100%', borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}>
+          {/* Sidebar */}
+          <Grid size={{ xs: 12, md: 4 }} sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+            
+            {/* Weekly Goal */}
+            <Paper variant="outlined" sx={{ p: 3, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)' }}>
+              <Typography variant="h6" fontWeight={800} mb={1}>Weekly Goal</Typography>
+              <Typography variant="body2" color="text.secondary" mb={2}>You're on a 3-day streak! Keep it up.</Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
+                <Box sx={{ flexGrow: 1, height: 8, bgcolor: 'divider', borderRadius: 4, overflow: 'hidden' }}>
+                  <Box sx={{ width: '60%', height: '100%', bgcolor: '#f97316', borderRadius: 4 }} />
+                </Box>
+                <Typography variant="subtitle2" fontWeight={800} color="#f97316">3/5 Days</Typography>
+              </Box>
+            </Paper>
+
+            {/* Recent Activity */}
+            <Paper variant="outlined" sx={{ p: 0, flexGrow: 1, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ p: 3, borderBottom: '1px solid', borderColor: 'divider' }}>
                 <Typography variant="h6" fontWeight={800}>Recent Activity</Typography>
               </Box>
@@ -131,7 +144,7 @@ export default function MyLearningPage() {
             <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>
               
               <Box 
-                onClick={() => navigate(`/courses/${course.id}`)} 
+                onClick={() => navigate(`/courses/${course.slug}`)} 
                 sx={(theme) => ({
                   height: '100%', display: 'flex', flexDirection: 'column',
                   borderRadius: '24px', 

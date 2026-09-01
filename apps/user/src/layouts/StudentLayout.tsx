@@ -6,17 +6,15 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Stack from '@mui/material/Stack';
 import { styled, useColorScheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { Button } from '@repo/ui';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
-import { Award, X as CloseIcon, Compass, FileText, LayoutDashboard, LogOut, Medal, Menu as MenuIcon, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
-import { Award, Compass, FileText, LayoutDashboard, LogOut, Medal, Settings, Sun, Moon, Trophy, User } from 'lucide-react';
+import { Award, Compass, FileText, Flame, LayoutDashboard, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -39,13 +37,8 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
 
 export default function StudentLayout({ children, disableCustomTheme }: { children: React.ReactNode, disableCustomTheme?: boolean }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const toggleMobileDrawer = (newOpen: boolean) => () => {
-    setMobileOpen(newOpen);
-  };
 
   const { mode, setMode } = useColorScheme();
 
@@ -95,32 +88,18 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
               <AssistantLogo />
             </Box>
 
-            {/* Desktop Navigation (Center) */}
-            <Box sx={{ display: { xs: 'none', md: 'flex' }, alignItems: 'center', gap: 1, flexGrow: 1, justifyContent: 'center' }}>
-              {navItems.map((item) => (
-                <Button 
-                  key={item.label}
-                  variant="ghost"
-                  onClick={() => item.external ? window.location.href = item.path : handleNavigate(item.path)}
-                  sx={{ 
-                    color: location.pathname === item.path ? 'primary.main' : 'text.secondary',
-                    fontWeight: location.pathname === item.path ? 800 : 600,
-                    textTransform: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 1
-                  }}
-                >
-                  {item.icon}
-                  {item.label}
-                </Button>
-              ))}
-            </Box>
             {/* Spacer to push right menu to the edge */}
             <Box sx={{ flexGrow: 1 }} />
 
             {/* User Menu (Right) */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Stack direction="row" alignItems="center" spacing={{ xs: 1, sm: 2 }}>
+              {/* Streak Counter */}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, px: 2, py: 0.75, borderRadius: '12px', bgcolor: 'rgba(249, 115, 22, 0.1)', color: '#f97316', fontWeight: 800 }}>
+                <Flame size={18} fill="currentColor" />
+                <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'none', sm: 'block' } }}>3 Day Streak</Typography>
+                <Typography variant="body2" fontWeight={800} sx={{ display: { xs: 'block', sm: 'none' } }}>3</Typography>
+              </Box>
+
               <IconButton 
                 onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
                 color="inherit"
@@ -184,30 +163,8 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                   Sign Out
                 </MenuItem>
               </Menu>
-            </Box>
+            </Stack>
 
-            {/* Mobile Navigation Drawer */}
-            <Box sx={{ display: { xs: 'flex', md: 'none' }, ml: 1 }}>
-              <IconButton aria-label="Menu button" onClick={toggleMobileDrawer(true)}>
-                <MenuIcon size={20} />
-              </IconButton>
-              <Drawer anchor="top" open={mobileOpen} onClose={toggleMobileDrawer(false)} slotProps={{ paper: { sx: { top: 'var(--template-frame-height, 0px)' } } }}>
-                <Box sx={{ p: 2, bgcolor: 'background.default' }}>
-                  <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
-                    <IconButton onClick={toggleMobileDrawer(false)}><CloseIcon size={20} /></IconButton>
-                  </Box>
-                  {navItems.map((link) => (
-                    <MenuItem key={link.label} sx={{ fontWeight: 600, display: 'flex', gap: 1.5, alignItems: 'center', py: 1.5 }} 
-                      onClick={() => {
-                        if (link.external) window.location.href = link.path;
-                        else { navigate(link.path); toggleMobileDrawer(false)(); }
-                      }}>
-                      {link.icon} {link.label}
-                    </MenuItem>
-                  ))}
-                </Box>
-              </Drawer>
-            </Box>
           </StyledToolbar>
         </Container>
       </AppBar>

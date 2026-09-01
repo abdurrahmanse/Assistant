@@ -1,26 +1,31 @@
-import React, { useState } from 'react';
-import StudentLayout from '@/layouts/StudentLayout';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { Button } from '@repo/ui';
-import Divider from '@mui/material/Divider';
-import Paper from '@mui/material/Paper';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import { PlayCircle, CheckCircle2, Circle, ChevronDown, Download, FileText, Lock, ChevronLeft, ChevronRight } from 'lucide-react';
 import { mockCourseDetails } from '@/data/mock';
-import { useParams, useNavigate } from 'react-router';
+import StudentLayout from '@/layouts/StudentLayout';
+import Accordion from '@mui/material/Accordion';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Paper from '@mui/material/Paper';
+import Rating from '@mui/material/Rating';
+import Stack from '@mui/material/Stack';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
+import { Button } from '@repo/ui';
+import { CheckCircle2, ChevronDown, ChevronLeft, ChevronRight, Circle, Download, FileText, MessageCircle, MessageSquareHeart, PlayCircle, Search, ThumbsUp } from 'lucide-react';
+import { Plyr } from 'plyr-react';
+import 'plyr-react/plyr.css';
+import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router';
 
 export default function CoursePlayerPage() {
-  const { id } = useParams();
+  const { slug } = useParams();
   const navigate = useNavigate();
-  // In a real app, fetch course by ID. We use mock data for now.
+  // In a real app, fetch course by slug. We use mock data for now.
   const course = mockCourseDetails;
   
   // Find first uncompleted video as default, or fallback to first
@@ -39,15 +44,17 @@ export default function CoursePlayerPage() {
       <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
         
         {/* Top Header / Breadcrumb Area */}
-        <Box sx={{ py: 2, px: 4, borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.paper', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <Button startIcon={<ChevronLeft size={16} />} onClick={() => navigate('/home')} sx={{ color: 'text.secondary' }}>Back to Learning</Button>
-            <Divider orientation="vertical" flexItem sx={{ height: 24, alignSelf: 'center' }} />
-            <Typography variant="subtitle1" fontWeight={800}>{course.title}</Typography>
-          </Stack>
+        <Box sx={{ py: 2, borderBottom: '1px solid', borderColor: 'divider', bgcolor: 'background.paper' }}>
+          <Container maxWidth="lg" sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Stack direction="row" alignItems="center" spacing={2}>
+              <Button startIcon={<ChevronLeft size={16} />} onClick={() => navigate('/home')} sx={{ color: 'text.secondary', p: 0, '&:hover': { bgcolor: 'transparent', color: 'primary.main' } }}>Back to Learning</Button>
+              <Divider orientation="vertical" flexItem sx={{ height: 24, alignSelf: 'center' }} />
+              <Typography variant="subtitle1" fontWeight={800}>{course.title}</Typography>
+            </Stack>
+          </Container>
         </Box>
 
-        <Container maxWidth="xl" sx={{ flexGrow: 1, py: 4, display: 'flex', flexDirection: 'column' }}>
+        <Container maxWidth="lg" sx={{ flexGrow: 1, py: 4, display: 'flex', flexDirection: 'column' }}>
           <Grid container spacing={4} sx={{ flexGrow: 1 }}>
             
             {/* Left: Player & Tabs */}
@@ -59,14 +66,22 @@ export default function CoursePlayerPage() {
                 borderRadius: '16px',
                 overflow: 'hidden',
                 mb: 4,
-                boxShadow: '8px 8px 0px rgba(0,0,0,1)', border: '4px solid #000'
+                boxShadow: '8px 8px 0px rgba(0,0,0,1)', border: '4px solid #000',
+                '& .plyr': {
+                  height: '100%',
+                  '--plyr-color-main': '#6366f1', // primary color
+                }
               }}>
                 {currentLesson?.videoUrl ? (
-                  <video 
-                    src={currentLesson.videoUrl} 
-                    controls 
-                    autoPlay 
-                    style={{ width: '100%', height: '100%' }}
+                  <Plyr
+                    source={{
+                      type: 'video',
+                      sources: [{ src: currentLesson.videoUrl, provider: 'html5' }],
+                    }}
+                    options={{
+                      autoplay: true,
+                      controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+                    }}
                   />
                 ) : (
                   <Box sx={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'white' }}>
@@ -87,6 +102,8 @@ export default function CoursePlayerPage() {
                 <Tabs value={activeTab} onChange={(e, v) => setActiveTab(v)} sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
                   <Tab label="Overview" sx={{ fontWeight: 700 }} />
                   <Tab label="Downloads & Resources" sx={{ fontWeight: 700 }} />
+                  <Tab label="Reviews & Feedback" sx={{ fontWeight: 700 }} />
+                  <Tab label="Q&A Discussions" sx={{ fontWeight: 700 }} />
                 </Tabs>
                 <Box sx={{ p: 4, minHeight: 300, bgcolor: 'background.paper' }}>
                   {activeTab === 0 && (
@@ -111,6 +128,82 @@ export default function CoursePlayerPage() {
                         </Stack>
                       ))}
                     </Stack>
+                  )}
+                  {activeTab === 2 && (
+                    <Box>
+                      <Typography variant="h6" fontWeight={800} mb={1}>How would you rate this course?</Typography>
+                      <Typography variant="body2" color="text.secondary" mb={3}>Your feedback helps us improve the learning experience.</Typography>
+                      
+                      <Box sx={{ p: 3, border: '1px solid', borderColor: 'divider', borderRadius: '16px', bgcolor: 'background.default' }}>
+                        <Typography variant="subtitle2" fontWeight={700} mb={1}>Course Rating</Typography>
+                        <Rating name="course-rating" defaultValue={0} size="large" sx={{ mb: 3 }} />
+                        
+                        <Typography variant="subtitle2" fontWeight={700} mb={1}>Written Feedback</Typography>
+                        <TextField 
+                          fullWidth 
+                          multiline 
+                          rows={4} 
+                          placeholder="Tell us what you thought about this course. What was great? What could be improved?" 
+                          variant="outlined" 
+                          sx={{ mb: 3, '& .MuiOutlinedInput-root': { borderRadius: '12px', bgcolor: 'background.paper' } }}
+                        />
+                        
+                        <Button variant="primary" startIcon={<MessageSquareHeart size={18} />}>
+                          Submit Feedback
+                        </Button>
+                      </Box>
+                    </Box>
+                  )}
+                  {activeTab === 3 && (
+                    <Box>
+                      <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
+                        <Box>
+                          <Typography variant="h6" fontWeight={800}>Q&A Discussions</Typography>
+                          <Typography variant="body2" color="text.secondary">142 questions in this course</Typography>
+                        </Box>
+                        <Button variant="primary" startIcon={<MessageCircle size={16} />}>Ask a Question</Button>
+                      </Stack>
+                      
+                      <Box sx={{ display: 'flex', gap: 2, mb: 4 }}>
+                        <TextField 
+                          fullWidth 
+                          placeholder="Search for questions..." 
+                          variant="outlined" 
+                          size="small"
+                          sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px', bgcolor: 'background.default' } }}
+                        />
+                        <Button variant="outline" sx={{ px: 3, borderRadius: '12px' }}><Search size={18} /></Button>
+                      </Box>
+                      
+                      <Stack spacing={3}>
+                        {[
+                          { name: 'Sarah Jenkins', avatar: 'https://i.pravatar.cc/150?u=sarah', question: 'How do I resolve the "useEffect" infinite loop in this example?', responses: 4, upvotes: 12, time: '2 hours ago' },
+                          { name: 'Mike Rodriguez', avatar: 'https://i.pravatar.cc/150?u=mike', question: 'Is the source code for this specific module available?', responses: 1, upvotes: 3, time: '1 day ago' },
+                        ].map((q, i) => (
+                          <Box key={i} sx={{ p: 3, border: '1px solid', borderColor: 'divider', borderRadius: '16px', bgcolor: 'background.default' }}>
+                            <Stack direction="row" spacing={2} mb={2}>
+                              <Avatar src={q.avatar} sx={{ width: 40, height: 40 }} />
+                              <Box>
+                                <Typography variant="subtitle2" fontWeight={800}>{q.name}</Typography>
+                                <Typography variant="caption" color="text.secondary">{q.time}</Typography>
+                              </Box>
+                            </Stack>
+                            <Typography variant="body1" fontWeight={600} mb={2}>{q.question}</Typography>
+                            
+                            <Stack direction="row" spacing={3} alignItems="center">
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary', cursor: 'pointer', '&:hover': { color: 'primary.main' } }}>
+                                <ThumbsUp size={16} />
+                                <Typography variant="body2" fontWeight={700}>{q.upvotes}</Typography>
+                              </Box>
+                              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, color: 'text.secondary', cursor: 'pointer', '&:hover': { color: 'primary.main' } }}>
+                                <MessageCircle size={16} />
+                                <Typography variant="body2" fontWeight={700}>{q.responses} Responses</Typography>
+                              </Box>
+                            </Stack>
+                          </Box>
+                        ))}
+                      </Stack>
+                    </Box>
                   )}
                 </Box>
               </Paper>

@@ -42,7 +42,7 @@ export default function App() {
             <Route path="/rankings" element={<RankingsPage />} />
             <Route path="/profile" element={<ProfilePage />} />
             <Route path="/courses" element={<CoursesPage />} />
-            <Route path="/courses/:id" element={<CoursePlayer />} />
+            <Route path="/courses/:slug" element={<CoursePlayer />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<Navigate to="/home" replace />} />
           </Routes>
