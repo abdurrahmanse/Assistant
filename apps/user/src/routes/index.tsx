@@ -18,6 +18,9 @@ const CertificatesPage = React.lazy(() => import('@/pages/CertificatesPage'));
 const RankingsPage = React.lazy(() => import('@/pages/RankingsPage'));
 const ProfilePage = React.lazy(() => import('@/pages/ProfilePage'));
 const BillingPage = React.lazy(() => import('@/pages/BillingPage'));
+const MyCoursesPage = React.lazy(() => import('@/pages/MyCoursesPage'));
+const AnnouncementsPage = React.lazy(() => import('@/pages/AnnouncementsPage'));
+const SupportPage = React.lazy(() => import('@/pages/SupportPage'));
 
 const PageLoader = () => (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh', bgcolor: 'background.default' }}>
@@ -97,6 +100,18 @@ export const router = createBrowserRouter([
   {
     path: '/billing',
     element: withProtectedSuspense(BillingPage),
+  },
+  {
+    path: '/my-courses',
+    element: withProtectedSuspense(MyCoursesPage),
+  },
+  {
+    path: '/announcements',
+    element: withProtectedSuspense(AnnouncementsPage),
+  },
+  {
+    path: '/support',
+    element: withProtectedSuspense(SupportPage),
   },
   // Catch-all
   {

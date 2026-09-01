@@ -76,8 +76,8 @@ export const mockCourseDetails = {
     }
   ],
   resources: [
-    { id: 'r_1', title: 'Next.js Cheatsheet (PDF)', size: '2.4 MB' },
-    { id: 'r_2', title: 'Source Code (GitHub Repository)', size: 'Link' }
+    { id: 'r_1', title: 'Next.js Cheatsheet (PDF)', size: '2.4 MB', type: 'pdf' as const, url: '#' },
+    { id: 'r_2', title: 'Source Code (GitHub Repository)', size: 'Link', type: 'link' as const, url: '#' }
   ]
 };
 

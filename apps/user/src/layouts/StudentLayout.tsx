@@ -13,8 +13,8 @@ import Stack from '@mui/material/Stack';
 import { styled, useColorScheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import AppTheme from '@repo/ui/shared-theme/AppTheme';
-import { Award, Compass, CreditCard, FileText, Flame, LayoutDashboard, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
+
+import { Award, Bell, BookOpen, Compass, CreditCard, FileText, Flame, LayoutDashboard, LifeBuoy, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -35,7 +35,7 @@ const StyledToolbar = styled(Toolbar)(({ theme }) => ({
   }),
 }));
 
-export default function StudentLayout({ children, disableCustomTheme }: { children: React.ReactNode, disableCustomTheme?: boolean }) {
+export default function StudentLayout({ children }: { children: React.ReactNode }) {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -55,18 +55,24 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
     handleClose();
   };
 
-  const navItems: { label: string; path: string; icon: React.ReactNode; external?: boolean }[] = [
-    { label: 'Dashboard', path: '/home', icon: <LayoutDashboard size={16} /> },
+  const topBarItems = [
+    { label: 'Dashboard', path: '/home' },
+    { label: 'My Courses', path: '/my-courses' },
+    { label: 'Discover', path: '/courses' },
+    { label: 'Announcements', path: '/announcements' },
+    { label: 'Support', path: '/support' },
+  ];
+
+  const dropdownItems = [
+    { label: 'Profile', path: '/profile', icon: <User size={16} /> },
     { label: 'Assignments', path: '/assignments', icon: <FileText size={16} /> },
     { label: 'Marks', path: '/marks', icon: <Award size={16} /> },
     { label: 'Certificates', path: '/certificates', icon: <Medal size={16} /> },
     { label: 'Rankings', path: '/rankings', icon: <Trophy size={16} /> },
-    { label: 'Profile', path: '/profile', icon: <User size={16} /> },
-    { label: 'Discover', path: '/courses', icon: <Compass size={16} /> },
   ];
 
   return (
-    <AppTheme disableCustomTheme={disableCustomTheme}>
+    <>
       <CssBaseline enableColorScheme />
       
       {/* Exact Same Fixed Navbar as Main Website */}
@@ -87,6 +93,35 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
             <Box sx={{ display: 'flex', alignItems: 'center', cursor: 'pointer', mr: 2, px: 1 }} onClick={() => handleNavigate('/home')}>
               <AssistantLogo />
             </Box>
+
+            {/* Desktop Navigation */}
+            <Stack direction="row" spacing={1} sx={{ display: { xs: 'none', md: 'flex' }, ml: 2 }}>
+              {topBarItems.map((item) => {
+                const isActive = location.pathname.startsWith(item.path);
+                return (
+                  <Box
+                    key={item.label}
+                    onClick={() => handleNavigate(item.path)}
+                    sx={{
+                      px: 2,
+                      py: 1,
+                      cursor: 'pointer',
+                      borderRadius: '8px',
+                      typography: 'subtitle2',
+                      fontWeight: 700,
+                      color: isActive ? 'primary.main' : 'text.primary',
+                      bgcolor: isActive ? 'primary.50' : 'transparent',
+                      transition: 'all 0.2s',
+                      '&:hover': {
+                        bgcolor: isActive ? 'primary.50' : 'action.hover',
+                      }
+                    }}
+                  >
+                    {item.label}
+                  </Box>
+                );
+              })}
+            </Stack>
 
             {/* Spacer to push right menu to the edge */}
             <Box sx={{ flexGrow: 1 }} />
@@ -144,8 +179,25 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                   <Divider sx={{ mt: 1.5 }} />
                 </Box>
                 
-                {navItems.map((item) => (
-                  <MenuItem key={item.label} onClick={() => item.external ? window.location.href = item.path : handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 700 }}>
+                {/* Mobile Navigation Links (Hidden on Desktop) */}
+                <Box sx={{ display: { md: 'none' } }}>
+                  {topBarItems.map((item) => (
+                    <MenuItem key={item.label} onClick={() => handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 700 }}>
+                      <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}>
+                        {item.label === 'Dashboard' && <LayoutDashboard size={16} />}
+                        {item.label === 'My Courses' && <BookOpen size={16} />}
+                        {item.label === 'Discover' && <Compass size={16} />}
+                        {item.label === 'Announcements' && <Bell size={16} />}
+                        {item.label === 'Support' && <LifeBuoy size={16} />}
+                      </Box>
+                      {item.label}
+                    </MenuItem>
+                  ))}
+                  <Divider />
+                </Box>
+                
+                {dropdownItems.map((item) => (
+                  <MenuItem key={item.label} onClick={() => handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 700 }}>
                     <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}>
                       {item.icon}
                     </Box>
@@ -174,29 +226,18 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
       </AppBar>
 
       {/* Main Content Area */}
-      <Box sx={[
-        { minHeight: '100vh', display: 'flex', flexDirection: 'column' },
-        (theme) => ({
-          '&::before': {
-            content: '""', display: 'block', position: 'fixed', zIndex: -1, inset: 0,
-            backgroundImage: 'radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
-            ...theme.applyStyles('dark', {
-              backgroundImage: 'radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))',
-            }),
-          }
-        })
-      ]}>
-      <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', pt: '100px' }}>
-        {children}
-      </Box>
+      <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', bgcolor: 'background.default' }}>
+        <Box component="main" sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', pt: '100px' }}>
+          {children}
+        </Box>
 
-      {/* Footer Exact Match */}
-      <Box component="footer" sx={{ py: 4, textAlign: 'center', borderTop: '1px solid', borderColor: 'divider', bgcolor: 'background.paper', mt: 'auto' }}>
-        <Typography variant="body2" color="text.secondary" fontWeight={600}>
-          © {new Date().getFullYear()} Learn with Abdur Rahman. All rights reserved.
-        </Typography>
+        {/* Footer Exact Match */}
+        <Box component="footer" sx={{ py: 4, textAlign: 'center', borderTop: '1px solid', borderColor: 'divider', bgcolor: 'background.paper', mt: 'auto' }}>
+          <Typography variant="body2" color="text.secondary" fontWeight={600}>
+            © {new Date().getFullYear()} Learn with Abdur Rahman. All rights reserved.
+          </Typography>
+        </Box>
       </Box>
-    </Box>
-    </AppTheme>
+    </>
   );
 }

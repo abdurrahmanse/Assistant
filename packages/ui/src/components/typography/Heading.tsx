@@ -1,5 +1,5 @@
-import * as React from 'react';
 import Typography, { type TypographyProps } from '@mui/material/Typography';
+import * as React from 'react';
 
 export interface HeadingProps extends Omit<TypographyProps, 'variant'> {
   level: 1 | 2 | 3 | 4 | 5 | 6;
@@ -26,8 +26,6 @@ export const Heading = React.forwardRef<HTMLElement, HeadingProps>(({
       ref={ref}
       variant={variant}
       sx={{
-        fontWeight: 900,
-        fontFamily: level <= 2 ? "'Kalam', cursive" : undefined,
         ...gradientStyles,
         ...sx
       }}
