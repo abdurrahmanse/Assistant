@@ -10,13 +10,13 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import { styled } from '@mui/material/styles';
+import { styled, useColorScheme } from '@mui/material/styles';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { Button } from '@repo/ui';
 import AppTheme from '@repo/ui/shared-theme/AppTheme';
-import ColorModeSelect from '@repo/ui/shared-theme/ColorModeSelect';
-import { X as CloseIcon, Compass, LayoutDashboard, LogOut, Menu as MenuIcon, Settings } from 'lucide-react';
+import { Award, X as CloseIcon, Compass, FileText, LayoutDashboard, LogOut, Medal, Menu as MenuIcon, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
+import { Award, Compass, FileText, LayoutDashboard, LogOut, Medal, Settings, Sun, Moon, Trophy, User } from 'lucide-react';
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -47,6 +47,8 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
     setMobileOpen(newOpen);
   };
 
+  const { mode, setMode } = useColorScheme();
+
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -60,9 +62,14 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
     handleClose();
   };
 
-  const navItems = [
-    { label: 'My Learning', path: '/home', icon: <BookOpen size={16} /> },
-    { label: 'Discover', path: 'http://localhost:5173/courses', icon: <Compass size={16} />, external: true },
+  const navItems: { label: string; path: string; icon: React.ReactNode; external?: boolean }[] = [
+    { label: 'Dashboard', path: '/home', icon: <LayoutDashboard size={16} /> },
+    { label: 'Assignments', path: '/assignments', icon: <FileText size={16} /> },
+    { label: 'Marks', path: '/marks', icon: <Award size={16} /> },
+    { label: 'Certificates', path: '/certificates', icon: <Medal size={16} /> },
+    { label: 'Rankings', path: '/rankings', icon: <Trophy size={16} /> },
+    { label: 'Profile', path: '/profile', icon: <User size={16} /> },
+    { label: 'Discover', path: '/courses', icon: <Compass size={16} /> },
   ];
 
   return (
@@ -109,10 +116,19 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                 </Button>
               ))}
             </Box>
+            {/* Spacer to push right menu to the edge */}
+            <Box sx={{ flexGrow: 1 }} />
 
             {/* User Menu (Right) */}
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <ColorModeSelect />
+              <IconButton 
+                onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+                color="inherit"
+                size="small"
+                sx={{ transition: 'transform 0.2s', '&:hover': { transform: 'scale(1.1)' } }}
+              >
+                {mode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </IconButton>
               
               <Box sx={{ textAlign: 'right', display: { xs: 'none', sm: 'block' } }}>
                 <Typography variant="subtitle2" fontWeight={800}>{mockUser.name}</Typography>
@@ -149,15 +165,23 @@ export default function StudentLayout({ children, disableCustomTheme }: { childr
                   <Divider sx={{ mt: 1.5 }} />
                 </Box>
                 
-                <MenuItem onClick={() => handleNavigate('/home')} sx={{ py: 1.5, fontWeight: 600 }}>
-                  <LayoutDashboard size={18} style={{ marginRight: '12px', color: 'var(--template-palette-primary-main)' }} /> Dashboard
-                </MenuItem>
-                <MenuItem onClick={() => handleNavigate('/settings')} sx={{ py: 1.5, fontWeight: 600 }}>
-                  <Settings size={18} style={{ marginRight: '12px', color: 'var(--template-palette-text-secondary)' }} /> Account Settings
-                </MenuItem>
+                {navItems.map((item) => (
+                  <MenuItem key={item.label} onClick={() => item.external ? window.location.href = item.path : handleNavigate(item.path)} sx={{ py: 1.5, fontWeight: 600 }}>
+                    <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}>
+                      {item.icon}
+                    </Box>
+                    {item.label}
+                  </MenuItem>
+                ))}
+                
                 <Divider />
+                <MenuItem onClick={() => handleNavigate('/settings')} sx={{ py: 1.5, fontWeight: 600 }}>
+                  <Box sx={{ mr: 1.5, display: 'flex', color: 'text.secondary' }}><Settings size={16} /></Box>
+                  Account Settings
+                </MenuItem>
                 <MenuItem onClick={() => handleNavigate('/signin')} sx={{ py: 1.5, fontWeight: 600, color: 'error.main' }}>
-                  <LogOut size={18} style={{ marginRight: '12px' }} /> Sign Out
+                  <Box sx={{ mr: 1.5, display: 'flex', color: 'error.main' }}><LogOut size={16} /></Box>
+                  Sign Out
                 </MenuItem>
               </Menu>
             </Box>

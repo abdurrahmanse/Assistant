@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@repo/api-client": "workspace:*",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
     "@mui/material": "^7.2.0",
+    "@mui/x-charts": "^8.29.3",
+    "@repo/api-client": "workspace:*",
     "@repo/ui": "workspace:*",
     "@tanstack/react-query": "^5.102.8",
     "lucide-react": "^1.37.0",

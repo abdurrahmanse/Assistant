@@ -76,3 +76,70 @@ export const mockCourseDetails = {
     { id: 'r_2', title: 'Source Code (GitHub Repository)', size: 'Link' }
   ]
 };
+
+export const mockAssignments = [
+  { id: 'a_1', title: 'React Performance Optimization', course: 'Advanced React Patterns', dueDate: 'Tomorrow, 11:59 PM', status: 'Pending', grade: null },
+  { id: 'a_2', title: 'Next.js Routing Quiz', course: 'The Fullstack Next.js Masterclass', dueDate: 'Oct 20, 2023', status: 'Submitted', grade: null },
+  { id: 'a_3', title: 'Build a Tailwind Dashboard', course: 'Modern UI/UX with Tailwind', dueDate: 'Oct 10, 2023', status: 'Graded', grade: '95/100' }
+];
+
+export const mockMarks: { id: string; title: string; course: string; date: string; score: number; total: number }[] = [
+  { id: 'm_1', title: 'Midterm Assessment', course: 'Advanced React Patterns', date: 'Oct 05, 2023', score: 92, total: 100 },
+  { id: 'm_2', title: 'CSS Grid Challenge', course: 'Modern UI/UX with Tailwind', date: 'Sep 28, 2023', score: 100, total: 100 },
+  { id: 'm_3', title: 'API Integration Test', course: 'The Fullstack Next.js Masterclass', date: 'Sep 15, 2023', score: 85, total: 100 }
+];
+
+export const mockCertificates = [
+  { id: 'cert_1', title: 'Modern UI/UX with Tailwind & Framer Motion', issueDate: 'Sep 05, 2023', imageUrl: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80' }
+];
+
+export const mockRankings: { rank: number; name: string; points: number; avatar: string; isCurrentUser?: boolean }[] = [
+  { rank: 1, name: 'Sarah Connor', points: 12500, avatar: 'https://i.pravatar.cc/150?img=5' },
+  { rank: 2, name: 'John Doe', points: 11200, avatar: 'https://i.pravatar.cc/150?img=3' },
+  { rank: 3, name: 'Alex Johnson', points: 10500, avatar: 'https://i.pravatar.cc/150?img=11', isCurrentUser: true },
+  { rank: 4, name: 'Emma Watson', points: 9800, avatar: 'https://i.pravatar.cc/150?img=9' },
+  { rank: 5, name: 'Michael Smith', points: 9100, avatar: 'https://i.pravatar.cc/150?img=12' }
+];
+
+export const mockAvailableCourses = [
+  {
+    id: 'c_4',
+    title: 'Mastering TypeScript in 2024',
+    instructor: 'Abdur Rahman',
+    thumbnail: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80',
+    price: '$49.99',
+    rating: 4.8,
+    students: 1240,
+    tags: ['TypeScript', 'JavaScript']
+  },
+  {
+    id: 'c_5',
+    title: 'Node.js Backend Architecture',
+    instructor: 'Abdur Rahman',
+    thumbnail: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80',
+    price: '$59.99',
+    rating: 4.9,
+    students: 890,
+    tags: ['Node.js', 'Backend']
+  },
+  {
+    id: 'c_6',
+    title: 'Figma to React: The Complete Guide',
+    instructor: 'Abdur Rahman',
+    thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
+    price: '$39.99',
+    rating: 4.7,
+    students: 2100,
+    tags: ['Design', 'React']
+  },
+  {
+    id: 'c_7',
+    title: 'GraphQL API Masterclass',
+    instructor: 'Abdur Rahman',
+    thumbnail: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
+    price: '$44.99',
+    rating: 4.6,
+    students: 650,
+    tags: ['GraphQL', 'API']
+  }
+];
