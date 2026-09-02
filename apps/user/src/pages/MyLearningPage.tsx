@@ -44,7 +44,7 @@ export default function MyLearningPage() {
               stats={[
                 { label: 'Hours', value: '34h', icon: <Clock size={20} />, color: '#3b82f6' },
                 { label: 'Courses', value: '2', icon: <CheckCircle size={20} />, color: '#10b981' },
-                { label: 'Certs', value: '1', icon: <Award size={20} />, color: '#ec4899' },
+                { label: 'Certs', value: '1', icon: <Award size={20} />, color: '#8b5cf6' },
                 { label: 'Avg', value: '92%', icon: <TrendingUp size={20} />, color: '#f59e0b' },
               ]} 
             />

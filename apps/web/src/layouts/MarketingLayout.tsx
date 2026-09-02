@@ -28,7 +28,7 @@ export default function MarketingLayout({ children, disableCustomTheme }: Market
           left: 0,
           right: 0,
           height: 3,
-          background: 'linear-gradient(90deg, var(--template-palette-primary-main), #EC4899)',
+          background: 'linear-gradient(90deg, var(--template-palette-primary-main), #8b5cf6)',
           transformOrigin: '0%',
           zIndex: 9999,
         }}

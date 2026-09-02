@@ -65,7 +65,7 @@ export function Certificate3DCard({ cert }: { cert: CertificateProps }) {
             ? `${-rotation.y}px ${rotation.x}px 30px rgba(236,72,153,0.3)`
             : '8px 8px 0px rgba(0,0,0,0.05)',
           '&:hover': {
-            borderColor: '#ec4899',
+            borderColor: '#8b5cf6',
           },
           // Holographic glare effect
           '&::after': {
@@ -86,7 +86,7 @@ export function Certificate3DCard({ cert }: { cert: CertificateProps }) {
       >
         <Box sx={{ width: '100%', aspectRatio: '4/3', position: 'relative', overflow: 'hidden', transform: 'translateZ(30px)' }}>
           <Box component="img" src={cert.imageUrl} alt={cert.title} sx={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-          <Box sx={{ position: 'absolute', top: 16, right: 16, p: 1, borderRadius: '12px', bgcolor: '#ec4899', color: '#fff', transform: 'translateZ(50px)', boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}>
+          <Box sx={{ position: 'absolute', top: 16, right: 16, p: 1, borderRadius: '12px', bgcolor: '#8b5cf6', color: '#fff', transform: 'translateZ(50px)', boxShadow: '0 10px 20px rgba(0,0,0,0.2)' }}>
             <Award size={20} />
           </Box>
         </Box>

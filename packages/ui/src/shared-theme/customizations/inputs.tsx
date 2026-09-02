@@ -1,4 +1,5 @@
-import { alpha, type Theme, type Components } from '@mui/material/styles';
+import * as React from 'react';
+import { alpha, type Components, type Theme } from '@mui/material/styles';
 import { outlinedInputClasses } from '@mui/material/OutlinedInput';
 import { svgIconClasses } from '@mui/material/SvgIcon';
 import { toggleButtonGroupClasses } from '@mui/material/ToggleButtonGroup';
@@ -15,12 +16,11 @@ export const inputsCustomizations: Components<Theme> = {
       disableRipple: true,
     },
     styleOverrides: {
-      root: () => ({
+      root: ({ theme }) => ({
         boxSizing: 'border-box',
-        transition: 'all 100ms ease-in',
-        '&:focus-visible': {
-          outline: `3px solid ${'rgba(168, 85, 247, 0.5)'}`,
-          outlineOffset: '2px',
+        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        '&:active': {
+          transform: 'scale(0.97)',
         },
       }),
     },
@@ -28,115 +28,68 @@ export const inputsCustomizations: Components<Theme> = {
   MuiButton: {
     defaultProps: {
       disableElevation: true,
-      size: 'small',
     },
     styleOverrides: {
       root: ({ theme }) => ({
-        boxShadow: 'none',
-        borderRadius: (theme.vars || theme).shape.borderRadius,
+        boxSizing: 'border-box',
+        transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
+        borderRadius: 8,
         textTransform: 'none',
-        fontWeight: 800,
-        transition: 'all 0.2s ease',
-        '&:hover': {
-          transform: 'translate(-2px, -2px)',
-        },
+        fontWeight: 600,
+        fontFamily: '"Rajdhani", sans-serif',
         '&:active': {
-          transform: 'translate(2px, 2px)',
+          transform: 'scale(0.97)',
         },
         variants: [
           {
             props: { size: 'small' },
-            style: { height: '2.25rem', padding: '8px 12px' },
+            style: { padding: '6px 16px', fontSize: '0.875rem' },
           },
           {
             props: { size: 'medium' },
-            style: { height: '2.5rem' },
+            style: { padding: '8px 24px' },
           },
           {
-            props: { color: 'primary', variant: 'contained' },
-            style: {
-              color: '#ffffff',
-              backgroundImage: 'linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)',
-              backgroundSize: '200% 200%',
-              animation: 'aurora 4s ease infinite',
-              border: '2px solid #000',
-              boxShadow: '4px 4px 0px #000',
-              '&:hover': {
-                boxShadow: '6px 6px 0px #000',
-                backgroundImage: 'linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)',
-              },
-              '&:active': {
-                boxShadow: '2px 2px 0px #000',
-              },
-              ...theme.applyStyles('dark', {
-                border: '2px solid #fff',
-                boxShadow: '4px 4px 0px #fff',
-                '&:hover': { boxShadow: '6px 6px 0px #fff' },
-                '&:active': { boxShadow: '2px 2px 0px #fff' },
-              }),
-            },
+            props: { size: 'large' },
+            style: { padding: '12px 32px', fontSize: '1rem' },
           },
           {
-            props: { color: 'secondary', variant: 'contained' },
+            props: { variant: 'contained', color: 'primary' },
             style: {
-              color: 'white',
-              backgroundColor: brand[300],
-              backgroundImage: 'none',
-              border: '2px solid #000',
-              boxShadow: '4px 4px 0px #000',
+              background: `linear-gradient(135deg, ${brand[400]}, ${brand[600]})`,
+              color: '#fff',
+              border: '1px solid transparent',
+              boxShadow: `0 4px 14px 0 ${alpha(brand[500], 0.39)}`,
               '&:hover': {
-                backgroundColor: brand[400],
-                boxShadow: '6px 6px 0px #000',
+                background: `linear-gradient(135deg, ${brand[300]}, ${brand[500]})`,
+                boxShadow: `0 6px 20px rgba(0, 118, 255, 0.23)`,
               },
-              '&:active': {
-                boxShadow: '2px 2px 0px #000',
-              },
-              ...theme.applyStyles('dark', {
-                border: '2px solid #fff',
-                boxShadow: '4px 4px 0px #fff',
-                '&:hover': { boxShadow: '6px 6px 0px #fff' },
-                '&:active': { boxShadow: '2px 2px 0px #fff' },
-              }),
             },
           },
           {
             props: { variant: 'outlined' },
             style: {
-              color: (theme.vars || theme).palette.text.primary,
-              border: '2px solid #000',
-              boxShadow: '4px 4px 0px #000',
+              color: theme.palette.text.primary,
+              border: `1px solid ${alpha(gray[300], 0.8)}`,
               backgroundColor: 'transparent',
               '&:hover': {
-                backgroundColor: alpha(gray[200], 0.3),
-                border: '2px solid #000',
-                boxShadow: '6px 6px 0px #000',
-              },
-              '&:active': {
-                boxShadow: '2px 2px 0px #000',
+                backgroundColor: alpha(gray[100], 0.5),
+                borderColor: gray[400],
               },
               ...theme.applyStyles('dark', {
-                border: '2px solid #fff',
-                boxShadow: '4px 4px 0px #fff',
-                '&:hover': { border: '2px solid #fff', boxShadow: '6px 6px 0px #fff' },
-                '&:active': { boxShadow: '2px 2px 0px #fff' },
+                border: `1px solid ${alpha(gray[700], 0.8)}`,
+                '&:hover': {
+                  backgroundColor: alpha(gray[800], 0.5),
+                  borderColor: gray[600],
+                },
               }),
-            },
-          },
-          {
-            props: { color: 'primary', variant: 'text' },
-            style: {
-              color: (theme.vars || theme).palette.text.primary,
-              '&:hover': { backgroundColor: alpha(gray[200], 0.3) },
             },
           },
           {
             props: { variant: 'text' },
             style: {
-              color: gray[600],
+              color: theme.palette.text.primary,
               '&:hover': { backgroundColor: alpha(gray[200], 0.3) },
-              ...theme.applyStyles('dark', {
-                color: gray[50],
-              }),
             },
           },
         ],
@@ -150,86 +103,50 @@ export const inputsCustomizations: Components<Theme> = {
     styleOverrides: {
       root: ({ theme }) => ({
         boxShadow: 'none',
-        borderRadius: (theme.vars || theme).shape.borderRadius,
-        textTransform: 'none',
-        fontWeight: 800,
-        letterSpacing: 0,
-        color: (theme.vars || theme).palette.text.primary,
-        border: '1px solid ',
-        borderColor: gray[200],
-        backgroundColor: alpha(gray[50], 0.3),
+        borderRadius: 8,
+        color: theme.palette.text.primary,
+        border: `1px solid ${alpha(gray[200], 0.5)}`,
+        backgroundColor: 'transparent',
+        transition: 'all 0.2s',
         '&:hover': {
-          backgroundColor: gray[100],
+          backgroundColor: alpha(gray[100], 0.5),
           borderColor: gray[300],
         },
-        '&:active': {
-          backgroundColor: gray[200],
-        },
         ...theme.applyStyles('dark', {
-          backgroundColor: gray[800],
-          borderColor: gray[700],
+          border: `1px solid ${alpha(gray[800], 0.5)}`,
           '&:hover': {
-            backgroundColor: gray[900],
-            borderColor: gray[600],
-          },
-          '&:active': {
-            backgroundColor: gray[900],
+            backgroundColor: alpha(gray[800], 0.5),
+            borderColor: gray[700],
           },
         }),
-        variants: [
-          {
-            props: {
-              size: 'small',
-            },
-            style: {
-              width: '2.25rem',
-              height: '2.25rem',
-              padding: '0.25rem',
-              [`& .${svgIconClasses.root}`]: { fontSize: '1rem' },
-            },
-          },
-          {
-            props: {
-              size: 'medium',
-            },
-            style: {
-              width: '2.5rem',
-              height: '2.5rem',
-            },
-          },
-        ],
       }),
     },
   },
   MuiToggleButtonGroup: {
     styleOverrides: {
       root: ({ theme }) => ({
-        borderRadius: '10px',
-        boxShadow: `0 4px 16px ${alpha(gray[400], 0.2)}`,
-        [`& .${toggleButtonGroupClasses.selected}`]: {
-          color: brand[500],
-        },
-        ...theme.applyStyles('dark', {
-          [`& .${toggleButtonGroupClasses.selected}`]: {
-            color: '#fff',
-          },
-          boxShadow: `0 4px 16px ${alpha(brand[700], 0.5)}`,
-        }),
+        borderRadius: 8,
+        border: `1px solid ${theme.palette.divider}`,
+        backgroundColor: theme.palette.background.paper,
       }),
     },
   },
   MuiToggleButton: {
     styleOverrides: {
       root: ({ theme }) => ({
-        padding: '12px 16px',
+        padding: '8px 16px',
         textTransform: 'none',
-        borderRadius: '10px',
-        fontWeight: 800,
+        fontWeight: 500,
+        border: 'none',
+        color: theme.palette.text.secondary,
+        [`&.${toggleButtonClasses.selected}`]: {
+          color: brand[500],
+          backgroundColor: alpha(brand[500], 0.1),
+        },
         ...theme.applyStyles('dark', {
-          color: gray[400],
-          boxShadow: '0 4px 16px rgba(0, 0, 0, 0.5)',
           [`&.${toggleButtonClasses.selected}`]: {
             color: brand[300],
+            backgroundColor: alpha(brand[300], 0.1),
           },
         }),
       }),
@@ -238,9 +155,7 @@ export const inputsCustomizations: Components<Theme> = {
   MuiCheckbox: {
     defaultProps: {
       disableRipple: true,
-      icon: (
-        <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'hsla(210, 0%, 0%, 0.0)' }} />
-      ),
+      icon: <CheckBoxOutlineBlankRoundedIcon sx={{ color: 'transparent' }} />,
       checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
       indeterminateIcon: <RemoveRoundedIcon sx={{ height: 14, width: 14 }} />,
     },
@@ -249,40 +164,23 @@ export const inputsCustomizations: Components<Theme> = {
         margin: 10,
         height: 16,
         width: 16,
-        borderRadius: 5,
-        border: '1px solid ',
-        borderColor: alpha(gray[300], 0.8),
-        boxShadow: '0 0 0 1.5px hsla(210, 0%, 0%, 0.04) inset',
+        borderRadius: 4,
+        border: `1px solid ${alpha(gray[300], 0.8)}`,
         backgroundColor: alpha(gray[100], 0.4),
-        transition: 'border-color, background-color, 120ms ease-in',
+        transition: 'all 120ms ease-in',
         '&:hover': {
           borderColor: brand[300],
-        },
-        '&.Mui-focusVisible': {
-          outline: `3px solid ${alpha(brand[500], 0.5)}`,
-          outlineOffset: '2px',
-          borderColor: brand[400],
         },
         '&.Mui-checked': {
           color: 'white',
           backgroundColor: brand[500],
           borderColor: brand[500],
-          boxShadow: `none`,
-          '&:hover': {
-            backgroundColor: brand[600],
-          },
         },
         ...theme.applyStyles('dark', {
           borderColor: alpha(gray[700], 0.8),
-          boxShadow: '0 0 0 1.5px hsl(210, 0%, 0%) inset',
           backgroundColor: alpha(gray[900], 0.8),
           '&:hover': {
             borderColor: brand[300],
-          },
-          '&.Mui-focusVisible': {
-            borderColor: brand[400],
-            outline: `3px solid ${alpha(brand[500], 0.5)}`,
-            outlineOffset: '2px',
           },
         }),
       }),
@@ -290,14 +188,9 @@ export const inputsCustomizations: Components<Theme> = {
   },
   MuiInputBase: {
     styleOverrides: {
-      root: {
-        border: 'none',
-      },
+      root: { border: 'none' },
       input: {
-        '&::placeholder': {
-          opacity: 0.7,
-          color: gray[500],
-        },
+        '&::placeholder': { opacity: 0.7, color: gray[500] },
       },
     },
   },
@@ -305,55 +198,43 @@ export const inputsCustomizations: Components<Theme> = {
     styleOverrides: {
       input: { padding: 0 },
       root: ({ theme }) => ({
-        padding: '8px 12px',
-        color: (theme.vars || theme).palette.text.primary,
-        borderRadius: (theme.vars || theme).shape.borderRadius,
-        border: '2px solid #000',
-        backgroundColor: (theme.vars || theme).palette.background.default,
-        transition: 'all 0.2s ease',
-        boxShadow: '2px 2px 0px #000',
+        padding: '10px 14px',
+        color: theme.palette.text.primary,
+        borderRadius: 8,
+        border: `1px solid ${alpha(gray[300], 0.8)}`,
+        backgroundColor: theme.palette.background.paper,
+        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
         '&:hover': {
-          transform: 'translate(-1px, -1px)',
-          boxShadow: '4px 4px 0px #000',
+          borderColor: gray[400],
         },
         [`&.${outlinedInputClasses.focused}`]: {
           outline: 'none',
-          borderColor: '#ec4899',
-          boxShadow: '4px 4px 0px #000',
+          borderColor: brand[500],
+          boxShadow: `0 0 0 2px ${alpha(brand[500], 0.2)}`,
         },
         ...theme.applyStyles('dark', {
-          border: '2px solid #fff',
-          boxShadow: '2px 2px 0px #fff',
+          border: `1px solid ${alpha(gray[700], 0.8)}`,
           '&:hover': {
-            boxShadow: '4px 4px 0px #fff',
+            borderColor: gray[600],
           },
           [`&.${outlinedInputClasses.focused}`]: {
-            borderColor: '#ec4899',
-            boxShadow: '4px 4px 0px #fff',
+            borderColor: brand[400],
+            boxShadow: `0 0 0 2px ${alpha(brand[400], 0.2)}`,
           },
         }),
         variants: [
-          { props: { size: 'small' }, style: { height: '2.25rem' } },
-          { props: { size: 'medium' }, style: { height: '2.5rem' } },
+          { props: { size: 'small' }, style: { height: '2.25rem', padding: '6px 12px' } },
+          { props: { size: 'medium' }, style: { height: '2.75rem' } },
         ],
       }),
       notchedOutline: { border: 'none' },
-    },
-  },
-  MuiInputAdornment: {
-    styleOverrides: {
-      root: ({ theme }) => ({
-        color: (theme.vars || theme).palette.grey[500],
-        ...theme.applyStyles('dark', {
-          color: (theme.vars || theme).palette.grey[400],
-        }),
-      }),
     },
   },
   MuiFormLabel: {
     styleOverrides: {
       root: ({ theme }) => ({
         typography: theme.typography.caption,
+        fontWeight: 600,
         marginBottom: 8,
       }),
     },

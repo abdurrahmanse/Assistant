@@ -116,7 +116,7 @@ export default function CoursePlayerPage() {
                 onNext={handleNextLesson} 
               />
 
-              <Paper variant="outlined" sx={{ borderRadius: '16px', overflow: 'hidden', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)' }}>
+              <Paper variant="outlined" sx={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
                 <PlayerTabs 
                   activeTab={activeTab} 
                   onTabChange={(e, v) => setActiveTab(v)} 
@@ -128,7 +128,7 @@ export default function CoursePlayerPage() {
             {/* Right: Curriculum Sidebar (Desktop) */}
             {!isMobile && (
               <Grid size={{ xs: 12, lg: 4 }}>
-                <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column', border: 'none', boxShadow: '0 24px 48px rgba(0,0,0,0.05)' }}>
+                <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column', border: '1px solid', borderColor: 'divider', boxShadow: '0 8px 32px rgba(0,0,0,0.05)' }}>
                   <CurriculumSidebar 
                     course={localCourse} 
                     currentLesson={currentLesson} 

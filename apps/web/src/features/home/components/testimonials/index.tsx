@@ -5,19 +5,20 @@ import { useLandingQuery } from '@/features/landing/hooks/queries/useLandingQuer
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Container from '@mui/material/Container';
 import { useColorScheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { CardContent, Skeleton } from '@repo/ui';
 import { MutedText } from '@repo/ui/styled';
-import { Container, MessageSquareQuote, Quote } from 'lucide-react';
+import { MessageSquareQuote, Quote } from 'lucide-react';
 import {
   CardFooterBox,
   StyledGridItem,
   TestimonialCard,
   TestimonialsHeader
 } from './styles';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
 
-// Moved from static files:
 const darkModeLogos = [
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
   'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d520d0517ae8e8ddf13_Bern-white.svg',
@@ -69,7 +70,7 @@ export default function Testimonials() {
         <Grid container spacing={3} sx={{ width: '100%' }}>
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
-              <Skeleton variant="rectangular" width="100%" height={280} sx={{ borderRadius: '24px' }} />
+              <Skeleton variant="rectangular" width="100%" height={280} sx={{ borderRadius: '16px' }} />
             </Grid>
           ))}
         </Grid>
@@ -81,34 +82,33 @@ export default function Testimonials() {
   const { testimonials } = data;
 
   return (
-    <Container id="testimonials">
-
+    <Container id="testimonials" sx={{ py: { xs: 6, md: 10 } }}>
       <Reveal delay={0.1}>
         <TestimonialsHeader>
           <Typography component="h2" variant="h2" gutterBottom sx={{ color: 'text.primary', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 1.5 }}>
-            <MessageSquareQuote size={40} color="#6366f1" /> {testimonials.title}
+            <MessageSquareQuote size={40} color={brand[500]} /> {testimonials.title}
           </Typography>
-          <MutedText variant="body1">
+          <MutedText variant="body1" sx={{ }}>
             {testimonials.subtitle}
           </MutedText>
         </TestimonialsHeader>
       </Reveal>
-      <Grid container spacing={2}>
-        {testimonials.items.map((testimonial, index) => (
+      <Grid container spacing={4}>
+        {testimonials.items.map((testimonial: any, index: number) => (
           <StyledGridItem size={{ xs: 12, sm: 6, md: 4 }} key={index}>
             <Reveal delay={0.2 + (index * 0.1)} direction="up">
               <TestimonialCard variant="outlined">
                 <CardContent>
-                  <Box sx={{ mb: 2 }}><Quote size={24} color="#ec4899" opacity={0.5} /></Box>
-                  <MutedText variant="body1" gutterBottom>
-                    {testimonial.testimonial}
+                  <Box sx={{ mb: 2 }}><Quote size={24} color={brand[400]} opacity={0.3} /></Box>
+                  <MutedText variant="body1" gutterBottom sx={{ fontStyle: 'italic', color: 'text.primary' }}>
+                    "{testimonial.testimonial}"
                   </MutedText>
                 </CardContent>
                 <CardFooterBox>
                   <CardHeader
                     avatar={<Avatar alt={testimonial.name} src={testimonial.avatarSrc} />}
-                    title={testimonial.name}
-                    subheader={testimonial.occupation}
+                    title={<Typography sx={{ fontWeight: 600 }}>{testimonial.name}</Typography>}
+                    subheader={<Typography variant="caption" sx={{ }}>{testimonial.occupation}</Typography>}
                   />
                   <img src={logos[index % logos.length]} alt={`Logo ${index + 1}`} style={logoStyle} />
                 </CardFooterBox>

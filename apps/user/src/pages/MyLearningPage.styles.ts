@@ -1,4 +1,6 @@
 import type { SxProps, Theme } from '@mui/material/styles';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
 
 export const styles = {
   container: { 
@@ -14,14 +16,14 @@ export const styles = {
   
   headerIconBox: { 
     p: 2, 
-    bgcolor: 'primary.main', 
+    bgcolor: brand[500], 
     color: 'white', 
-    borderRadius: '16px', 
-    boxShadow: '0 8px 16px rgba(236,72,153,0.3)' 
+    borderRadius: '12px', 
+    boxShadow: `0 8px 24px ${alpha(brand[500], 0.3)}`
   } as SxProps<Theme>,
   
   gridRow1: { 
-    mb: 3 
+    mb: 4 
   } as SxProps<Theme>,
   
   gridRow2: { 
@@ -31,12 +33,19 @@ export const styles = {
   activityPaper: { 
     p: 4, 
     height: '100%', 
-    borderRadius: '24px', 
+    borderRadius: '16px', 
     border: '1px solid', 
     borderColor: 'divider', 
-    boxShadow: '0 4px 20px rgba(0,0,0,0.03)', 
+    boxShadow: '0 4px 20px rgba(0,0,0,0.02)', 
     display: 'flex', 
-    flexDirection: 'column' 
+    flexDirection: 'column',
+    bgcolor: 'background.paper',
+    position: 'relative',
+    '&::after': {
+      content: '""', position: 'absolute', inset: 0,
+      borderRadius: '16px', border: '1px solid transparent',
+      pointerEvents: 'none'
+    }
   } as SxProps<Theme>,
   
   activityHeaderStack: { 
@@ -46,7 +55,8 @@ export const styles = {
   activityTitle: { 
     display: 'flex', 
     alignItems: 'center', 
-    gap: 1 
+    gap: 1,
+   
   } as SxProps<Theme>,
   
   chartWrapper: { 

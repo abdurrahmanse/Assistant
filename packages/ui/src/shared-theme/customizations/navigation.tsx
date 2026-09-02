@@ -19,7 +19,7 @@ export const navigationCustomizations: Components<Theme> = {
         },
         [`&.${menuItemClasses.selected}`]: {
           color: '#ffffff',
-          backgroundImage: 'linear-gradient(135deg, #a855f7, #ec4899, #f43f5e)',
+          backgroundImage: 'linear-gradient(135deg, #a855f7, #8b5cf6, #f43f5e)',
           backgroundSize: '200% 200%',
           animation: 'aurora 4s ease infinite',
           boxShadow: '2px 2px 0px #000',

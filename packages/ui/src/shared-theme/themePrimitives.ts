@@ -19,190 +19,80 @@ declare module '@mui/material/styles' {
     800: string;
     900: string;
   }
-
   interface PaletteColor extends ColorRange {}
-
   interface Palette {
     baseShadow: string;
   }
 }
 
 const defaultTheme = createTheme();
-
 const customShadows: Shadows = [...defaultTheme.shadows];
 
+// Tech-inspired color palette (Electric Blue, Deep Navy, Neon Purple, vibrant Cyan)
 export const brand = {
-  50: 'hsl(210, 100%, 95%)',
-  100: 'hsl(210, 100%, 92%)',
-  200: 'hsl(210, 100%, 80%)',
-  300: 'hsl(210, 100%, 65%)',
-  400: 'hsl(210, 98%, 48%)',
-  500: 'hsl(210, 98%, 42%)',
-  600: 'hsl(210, 98%, 55%)',
-  700: 'hsl(210, 100%, 35%)',
-  800: 'hsl(210, 100%, 16%)',
-  900: 'hsl(210, 100%, 21%)',
+  50: '#e0f7ff',
+  100: '#b3e8ff',
+  200: '#80d8ff',
+  300: '#4dc8ff',
+  400: '#26baff',
+  500: '#00a8ff', // Electric Blue
+  600: '#0097e6',
+  700: '#0083c7',
+  800: '#0070a8',
+  900: '#004c7a',
 };
 
+// Dark Navy / Slate for grayscale
 export const gray = {
-  50: 'hsl(220, 35%, 97%)',
-  100: 'hsl(220, 30%, 94%)',
-  200: 'hsl(220, 20%, 88%)',
-  300: 'hsl(220, 20%, 80%)',
-  400: 'hsl(220, 20%, 65%)',
-  500: 'hsl(220, 20%, 42%)',
-  600: 'hsl(220, 20%, 35%)',
-  700: 'hsl(220, 20%, 25%)',
-  800: 'hsl(220, 30%, 6%)',
-  900: 'hsl(220, 35%, 3%)',
-};
-
-export const green = {
-  50: 'hsl(120, 80%, 98%)',
-  100: 'hsl(120, 75%, 94%)',
-  200: 'hsl(120, 75%, 87%)',
-  300: 'hsl(120, 61%, 77%)',
-  400: 'hsl(120, 44%, 53%)',
-  500: 'hsl(120, 59%, 30%)',
-  600: 'hsl(120, 70%, 25%)',
-  700: 'hsl(120, 75%, 16%)',
-  800: 'hsl(120, 84%, 10%)',
-  900: 'hsl(120, 87%, 6%)',
+  50: '#f8fafc',
+  100: '#f1f5f9',
+  200: '#e2e8f0',
+  300: '#cbd5e1',
+  400: '#94a3b8',
+  500: '#64748b',
+  600: '#475569',
+  700: '#334155',
+  800: '#1e293b',
+  900: '#0f172a',
 };
 
 export const orange = {
-  50: 'hsl(45, 100%, 97%)',
-  100: 'hsl(45, 92%, 90%)',
-  200: 'hsl(45, 94%, 80%)',
-  300: 'hsl(45, 90%, 65%)',
-  400: 'hsl(45, 90%, 40%)',
-  500: 'hsl(45, 90%, 35%)',
-  600: 'hsl(45, 91%, 25%)',
-  700: 'hsl(45, 94%, 20%)',
-  800: 'hsl(45, 95%, 16%)',
-  900: 'hsl(45, 93%, 12%)',
+  50: '#fff3e0',
+  100: '#ffe0b2',
+  200: '#ffcc80',
+  300: '#ffb74d',
+  400: '#ffa726',
+  500: '#ff9800',
+  600: '#fb8c00',
+  700: '#f57c00',
+  800: '#ef6c00',
+  900: '#e65100',
 };
 
 export const red = {
-  50: 'hsl(0, 100%, 97%)',
-  100: 'hsl(0, 92%, 90%)',
-  200: 'hsl(0, 94%, 80%)',
-  300: 'hsl(0, 90%, 65%)',
-  400: 'hsl(0, 90%, 40%)',
-  500: 'hsl(0, 90%, 30%)',
-  600: 'hsl(0, 91%, 25%)',
-  700: 'hsl(0, 94%, 18%)',
-  800: 'hsl(0, 95%, 12%)',
-  900: 'hsl(0, 93%, 6%)',
+  50: '#ffebee',
+  100: '#ffcdd2',
+  200: '#ef9a9a',
+  300: '#e57373',
+  400: '#ef5350',
+  500: '#f44336',
+  600: '#e53935',
+  700: '#d32f2f',
+  800: '#c62828',
+  900: '#b71c1c',
 };
 
-export const getDesignTokens = (mode: PaletteMode) => {
-  customShadows[1] =
-    mode === 'dark'
-      ? 'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px'
-      : 'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px';
-
-  return {
-    palette: {
-      mode,
-      primary: {
-        light: brand[200],
-        main: brand[400],
-        dark: brand[700],
-        contrastText: brand[50],
-        ...(mode === 'dark' && {
-          contrastText: brand[50],
-          light: brand[300],
-          main: brand[400],
-          dark: brand[700],
-        }),
-      },
-      info: {
-        light: brand[100],
-        main: brand[300],
-        dark: brand[600],
-        contrastText: gray[50],
-        ...(mode === 'dark' && {
-          contrastText: brand[300],
-          light: brand[500],
-          main: brand[700],
-          dark: brand[900],
-        }),
-      },
-      warning: {
-        light: orange[300],
-        main: orange[400],
-        dark: orange[800],
-        ...(mode === 'dark' && {
-          light: orange[400],
-          main: orange[500],
-          dark: orange[700],
-        }),
-      },
-      error: {
-        light: red[300],
-        main: red[400],
-        dark: red[800],
-        ...(mode === 'dark' && {
-          light: red[400],
-          main: red[500],
-          dark: red[700],
-        }),
-      },
-      success: {
-        light: green[300],
-        main: green[400],
-        dark: green[800],
-        ...(mode === 'dark' && {
-          light: green[400],
-          main: green[500],
-          dark: green[700],
-        }),
-      },
-      grey: {
-        ...gray,
-      },
-      divider: mode === 'dark' ? alpha(gray[700], 0.6) : alpha(gray[300], 0.4),
-      background: {
-        default: '#ffffff',
-        paper: 'rgba(255, 255, 255, 0.6)',
-        ...(mode === 'dark' && { default: '#09090b', paper: 'rgba(9, 9, 11, 0.6)' }),
-      },
-      text: {
-        primary: gray[800],
-        secondary: gray[600],
-        warning: orange[400],
-        ...(mode === 'dark' && { primary: 'hsl(0, 0%, 100%)', secondary: gray[400] }),
-      },
-      action: {
-        hover: alpha(gray[200], 0.2),
-        selected: `${alpha(gray[200], 0.3)}`,
-        ...(mode === 'dark' && {
-          hover: alpha(gray[600], 0.2),
-          selected: alpha(gray[600], 0.3),
-        }),
-      },
-    },
-    typography: {
-      fontFamily: '"Inter", "Plus Jakarta Sans", "Roboto", sans-serif',
-      h1: { fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.04em' },
-      h2: { fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 900, lineHeight: 1.1, letterSpacing: '-0.03em' },
-      h3: { fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 800, lineHeight: 1.2, letterSpacing: '-0.02em' },
-      h4: { fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontWeight: 800, lineHeight: 1.2, letterSpacing: '-0.02em' },
-      h5: { fontSize: '1.25rem', fontWeight: 800, lineHeight: 1.2, letterSpacing: '-0.01em' },
-      h6: { fontSize: '1rem', fontWeight: 800, lineHeight: 1.2, letterSpacing: '-0.01em' },
-      subtitle1: { fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, letterSpacing: '-0.01em' },
-      subtitle2: { fontSize: '0.875rem', fontWeight: 700, lineHeight: 1.4, letterSpacing: '-0.01em' },
-      body1: { fontSize: defaultTheme.typography.pxToRem(16), fontWeight: 500, letterSpacing: '-0.01em' },
-      body2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 500, letterSpacing: '-0.01em' },
-      caption: { fontSize: defaultTheme.typography.pxToRem(12), fontWeight: 600 },
-      overline: { fontWeight: 800, letterSpacing: '0.1em', textTransform: 'uppercase' },
-    },
-    shape: {
-      borderRadius: 8,
-    },
-    shadows: customShadows,
-  };
+export const green = {
+  50: '#e8f5e9',
+  100: '#c8e6c9',
+  200: '#a5d6a7',
+  300: '#81c784',
+  400: '#66bb6a',
+  500: '#4caf50',
+  600: '#43a047',
+  700: '#388e3c',
+  800: '#2e7d32',
+  900: '#1b5e20',
 };
 
 export const colorSchemes = {
@@ -210,9 +100,9 @@ export const colorSchemes = {
     palette: {
       primary: {
         light: brand[200],
-        main: brand[400],
+        main: brand[500],
         dark: brand[700],
-        contrastText: brand[50],
+        contrastText: '#fff',
       },
       info: {
         light: brand[100],
@@ -222,18 +112,18 @@ export const colorSchemes = {
       },
       warning: {
         light: orange[300],
-        main: orange[400],
-        dark: orange[800],
+        main: orange[500],
+        dark: orange[700],
       },
       error: {
         light: red[300],
-        main: red[400],
-        dark: red[800],
+        main: red[500],
+        dark: red[700],
       },
       success: {
         light: green[300],
-        main: green[400],
-        dark: green[800],
+        main: green[500],
+        dark: green[700],
       },
       grey: {
         ...gray,
@@ -241,31 +131,30 @@ export const colorSchemes = {
       divider: alpha(gray[300], 0.4),
       background: {
         default: '#ffffff',
-        paper: 'rgba(255, 255, 255, 0.6)',
+        paper: '#f8fafc', // Light gray-blue
       },
       text: {
-        primary: gray[800],
+        primary: gray[900],
         secondary: gray[600],
-        warning: orange[400],
+        warning: orange[500],
       },
       action: {
-        hover: alpha(gray[200], 0.2),
-        selected: `${alpha(gray[200], 0.3)}`,
+        hover: alpha(gray[200], 0.5),
+        selected: `${alpha(gray[200], 0.8)}`,
       },
-      baseShadow:
-        'hsla(220, 30%, 5%, 0.07) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.07) 0px 8px 16px -5px',
+      baseShadow: 'rgba(15, 23, 42, 0.08) 0px 4px 16px 0px, rgba(15, 23, 42, 0.04) 0px 8px 16px -5px',
     },
   },
   dark: {
     palette: {
       primary: {
-        contrastText: brand[50],
+        contrastText: '#fff',
         light: brand[300],
         main: brand[400],
-        dark: brand[700],
+        dark: brand[600],
       },
       info: {
-        contrastText: brand[300],
+        contrastText: brand[100],
         light: brand[500],
         main: brand[700],
         dark: brand[900],
@@ -290,41 +179,40 @@ export const colorSchemes = {
       },
       divider: alpha(gray[700], 0.6),
       background: {
-        default: '#09090b',
-        paper: 'rgba(9, 9, 11, 0.6)',
+        default: '#030712', // Deep dark navy almost black
+        paper: '#0b0f19', // Slightly lighter dark
       },
       text: {
-        primary: 'hsl(0, 0%, 100%)',
+        primary: '#f8fafc',
         secondary: gray[400],
       },
       action: {
         hover: alpha(gray[600], 0.2),
         selected: alpha(gray[600], 0.3),
       },
-      baseShadow:
-        'hsla(220, 30%, 5%, 0.7) 0px 4px 16px 0px, hsla(220, 25%, 10%, 0.8) 0px 8px 16px -5px',
+      baseShadow: 'rgba(0, 0, 0, 0.8) 0px 4px 16px 0px, rgba(0, 0, 0, 0.9) 0px 8px 16px -5px',
     },
   },
 };
 
 export const typography = {
-  fontFamily: '"Rajdhani", "Inter", "Plus Jakarta Sans", "Roboto", sans-serif',
-  h1: { fontSize: 'clamp(2.5rem, 5vw, 4rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h2: { fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.02em' },
-  h3: { fontSize: 'clamp(1.5rem, 3vw, 2.25rem)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em' },
-  h4: { fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.01em' },
-  h5: { fontSize: '1.25rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0em' },
-  h6: { fontSize: '1rem', fontWeight: 700, lineHeight: 1.2, letterSpacing: '0em' },
-  subtitle1: { fontSize: '1rem', fontWeight: 700, lineHeight: 1.4, letterSpacing: '0em' },
-  subtitle2: { fontSize: '0.875rem', fontWeight: 700, lineHeight: 1.4, letterSpacing: '0em' },
-  body1: { fontSize: defaultTheme.typography.pxToRem(16), fontWeight: 500, letterSpacing: '0em' },
-  body2: { fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 500, letterSpacing: '0em' },
-  caption: { fontSize: defaultTheme.typography.pxToRem(12), fontWeight: 600 },
-  overline: { fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' },
+  fontFamily: '"Rajdhani", sans-serif',
+  h1: { fontFamily: '"Rajdhani", sans-serif', fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.04em' },
+  h2: { fontFamily: '"Rajdhani", sans-serif', fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 700, lineHeight: 1.1, letterSpacing: '-0.03em' },
+  h3: { fontFamily: '"Rajdhani", sans-serif', fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.02em' },
+  h4: { fontFamily: '"Rajdhani", sans-serif', fontSize: 'clamp(1.25rem, 2vw, 1.75rem)', fontWeight: 700, lineHeight: 1.2, letterSpacing: '-0.02em' },
+  h5: { fontFamily: '"Rajdhani", sans-serif', fontSize: '1.25rem', fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em' },
+  h6: { fontFamily: '"Rajdhani", sans-serif', fontSize: '1rem', fontWeight: 600, lineHeight: 1.2, letterSpacing: '-0.01em' },
+  subtitle1: { fontFamily: '"Rajdhani", sans-serif', fontSize: '1.125rem', fontWeight: 500, lineHeight: 1.5, letterSpacing: '0em' },
+  subtitle2: { fontFamily: '"Rajdhani", sans-serif', fontSize: '0.875rem', fontWeight: 600, lineHeight: 1.4, letterSpacing: '0em' },
+  body1: { fontFamily: '"Rajdhani", sans-serif', fontSize: defaultTheme.typography.pxToRem(16), fontWeight: 500, letterSpacing: '0em' },
+  body2: { fontFamily: '"Rajdhani", sans-serif', fontSize: defaultTheme.typography.pxToRem(14), fontWeight: 500, letterSpacing: '0em' },
+  caption: { fontFamily: '"Rajdhani", sans-serif', fontSize: defaultTheme.typography.pxToRem(12), fontWeight: 600 },
+  overline: { fontFamily: '"Rajdhani", sans-serif', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' },
 };
 
 export const shape = {
-  borderRadius: 8,
+  borderRadius: 6, // Slightly sharper corners for technical feel
 };
 
 // @ts-expect-error - MUI type mismatch

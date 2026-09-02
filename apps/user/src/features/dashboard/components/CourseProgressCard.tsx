@@ -3,7 +3,9 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button, Badge as Chip } from '@repo/ui';
-import { CheckCircle2, Play, PlayCircle } from 'lucide-react';
+import { CheckCircle2, Play, PlayCircle, Terminal } from 'lucide-react';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
 
 import type { EnrolledCourse } from '@/interfaces';
 
@@ -20,67 +22,73 @@ export function CourseProgressCard({ course, onClick }: CourseProgressCardProps)
       onClick={onClick} 
       sx={(theme) => ({
         height: '100%', display: 'flex', flexDirection: 'column',
-        borderRadius: '24px', 
-        border: '2px solid', 
-        borderColor: 'rgba(0,0,0,0.1)',
-        bgcolor: 'rgba(255,255,255,0.6)',
-        ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)', bgcolor: 'rgba(20,20,25,0.6)' }),
-        backdropFilter: 'blur(24px)',
-        cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)', overflow: 'hidden',
+        borderRadius: '16px', 
+        border: '1px solid', 
+        borderColor: alpha(theme.palette.divider, 0.5),
+        bgcolor: theme.palette.background.paper,
+        ...theme.applyStyles('dark', { 
+          borderColor: alpha(theme.palette.divider, 0.2), 
+          bgcolor: '#0b0f19' 
+        }),
+        cursor: 'pointer', transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)', overflow: 'hidden',
         position: 'relative',
+        boxShadow: `0 4px 20px rgba(0,0,0,0.05)`,
         '&:hover': {
-          transform: 'translateY(-8px) rotate(-1deg)',
-          boxShadow: '8px 8px 0px rgba(99,102,241,1)',
-          borderColor: 'primary.main',
-          '& .course-thumbnail': { transform: 'scale(1.08) rotate(1deg)' },
-          '& .course-icon': { transform: 'scale(1.1) translateY(-4px)' }
+          transform: 'translateY(-4px)',
+          boxShadow: `0 12px 32px ${alpha(brand[500], 0.15)}`,
+          borderColor: alpha(brand[400], 0.4),
+          '& .course-thumbnail': { opacity: 1 },
+          '& .course-icon': { bgcolor: brand[500], color: '#fff' }
         }
     })}>
       
-      <Box sx={{ width: '100%', aspectRatio: '16/9', position: 'relative', overflow: 'hidden', p: 1.5 }}>
-        <Box sx={{ width: '100%', height: '100%', borderRadius: '16px', overflow: 'hidden', position: 'relative' }}>
-          <Box component="img" src={course.thumbnail} alt={course.title} className="course-thumbnail" sx={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)' }} />
+      <Box sx={{ width: '100%', aspectRatio: '16/9', position: 'relative', overflow: 'hidden', p: 1 }}>
+        <Box sx={{ width: '100%', height: '100%', borderRadius: '12px', overflow: 'hidden', position: 'relative', bgcolor: '#0f172a' }}>
+          <Box component="img" src={course.thumbnail} alt={course.title} className="course-thumbnail" sx={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85, transition: 'opacity 0.4s ease' }} />
         </Box>
         
         {/* Progress Badge */}
-        <Box sx={{ position: 'absolute', top: 24, right: 24, display: 'flex', gap: 1 }}>
+        <Box sx={{ position: 'absolute', top: 16, right: 16, display: 'flex', gap: 1 }}>
           <Chip 
-            icon={isCompleted ? <CheckCircle2 size={14} style={{ color: '#000' }} /> : <PlayCircle size={14} style={{ color: '#000' }} />} 
+            icon={isCompleted ? <CheckCircle2 size={14} style={{ color: '#10b981' }} /> : <PlayCircle size={14} style={{ color: brand[400] }} />} 
             label={isCompleted ? 'Completed' : 'In Progress'} 
             size="small" 
             sx={{ 
-              fontWeight: 900, borderRadius: '8px', 
-              bgcolor: isCompleted ? '#10b981' : '#f59e0b', color: '#000',
-              border: '2px solid #000', boxShadow: '2px 2px 0px #000',
-              textTransform: 'uppercase', letterSpacing: 0.5
+              fontWeight: 600, borderRadius: '6px', 
+              bgcolor: 'rgba(15, 23, 42, 0.8)', color: '#fff',
+              border: `1px solid rgba(255,255,255,0.1)`,
+              backdropFilter: 'blur(8px)',
+              textTransform: 'uppercase', letterSpacing: 0.5,
+              fontSize: '0.65rem'
             }} 
           />
         </Box>
         
-        {/* Playful Floating Icon */}
+        {/* Floating Icon */}
         <Box className="course-icon" sx={{ 
-          position: 'absolute', bottom: -8, left: 24, p: 1.5, 
-          borderRadius: '16px', bgcolor: 'primary.main', color: 'primary.contrastText', 
-          display: 'flex', border: '2px solid #000', boxShadow: '4px 4px 0px #000',
-          transition: 'transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)'
+          position: 'absolute', bottom: -12, left: 24, p: 1.5, 
+          borderRadius: '12px', bgcolor: 'background.paper', color: brand[500], 
+          display: 'flex', border: '1px solid', borderColor: 'divider',
+          boxShadow: `0 4px 12px rgba(0,0,0,0.1)`,
+          transition: 'all 0.3s ease', zIndex: 2
         }}>
-          <Play size={24} />
+          <Terminal size={20} />
         </Box>
       </Box>
 
       <Box sx={{ p: 3, pt: 4, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-        <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 800, textTransform: 'uppercase', letterSpacing: 1.5, mb: 1 }}>
+        <Typography variant="caption" sx={{ color: 'text.secondary', fontWeight: 600, textTransform: 'uppercase', letterSpacing: 1.5, mb: 1 }}>
           {course.instructor}
         </Typography>
         
-        <Typography variant="h5" sx={{ fontWeight: 900, mb: 1.5, lineHeight: 1.2, letterSpacing: '-0.02em' }}>{course.title}</Typography>
+        <Typography variant="h5" sx={{ fontWeight: 700, mb: 1.5, lineHeight: 1.2, letterSpacing: '-0.02em' }}>{course.title}</Typography>
         
         <Box sx={{ mt: 'auto', mb: 3 }}>
-          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
-            <Typography variant="body2" fontWeight={800} color={isCompleted ? 'success.main' : 'primary.main'}>
+          <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+            <Typography variant="body2" fontWeight={700} color={isCompleted ? 'success.main' : 'primary.main'}>
               {course.progress}%
             </Typography>
-            <Typography variant="caption" color="text.secondary" fontWeight={700}>
+            <Typography variant="caption" color="text.secondary" fontWeight={500}>
               {course.completedLessons} / {course.totalLessons} lessons
             </Typography>
           </Stack>
@@ -88,18 +96,17 @@ export function CourseProgressCard({ course, onClick }: CourseProgressCardProps)
             variant="determinate" 
             value={course.progress} 
             color={isCompleted ? 'success' : 'primary'}
-            sx={{ height: 8, borderRadius: 4, bgcolor: 'divider', '& .MuiLinearProgress-bar': { borderRadius: 4 } }}
+            sx={{ height: 6, borderRadius: 3, bgcolor: 'divider', '& .MuiLinearProgress-bar': { borderRadius: 3 } }}
           />
         </Box>
 
         <Button 
           variant={isCompleted ? "outline" : "primary"} 
-          fullWidth 
+          fullWidth
         >
-          {isCompleted ? 'Review Course' : (course.progress === 0 ? 'Start Course' : 'Continue Learning')}
+          {isCompleted ? 'Review Analytics' : (course.progress === 0 ? 'Initialize Sandbox' : 'Resume Execution')}
         </Button>
       </Box>
     </Box>
   );
 }
-

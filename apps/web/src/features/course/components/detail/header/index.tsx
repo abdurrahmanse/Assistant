@@ -33,7 +33,7 @@ export function CourseHeader({ course, copy, totalLessons, isLoading }: CourseHe
         <Chip label={course.category} variant="outline" sx={{ fontWeight: 700, borderRadius: '6px' }} />
       </Stack>
 
-      <Typography variant="h1" sx={{ fontWeight: 900, mb: 3, lineHeight: 1.1, letterSpacing: '-0.02em', }}>
+      <Typography variant="h1" sx={{ fontWeight: 700, mb: 3, lineHeight: 1.1, letterSpacing: '-0.02em', }}>
         {course.title}
       </Typography>
 

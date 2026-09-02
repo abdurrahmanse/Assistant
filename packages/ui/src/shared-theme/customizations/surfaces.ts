@@ -1,5 +1,5 @@
-import { type Components, type Theme } from '@mui/material/styles';
-import { gray } from '../themePrimitives';
+import { alpha, type Components, type Theme } from '@mui/material/styles';
+import { gray, brand } from '../themePrimitives';
 
 export const surfacesCustomizations: Components<Theme> = {
   MuiAccordion: {
@@ -55,18 +55,17 @@ export const surfacesCustomizations: Components<Theme> = {
     },
     styleOverrides: {
       root: ({ theme }) => ({
-        backdropFilter: 'blur(24px)',
-        WebkitBackdropFilter: 'blur(24px)',
-        backgroundColor: 'rgba(255, 255, 255, 0.7)',
-        borderRadius: 24,
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: 12,
         border: '1px solid',
-        borderColor: 'rgba(0, 0, 0, 0.08)',
-        boxShadow: '0 8px 32px rgba(0, 0, 0, 0.04)',
-        transition: 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease',
+        borderColor: alpha(gray[300], 0.4),
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
+        backgroundImage: 'none',
+        transition: 'transform 0.2s ease, box-shadow 0.2s ease',
         ...theme.applyStyles('dark', {
-          backgroundColor: 'rgba(20, 20, 25, 0.6)',
-          borderColor: 'rgba(255, 255, 255, 0.08)',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)',
+          backgroundColor: '#0b0f19',
+          borderColor: alpha(gray[700], 0.6),
+          boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
         }),
       }),
     },
@@ -77,41 +76,46 @@ export const surfacesCustomizations: Components<Theme> = {
         return {
           padding: 24,
           gap: 16,
-          transition: 'all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)', // Playful spring animation
-          backgroundColor: 'rgba(255, 255, 255, 0.65)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          borderRadius: 24,
-          border: '2px solid',
-          borderColor: 'rgba(0, 0, 0, 0.05)',
-          boxShadow: '0 10px 40px rgba(0, 0, 0, 0.03)', // Base minimalism shadow
+          transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: 12,
+          border: '1px solid',
+          borderColor: alpha(gray[300], 0.6),
+          boxShadow: '0 8px 30px rgba(0, 0, 0, 0.04)',
+          position: 'relative',
+          overflow: 'hidden',
+          '&::before': {
+            content: '""',
+            position: 'absolute',
+            top: 0, left: 0, right: 0, height: '2px',
+            background: 'transparent',
+            transition: 'background 0.3s ease',
+          },
           '&:hover': {
             transform: 'translateY(-4px)',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)',
-            borderColor: 'rgba(0, 0, 0, 0.1)',
+            boxShadow: '0 12px 40px rgba(0, 0, 0, 0.08)',
+            borderColor: alpha(brand[400], 0.4),
+            '&::before': {
+              background: `linear-gradient(90deg, ${brand[400]}, ${brand[600]})`,
+            }
           },
           ...theme.applyStyles('dark', {
-            backgroundColor: 'rgba(20, 20, 25, 0.65)',
-            borderColor: 'rgba(255, 255, 255, 0.05)',
+            backgroundColor: '#0b0f19',
+            borderColor: alpha(gray[700], 0.8),
+            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.4)',
             '&:hover': {
-              borderColor: 'rgba(255, 255, 255, 0.15)',
-              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+              boxShadow: `0 12px 40px rgba(0, 0, 0, 0.6), 0 0 20px ${alpha(brand[500], 0.1)}`,
+              borderColor: alpha(brand[500], 0.5),
             }
           }),
           variants: [
             {
-              props: {
-                variant: 'outlined',
-              },
+              props: { variant: 'outlined' },
               style: {
-                border: '2px solid',
-                borderColor: 'rgba(0, 0, 0, 0.08)',
                 boxShadow: 'none',
-                background: 'rgba(255, 255, 255, 0.5)',
-                ...theme.applyStyles('dark', {
-                  borderColor: 'rgba(255, 255, 255, 0.08)',
-                  background: 'rgba(20, 20, 25, 0.5)',
-                }),
+                '&:hover': {
+                  boxShadow: 'none',
+                }
               },
             },
           ],
@@ -129,22 +133,18 @@ export const surfacesCustomizations: Components<Theme> = {
   },
   MuiCardHeader: {
     styleOverrides: {
-      root: {
-        padding: 0,
-      },
+      root: { padding: 0 },
       title: {
-        fontVariant: 'small-caps',
-        textTransform: 'lowercase',
-        fontSize: 'clamp(16px, 2vw, 22px)',
+        fontFamily: '"Rajdhani", sans-serif',
+        fontSize: '1.25rem',
+        fontWeight: 600,
         lineHeight: 1.2,
       },
     },
   },
   MuiCardActions: {
     styleOverrides: {
-      root: {
-        padding: 0,
-      },
+      root: { padding: 0 },
     },
   },
 };
