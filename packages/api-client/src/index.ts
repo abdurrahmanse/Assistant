@@ -7,3 +7,4 @@ export * from './data/layout.mock';
 export * from './data/landing.mock';
 export * from './types';
 export * from './data/courses.mock';
+export * from './data/content.mock';
