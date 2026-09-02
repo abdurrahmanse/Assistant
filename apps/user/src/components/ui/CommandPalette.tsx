@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import InputBase from '@mui/material/InputBase';
@@ -7,8 +7,17 @@ import Stack from '@mui/material/Stack';
 import { Search, Settings, CreditCard, BookOpen, User, PlayCircle } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
+const ACTIONS = [
+  { id: 'courses', label: 'Browse Courses', icon: <BookOpen size={18} />, path: '/courses' },
+  { id: 'learning', label: 'My Learning', icon: <PlayCircle size={18} />, path: '/home' },
+  { id: 'billing', label: 'Billing & Membership', icon: <CreditCard size={18} />, path: '/billing' },
+  { id: 'settings', label: 'Account Settings', icon: <Settings size={18} />, path: '/settings' },
+  { id: 'profile', label: 'My Profile', icon: <User size={18} />, path: '/profile' }
+];
+
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,12 +33,23 @@ export function CommandPalette() {
 
   const handleNavigate = (path: string) => {
     setOpen(false);
+    setSearch('');
     navigate(path);
   };
 
+  const filteredActions = useMemo(() => {
+    if (!search.trim()) return ACTIONS;
+    const lowerSearch = search.toLowerCase();
+    return ACTIONS.filter(action => action.label.toLowerCase().includes(lowerSearch));
+  }, [search]);
+
   return (
-    <Modal open={open} onClose={() => setOpen(false)} sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', pt: '10vh' }}>
-      <Box sx={{ 
+    <Modal open={open} onClose={() => { setOpen(false); setSearch(''); }} sx={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'center', pt: '10vh' }}>
+      <Box 
+        role="dialog" 
+        aria-modal="true" 
+        aria-labelledby="command-palette-title"
+        sx={{ 
         width: '100%', 
         maxWidth: 600, 
         bgcolor: 'background.paper', 
@@ -43,21 +63,36 @@ export function CommandPalette() {
           <Search size={20} color="gray" />
           <InputBase 
             autoFocus 
+            inputProps={{ "aria-label": "Search command palette", "aria-controls": "command-palette-listbox" }} 
             placeholder="Search or jump to..." 
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             sx={{ ml: 2, flex: 1, fontSize: '1.1rem' }} 
           />
           <Typography variant="caption" sx={{ bgcolor: 'action.hover', px: 1, py: 0.5, borderRadius: '4px' }}>ESC</Typography>
         </Box>
         
         <Box sx={{ p: 2, maxHeight: 400, overflow: 'auto' }}>
-          <Typography variant="caption" fontWeight={700} color="text.secondary" sx={{ mb: 1, display: 'block', px: 1 }}>SUGGESTIONS</Typography>
-          <Stack spacing={0.5}>
-            <PaletteItem icon={<BookOpen size={18} />} label="Browse Courses" onClick={() => handleNavigate('/courses')} />
-            <PaletteItem icon={<PlayCircle size={18} />} label="My Learning" onClick={() => handleNavigate('/home')} />
-            <PaletteItem icon={<CreditCard size={18} />} label="Billing & Membership" onClick={() => handleNavigate('/billing')} />
-            <PaletteItem icon={<Settings size={18} />} label="Account Settings" onClick={() => handleNavigate('/settings')} />
-            <PaletteItem icon={<User size={18} />} label="My Profile" onClick={() => handleNavigate('/profile')} />
-          </Stack>
+          <Typography variant="caption" fontWeight={700} color="text.secondary" sx={{ mb: 1, display: 'block', px: 1 }}>
+            <span id="command-palette-title">{search.trim() ? 'SEARCH RESULTS' : 'SUGGESTIONS'}</span>
+          </Typography>
+          
+          {filteredActions.length > 0 ? (
+            <Stack spacing={0.5} role="listbox">
+              {filteredActions.map(action => (
+                <PaletteItem 
+                  key={action.id} 
+                  icon={action.icon} 
+                  label={action.label} 
+                  onClick={() => handleNavigate(action.path)} 
+                />
+              ))}
+            </Stack>
+          ) : (
+            <Box sx={{ py: 4, textAlign: 'center' }}>
+              <Typography variant="body2" color="text.secondary">No results found for "{search}"</Typography>
+            </Box>
+          )}
         </Box>
       </Box>
     </Modal>
@@ -65,9 +100,18 @@ export function CommandPalette() {
 }
 
 function PaletteItem({ icon, label, onClick }: { icon: React.ReactNode; label: string; onClick: () => void }) {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onClick();
+    }
+  };
   return (
     <Box 
+      role="option"
+      tabIndex={0}
       onClick={onClick}
+      onKeyDown={handleKeyDown}
       sx={{ 
         display: 'flex', 
         alignItems: 'center', 

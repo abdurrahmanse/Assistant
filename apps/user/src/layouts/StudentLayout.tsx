@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 
 import { Award, Bell, BookOpen, Compass, CreditCard, FileText, Flame, LayoutDashboard, LifeBuoy, LogOut, Medal, Moon, Settings, Sun, Trophy, User } from 'lucide-react';
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { useLocation, useNavigate } from 'react-router';
 import { styles } from './StudentLayout.styles';
 
@@ -202,7 +203,21 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       {/* Main Content Area */}
       <Box sx={styles.mainWrapper}>
         <Box component="main" sx={styles.mainContent}>
-          {children}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{ width: '100%', display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+          >
+            <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            style={{ width: '100%', display: 'flex', flexDirection: 'column', flexGrow: 1 }}
+          >
+            {children}
+          </motion.div>
+          </motion.div>
         </Box>
 
         {/* Footer Exact Match */}
