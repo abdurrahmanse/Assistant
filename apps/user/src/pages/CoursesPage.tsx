@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { SkeletonCourseCard } from '@/components/ui/SkeletonCourseCard';
 import { Heading, Text } from '@repo/ui';
 import { Compass } from 'lucide-react';
 import { mockAvailableCourses } from '@/data/mock';
@@ -34,11 +36,18 @@ export default function CoursesPage() {
           </Box>
         </Box>
         <Grid container spacing={4}>
-          {mockAvailableCourses.map((course) => (
-            <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>
-              <CourseCard course={course} onEnroll={(slug) => navigate(`/checkout?course=${slug}`)} />
-            </Grid>
-          ))}
+          {isLoading 
+            ? Array.from(new Array(6)).map((_, i) => (
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={i}>
+                  <SkeletonCourseCard />
+                </Grid>
+              ))
+            : mockAvailableCourses.map((course) => (
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>
+                  <CourseCard course={course} onEnroll={(slug) => navigate(`/checkout?course=${slug}`)} />
+                </Grid>
+              ))
+          }
         </Grid>
       </Container>
     </StudentLayout>

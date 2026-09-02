@@ -21,7 +21,7 @@ export function ReviewFeedbackTab() {
           multiline 
           rows={4} 
           placeholder="Tell us what you thought about this course. What was great? What could be improved?" 
-          variant="outlined" 
+          variant="standard" 
           sx={{ mb: 3, '& .MuiOutlinedInput-root': { borderRadius: '12px', bgcolor: 'background.paper' } }}
         />
         

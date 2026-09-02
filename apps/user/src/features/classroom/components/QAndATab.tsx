@@ -21,9 +21,9 @@ export function QAndATab() {
         <TextField 
           fullWidth 
           placeholder="Search for questions..." 
-          variant="outlined" 
+          variant="standard" 
           size="small"
-          sx={{ '& .MuiOutlinedInput-root': { borderRadius: '12px', bgcolor: 'background.default' } }}
+          
         />
         <Button variant="outline" sx={{ px: 3, borderRadius: '12px' }}><Search size={18} /></Button>
       </Box>

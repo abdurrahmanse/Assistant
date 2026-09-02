@@ -53,7 +53,7 @@ export function FooterNewsletter() {
             InputProps={{ startAdornment: <InputAdornment position="start"><Mail size={18} /></InputAdornment> }}
             hiddenLabel
             size="small"
-            variant="outlined"
+            variant="standard"
             fullWidth
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}

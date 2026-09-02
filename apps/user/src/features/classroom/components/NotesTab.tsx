@@ -32,7 +32,7 @@ export function NotesTab() {
     <Box sx={{ p: 1 }}>
       <Typography variant="h6" fontWeight={800} mb={3}>My Notes</Typography>
       
-      <Box sx={{ bgcolor: 'background.paper', p: 3, borderRadius: '16px', border: '1px solid', borderColor: 'divider', mb: 4 }}>
+      <Box sx={{ bgcolor: 'transparent', p: 2, borderBottom: '2px solid', borderColor: 'divider', mb: 4, '&:focus-within': { borderColor: 'primary.main' } }}>
         <TextField
           fullWidth
           multiline
@@ -40,12 +40,12 @@ export function NotesTab() {
           placeholder="Type your note here... It will automatically attach to the current video timestamp."
           value={newNote}
           onChange={(e) => setNewNote(e.target.value)}
-          variant="outlined"
+          variant="standard"
           sx={{
             mb: 2,
             '& .MuiOutlinedInput-root': {
-              borderRadius: '12px',
-              bgcolor: 'background.default',
+              
+              
             }
           }}
         />

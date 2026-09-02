@@ -64,10 +64,10 @@ export function FloatingChat() {
                 multiline
                 rows={3}
                 placeholder="Type your message..."
-                variant="outlined"
+                variant="standard"
                 value={message}
                 onChange={(e: any) => setMessage(e.target.value)}
-                sx={{ mb: 2, '& .MuiOutlinedInput-root': { borderRadius: '12px' } }}
+                sx={{ mb: 3 }}
               />
               <Button type="submit" variant="primary" fullWidth endIcon={<Send size={16} />} sx={{ fontWeight: 700, borderRadius: '12px' }}>
                 Send Message
