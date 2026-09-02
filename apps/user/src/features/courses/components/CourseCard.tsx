@@ -12,7 +12,7 @@ interface CourseCardProps {
     title: string;
     instructor: string;
     thumbnail: string;
-    price: string;
+    requiredTier?: string;
     tags: string[];
     rating: number;
     students: number;
@@ -26,7 +26,7 @@ export function CourseCard({ course, onEnroll }: CourseCardProps) {
       <Box sx={styles.thumbnailWrapper}>
         <Box component="img" src={course.thumbnail} alt={course.title} sx={styles.image} />
         <Box sx={styles.priceChipWrapper}>
-          <Chip label={course.price} size="small" sx={styles.priceChip} />
+          <Chip label={course.requiredTier || 'Pro'} size="small" sx={styles.priceChip} />
         </Box>
       </Box>
       

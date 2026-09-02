@@ -42,7 +42,7 @@ class LandingService {
 
   /** Highlights section */
   getHighlights = () => landingRepository.getHighlights();
-  getPricing = () => landingRepository.getPricing();
+  getMembership = () => landingRepository.getMembership();
 
   /** Testimonials section */
   getTestimonials = () => landingRepository.getTestimonials();

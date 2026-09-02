@@ -6,7 +6,7 @@ export interface Course {
   title: string;
   instructor: string;
   thumbnail: string;
-  price: string;
+  requiredTier?: string;
   tags: string[];
   rating: number;
   students: number;

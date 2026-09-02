@@ -3,26 +3,25 @@ import type { Product } from "../types/ecommerce";
 
 export const CHECKOUT_MOCK_DATA = {
   products: [
-    { name: 'Advanced React Patterns', desc: 'Master UI architecture', price: '$49.99' },
-    { name: 'Data Science with Python', desc: 'From zero to hero', price: '$89.99' },
-    { name: 'Digital Marketing 101', desc: 'SEO and paid ads', price: '$29.99' },
-    { name: 'Platform Access Fee', desc: 'Monthly subscription', price: 'Free' },
+    { name: 'Pro Membership', desc: 'Monthly subscription', price: '$29.00' },
+    { name: 'Elite Membership', desc: 'Monthly subscription with mentorship', price: '$99.00' },
+    { name: 'Basic Membership', desc: 'Free access to previews', price: 'Free' },
   ] as Product[],
   ui: {
-    steps: ['Student Details', 'Payment details', 'Review your order'],
+    steps: ['Member Details', 'Payment Details', 'Review Membership'],
     buttons: {
       next: 'Next',
       back: 'Back',
       previous: 'Previous',
-      placeOrder: 'Place order'
+      placeOrder: 'Start Membership'
     },
     labels: {
       total: 'Total',
-      checkout: 'Enrollment Checkout',
-      selectedProducts: 'Selected courses'
+      checkout: 'Membership Enrollment',
+      selectedProducts: 'Selected Plan'
     },
     addressForm: {
-      title: 'Student Details',
+      title: 'Member Details',
       firstName: 'First name',
       lastName: 'Last name',
       address1: 'Address line 1',
@@ -45,16 +44,16 @@ export const CHECKOUT_MOCK_DATA = {
       expirationDate: 'Expiration date'
     },
     review: {
-      title: 'Review your order',
-      shippingDetails: 'Student Details',
+      title: 'Review your membership',
+      shippingDetails: 'Member Details',
       paymentDetails: 'Payment details'
     },
     orderSuccess: {
-      title: 'Enrollment successful!',
-      subtitle: 'Your order number is #140396.',
+      title: 'Welcome to the club!',
+      subtitle: 'Your membership is now active.',
       message: 'Thank you',
-      buttonText: 'Go to my courses',
-      description: 'We have emailed your order confirmation and a link to access your courses.'
+      buttonText: 'Go to my dashboard',
+      description: 'We have emailed your confirmation and a link to access your premium content.'
     }
   }
 };

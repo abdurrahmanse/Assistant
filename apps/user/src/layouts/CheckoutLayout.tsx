@@ -15,7 +15,7 @@ interface CheckoutLayoutProps {
 export default function CheckoutLayout({ children, disableCustomTheme }: CheckoutLayoutProps) {
   // We'll mock the total price in the sidebar here, since it was just hardcoded or state based.
   // Real app might pull from a global store or context.
-  const totalPrice = '$144.97';
+  const totalPrice = '$29.00/mo';
 
   return (
     <AppTheme disableCustomTheme={disableCustomTheme}>

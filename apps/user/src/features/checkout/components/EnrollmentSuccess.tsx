@@ -5,7 +5,7 @@ import { Button } from '@repo/ui';
 import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
 import Skeleton from '@mui/material/Skeleton';
 
-export function OrderSuccess() {
+export function EnrollmentSuccess() {
   const { data, isLoading } = useCheckoutQuery();
 
   if (isLoading || !data) return <Skeleton variant="rectangular" height={300} />;

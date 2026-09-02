@@ -10,7 +10,7 @@ export interface CourseItem {
   slug: string;
   title: string;
   type: 'Free' | 'Premium';
-  price: string;
+  requiredTier?: string;
   level: string;
   icon: string;
   description: string;
@@ -85,7 +85,7 @@ export interface HighlightItem {
 export interface PricingTier {
   title: string;
   subheader?: string;
-  price: string;
+  requiredTier?: string;
   description: string[];
   buttonText: string;
   buttonVariant: 'primary' | 'outline' | 'secondary' | 'ghost' | 'glass';

@@ -140,11 +140,11 @@ export function useHowItWorksQuery() {
   });
 }
 
-// ─── Pricing section ──────────────────────────────────────────────────────────
-export const usePricingQuery = () =>
+// ─── Membership section ──────────────────────────────────────────────────────────
+export const useMembershipQuery = () =>
   useQuery({
-    queryKey: [...landingKeys.all, 'pricing'] as const,
-    queryFn: () => landingService.getPricing(),
+    queryKey: [...landingKeys.all, 'membership'] as const,
+    queryFn: () => landingService.getMembership(),
     staleTime: 1000 * 60 * 5,
   });
 

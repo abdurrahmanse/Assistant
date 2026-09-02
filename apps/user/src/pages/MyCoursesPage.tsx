@@ -4,10 +4,11 @@ import StudentLayout from '@/layouts/StudentLayout';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { Heading, Text } from '@repo/ui';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, FolderOpen } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { CourseProgressCard } from '@/features/dashboard/components/CourseProgressCard';
 import Box from '@mui/material/Box';
+import { EmptyState } from '@/components/ui/EmptyState';
 
 export default function MyCoursesPage() {
   const navigate = useNavigate();
@@ -25,16 +26,26 @@ export default function MyCoursesPage() {
           </Box>
         </Box>
 
-        <Grid container spacing={3}>
-          {mockEnrolledCourses.map((course) => (
-            <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>
-              <CourseProgressCard 
-                course={course} 
-                onClick={() => navigate(`/courses/${course.slug}`)} 
-              />
-            </Grid>
-          ))}
-        </Grid>
+        {!mockEnrolledCourses || mockEnrolledCourses.length === 0 ? (
+          <EmptyState 
+            icon={<FolderOpen size={48} />}
+            title="No courses yet"
+            description="You haven't enrolled in any courses. Browse the catalog to start learning."
+            actionText="Browse Courses"
+            onAction={() => navigate('/courses')}
+          />
+        ) : (
+          <Grid container spacing={3}>
+            {mockEnrolledCourses.map((course) => (
+              <Grid size={{ xs: 12, sm: 6, lg: 4 }} key={course.id}>
+                <CourseProgressCard 
+                  course={course} 
+                  onClick={() => navigate(`/courses/${course.slug}`)} 
+                />
+              </Grid>
+            ))}
+          </Grid>
+        )}
       </Container>
     </StudentLayout>
   );

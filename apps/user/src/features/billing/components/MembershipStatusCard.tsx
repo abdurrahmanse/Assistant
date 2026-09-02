@@ -13,11 +13,11 @@ interface PlanDetails {
   features: string[];
 }
 
-export function CurrentPlanCard({ plan }: { plan: PlanDetails }) {
+export function MembershipStatusCard({ plan }: { plan: PlanDetails }) {
   return (
     <Card sx={{ p: 4, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)' }}>
       <Typography variant="subtitle2" fontWeight={800} color="primary.main" textTransform="uppercase" letterSpacing={1} mb={2}>
-        Current Plan
+        Membership Status
       </Typography>
       
       <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="flex-start" mb={4}>
@@ -33,7 +33,7 @@ export function CurrentPlanCard({ plan }: { plan: PlanDetails }) {
 
       <Divider sx={{ mb: 4 }} />
       
-      <Typography variant="subtitle2" fontWeight={700} mb={2}>Plan Benefits:</Typography>
+      <Typography variant="subtitle2" fontWeight={700} mb={2}>Membership Benefits:</Typography>
       <Stack spacing={2} mb={4}>
         {plan.features.map((feature, i) => (
           <Stack key={i} direction="row" alignItems="center" spacing={2}>
@@ -52,7 +52,7 @@ export function CurrentPlanCard({ plan }: { plan: PlanDetails }) {
 
       <Stack direction="row" spacing={2}>
         <Button variant="primary">Extend Subscription</Button>
-        <Button variant="outline">Cancel Plan</Button>
+        <Button variant="outline">Cancel Membership</Button>
       </Stack>
     </Card>
   );

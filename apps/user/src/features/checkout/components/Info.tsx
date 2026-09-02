@@ -17,7 +17,7 @@ export default function Info({ totalPrice }: InfoProps) {
     return (
       <React.Fragment>
         <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
-          Total
+          Membership Due
         </Typography>
         <Typography variant="h4" gutterBottom>
           {totalPrice}
@@ -36,7 +36,7 @@ export default function Info({ totalPrice }: InfoProps) {
   return (
     <React.Fragment>
       <Typography variant="subtitle2" sx={{ color: 'text.secondary' }}>
-        Total
+        Membership Due
       </Typography>
       <Typography variant="h4" gutterBottom>
         {totalPrice}

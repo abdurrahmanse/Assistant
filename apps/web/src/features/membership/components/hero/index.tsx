@@ -6,13 +6,13 @@ import { Skeleton } from '@repo/ui';
 import { Sparkles } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 
-export interface PricingHeroProps {
+export interface MembershipHeroProps {
   title?: string;
   subtitle?: string;
   isLoading?: boolean;
 }
 
-export function PricingHero({ title, subtitle, isLoading }: PricingHeroProps) {
+export function MembershipHero({ title, subtitle, isLoading }: MembershipHeroProps) {
   if (isLoading || !title) {
     return (
       <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center', position: 'relative' }}>
@@ -27,7 +27,6 @@ export function PricingHero({ title, subtitle, isLoading }: PricingHeroProps) {
 
   return (
     <Box sx={{ pt: { xs: 14, sm: 20 }, pb: { xs: 8, sm: 12 }, textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-      {/* Background glow */}
       <Box sx={{
         position: 'absolute', top: '20%', left: '50%', transform: 'translate(-50%, -50%)',
         width: { xs: 300, md: 600 }, aspectRatio: '1',
@@ -40,7 +39,7 @@ export function PricingHero({ title, subtitle, isLoading }: PricingHeroProps) {
           <Box sx={{ display: 'flex', justifyContent: 'center', mb: 3 }}>
             <Chip 
               icon={<Sparkles size={16} />} 
-              label="Simple & Transparent" 
+              label="Members Only" 
               color="primary" 
               variant="outline" 
               sx={{ fontWeight: 800, px: 1, py: 2.5, borderRadius: '20px', border: '2px solid' }} 

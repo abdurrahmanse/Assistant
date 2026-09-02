@@ -99,7 +99,7 @@ export function CourseCard({ course, enrollFreeLabel, enrollPremiumLabel }: Cour
                 </Stack>
               )}
             </Stack>
-            <Typography variant="h6" sx={{ fontWeight: 900, color: 'text.primary' }}>{course.price}</Typography>
+            <Typography variant="h6" sx={{ fontWeight: 900, color: 'text.primary' }}>{course.requiredTier || 'Pro Plan'}</Typography>
           </Stack>
         </Box>
       </Box>

@@ -4,14 +4,16 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import { useState } from 'react';
+import React, { useState, Suspense, lazy } from 'react';
 import type { CourseDetails, CourseModule, CourseLesson, Resource } from '@/interfaces';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
 
 // Classroom Components
 import { CourseHeader } from '@/features/classroom/components/CourseHeader';
 import { CurriculumSidebar } from '@/features/classroom/components/CurriculumSidebar';
-import { VideoPlayer } from '@/features/classroom/components/VideoPlayer';
+import CircularProgress from '@mui/material/CircularProgress';
+import { ErrorBoundary } from '@repo/ui/components/ErrorBoundary';
+const VideoPlayer = lazy(() => import('@/features/classroom/components/VideoPlayer').then(m => ({ default: m.VideoPlayer })));
 import { PlayerTabs } from '@/features/classroom/components/PlayerTabs';
 import { PlayerControls } from '@/features/classroom/components/PlayerControls';
 
@@ -87,7 +89,15 @@ export default function CoursePlayerPage() {
             {/* Left: Player & Tabs */}
             <Grid size={{ xs: 12, lg: 8 }} sx={{ display: 'flex', flexDirection: 'column' }}>
               
-              <VideoPlayer currentLesson={currentLesson} onVideoEnd={markCurrentLessonComplete} />
+              <ErrorBoundary>
+                <Suspense fallback={
+                  <Box sx={{ width: '100%', aspectRatio: '16/9', bgcolor: 'black', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', mb: 4 }}>
+                    <CircularProgress sx={{ color: 'white' }} />
+                  </Box>
+                }>
+                  <VideoPlayer currentLesson={currentLesson} onVideoEnd={markCurrentLessonComplete} />
+                </Suspense>
+              </ErrorBoundary>
 
               <PlayerControls 
                 currentLesson={currentLesson} 

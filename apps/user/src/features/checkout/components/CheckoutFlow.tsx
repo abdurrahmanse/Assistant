@@ -9,7 +9,7 @@ import { useCheckoutQuery } from '../hooks/queries/useCheckoutQuery';
 import AddressForm from './AddressForm';
 import { CheckoutStepper } from './CheckoutStepper';
 import InfoMobile from './InfoMobile';
-import { OrderSuccess } from './OrderSuccess';
+import { EnrollmentSuccess } from './EnrollmentSuccess';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
 
@@ -105,7 +105,7 @@ export default function CheckoutFlow() {
         <CheckoutStepper activeStep={activeStep} steps={steps} isMobile={true} />
         
         {activeStep === steps.length ? (
-          <OrderSuccess />
+          <EnrollmentSuccess />
         ) : (
           <React.Fragment>
             {getStepContent(activeStep)}

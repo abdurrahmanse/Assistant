@@ -24,13 +24,20 @@ export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
       
       if (typeof player.on === 'function') {
         player.on('ended', handleEnded);
-        return () => player.off('ended', handleEnded);
+        return () => {
+          if (typeof player.off === 'function') player.off('ended', handleEnded);
+        };
       } else if (typeof player.addEventListener === 'function') {
         player.addEventListener('ended', handleEnded);
-        return () => player.removeEventListener('ended', handleEnded);
+        return () => {
+          if (typeof player.removeEventListener === 'function') player.removeEventListener('ended', handleEnded);
+        };
       } else if (player.elements && player.elements.container) {
-        player.elements.container.addEventListener('ended', handleEnded);
-        return () => player.elements.container.removeEventListener('ended', handleEnded);
+        const container = player.elements.container;
+        container.addEventListener('ended', handleEnded);
+        return () => {
+          if (container) container.removeEventListener('ended', handleEnded);
+        };
       }
     }
   }, [currentLesson, onVideoEnd]);
@@ -43,7 +50,7 @@ export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
       borderRadius: '16px',
       overflow: 'hidden',
       mb: 4,
-      boxShadow: '8px 8px 0px rgba(0,0,0,1)', border: '4px solid #000',
+      boxShadow: '0 24px 48px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.1)', border: 'none', background: '#000',
       '& .plyr': {
         height: '100%',
         '--plyr-color-main': '#6366f1', // primary color
@@ -54,11 +61,36 @@ export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
           ref={playerRef}
           source={{
             type: 'video',
-            sources: [{ src: currentLesson.videoUrl, provider: 'html5' }],
+            sources: [
+              { src: currentLesson.videoUrl, provider: 'html5', size: 1080 },
+              { src: currentLesson.videoUrl, provider: 'html5', size: 720 },
+              { src: currentLesson.videoUrl, provider: 'html5', size: 480 }
+            ],
           }}
           options={{
             autoplay: true,
-            controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+            controls: [
+              'play-large', 
+              'restart', 
+              'rewind', 
+              'play', 
+              'fast-forward', 
+              'progress', 
+              'current-time',
+              'duration',
+              'mute', 
+              'volume', 
+              'captions', 
+              'settings', 
+              'pip', 
+              'airplay', 
+              'fullscreen'
+            ],
+            settings: ['captions', 'quality', 'speed', 'loop'],
+            speed: { selected: 1, options: [0.5, 0.75, 1, 1.25, 1.5, 1.75, 2, 4] },
+            keyboard: { focused: true, global: true },
+            tooltips: { controls: true, seek: true },
+            seekTime: 10,
           }}
         />
       ) : (

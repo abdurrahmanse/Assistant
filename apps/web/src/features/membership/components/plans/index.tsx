@@ -1,79 +1,52 @@
-import { useSiteMetaQuery } from '@/features/landing/hooks/queries/useLandingQuery';
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import { Button } from '@repo/ui';
 import Divider from '@mui/material/Divider';
-import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Grid from '@mui/material/Grid';
 import ToggleButton from '@mui/material/ToggleButton';
-import { Badge as Chip } from '@repo/ui';
-import Tilt from 'react-parallax-tilt';
-import { Check, Zap, Rocket } from 'lucide-react';
-import { Reveal } from '@/components/Reveal';
-import type { PricingTier } from '@repo/api-client';
-import { Skeleton } from '@repo/ui';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import Typography from '@mui/material/Typography';
+import { Button, Badge as Chip } from '@repo/ui';
+import { Check, Rocket, Zap } from 'lucide-react';
 import { useNavigate } from 'react-router';
+import { Reveal } from '@/components/Reveal';
+import Tilt from 'react-parallax-tilt';
 
-export interface PricingPlansProps {
-  tiers?: PricingTier[];
+
+export interface MembershipPlansProps {
+  tiers?: any[];
   isLoading?: boolean;
 }
 
-export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
+export function MembershipPlans({ tiers, isLoading }: MembershipPlansProps) {
+  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
   const navigate = useNavigate();
-  const { data: siteMeta } = useSiteMetaQuery();
-  const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('yearly');
+  const siteMeta = { portalUrl: 'http://localhost:5174' };
 
-  const handleBillingCycle = (event: React.MouseEvent<HTMLElement>, newCycle: 'monthly' | 'yearly') => {
-    if (newCycle !== null) {
-      setBillingCycle(newCycle);
+  if (isLoading || !tiers) {
+    return <Box sx={{ py: 10 }} />; // Skeleton handled by Hero
+  }
+
+  const handleBillingChange = (event: React.MouseEvent<HTMLElement>, newBilling: 'monthly' | 'yearly') => {
+    if (newBilling !== null) {
+      setBillingCycle(newBilling);
     }
   };
 
-  if (isLoading || !tiers) {
-    return (
-      <Container maxWidth="lg" sx={{ mb: 10 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'center', mb: 8 }}>
-          <Skeleton variant="rectangular" width={240} height={56} sx={{ borderRadius: '30px' }} />
-        </Box>
-        <Grid container spacing={4} justifyContent="center" alignItems="stretch">
-          {[1, 2, 3].map((i) => (
-            <Grid size={{ xs: 12, md: 4 }} key={i}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', p: 4, borderRadius: '32px', border: '2px solid', borderColor: 'divider' }}>
-                <Skeleton variant="text" width="60%" height={32} sx={{ mx: 'auto', mb: 3 }} />
-                <Skeleton variant="rectangular" width="40%" height={60} sx={{ mx: 'auto', mb: 2, borderRadius: 2 }} />
-                <Skeleton variant="text" width="80%" height={24} sx={{ mx: 'auto', mb: 4 }} />
-                <Skeleton variant="rectangular" width="100%" height={2} sx={{ mb: 4 }} />
-                {[1,2,3,4,5].map(j => <Skeleton key={j} variant="text" width="90%" height={24} sx={{ mb: 2.5 }} />)}
-                <Box sx={{ pt: 4, mt: 'auto' }}>
-                  <Skeleton variant="rectangular" width="100%" height={56} sx={{ borderRadius: '16px' }} />
-                </Box>
-              </Box>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-    );
-  }
-
   return (
-    <Container maxWidth="lg" sx={{ mb: 14 }}>
+    <Container maxWidth="lg" sx={{ pb: 12, position: 'relative', zIndex: 1 }}>
       <Box sx={{ display: 'flex', justifyContent: 'center', mb: 8 }}>
-        <Reveal delay={0.1}>
-          <Box sx={{ position: 'relative', display: 'inline-block' }}>
+        <Reveal delay={0.2} direction="up">
+          <Box sx={{ position: 'relative' }}>
             <ToggleButtonGroup
               value={billingCycle}
               exclusive
-              onChange={handleBillingCycle}
+              onChange={handleBillingChange}
               aria-label="billing cycle"
               sx={{
                 bgcolor: 'background.paper',
-                border: '1px solid',
-                borderColor: 'divider',
+                p: 1,
                 borderRadius: '30px',
-                p: 0.5,
                 boxShadow: '0 8px 32px rgba(0,0,0,0.05)',
                 '& .MuiToggleButton-root': {
                   border: 'none',
@@ -104,7 +77,6 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
               </ToggleButton>
             </ToggleButtonGroup>
             
-            {/* Save 20% Badge */}
             <Chip 
               icon={<Zap size={14} fill="currentColor" />}
               label="Save 20%" 
@@ -130,7 +102,7 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
 
       <Grid container spacing={4} justifyContent="center" alignItems="stretch">
         {tiers.map((tier, index) => {
-          const isHighlighted = tier.subheader === 'Most Flexible' || tier.title === 'Pro Plan';
+          const isHighlighted = tier.popular;
           
           return (
             <Grid size={{ xs: 12, md: 4 }} key={tier.title}>
@@ -152,14 +124,14 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
                       transition: 'all 0.3s ease',
                     }}
                   >
-                    {tier.subheader && (
+                    {isHighlighted && (
                       <Box 
                         sx={{ 
                           position: 'absolute', 
                           top: -16, 
                           left: '50%', 
                           transform: 'translateX(-50%)',
-                          bgcolor: isHighlighted ? 'primary.main' : 'secondary.main',
+                          bgcolor: 'primary.main',
                           color: 'white',
                           px: 3,
                           py: 0.75,
@@ -171,24 +143,22 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
                           boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                         }}
                       >
-                        {tier.subheader}
+                        Most Popular
                       </Box>
                     )}
                     
-                    <Box sx={{ flexGrow: 1, mt: tier.subheader ? 2 : 0 }}>
+                    <Box sx={{ flexGrow: 1, mt: isHighlighted ? 2 : 0 }}>
                       <Typography variant="h5" component="h2" gutterBottom align="center" sx={{ fontWeight: 800, color: isHighlighted ? 'primary.main' : 'text.primary' }}>
                         {tier.title}
                       </Typography>
                       
                       <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'baseline', my: 3 }}>
                         <Typography variant="h2" align="center" color="text.primary" sx={{ fontWeight: 900, letterSpacing: '-0.03em' }}>
-                          {tier.title === 'Annual Subscription' || tier.title === 'Pro Plan' 
-                            ? (billingCycle === 'yearly' ? '$29' : '$3')
-                            : tier.price?.replace('/mo', '').replace('/month', '')}
+                          {tier.price === 'Free' ? 'Free' : (billingCycle === 'yearly' && tier.price === '$29/mo' ? '$23' : tier.price?.replace('/mo', ''))}
                         </Typography>
-                        {(tier.title === 'Annual Subscription' || tier.title === 'Pro Plan' || tier.price?.includes('/')) && (
+                        {tier.price !== 'Free' && (
                           <Typography variant="subtitle1" color="text.secondary" sx={{ ml: 1, fontWeight: 700 }}>
-                            {billingCycle === 'yearly' ? '/yr' : '/mo'}
+                            /mo
                           </Typography>
                         )}
                       </Box>
@@ -219,7 +189,7 @@ export function PricingPlans({ tiers, isLoading }: PricingPlansProps) {
                     
                     <Box sx={{ pt: 4 }}>
                       <Button 
-                        onClick={() => tier.buttonText === 'Browse Courses' ? navigate('/courses') : (window.location.href = siteMeta?.portalUrl ? `${siteMeta.portalUrl}/checkout` : 'http://localhost:5174/checkout')}
+                        onClick={() => tier.buttonText === 'Join for Free' ? (window.location.href = siteMeta?.portalUrl ? `${siteMeta.portalUrl}/signup` : 'http://localhost:5174/signup') : (window.location.href = siteMeta?.portalUrl ? `${siteMeta.portalUrl}/checkout?plan=${tier.title.split(' ')[0].toLowerCase()}` : `http://localhost:5174/checkout?plan=${tier.title.split(' ')[0].toLowerCase()}`)}
                         fullWidth 
                         size="large"
                         variant={isHighlighted ? 'primary' : 'outline'} 

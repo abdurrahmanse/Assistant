@@ -146,7 +146,7 @@ export default function FeaturedCourse() {
                 View Full Curriculum
               </Button>
               <Typography variant="h4" fontWeight={900} sx={{ ml: { sm: 'auto !important' } }}>
-                {course.price}
+                {course.requiredTier || 'Pro Plan'}
               </Typography>
             </Stack>
           </Grid>

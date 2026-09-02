@@ -112,7 +112,7 @@ export const mockAvailableCourses = [
     title: 'Mastering TypeScript in 2024',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1516116216624-53e697fedbea?w=800&q=80',
-    price: '$49.99',
+    requiredTier: 'Pro Plan',
     rating: 4.8,
     students: 1240,
     tags: ['TypeScript', 'JavaScript']
@@ -123,7 +123,7 @@ export const mockAvailableCourses = [
     title: 'Node.js Backend Architecture',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1555099962-4199c345e5dd?w=800&q=80',
-    price: '$59.99',
+    requiredTier: 'Pro Plan',
     rating: 4.9,
     students: 890,
     tags: ['Node.js', 'Backend']
@@ -134,7 +134,7 @@ export const mockAvailableCourses = [
     title: 'Figma to React: The Complete Guide',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80',
-    price: '$39.99',
+    requiredTier: 'Pro Plan',
     rating: 4.7,
     students: 2100,
     tags: ['Design', 'React']
@@ -145,7 +145,7 @@ export const mockAvailableCourses = [
     title: 'GraphQL API Masterclass',
     instructor: 'Abdur Rahman',
     thumbnail: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80',
-    price: '$44.99',
+    requiredTier: 'Pro Plan',
     rating: 4.6,
     students: 650,
     tags: ['GraphQL', 'API']
