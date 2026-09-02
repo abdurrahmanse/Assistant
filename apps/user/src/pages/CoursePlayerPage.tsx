@@ -8,7 +8,7 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Fab from '@mui/material/Fab';
 import { Menu as MenuIcon } from 'lucide-react';
 import { useTheme, useMediaQuery } from '@mui/material';
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, Suspense, lazy, useCallback } from 'react';
 import type { CourseDetails, CourseModule, CourseLesson, Resource } from '@/interfaces';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
 
@@ -67,7 +67,7 @@ export default function CoursePlayerPage() {
     }
   };
 
-  const markCurrentLessonComplete = () => {
+  const markCurrentLessonComplete = useCallback(() => {
     if (currentLesson.isCompleted) return;
     
     const updatedModules = localCourse.modules?.map((m: CourseModule) => ({
@@ -84,7 +84,7 @@ export default function CoursePlayerPage() {
     
     toast.success('🎉 Lesson completed! +50 Points');
     handleNextLesson();
-  };
+  }, [currentLesson, localCourse, allLessons.length, handleNextLesson]);
 
   return (
     <StudentLayout>

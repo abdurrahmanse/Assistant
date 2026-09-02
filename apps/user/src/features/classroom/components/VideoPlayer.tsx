@@ -22,22 +22,32 @@ export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
         onVideoEnd();
       };
       
-      if (typeof player.on === 'function') {
-        player.on('ended', handleEnded);
-        return () => {
-          if (typeof player.off === 'function') player.off('ended', handleEnded);
-        };
-      } else if (typeof player.addEventListener === 'function') {
-        player.addEventListener('ended', handleEnded);
-        return () => {
-          if (typeof player.removeEventListener === 'function') player.removeEventListener('ended', handleEnded);
-        };
-      } else if (player.elements && player.elements.container) {
-        const container = player.elements.container;
-        container.addEventListener('ended', handleEnded);
-        return () => {
-          if (container) container.removeEventListener('ended', handleEnded);
-        };
+      try {
+        if (typeof player.on === 'function') {
+          player.on('ended', handleEnded);
+          return () => {
+            try {
+              if (typeof player.off === 'function') player.off('ended', handleEnded);
+            } catch (e) { /* ignore cleanup errors */ }
+          };
+        } else if (typeof player.addEventListener === 'function') {
+          player.addEventListener('ended', handleEnded);
+          return () => {
+            try {
+              if (typeof player.removeEventListener === 'function') player.removeEventListener('ended', handleEnded);
+            } catch (e) { /* ignore */ }
+          };
+        } else if (player?.elements?.container) {
+          const container = player.elements.container;
+          container.addEventListener('ended', handleEnded);
+          return () => {
+            try {
+              if (container) container.removeEventListener('ended', handleEnded);
+            } catch (e) { /* ignore */ }
+          };
+        }
+      } catch (err) {
+        console.warn('Failed to attach ended listener to Plyr', err);
       }
     }
   }, [currentLesson, onVideoEnd]);
@@ -58,6 +68,7 @@ export function VideoPlayer({ currentLesson, onVideoEnd }: VideoPlayerProps) {
     }}>
       {currentLesson?.videoUrl ? (
         <Plyr
+          key={currentLesson.videoUrl}
           ref={playerRef}
           source={{
             type: 'video',
