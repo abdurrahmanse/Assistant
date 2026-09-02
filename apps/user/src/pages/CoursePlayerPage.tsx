@@ -4,25 +4,16 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
-import Typography from '@mui/material/Typography';
-import { Button } from '@repo/ui';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useState } from 'react';
-import type { CourseDetails, CourseModule, CourseLesson } from '@/interfaces';
+import type { CourseDetails, CourseModule, CourseLesson, Resource } from '@/interfaces';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
 
 // Classroom Components
 import { CourseHeader } from '@/features/classroom/components/CourseHeader';
 import { CurriculumSidebar } from '@/features/classroom/components/CurriculumSidebar';
-import { NotesTab } from '@/features/classroom/components/NotesTab';
-import { OverviewTab } from '@/features/classroom/components/OverviewTab';
-import { QAndATab } from '@/features/classroom/components/QAndATab';
-import { ResourcesTab } from '@/features/classroom/components/ResourcesTab';
-import { ReviewFeedbackTab } from '@/features/classroom/components/ReviewFeedbackTab';
 import { VideoPlayer } from '@/features/classroom/components/VideoPlayer';
+import { PlayerTabs } from '@/features/classroom/components/PlayerTabs';
+import { PlayerControls } from '@/features/classroom/components/PlayerControls';
 
 export default function CoursePlayerPage() {
   const { slug } = useParams();
@@ -31,26 +22,20 @@ export default function CoursePlayerPage() {
   
   // In a real app, fetch course by slug using a custom hook (e.g. useQuery). 
   // We use mock data for now.
-  const course = mockCourseDetails;
+  const course = mockCourseDetails as CourseDetails;
   
   // SECURITY: Enrollment Guard
-  // In a real app, we check the backend to see if the user owns this course.
-  // For demonstration, we simulate that the user owns the course. 
-  // Change to false to see the redirect to checkout!
   const hasAccessToCourse = true;
 
   if (!hasAccessToCourse) {
-    // Redirect them to the checkout page if they haven't paid or aren't subscribed!
     return <Navigate to={`/checkout?course=${slug}`} state={{ from: location }} replace />;
   }
   
-  // Find first uncompleted video as default, or fallback to first
   const defaultLesson = course.modules?.[0]?.lessons[0] as CourseLesson;
   const [currentLesson, setCurrentLesson] = useState(defaultLesson);
   const [activeTab, setActiveTab] = useState(0);
   const [localCourse, setLocalCourse] = useState(course);
 
-  // Flatten lessons for easier navigation logic
   const allLessons = localCourse.modules?.flatMap((m: CourseModule) => m.lessons) || [];
   const currentLessonIndex = allLessons.findIndex((l: CourseLesson) => l.id === currentLesson.id);
 
@@ -78,9 +63,8 @@ export default function CoursePlayerPage() {
     const updatedModules = localCourse.modules?.map((m: CourseModule) => ({
       ...m,
       lessons: m.lessons.map((l: CourseLesson) => l.id === currentLesson.id ? { ...l, isCompleted: true } : l)
-    }));
+    })) || [];
     
-    // Calculate new overall progress
     const totalLessons = allLessons.length;
     const completedLessons = updatedModules.flatMap((m: CourseModule) => m.lessons).filter((l: CourseLesson) => l.isCompleted).length;
     const newProgress = Math.round((completedLessons / totalLessons) * 100);
@@ -88,7 +72,6 @@ export default function CoursePlayerPage() {
     setLocalCourse({ ...localCourse, modules: updatedModules, progress: newProgress });
     setCurrentLesson({ ...currentLesson, isCompleted: true });
     
-    // Auto-advance
     handleNextLesson();
   };
 
@@ -106,37 +89,20 @@ export default function CoursePlayerPage() {
               
               <VideoPlayer currentLesson={currentLesson} onVideoEnd={markCurrentLessonComplete} />
 
-              <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
-                <Typography variant="h4" fontWeight={900}>{currentLesson?.title || ''}</Typography>
-                <Stack direction="row" spacing={2}>
-                  {currentLessonIndex > 0 ? (
-                    <Button variant="outline" startIcon={<ChevronLeft size={18} />} sx={{ borderRadius: '12px' }} onClick={handlePrevLesson}>Prev</Button>
-                  ) : null}
-                  
-                  {/* Next Lesson is ONLY available if the current lesson is completed */}
-                  {currentLesson.isCompleted && currentLessonIndex < allLessons.length - 1 ? (
-                    <Button variant="primary" endIcon={<ChevronRight size={18} />} sx={{ borderRadius: '12px' }} onClick={handleNextLesson}>
-                      Next Lesson
-                    </Button>
-                  ) : null}
-                </Stack>
-              </Stack>
+              <PlayerControls 
+                currentLesson={currentLesson} 
+                currentLessonIndex={currentLessonIndex} 
+                totalLessons={allLessons.length} 
+                onPrev={handlePrevLesson} 
+                onNext={handleNextLesson} 
+              />
 
               <Paper variant="outlined" sx={{ borderRadius: '16px', overflow: 'hidden', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)' }}>
-                <Tabs value={activeTab} onChange={(e, v) => setActiveTab(v)} sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
-                  <Tab label="Overview" sx={{ fontWeight: 700 }} />
-                  <Tab label="Notes" sx={{ fontWeight: 700 }} />
-                  <Tab label="Downloads & Resources" sx={{ fontWeight: 700 }} />
-                  <Tab label="Reviews & Feedback" sx={{ fontWeight: 700 }} />
-                  <Tab label="Q&A Discussions" sx={{ fontWeight: 700 }} />
-                </Tabs>
-                <Box sx={{ p: 4, minHeight: 300, bgcolor: 'background.paper' }}>
-                  {activeTab === 0 ? <OverviewTab /> : null}
-                  {activeTab === 1 ? <NotesTab /> : null}
-                  {activeTab === 2 ? <ResourcesTab resources={localCourse.resources} /> : null}
-                  {activeTab === 3 ? <ReviewFeedbackTab /> : null}
-                  {activeTab === 4 ? <QAndATab /> : null}
-                </Box>
+                <PlayerTabs 
+                  activeTab={activeTab} 
+                  onTabChange={(e, v) => setActiveTab(v)} 
+                  resources={localCourse.resources || []} 
+                />
               </Paper>
             </Grid>
 
