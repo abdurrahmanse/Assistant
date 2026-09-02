@@ -35,7 +35,7 @@ export function FloatingChat() {
               position: 'absolute',
               bottom: 80,
               right: 0,
-              width: 320,
+              width: '100%', maxWidth: 320,
               bgcolor: 'rgba(255, 255, 255, 0.8)',
               backdropFilter: 'blur(40px)',
               borderRadius: '24px',

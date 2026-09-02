@@ -20,7 +20,7 @@ export function CurrentPlanCard({ plan }: { plan: PlanDetails }) {
         Current Plan
       </Typography>
       
-      <Stack direction="row" justifyContent="space-between" alignItems="flex-start" mb={4}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="flex-start" mb={4}>
         <Box>
           <Typography variant="h4" fontWeight={900} mb={1}>{plan.name}</Typography>
           <Stack direction="row" alignItems="center" spacing={1} color="success.main" mb={2}>

@@ -49,7 +49,7 @@ export function NotesTab() {
             }
           }}
         />
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
           <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
             <Clock size={14} /> Video paused at 05:30
           </Typography>
@@ -62,7 +62,7 @@ export function NotesTab() {
       <Stack spacing={3}>
         {notes.map((note) => (
           <Box key={note.id} sx={{ p: 3, borderRadius: '16px', border: '1px solid', borderColor: 'divider', transition: 'all 0.2s', '&:hover': { borderColor: 'primary.main', bgcolor: 'primary.50' } }}>
-            <Stack direction="row" justifyContent="space-between" alignItems="flex-start" mb={1}>
+            <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="flex-start" mb={1}>
               <Box 
                 sx={{ 
                   display: 'inline-flex', alignItems: 'center', gap: 1, 

@@ -44,7 +44,7 @@ export function CourseCard({ course, onEnroll }: CourseCardProps) {
         </Typography>
         
         <Box sx={styles.footer}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" mb={3}>
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" mb={3}>
             <Stack direction="row" alignItems="center" spacing={0.5} sx={styles.statsRow}>
               <Star size={16} fill="currentColor" />
               <Typography variant="body2" fontWeight={700} color="text.primary">{course.rating}</Typography>

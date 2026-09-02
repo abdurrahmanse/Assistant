@@ -14,7 +14,7 @@ interface PlayerControlsProps {
 
 export function PlayerControls({ currentLesson, currentLessonIndex, totalLessons, onPrev, onNext }: PlayerControlsProps) {
   return (
-    <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
+    <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
       <Typography variant="h4" fontWeight={900}>{currentLesson?.title || ''}</Typography>
       <Stack direction="row" spacing={2}>
         {currentLessonIndex > 0 ? (

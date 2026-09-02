@@ -62,7 +62,7 @@ export default function CheckoutLayout({ children, disableCustomTheme }: Checkou
           </Box>
         </Grid>
         <Grid
-          size={{ sm: 12, md: 7, lg: 8 }}
+          size={{ xs: 12, sm: 12, md: 7, lg: 8 }}
           sx={{
             display: 'flex',
             flexDirection: 'column',

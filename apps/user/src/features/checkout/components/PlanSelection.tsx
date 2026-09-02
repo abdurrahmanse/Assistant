@@ -32,7 +32,7 @@ export default function PlanSelection() {
             '&:hover': { borderColor: 'primary.main', bgcolor: 'primary.50' }
           }}
         >
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
             <Box>
               <Typography variant="subtitle1" fontWeight={800}>Single Course</Typography>
               <Typography variant="body2" color="text.secondary">Lifetime access to "{courseSlug || 'this course'}"</Typography>
@@ -56,7 +56,7 @@ export default function PlanSelection() {
           }}
         >
           <Box sx={{ position: 'absolute', top: -12, right: 24, bgcolor: 'primary.main', color: '#fff', px: 1.5, py: 0.5, borderRadius: '8px', fontSize: '0.75rem', fontWeight: 800 }}>BEST VALUE</Box>
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
             <Box>
               <Typography variant="subtitle1" fontWeight={800}>Pro Subscription</Typography>
               <Typography variant="body2" color="text.secondary">Unlimited access to all courses, premium support, and downloads.</Typography>

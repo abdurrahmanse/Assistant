@@ -76,7 +76,7 @@ export function CourseProgressCard({ course, onClick }: CourseProgressCardProps)
         <Typography variant="h5" sx={{ fontWeight: 900, mb: 1.5, lineHeight: 1.2, letterSpacing: '-0.02em' }}>{course.title}</Typography>
         
         <Box sx={{ mt: 'auto', mb: 3 }}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" sx={{ mb: 1 }}>
             <Typography variant="body2" fontWeight={800} color={isCompleted ? 'success.main' : 'primary.main'}>
               {course.progress}%
             </Typography>

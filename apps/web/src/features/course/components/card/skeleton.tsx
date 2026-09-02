@@ -40,7 +40,7 @@ export function CourseCardSkeleton() {
         <Skeleton variant="text" width="100%" height={20} sx={{ mb: 3 }} />
         
         <Box sx={(theme) => ({ borderTop: '2px dashed', borderColor: 'rgba(0,0,0,0.1)', ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)' }), pt: 2, mt: 'auto' })}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
             <Stack direction="row" spacing={2}>
                <Skeleton variant="rectangular" width={40} height={24} sx={{ borderRadius: 1 }} />
                <Skeleton variant="rectangular" width={40} height={24} sx={{ borderRadius: 1 }} />

@@ -16,7 +16,7 @@ export function BillingHistoryTable({ invoices }: { invoices: Invoice[] }) {
       <Typography variant="subtitle2" fontWeight={800} mb={3}>Billing History</Typography>
       <Stack spacing={2}>
         {invoices.map((inv, i) => (
-          <Stack key={i} direction="row" justifyContent="space-between" alignItems="center" pb={2} borderBottom={i === invoices.length - 1 ? 'none' : '1px solid'} borderColor="divider">
+          <Stack key={i} direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" pb={2} borderBottom={i === invoices.length - 1 ? 'none' : '1px solid'} borderColor="divider">
             <Box>
               <Typography variant="subtitle2" fontWeight={700}>{inv.date}</Typography>
               <Typography variant="caption" color="text.secondary">{inv.id}</Typography>

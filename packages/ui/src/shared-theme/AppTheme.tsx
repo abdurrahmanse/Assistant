@@ -2,7 +2,7 @@ import * as React from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles';
 import type { ThemeOptions } from '@mui/material/styles';
 import { inputsCustomizations } from './customizations/inputs';
 import { dataDisplayCustomizations } from './customizations/dataDisplay';
@@ -41,7 +41,7 @@ export default function AppTheme(props: AppThemeProps) {
   const theme = React.useMemo(() => {
     return disableCustomTheme
       ? {}
-      : createTheme({
+      : responsiveFontSizes(createTheme({
           // For more details about CSS variables configuration, see https://mui.com/material-ui/customization/css-theme-variables/configuration/
           cssVariables: {
             colorSchemeSelector: 'data-mui-color-scheme',
@@ -68,7 +68,7 @@ export default function AppTheme(props: AppThemeProps) {
             ...surfacesCustomizations,
             ...themeComponents,
           },
-        });
+        }));
   }, [disableCustomTheme, themeComponents]);
   if (disableCustomTheme) {
     return <React.Fragment>{children}</React.Fragment>;

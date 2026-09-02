@@ -8,7 +8,7 @@ import { Activity } from 'lucide-react';
 export function LearningActivityChart() {
   return (
     <Paper variant="outlined" sx={{ p: 4, height: '100%', borderRadius: '24px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column' }}>
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
+      <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center" sx={{ mb: 4 }}>
         <Box>
           <Typography variant="h6" fontWeight={800} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Activity size={20} color="var(--template-palette-primary-main)" /> Learning Activity

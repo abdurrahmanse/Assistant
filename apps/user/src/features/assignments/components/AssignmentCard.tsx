@@ -55,7 +55,7 @@ export function AssignmentCard({ assignment }: AssignmentCardProps) {
       <Divider sx={{ mb: 3 }} />
       
       {assignment.status === 'Graded' ? (
-        <Stack direction="row" justifyContent="space-between" alignItems="center">
+        <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
           <Typography variant="body2" fontWeight={700}>Grade</Typography>
           <Typography variant="h6" color="success.main" fontWeight={900}>{assignment.grade}</Typography>
         </Stack>

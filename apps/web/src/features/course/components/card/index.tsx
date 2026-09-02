@@ -84,7 +84,7 @@ export function CourseCard({ course, enrollFreeLabel, enrollPremiumLabel }: Cour
         </Typography>
         
         <Box sx={(theme) => ({ borderTop: '2px dashed', borderColor: 'rgba(0,0,0,0.1)', ...theme.applyStyles('dark', { borderColor: 'rgba(255,255,255,0.1)' }), pt: 2, mt: 'auto' })}>
-          <Stack direction="row" justifyContent="space-between" alignItems="center">
+          <Stack direction={{ xs: 'column', sm: 'row' }} justifyContent="space-between" alignItems="center">
             <Stack direction="row" spacing={2}>
               {course.rating && (
                 <Stack direction="row" alignItems="center" spacing={0.5}>
