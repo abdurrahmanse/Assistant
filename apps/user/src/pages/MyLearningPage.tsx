@@ -6,7 +6,7 @@ import { Award, CheckCircle, Clock, Sparkles, TrendingUp } from 'lucide-react';
 import { useNavigate } from 'react-router';
 import { styles } from './MyLearningPage.styles';
 
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@repo/ui';
 import { FeaturedResumeCard } from '@/features/dashboard/components/FeaturedResumeCard';
 import { StatGridBento } from '@/features/dashboard/components/StatGridBento';
 import { WeeklyGoalWidget } from '@/features/dashboard/components/WeeklyGoalWidget';

@@ -8,7 +8,7 @@ import { Button, Card } from '@repo/ui';
 import { Save, Settings } from 'lucide-react';
 import { mockUser } from '@/data/mock';
 
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@repo/ui';
 import { SettingsAvatarCard } from '@/features/settings/components/SettingsAvatarCard';
 import { SettingsPersonalForm } from '@/features/settings/components/SettingsPersonalForm';
 import { SettingsPasswordForm } from '@/features/settings/components/SettingsPasswordForm';

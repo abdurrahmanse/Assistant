@@ -8,7 +8,7 @@ import { Button } from '@repo/ui';
 import { Save, User } from 'lucide-react';
 import { styles } from './ProfilePage.styles';
 
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@repo/ui';
 import { ProfileAvatarCard } from '@/features/profile/components/ProfileAvatarCard';
 import { ProfilePersonalForm } from '@/features/profile/components/ProfilePersonalForm';
 import { ProfileSocialForm } from '@/features/profile/components/ProfileSocialForm';

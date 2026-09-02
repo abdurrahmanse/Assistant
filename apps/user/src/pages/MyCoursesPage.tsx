@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { CourseProgressCard } from '@/features/dashboard/components/CourseProgressCard';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyState } from '@repo/ui';
 import { brand } from '@repo/ui/shared-theme/themePrimitives';
 import { alpha } from '@mui/material/styles';
 

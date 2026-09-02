@@ -1,7 +1,8 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import type { SxProps, Theme } from '@mui/material/styles';
-import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { brand } from '../../shared-theme/themePrimitives';
 import { alpha } from '@mui/material/styles';
 
 interface PageHeaderProps {

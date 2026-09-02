@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import { CreditCard } from 'lucide-react';
 
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@repo/ui';
 import { MembershipStatusCard } from '@/features/billing/components/MembershipStatusCard';
 import { PaymentMethodCard } from '@/features/billing/components/PaymentMethodCard';
 import { BillingHistoryTable } from '@/features/billing/components/BillingHistoryTable';

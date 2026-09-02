@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import Grid from '@mui/material/Grid';
 import { brand } from '@repo/ui/shared-theme/themePrimitives';
 import { alpha } from '@mui/material/styles';
-import { PageHeader } from '@/components/ui/PageHeader';
+import { PageHeader } from '@repo/ui';
 
 export default function SupportPage() {
   return (

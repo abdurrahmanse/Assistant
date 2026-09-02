@@ -1,9 +1,9 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import { Button } from '@repo/ui';
-import { Inbox, Database } from 'lucide-react';
-import React from 'react';
-import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { Button } from '../inputs/Button';
+import { Database } from 'lucide-react';
+import { brand } from '../../shared-theme/themePrimitives';
 import { alpha } from '@mui/material/styles';
 
 interface EmptyStateProps {

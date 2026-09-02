@@ -2,7 +2,7 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Button, Card } from '@repo/ui';
-import { EmptyState } from '@/components/ui/EmptyState';
+import { EmptyState } from '@repo/ui';
 import { FileText } from 'lucide-react';
 
 interface Invoice {

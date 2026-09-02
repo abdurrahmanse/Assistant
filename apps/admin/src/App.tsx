@@ -4,36 +4,17 @@ import AppTheme from '@repo/ui/shared-theme/AppTheme';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
-import NotificationsProvider from '@/features/crud/hooks/useNotifications/NotificationsProvider';
-import DialogsProvider from '@/features/crud/hooks/useDialogs/DialogsProvider';
-import {
-  dataGridCustomizations,
-  datePickersCustomizations,
-  sidebarCustomizations,
-  formInputCustomizations,
-} from '@/theme/crud-theme/customizations';
-import {
-  chartsCustomizations,
-  treeViewCustomizations,
-} from '@/theme/dashboard-theme/customizations';
+import RouteError from '@/components/RouteError';
 
-const Dashboard = React.lazy(() => import('@/pages/AnalyticsPage'));
-const SignIn = React.lazy(() => import('@/pages/SignInPage'));
-const DashboardLayout = React.lazy(() => import('@/layouts/CrudLayout/DashboardLayout'));
-const AnalyticsDashboardLayout = React.lazy(() => import('@/layouts/AnalyticsDashboardLayout'));
-const EmployeeList = React.lazy(() => import('@/features/crud/components/EmployeeList'));
-const EmployeeShow = React.lazy(() => import('@/features/crud/components/EmployeeShow'));
-const EmployeeCreate = React.lazy(() => import('@/features/crud/components/EmployeeCreate'));
-const EmployeeEdit = React.lazy(() => import('@/features/crud/components/EmployeeEdit'));
+const AdminLayout = React.lazy(() => import('@/layouts/AdminLayout'));
+const AnalyticsPage = React.lazy(() => import('@/pages/AnalyticsPage'));
+const SignInPage = React.lazy(() => import('@/pages/SignInPage'));
 
-const themeComponents = {
-  ...chartsCustomizations,
-  ...dataGridCustomizations,
-  ...datePickersCustomizations,
-  ...sidebarCustomizations,
-  ...formInputCustomizations,
-  ...treeViewCustomizations,
-};
+// We will build these in step 4
+const UsersPage = React.lazy(() => import('@/pages/UsersPage'));
+const CoursesPage = React.lazy(() => import('@/pages/CoursesPage'));
+const ContentPage = React.lazy(() => import('@/pages/ContentPage'));
+const SystemPage = React.lazy(() => import('@/pages/SystemPage'));
 
 const PageLoader = () => (
   <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100%' }}>
@@ -47,97 +28,77 @@ const SectionLoader = () => (
   </Box>
 );
 
-import RouteError from '@/components/RouteError';
-
 const router = createBrowserRouter([
   {
     errorElement: <RouteError />,
     children: [
-  {
-    path: '/',
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <AnalyticsDashboardLayout />
-      </Suspense>
-    ),
-    children: [
       {
-        index: true,
+        path: '/',
         element: (
-          <Suspense fallback={<SectionLoader />}>
-            <Dashboard />
+          <Suspense fallback={<PageLoader />}>
+            <AdminLayout />
+          </Suspense>
+        ),
+        children: [
+          {
+            index: true,
+            element: (
+              <Suspense fallback={<SectionLoader />}>
+                <AnalyticsPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'users',
+            element: (
+              <Suspense fallback={<SectionLoader />}>
+                <UsersPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'courses',
+            element: (
+              <Suspense fallback={<SectionLoader />}>
+                <CoursesPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'content',
+            element: (
+              <Suspense fallback={<SectionLoader />}>
+                <ContentPage />
+              </Suspense>
+            ),
+          },
+          {
+            path: 'system',
+            element: (
+              <Suspense fallback={<SectionLoader />}>
+                <SystemPage />
+              </Suspense>
+            ),
+          },
+        ],
+      },
+      {
+        path: '/signin',
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <SignInPage />
           </Suspense>
         ),
       },
-    ],
-  },
-  {
-    path: '/signin',
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <SignIn />
-      </Suspense>
-    ),
-  },
-  {
-    path: '/employees',
-    element: (
-      <Suspense fallback={<PageLoader />}>
-        <DashboardLayout />
-      </Suspense>
-    ),
-    children: [
-      {
-        index: true,
-        element: (
-          <Suspense fallback={<SectionLoader />}>
-            <EmployeeList />
-          </Suspense>
-        ),
-      },
-      {
-        path: 'new',
-        element: (
-          <Suspense fallback={<SectionLoader />}>
-            <EmployeeCreate />
-          </Suspense>
-        ),
-      },
-      {
-        path: ':employeeId',
-        element: (
-          <Suspense fallback={<SectionLoader />}>
-            <EmployeeShow />
-          </Suspense>
-        ),
-      },
-      {
-        path: ':employeeId/edit',
-        element: (
-          <Suspense fallback={<SectionLoader />}>
-            <EmployeeEdit />
-          </Suspense>
-        ),
-      },
-      {
-        path: '*',
-        element: <Navigate to="/employees" replace />,
-      },
-    ],
-  },
-]
+    ]
   }
 ]);
 
 export default function App() {
   return (
-    <AppTheme themeComponents={themeComponents}>
+    <AppTheme>
       <CssBaseline enableColorScheme />
-      <NotificationsProvider>
-        <DialogsProvider>
-          <RouterProvider router={router} />
-        </DialogsProvider>
-      </NotificationsProvider>
+      <RouterProvider router={router} />
     </AppTheme>
   );
 }
