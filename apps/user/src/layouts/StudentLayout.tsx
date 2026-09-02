@@ -43,7 +43,8 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { mode, setMode } = useColorScheme();
+  const { mode, setMode, systemMode } = useColorScheme();
+  const isDark = mode === "dark" || (mode === "system" && systemMode === "dark");
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -120,12 +121,12 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
               </Box>
 
               <IconButton 
-                onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+                onClick={() => setMode(isDark ? 'light' : 'dark')}
                 color="inherit"
                 size="small"
                 sx={styles.themeToggle}
               >
-                {mode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+                {isDark ? <Sun size={20} /> : <Moon size={20} />}
               </IconButton>
               
               <Box sx={styles.userInfoBlock}>

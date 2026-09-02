@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { SkeletonCourseCard } from '@/components/ui/SkeletonCourseCard';
-import { Heading, Text } from '@repo/ui';
-import { Compass } from 'lucide-react';
+import { Database } from 'lucide-react';
 import { mockAvailableCourses } from '@/data/mock';
 import { CourseCard } from '@/features/courses/components/CourseCard';
 import StudentLayout from '@/layouts/StudentLayout';
@@ -10,6 +9,8 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
 
 export default function CoursesPage() {
   const [isLoading, setIsLoading] = useState(true);
@@ -23,16 +24,22 @@ export default function CoursesPage() {
 
   return (
     <StudentLayout>
-      
-
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
         <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
-            <Compass size={32} />
+          <Box sx={{ 
+            p: 2, bgcolor: alpha(brand[500], 0.1), color: brand[500], 
+            borderRadius: '16px', border: `1px solid ${alpha(brand[500], 0.2)}`,
+            boxShadow: `0 8px 24px ${alpha(brand[500], 0.15)}` 
+          }}>
+            <Database size={32} />
           </Box>
           <Box>
-            <Heading level={2}>Discover Courses</Heading>
-            <Text muted>Expand your skills with our premium catalog.</Text>
+            <Typography variant="h3" fontWeight={700} sx={{ letterSpacing: '-0.02em', mb: 0.5 }}>
+              Dataset & Pipeline Catalog
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Discover and provision new computational training modules.
+            </Typography>
           </Box>
         </Box>
         <Grid container spacing={4}>

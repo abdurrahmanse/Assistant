@@ -33,7 +33,7 @@ export function RecentActivityFeed({ activities }: RecentActivityFeedProps) {
   };
 
   return (
-    <Paper variant="outlined" sx={{ p: 0, flexGrow: 1, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column' }}>
+    <Paper variant="outlined" sx={{ p: 0, flexGrow: 1, borderRadius: '24px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', display: 'flex', flexDirection: 'column' }}>
       <Box sx={{ p: 3, borderBottom: '1px solid', borderColor: 'divider' }}>
         <Typography variant="h6" fontWeight={800}>Recent Activity</Typography>
       </Box>

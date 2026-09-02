@@ -14,7 +14,7 @@ interface Invoice {
 
 export function BillingHistoryTable({ invoices }: { invoices: Invoice[] }) {
   return (
-    <Card sx={{ p: 4, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)' }}>
+    <Card sx={{ p: 4, borderRadius: '16px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
       <Typography variant="subtitle2" fontWeight={800} mb={3}>Billing History</Typography>
       
       {!invoices || invoices.length === 0 ? (

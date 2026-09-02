@@ -6,7 +6,7 @@ import { CreditCard } from 'lucide-react';
 
 export function PaymentMethodCard() {
   return (
-    <Card sx={{ p: 4, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)' }}>
+    <Card sx={{ p: 4, borderRadius: '16px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
       <Typography variant="subtitle2" fontWeight={800} mb={3}>Payment Method</Typography>
       <Stack direction="row" alignItems="center" spacing={2} p={2} border="1px solid" borderColor="divider" borderRadius="12px" mb={3}>
         <Box sx={{ p: 1.5, bgcolor: 'primary.50', color: 'primary.main', borderRadius: '8px' }}>

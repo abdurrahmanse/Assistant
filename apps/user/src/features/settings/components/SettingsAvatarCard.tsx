@@ -10,7 +10,7 @@ export function SettingsAvatarCard({ user }: { user: UserProfile }) {
   return (
     <Card sx={{ 
       p: 4, borderRadius: '24px', display: 'flex', alignItems: 'center', gap: 4, 
-      boxShadow: '4px 4px 0px rgba(0,0,0,0.1)', border: '2px solid', borderColor: 'divider', 
+      border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', 
       '&:hover': { transform: 'translateY(-2px)', boxShadow: '6px 6px 0px rgba(0,0,0,0.1)' }, transition: 'all 0.2s ease' 
     }}>
       <Avatar src={user.avatar} sx={{ width: 100, height: 100 }} />

@@ -2,56 +2,49 @@ import React from 'react';
 import StudentLayout from '@/layouts/StudentLayout';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { Heading, Text, Card, Button } from '@repo/ui';
-import { LifeBuoy, Mail, MessageCircle, FileQuestion } from 'lucide-react';
+import Typography from '@mui/material/Typography';
+import { Card, Button } from '@repo/ui';
+import { LifeBuoy, Mail, MessageSquare } from 'lucide-react';
 import Stack from '@mui/material/Stack';
+import Grid from '@mui/material/Grid';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function SupportPage() {
   return (
     <StudentLayout>
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
-        <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
-            <LifeBuoy size={32} />
-          </Box>
-          <Box>
-            <Heading level={2}>Support Center</Heading>
-            <Text muted>Need help? We're here for you.</Text>
-          </Box>
-        </Box>
+        <PageHeader 
+          icon={<LifeBuoy size={32} />}
+          title="Technical Support"
+          description="Troubleshoot issues, access documentation, or contact an engineer."
+        />
 
-        <Grid container spacing={3}>
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Card glass hoverable sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <Box sx={{ p: 2, bgcolor: 'primary.50', color: 'primary.main', borderRadius: '50%', mb: 3 }}>
-                <FileQuestion size={32} />
+        <Grid container spacing={4}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Card glass hoverable sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ p: 2, bgcolor: alpha(brand[500], 0.1), color: brand[500], borderRadius: '12px', width: 'fit-content', mb: 3 }}>
+                <MessageSquare size={24} />
               </Box>
-              <Heading level={4} sx={{ mb: 2 }}>FAQ</Heading>
-              <Text muted sx={{ mb: 4, flexGrow: 1 }}>Find answers to the most common questions about courses, billing, and certificates.</Text>
-              <Button variant="outline" fullWidth>Browse FAQ</Button>
+              <Typography variant="h5" fontWeight={700} mb={1}>Live Engineer Chat</Typography>
+              <Typography variant="body1" color="text.secondary" mb={4} flexGrow={1}>
+                Connect with our technical support team in real-time to debug any issues with your environment.
+              </Typography>
+              <Button variant="primary" fullWidth>Open Chat Terminal</Button>
             </Card>
           </Grid>
           
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Card glass hoverable sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <Box sx={{ p: 2, bgcolor: 'primary.50', color: 'primary.main', borderRadius: '50%', mb: 3 }}>
-                <MessageCircle size={32} />
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Card glass hoverable sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column' }}>
+              <Box sx={{ p: 2, bgcolor: alpha('#10b981', 0.1), color: '#10b981', borderRadius: '12px', width: 'fit-content', mb: 3 }}>
+                <Mail size={24} />
               </Box>
-              <Heading level={4} sx={{ mb: 2 }}>Live Chat</Heading>
-              <Text muted sx={{ mb: 4, flexGrow: 1 }}>Chat with our support team in real-time. Available Mon-Fri, 9AM-5PM EST.</Text>
-              <Button variant="primary" fullWidth>Start Chat</Button>
-            </Card>
-          </Grid>
-
-          <Grid size={{ xs: 12, md: 4 }}>
-            <Card glass hoverable sx={{ p: 4, height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <Box sx={{ p: 2, bgcolor: 'primary.50', color: 'primary.main', borderRadius: '50%', mb: 3 }}>
-                <Mail size={32} />
-              </Box>
-              <Heading level={4} sx={{ mb: 2 }}>Email Us</Heading>
-              <Text muted sx={{ mb: 4, flexGrow: 1 }}>Send us an email and we'll get back to you within 24 hours.</Text>
-              <Button variant="outline" fullWidth>Contact Us</Button>
+              <Typography variant="h5" fontWeight={700} mb={1}>Email Support Ticket</Typography>
+              <Typography variant="body1" color="text.secondary" mb={4} flexGrow={1}>
+                Submit a detailed ticket with your execution logs and our team will get back to you within 24 hours.
+              </Typography>
+              <Button variant="outline" fullWidth>Create Ticket</Button>
             </Card>
           </Grid>
         </Grid>

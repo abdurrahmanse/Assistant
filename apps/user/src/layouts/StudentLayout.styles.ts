@@ -1,4 +1,6 @@
 import type { SxProps, Theme } from '@mui/material/styles';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
 
 export const styles = {
   appBar: {
@@ -29,11 +31,11 @@ export const styles = {
     borderRadius: '8px',
     typography: 'subtitle2',
     fontWeight: 700,
-    color: isActive ? 'primary.main' : 'text.primary',
-    bgcolor: isActive ? 'primary.50' : 'transparent',
+    color: isActive ? brand[500] : 'text.primary',
+    bgcolor: isActive ? alpha(brand[500], 0.1) : 'transparent',
     transition: 'all 0.2s',
     '&:hover': {
-      bgcolor: isActive ? 'primary.50' : 'action.hover',
+      bgcolor: isActive ? alpha(brand[500], 0.15) : 'action.hover',
     }
   }),
 
@@ -44,8 +46,8 @@ export const styles = {
     px: 2, 
     py: 0.75, 
     borderRadius: '12px', 
-    bgcolor: 'rgba(249, 115, 22, 0.1)', 
-    color: '#f97316', 
+    bgcolor: alpha(brand[500], 0.1), 
+    color: brand[500], 
     fontWeight: 800 
   } as SxProps<Theme>,
 
@@ -61,7 +63,7 @@ export const styles = {
 
   avatarButton: { 
     p: 0.5, 
-    border: '2px solid', 
+    border: '1px solid', 
     borderColor: 'divider', 
     borderRadius: '50%' 
   } as SxProps<Theme>,

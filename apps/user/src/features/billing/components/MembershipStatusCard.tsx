@@ -15,7 +15,7 @@ interface PlanDetails {
 
 export function MembershipStatusCard({ plan }: { plan: PlanDetails }) {
   return (
-    <Card sx={{ p: 4, borderRadius: '24px', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)' }}>
+    <Card sx={{ p: 4, borderRadius: '16px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
       <Typography variant="subtitle2" fontWeight={800} color="primary.main" textTransform="uppercase" letterSpacing={1} mb={2}>
         Membership Status
       </Typography>

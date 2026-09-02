@@ -9,9 +9,9 @@ export function SkeletonCourseCard() {
     <Card sx={{ 
       borderRadius: '24px', 
       overflow: 'hidden', 
-      border: '2px solid', 
+      border: '1px solid', 
       borderColor: 'divider',
-      boxShadow: '4px 4px 0px rgba(0,0,0,0.05)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.02)',
       height: '100%',
       display: 'flex',
       flexDirection: 'column'

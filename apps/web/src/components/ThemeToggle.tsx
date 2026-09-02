@@ -4,13 +4,15 @@ import { useColorScheme } from '@mui/material/styles';
 import { Moon, Sun } from 'lucide-react';
 
 export function ThemeToggle() {
-  const { mode, setMode } = useColorScheme();
+  const { mode, setMode, systemMode } = useColorScheme();
   
   if (!mode) return null;
 
+  const isDark = mode === 'dark' || (mode === 'system' && systemMode === 'dark');
+
   return (
     <IconButton 
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+      onClick={() => setMode(isDark ? 'light' : 'dark')}
       color="inherit"
       size="small"
       sx={{ 
@@ -19,7 +21,7 @@ export function ThemeToggle() {
         '&:hover': { transform: 'scale(1.1)' }
       }}
     >
-      {mode === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+      {isDark ? <Sun size={20} /> : <Moon size={20} />}
     </IconButton>
   );
 }

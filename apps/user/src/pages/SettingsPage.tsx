@@ -36,7 +36,7 @@ export default function SettingsPage() {
 
           {/* Profile Form */}
           <Grid size={{ xs: 12 }}>
-            <Card sx={{ p: { xs: 4, md: 6 }, borderRadius: '24px', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)', border: '2px solid', borderColor: 'divider', '&:hover': { transform: 'translateY(-2px)', boxShadow: '6px 6px 0px rgba(0,0,0,0.1)' }, transition: 'all 0.2s ease' }}>
+            <Card sx={{ p: { xs: 4, md: 6 }, borderRadius: '24px', border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)', transition: 'all 0.2s ease' }}>
               <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <SettingsPersonalForm profile={profile} setProfile={setProfile} />
 

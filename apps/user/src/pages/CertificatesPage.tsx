@@ -1,5 +1,4 @@
-import { Heading, Text } from '@repo/ui';
-import { Medal } from 'lucide-react';
+import { Fingerprint } from 'lucide-react';
 import { mockCertificates } from '@/data/mock';
 import { Certificate3DCard } from '@/features/dashboard/components/Certificate3DCard';
 import StudentLayout from '@/layouts/StudentLayout';
@@ -7,20 +6,28 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
 
 export default function CertificatesPage() {
   return (
     <StudentLayout>
-      
-
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
         <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
-            <Medal size={32} />
+          <Box sx={{ 
+            p: 2, bgcolor: alpha(brand[500], 0.1), color: brand[500], 
+            borderRadius: '16px', border: `1px solid ${alpha(brand[500], 0.2)}`,
+            boxShadow: `0 8px 24px ${alpha(brand[500], 0.15)}` 
+          }}>
+            <Fingerprint size={32} />
           </Box>
           <Box>
-            <Heading level={2}>Certificates</Heading>
-            <Text muted>Your earned certificates and accomplishments.</Text>
+            <Typography variant="h3" fontWeight={700} sx={{ letterSpacing: '-0.02em', mb: 0.5 }}>
+              Verified Credentials
+            </Typography>
+            <Typography variant="body1" color="text.secondary">
+              Cryptographically secure certificates of completion.
+            </Typography>
           </Box>
         </Box>
         <Grid container spacing={4}>

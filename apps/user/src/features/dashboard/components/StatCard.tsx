@@ -11,7 +11,7 @@ interface StatCardProps {
 
 export function StatCard({ label, value, icon, color }: StatCardProps) {
   return (
-    <Paper variant="outlined" sx={{ p: 3, borderRadius: '20px', display: 'flex', alignItems: 'center', gap: 3, border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.05)' }}>
+    <Paper variant="outlined" sx={{ p: 3, borderRadius: '20px', display: 'flex', alignItems: 'center', gap: 3, border: '1px solid', borderColor: 'divider', boxShadow: '0 4px 20px rgba(0,0,0,0.02)' }}>
       <Box sx={{ p: 2, borderRadius: '16px', bgcolor: `${color}15`, color: color, display: 'flex' }}>
         {icon}
       </Box>

@@ -1,4 +1,6 @@
 import type { SxProps, Theme } from '@mui/material/styles';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
 
 export const styles = {
   headerWrapper: { 
@@ -10,15 +12,23 @@ export const styles = {
   
   headerIconBox: { 
     p: 2, 
-    bgcolor: 'primary.main', 
-    color: 'white', 
+    bgcolor: alpha(brand[500], 0.1), 
+    color: brand[500], 
     borderRadius: '16px', 
-    boxShadow: '0 8px 16px rgba(236,72,153,0.3)' 
+    border: `1px solid ${alpha(brand[500], 0.2)}`,
+    boxShadow: `0 8px 24px ${alpha(brand[500], 0.15)}` 
   } as SxProps<Theme>,
   
   banner: { 
-    height: 100, 
-    background: 'linear-gradient(135deg, var(--template-palette-primary-main) 0%, var(--template-palette-secondary-main) 100%)' 
+    height: 120, 
+    background: `linear-gradient(135deg, ${alpha(brand[800], 0.9)} 0%, ${alpha(brand[500], 0.9)} 100%)`,
+    position: 'relative',
+    '&::after': {
+      content: '""',
+      position: 'absolute',
+      inset: 0,
+      background: 'url("data:image/svg+xml,%3Csvg width=\'20\' height=\'20\' viewBox=\'0 0 20 20\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'0.05\' fill-rule=\'evenodd\'%3E%3Ccircle cx=\'3\' cy=\'3\' r=\'1\'/%3E%3Ccircle cx=\'13\' cy=\'13\' r=\'1\'/%3E%3C/g%3E%3C/svg%3E")',
+    }
   } as SxProps<Theme>,
   
   cardContent: { 
@@ -40,14 +50,14 @@ export const styles = {
     height: 100, 
     border: '4px solid', 
     borderColor: 'background.paper',
-    boxShadow: '0 4px 14px rgba(0,0,0,0.1)'
+    boxShadow: `0 8px 24px rgba(0,0,0,0.1)`
   } as SxProps<Theme>,
   
   cameraButton: { 
     position: 'absolute', 
     bottom: 0, 
     right: 0, 
-    bgcolor: 'primary.main', 
+    bgcolor: brand[500], 
     color: 'white', 
     p: 0.75, 
     borderRadius: '50%', 
@@ -62,8 +72,10 @@ export const styles = {
     display: 'flex', 
     alignItems: 'center', 
     gap: 1, 
-    color: 'success.main', 
-    mb: 3 
+    color: '#10b981', 
+    mb: 3,
+    bgcolor: alpha('#10b981', 0.1),
+    px: 1.5, py: 0.5, borderRadius: '8px'
   } as SxProps<Theme>,
   
   statsRow: { 

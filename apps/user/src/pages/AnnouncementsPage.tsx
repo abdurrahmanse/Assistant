@@ -2,35 +2,35 @@ import React from 'react';
 import StudentLayout from '@/layouts/StudentLayout';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
-import { Heading, Text, Card } from '@repo/ui';
-import { Bell } from 'lucide-react';
+import Typography from '@mui/material/Typography';
+import { Card } from '@repo/ui';
+import { BellRing } from 'lucide-react';
 import Stack from '@mui/material/Stack';
+import { brand } from '@repo/ui/shared-theme/themePrimitives';
+import { alpha } from '@mui/material/styles';
+import { PageHeader } from '@/components/ui/PageHeader';
 
 export default function AnnouncementsPage() {
   return (
     <StudentLayout>
       <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
-        <Box sx={{ mb: 6, display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ p: 2, bgcolor: 'primary.main', color: 'white', borderRadius: '16px', boxShadow: '0 8px 16px rgba(236,72,153,0.3)' }}>
-            <Bell size={32} />
-          </Box>
-          <Box>
-            <Heading level={2}>Announcements</Heading>
-            <Text muted>Stay updated with the latest news and platform updates.</Text>
-          </Box>
-        </Box>
+        <PageHeader 
+          icon={<BellRing size={32} />}
+          title="System Logs & Updates"
+          description="Global broadcasts and platform-wide execution notices."
+        />
 
         <Stack spacing={3}>
-          <Card glass hoverable sx={{ p: 4 }}>
-            <Heading level={4} sx={{ mb: 1 }}>Platform Update: New UI</Heading>
-            <Text muted bold sx={{ mb: 3 }}>Posted today</Text>
-            <Text>We have completely revamped our user dashboard to give you a cleaner, more focused learning experience.</Text>
+          <Card glass hoverable sx={{ p: 4, borderLeft: `4px solid ${brand[500]}` }}>
+            <Typography variant="h5" fontWeight={700} sx={{ mb: 1, letterSpacing: '-0.02em' }}>Platform Update: New Data Science UI</Typography>
+            <Typography variant="caption" color={brand[500]} fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: 1, display: 'block', mb: 3 }}>Timestamp: {new Date().toLocaleDateString()}</Typography>
+            <Typography variant="body1" color="text.secondary">We have completely revamped our user dashboard to give you a cleaner, more focused computational learning experience.</Typography>
           </Card>
           
           <Card glass hoverable sx={{ p: 4 }}>
-            <Heading level={4} sx={{ mb: 1 }}>Upcoming Live Q&A Session</Heading>
-            <Text muted bold sx={{ mb: 3 }}>Posted 3 days ago</Text>
-            <Text>Join us this Friday for a live Q&A session on Advanced React Patterns. Don't forget to submit your questions beforehand!</Text>
+            <Typography variant="h5" fontWeight={700} sx={{ mb: 1, letterSpacing: '-0.02em' }}>Upcoming Live Node Execution Session</Typography>
+            <Typography variant="caption" color="text.secondary" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: 1, display: 'block', mb: 3 }}>Timestamp: 3 days ago</Typography>
+            <Typography variant="body1" color="text.secondary">Join us this Friday for a live Q&A session on Advanced Data Pipelines. Don't forget to submit your queries to the buffer beforehand!</Typography>
           </Card>
         </Stack>
       </Container>
