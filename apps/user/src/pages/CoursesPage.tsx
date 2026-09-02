@@ -10,6 +10,13 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router';
 
 export default function CoursesPage() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const navigate = useNavigate();
 
   return (

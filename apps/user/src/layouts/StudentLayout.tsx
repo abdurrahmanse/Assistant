@@ -3,6 +3,7 @@ import { mockUser } from '@/data/mock';
 import AppBar from '@mui/material/AppBar';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
+import { CommandPalette } from '@/components/ui/CommandPalette';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';

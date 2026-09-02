@@ -4,6 +4,10 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import Fab from '@mui/material/Fab';
+import { Menu as MenuIcon } from 'lucide-react';
+import { useTheme, useMediaQuery } from '@mui/material';
 import React, { useState, Suspense, lazy } from 'react';
 import type { CourseDetails, CourseModule, CourseLesson, Resource } from '@/interfaces';
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router';
@@ -16,6 +20,7 @@ import { ErrorBoundary } from '@repo/ui/components/ErrorBoundary';
 const VideoPlayer = lazy(() => import('@/features/classroom/components/VideoPlayer').then(m => ({ default: m.VideoPlayer })));
 import { PlayerTabs } from '@/features/classroom/components/PlayerTabs';
 import { PlayerControls } from '@/features/classroom/components/PlayerControls';
+import { toast } from 'sonner';
 
 export default function CoursePlayerPage() {
   const { slug } = useParams();
@@ -37,6 +42,9 @@ export default function CoursePlayerPage() {
   const [currentLesson, setCurrentLesson] = useState(defaultLesson);
   const [activeTab, setActiveTab] = useState(0);
   const [localCourse, setLocalCourse] = useState(course);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   const allLessons = localCourse.modules?.flatMap((m: CourseModule) => m.lessons) || [];
   const currentLessonIndex = allLessons.findIndex((l: CourseLesson) => l.id === currentLesson.id);
@@ -74,6 +82,7 @@ export default function CoursePlayerPage() {
     setLocalCourse({ ...localCourse, modules: updatedModules, progress: newProgress });
     setCurrentLesson({ ...currentLesson, isCompleted: true });
     
+    toast.success('🎉 Lesson completed! +50 Points');
     handleNextLesson();
   };
 
@@ -116,17 +125,48 @@ export default function CoursePlayerPage() {
               </Paper>
             </Grid>
 
-            {/* Right: Curriculum Sidebar */}
-            <Grid size={{ xs: 12, lg: 4 }}>
-              <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column', border: '2px solid', borderColor: 'divider', boxShadow: '4px 4px 0px rgba(0,0,0,0.1)' }}>
-                <CurriculumSidebar 
-                  course={localCourse} 
-                  currentLesson={currentLesson} 
-                  onLessonSelect={handleLessonSelect} 
-                  strictMode={true}
-                />
-              </Paper>
-            </Grid>
+            {/* Right: Curriculum Sidebar (Desktop) */}
+            {!isMobile && (
+              <Grid size={{ xs: 12, lg: 4 }}>
+                <Paper variant="outlined" sx={{ borderRadius: '16px', height: '100%', maxHeight: 'calc(100vh - 160px)', display: 'flex', flexDirection: 'column', border: 'none', boxShadow: '0 24px 48px rgba(0,0,0,0.05)' }}>
+                  <CurriculumSidebar 
+                    course={localCourse} 
+                    currentLesson={currentLesson} 
+                    onLessonSelect={handleLessonSelect} 
+                    strictMode={true}
+                  />
+                </Paper>
+              </Grid>
+            )}
+
+            {/* Mobile Curriculum Drawer */}
+            {isMobile && (
+              <>
+                <Fab 
+                  color="primary" 
+                  aria-label="curriculum" 
+                  onClick={() => setDrawerOpen(true)}
+                  sx={{ position: 'fixed', bottom: 24, right: 24, zIndex: 1000 }}
+                >
+                  <MenuIcon />
+                </Fab>
+                <SwipeableDrawer
+                  anchor="bottom"
+                  open={drawerOpen}
+                  onClose={() => setDrawerOpen(false)}
+                  onOpen={() => setDrawerOpen(true)}
+                  sx={{ '& .MuiDrawer-paper': { height: '80vh', borderTopLeftRadius: '24px', borderTopRightRadius: '24px' } }}
+                >
+                  <Box sx={{ width: 40, height: 6, bgcolor: 'divider', borderRadius: 3, mx: 'auto', mt: 2, mb: 1 }} />
+                  <CurriculumSidebar 
+                    course={localCourse} 
+                    currentLesson={currentLesson} 
+                    onLessonSelect={(l) => { handleLessonSelect(l); setDrawerOpen(false); }} 
+                    strictMode={true}
+                  />
+                </SwipeableDrawer>
+              </>
+            )}
             
           </Grid>
         </Container>
